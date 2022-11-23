@@ -41,7 +41,7 @@ namespace CADsisVenta.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\;Initial Catalog=DanashaBasicDB;Integrated Security=True")]
         public string JsofConneccionString {
             get {
-                return ((string)(this["JsofConneccionString"]));
+                return DomainSQLite.Setting.Configuration.ConectionString;
             }
         }
         
@@ -51,7 +51,7 @@ namespace CADsisVenta.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\;Initial Catalog=DanashaBasicDB;Integrated Security=True")]
         public string DanashaBasicDBConnectionString {
             get {
-                return ((string)(this["DanashaBasicDBConnectionString"]));
+                return DomainSQLite.Setting.Configuration.ConectionString;
             }
         }
     }
