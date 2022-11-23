@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DanashaBasicDB" Class="DataClassesDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\;Initial Catalog=DanashaBasicDB;Integrated Security=True" SettingsObjectName="CADsisVenta.Properties.Settings" SettingsPropertyName="JsofConneccionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Cobros" Member="Cobros">
+    <Type Name="Cobros">
+      <Column Name="idCobro" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idFacturaVenta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idCliente" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="val_Factura" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="fech_Factura" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="stateCobro" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Cobros_CobroDetail" Member="CobroDetail" ThisKey="idCobro" OtherKey="idCobro" Type="CobroDetail" />
+      <Association Name="Clientes_Cobros" Member="Clientes" ThisKey="idCliente" OtherKey="idCliente" Type="Clientes" IsForeignKey="true" />
+      <Association Name="FacturaVenta_Cobros" Member="FacturaVenta" ThisKey="idFacturaVenta" OtherKey="idFactVenta" Type="FacturaVenta" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CobroDetail" Member="CobroDetail">
+    <Type Name="CobroDetail">
+      <Column Name="idCobroDetail" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idCobro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="val_Cobro" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="fech_Cobro" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="tipo_Cobro" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="num_cobro" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="loginUser" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="codTerminal" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Association Name="Cobros_CobroDetail" Member="Cobros" ThisKey="idCobro" OtherKey="idCobro" Type="Cobros" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="FormaPago_CobroDetail" Member="FormaPago" ThisKey="tipo_Cobro" OtherKey="idformaPago" Type="FormaPago" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Clientes" Member="Clientes">
+    <Type Name="Clientes">
+      <Column Name="idCliente" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idPersona" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="credito" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="monto_Max" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="Clientes_Cobros" Member="Cobros" ThisKey="idCliente" OtherKey="idCliente" Type="Cobros" />
+      <Association Name="Clientes_FacturaVenta" Member="FacturaVenta" ThisKey="idCliente" OtherKey="idCliente" Type="FacturaVenta" />
+      <Association Name="Personas_Clientes" Member="Personas" ThisKey="idPersona" OtherKey="idPersona" Type="Personas" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="stm.Terminal" Member="Terminal">
+    <Type Name="Terminal">
+      <Column Name="idTerminal" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idEquipo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idBodega" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idLocation" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="codTerminal" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Association Name="Terminal_CajaStado" Member="CajaStado" ThisKey="idTerminal" OtherKey="idTerminal" Type="CajaStado" />
+      <Association Name="Bodegas_Terminal" Member="Bodegas" ThisKey="idBodega" OtherKey="idBodega" Type="Bodegas" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CajaStado" Member="CajaStado">
+    <Type Name="CajaStado">
+      <Column Name="idCajaStado" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idTerminal" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dateStar" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="dateEnd" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="Stado" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="isAllUser" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="codUserOpen" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="codUserClosed" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="QuantityOpen" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="QuantityClosed" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Qntt_difference" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="own_User" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="dateHiberna" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Association Name="CajaStado_Cajas" Member="Cajas" ThisKey="idCajaStado" OtherKey="idCajaStado" Type="Cajas" />
+      <Association Name="Terminal_CajaStado" Member="Terminal" ThisKey="idTerminal" OtherKey="idTerminal" Type="Terminal" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cajas" Member="Cajas">
+    <Type Name="Cajas">
+      <Column Name="idCaja" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idCajaStado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="codUserMovi" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="dateAntTime" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="idFormaPago" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="debe" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="haber" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="saldo" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="onControl" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="TypoMovi" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="CajaStado_Cajas" Member="CajaStado" ThisKey="idCajaStado" OtherKey="idCajaStado" Type="CajaStado" IsForeignKey="true" />
+      <Association Name="FormaPago_Cajas" Member="FormaPago" ThisKey="idFormaPago" OtherKey="idformaPago" Type="FormaPago" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="stm.FormaPago" Member="FormaPago">
+    <Type Name="FormaPago">
+      <Column Name="idformaPago" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="formaPago" Member="formaPago1" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="diasCredito" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="interes" Type="System.Decimal" DbType="Decimal(5,2) NOT NULL" CanBeNull="false" />
+      <Association Name="FormaPago_CobroDetail" Member="CobroDetail" ThisKey="idformaPago" OtherKey="tipo_Cobro" Type="CobroDetail" />
+      <Association Name="FormaPago_Cajas" Member="Cajas" ThisKey="idformaPago" OtherKey="idFormaPago" Type="Cajas" />
+      <Association Name="FormaPago_FacturaVenta" Member="FacturaVenta" ThisKey="idformaPago" OtherKey="idFormaPago" Type="FacturaVenta" />
+    </Type>
+  </Table>
+  <Table Name="" Member="DetailPayment">
+    <Type Name="DetailPayment">
+      <Column Name="Detail" Type="System.String" CanBeNull="false" />
+      <Column Name="ValFactura" Type="System.Decimal" CanBeNull="false" />
+      <Column Name="ValPago" Type="System.Decimal" CanBeNull="false" />
+      <Column Name="ValSalso" Type="System.Decimal" CanBeNull="false" />
+      <Column Name="TotalCobrabo" Type="System.Decimal" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="tmp.DocumentULT" Member="DocumentULT">
+    <Type Name="DocumentULT">
+      <Column Name="idDocument" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Num_document" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Val_Document" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="codUser" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="codTerminal" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProductoPresentacion" Member="ProductoPresentacion">
+    <Type Name="ProductoPresentacion">
+      <Column Name="idPresentacion" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="codProducto" Type="System.String" DbType="VarChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="idProducto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idProUndMed" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idProUndReferen" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cant_Present" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="precioCompra" Type="System.Decimal" DbType="Decimal(30,6) NOT NULL" CanBeNull="false" />
+      <Column Name="precioVenta" Type="System.Decimal" DbType="Decimal(20,5) NOT NULL" CanBeNull="false" />
+      <Column Name="Fech_UltimaCompra" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CodUser" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Empaquetado" Type="System.Decimal" DbType="Decimal(30,3)" CanBeNull="true" />
+      <Column Name="Presentacion" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="PresentacionPrint" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="isPresentFactory" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Barcode" Type="System.String" DbType="Char(25)" CanBeNull="true" />
+      <Association Name="ProductoPresentacion_FacturaVentaDetail" Member="FacturaVentaDetail" ThisKey="idPresentacion" OtherKey="idPresent" Type="FacturaVentaDetail" />
+      <Association Name="ProductoPresentacion_FacturaVentaImpuestos" Member="FacturaVentaImpuestos" ThisKey="idPresentacion" OtherKey="IdPresent" Type="FacturaVentaImpuestos" />
+      <Association Name="Productos_ProductoPresentacion" Member="Productos" ThisKey="idProducto" OtherKey="idProducto" Type="Productos" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FacturaVentaDetail" Member="FacturaVentaDetail">
+    <Type Name="FacturaVentaDetail">
+      <Column Name="idFacturVentaDetail" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idFacturaVenta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idPresent" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cantidad" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Prec_Venta" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Iva" Type="System.Decimal" DbType="Decimal(12,5) NOT NULL" CanBeNull="false" />
+      <Column Name="Prec_Compra" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
+      <Column Name="Prec_Prome_Bodega" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
+      <Association Name="FacturaVentaDetail_FacturaVentaDiscount" Member="FacturaVentaDiscount" ThisKey="idFacturVentaDetail" OtherKey="idFacturVentaDetail" Type="FacturaVentaDiscount" Cardinality="One" />
+      <Association Name="ProductoPresentacion_FacturaVentaDetail" Member="ProductoPresentacion" ThisKey="idPresent" OtherKey="idPresentacion" Type="ProductoPresentacion" IsForeignKey="true" />
+      <Association Name="FacturaVenta_FacturaVentaDetail" Member="FacturaVenta" ThisKey="idFacturaVenta" OtherKey="idFactVenta" Type="FacturaVenta" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FacturaVenta" Member="FacturaVenta">
+    <Type Name="FacturaVenta">
+      <Column Name="idFactVenta" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Num_Factu" Type="System.String" DbType="Char(17) NOT NULL" CanBeNull="false" />
+      <Column Name="idCliente" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idFormaPago" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fechaDesde" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="fechaHasta" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Base00Iva" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Base12Iva" Type="System.Decimal" DbType="Decimal(12,2)" CanBeNull="true" />
+      <Column Name="Iva" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(20,2) NOT NULL" CanBeNull="false" />
+      <Column Name="codUser" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Impreso" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="idTypoDocument" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OtroValor" Type="System.Decimal" DbType="Decimal(12,2) NOT NULL" CanBeNull="false" />
+      <Column Name="idBodega" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="codTerminal" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Association Name="FacturaVenta_Cobros" Member="Cobros" ThisKey="idFactVenta" OtherKey="idFacturaVenta" Type="Cobros" />
+      <Association Name="FacturaVenta_FacturaVentaDetail" Member="FacturaVentaDetail" ThisKey="idFactVenta" OtherKey="idFacturaVenta" Type="FacturaVentaDetail" />
+      <Association Name="FacturaVenta_FacturaVentaImpuestos" Member="FacturaVentaImpuestos" ThisKey="idFactVenta" OtherKey="IdFactVenta" Type="FacturaVentaImpuestos" />
+      <Association Name="Clientes_FacturaVenta" Member="Clientes" ThisKey="idCliente" OtherKey="idCliente" Type="Clientes" IsForeignKey="true" />
+      <Association Name="FormaPago_FacturaVenta" Member="FormaPago" ThisKey="idFormaPago" OtherKey="idformaPago" Type="FormaPago" IsForeignKey="true" />
+      <Association Name="Bodegas_FacturaVenta" Member="Bodegas" ThisKey="idBodega" OtherKey="idBodega" Type="Bodegas" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Personas" Member="Personas">
+    <Type Name="Personas">
+      <Column Name="idPersona" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Apellidos" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Ruc_Ci" Type="System.String" DbType="VarChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="telefono" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="fecha_reg" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="mail" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="fech_Naci" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="genero" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="nota" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="foto" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="telef_casa" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="telef_ofic" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="SendMail" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Personas_Clientes" Member="Clientes" ThisKey="idPersona" OtherKey="idPersona" Type="Clientes" />
+    </Type>
+  </Table>
+  <Table Name="cmc.SignatureOptions" Member="SignatureOptions">
+    <Type Name="SignatureOptions">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MyCommerceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TIPO_EMISION" Type="System.String" DbType="NVarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="TIEMPO_ESPERA" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="CLAVE_INTERNA" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="TIPO_AMBIENTE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TOKEN" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="RUTA_ARCHIVO" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="myCommerce_SignatureOptions" Member="myCommerce" ThisKey="MyCommerceId" OtherKey="CommerceId" Type="myCommerce" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FacturaVentaImpuestos" Member="FacturaVentaImpuestos">
+    <Type Name="FacturaVentaImpuestos">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IdFactVenta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdPresent" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ivaPorcentaje" Type="System.Decimal" DbType="Decimal(5,2)" CanBeNull="true" />
+      <Column Name="BaseImponible" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Valor" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="FacturaVenta_FacturaVentaImpuestos" Member="FacturaVenta" ThisKey="IdFactVenta" OtherKey="idFactVenta" Type="FacturaVenta" IsForeignKey="true" />
+      <Association Name="ProductoPresentacion_FacturaVentaImpuestos" Member="ProductoPresentacion" ThisKey="IdPresent" OtherKey="idPresentacion" Type="ProductoPresentacion" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="sri.IMPUESTO" Member="IMPUESTO">
+    <Type Name="IMPUESTO">
+      <Column Name="CODIGO" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TAIM_DES_IMP" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="TAIM_ESTADO" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Association Name="IMPUESTO_IMPUESTO_VALOR" Member="IMPUESTO_VALOR" ThisKey="CODIGO" OtherKey="CODIGO_IMPUESTO" Type="IMPUESTO_VALOR" />
+    </Type>
+  </Table>
+  <Table Name="sri.IMPUESTO_VALOR" Member="IMPUESTO_VALOR">
+    <Type Name="IMPUESTO_VALOR">
+      <Column Name="CODIGO" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CODIGO_IMPUESTO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PORCENTAJE" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="PORCENTAJE_RETENCION" Type="System.Decimal" DbType="Decimal(18,3)" CanBeNull="true" />
+      <Column Name="TIPO_IMPUESTO" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="DESCRIPCION" Type="System.String" DbType="NVarChar(600)" CanBeNull="true" />
+      <Column Name="FECHA_INICIO" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="FECHA_FIN" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CODIGO_ADM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MARCA_PORCENTAJE_LIBRE" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="CALCURA_CON_CANTIDAD" Type="System.String" DbType="NVarChar(1) NOT NULL" CanBeNull="false" />
+      <Association Name="IMPUESTO_IMPUESTO_VALOR" Member="IMPUESTO" ThisKey="CODIGO_IMPUESTO" OtherKey="CODIGO" Type="IMPUESTO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="sri.FORMAS_PAGOS" Member="FORMAS_PAGOS">
+    <Type Name="FORMAS_PAGOS">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CODIGO_FORMA_PAGO" Type="System.String" DbType="NVarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="DESCRIPCION" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_INICIO" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="FECHA_FIN" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Productos" Member="Productos">
+    <Type Name="Productos">
+      <Column Name="idProducto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nom_Comercial" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Nom_Comun" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Cant_minima" Type="System.Decimal" DbType="Decimal(18,3) NOT NULL" CanBeNull="false" />
+      <Column Name="idUnidad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdSubCategoria" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Stock" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Deft_idPresenCompra" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Deft_idPresenVenta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ivaPorcentaje" Type="System.Decimal" DbType="Decimal(5,2) NOT NULL" CanBeNull="false" />
+      <Column Name="coduser" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="fecha_reg" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Facturable" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="idData" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Productos_ProductoPresentacion" Member="ProductoPresentacion" ThisKey="idProducto" OtherKey="idProducto" Type="ProductoPresentacion" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FacturaVentaDiscount" Member="FacturaVentaDiscount">
+    <Type Name="FacturaVentaDiscount">
+      <Column Name="idFacturVentaDetail" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CodUserAuthorize" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Discount" Type="System.Decimal" DbType="Decimal(5,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Additional" Type="System.Decimal" DbType="Decimal(5,3) NOT NULL" CanBeNull="false" />
+      <Association Name="FacturaVentaDetail_FacturaVentaDiscount" Member="FacturaVentaDetail" ThisKey="idFacturVentaDetail" OtherKey="idFacturVentaDetail" Type="FacturaVentaDetail" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bodegas" Member="Bodegas">
+    <Type Name="Bodegas">
+      <Column Name="idBodega" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nom_Bodega" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Des_Bodega" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Direc_Bodega" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Telef1_Bodega" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="Telef2_Bodega" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="Telef3_Bodega" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="Resp1_idEmpleado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Resp2_idEmpleado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Resp3_idEmpleado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fecha_Apertura" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_reg" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="TypoBodega" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CodEstablec" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="TIPO_EMISION" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="TIPO_AMBIENTE" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="SaveToFile" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SaveToDataBase" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Bodegas_Terminal" Member="Terminal" ThisKey="idBodega" OtherKey="idBodega" Type="Terminal" />
+      <Association Name="Bodegas_FacturaVenta" Member="FacturaVenta" ThisKey="idBodega" OtherKey="idBodega" Type="FacturaVenta" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MySetting" Member="MySetting">
+    <Type Name="MySetting">
+      <Column Name="MySettingID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ImageLogo" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="SMTP" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Port" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="CellPhone" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="MyCommerceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="myCommerce_MySetting" Member="myCommerce" ThisKey="MyCommerceId" OtherKey="CommerceId" Type="myCommerce" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="cmc.myCommerce" Member="myCommerce">
+    <Type Name="myCommerce">
+      <Column Name="CommerceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RazonSocial" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="Ruc" Type="System.String" DbType="VarChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="lema" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DateStar" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Domicilio" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="Representante" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="note" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="dateRegister" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsCancelInSalesNotStock" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Company" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="NameComercial" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="AgenteRetencion" Type="System.String" DbType="VarChar(35)" CanBeNull="true" />
+      <Column Name="IdTypeRegimen" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="SpecialTaxNumber" Type="System.String" DbType="VarChar(13)" CanBeNull="true" />
+      <Column Name="KeepAccounting" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TypoMonedaDecrip" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="CellPhone" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="LogoPDF" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LogoTicket" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="RegimenMicroempresas" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="ContribuyenteRimpe" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Association Name="myCommerce_SignatureOptions" Member="SignatureOptions" ThisKey="CommerceId" OtherKey="MyCommerceId" Type="SignatureOptions" />
+      <Association Name="myCommerce_MySetting" Member="MySetting" ThisKey="CommerceId" OtherKey="MyCommerceId" Type="MySetting" />
+    </Type>
+  </Table>
+  <Function Name="dbo.getTerminalClosure" Method="getTerminalClosure">
+    <Parameter Name="idCajaStado" Type="System.Int32" DbType="Int" />
+    <ElementType Name="getTerminalClosureResult">
+      <Column Name="idformaPago" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="formaPago" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="cod" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="detalle" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="debe" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+      <Column Name="haber" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetDebitClient" Method="GetDebitClient">
+    <Parameter Name="IdPerson" Parameter="idPerson" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetDebitClientResult">
+      <Column Name="idPersona" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="idCliente" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Ruc_Ci" Type="System.String" DbType="VarChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="Apellidos" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="idFacturaVenta" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fech_Factura" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="val_Factura" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ValCobrado" Type="System.Decimal" DbType="Decimal(38,2)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetDebitEmployee" Method="GetDebitEmployee" IsComposable="true">
+    <Parameter Name="idPersona" Type="System.Int32" DbType="Int" />
+    <Return Type="object" />
+  </Function>
+  <Function Name="dbo.getClosedTerminal" Method="getClosedTerminal">
+    <Parameter Name="dateStar" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="dateEnd" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="idBodega" Type="System.Int32" DbType="Int" />
+    <ElementType Name="getClosedTerminalResult">
+      <Column Name="Terminal" Type="System.String" DbType="VarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="idCajaStado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Operacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Aperturó" Type="System.String" DbType="Char(8) NOT NULL" CanBeNull="false" />
+      <Column Name="[Realizo el arqueo]" Member="Realizo_el_arqueo" Type="System.String" DbType="Char(8)" CanBeNull="true" />
+      <Column Name="[Fecha de inicio]" Member="Fecha_de_inicio" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
+      <Column Name="[Fecha de cierre]" Member="Fecha_de_cierre" Type="System.DateTime" DbType="DateTime2" CanBeNull="true" />
+      <Column Name="Diferencia" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

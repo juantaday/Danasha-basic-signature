@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetTicket" targetNamespace="http://tempuri.org/DataSetTicket.xsd" xmlns:mstns="http://tempuri.org/DataSetTicket.xsd" xmlns="http://tempuri.org/DataSetTicket.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="DBpanaderiaConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="DBpanaderiaConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.CADsisVenta.Properties.Settings.GlobalReference.Default.DBpanaderiaConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="JsofConneccionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="JsofConneccionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.CADsisVenta.Properties.Settings.GlobalReference.Default.JsofConneccionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TerminalConfiTableAdapter" GeneratorDataComponentClassName="TerminalConfiTableAdapter" Name="TerminalConfi" UserDataComponentName="TerminalConfiTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="JsofConneccionString (Settings)" DbObjectName="JSofwareCommerceDB.stm.TerminalConfi" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT idTerminalConfi, NumFact01, NumFact02, NumFact03, NumFact04, NameImpreTicket, ColorTicket, itemsPrintTicket, fech_Reg, NumDocumento, NumRetur, idTerminal, idTypoDocumento, isDefault, typePrint, PrintLogo
+FROM stm.TerminalConfi</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="idTerminalConfi" DataSetColumn="idTerminalConfi" />
+              <Mapping SourceColumn="NumFact01" DataSetColumn="NumFact01" />
+              <Mapping SourceColumn="NumFact02" DataSetColumn="NumFact02" />
+              <Mapping SourceColumn="NumFact03" DataSetColumn="NumFact03" />
+              <Mapping SourceColumn="NumFact04" DataSetColumn="NumFact04" />
+              <Mapping SourceColumn="NameImpreTicket" DataSetColumn="NameImpreTicket" />
+              <Mapping SourceColumn="ColorTicket" DataSetColumn="ColorTicket" />
+              <Mapping SourceColumn="itemsPrintTicket" DataSetColumn="itemsPrintTicket" />
+              <Mapping SourceColumn="fech_Reg" DataSetColumn="fech_Reg" />
+              <Mapping SourceColumn="NumDocumento" DataSetColumn="NumDocumento" />
+              <Mapping SourceColumn="NumRetur" DataSetColumn="NumRetur" />
+              <Mapping SourceColumn="idTerminal" DataSetColumn="idTerminal" />
+              <Mapping SourceColumn="idTypoDocumento" DataSetColumn="idTypoDocumento" />
+              <Mapping SourceColumn="isDefault" DataSetColumn="isDefault" />
+              <Mapping SourceColumn="typePrint" DataSetColumn="typePrint" />
+              <Mapping SourceColumn="PrintLogo" DataSetColumn="PrintLogo" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="JsofConneccionString (Settings)" DbObjectName="JSofwareCommerceDB.stm.TerminalConfi" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByRegisterWithIdTerminalAndIdDocument" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByRegisterWithIdTerminalAndIdDocument" GeneratorSourceName="FillByRegisterWithIdTerminalAndIdDocument" GetMethodModifier="Public" GetMethodName="GetDataByRegisterWithIdTerminalAndIdDocument" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByRegisterWithIdTerminalAndIdDocument" UserSourceName="FillByRegisterWithIdTerminalAndIdDocument">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ColorTicket, NameImpreTicket, NumDocumento, NumFact01, NumFact02, NumFact03, NumFact04, NumRetur, PrintLogo, fech_Reg, idTerminal, idTerminalConfi, idTypoDocumento, isDefault, itemsPrintTicket, typePrint FROM stm.TerminalConfi WHERE (idTerminal = @idTerminal) AND (idTypoDocumento = @idTypoDocumento)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="idTerminal" ColumnName="idTerminal" DataSourceName="DBpanaderia.stm.TerminalConfi" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@idTerminal" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="idTerminal" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="idTypoDocumento" ColumnName="idTypoDocumento" DataSourceName="DBpanaderia.stm.TerminalConfi" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@idTypoDocumento" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="idTypoDocumento" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="JsofConneccionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertPageDefault" Modifier="Public" Name="InsertPageDefault" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="InsertPageDefault">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>  Insert into [stm].TerminalConfi 
+  (NumFact01,NumFact02,NumFact03,NumFact04,
+  itemsPrintTicket, NumDocumento,
+  idTerminal,idTypoDocumento,isDefault,typePrint)
+  Values('000','000','00','0000000',
+  10,0,
+  @idTerminal,@idTypoDocumento,1,'Default')</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="idTerminal" ColumnName="idTerminal" DataSourceName="DBpanaderia.stm.TerminalConfi" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@idTerminal" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="idTerminal" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="idTypoDocumento" ColumnName="idTypoDocumento" DataSourceName="DBpanaderia.stm.TerminalConfi" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@idTypoDocumento" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="idTypoDocumento" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="JsofConneccionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateIsDefaultConfig" Modifier="Public" Name="UpdateIsDefaultConfig" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="UpdateIsDefaultConfig">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Update [stm].[TerminalConfi] set isDefault =@isDefault
+WHERE((idTerminal=@idTerminal) AND (idTypoDocumento=@IdTypoDocumento))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="isDefault" ColumnName="isDefault" DataSourceName="DBpanaderia.stm.TerminalConfi" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@isDefault" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="isDefault" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="idTerminal" ColumnName="idTerminal" DataSourceName="DBpanaderia.stm.TerminalConfi" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@idTerminal" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="idTerminal" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="IdTypoDocumento" ColumnName="idTypoDocumento" DataSourceName="DBpanaderia.stm.TerminalConfi" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@IdTypoDocumento" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="idTypoDocumento" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+              <DbSource ConnectionRef="JsofConneccionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateTicketPageOne" Modifier="Public" Name="UpdateTicketPageOne" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="UpdateTicketPageOne">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>update
+[stm].[TerminalConfi]
+ SET itemsPrintTicket=@item,
+ColorTicket=@ColorTicket,
+NameImpreTicket=@NameImpreTicket,
+typePrint=@typePrint,
+isDefault =@isDefault,
+PrintLogo=@PrintLogo
+where ((idTerminal=@idTerminal) and (idTypoDocumento=@idTypoDocumento));</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="item" ColumnName="itemsPrintTicket" DataSourceName="JSofwareCommerceDB.stm.TerminalConfi" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@item" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="itemsPrintTicket" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="ColorTicket" ColumnName="ColorTicket" DataSourceName="JSofwareCommerceDB.stm.TerminalConfi" DataTypeServer="varchar(30)" DbType="AnsiString" Direction="Input" ParameterName="@ColorTicket" Precision="0" ProviderType="VarChar" Scale="0" Size="30" SourceColumn="ColorTicket" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="NameImpreTicket" ColumnName="NameImpreTicket" DataSourceName="JSofwareCommerceDB.stm.TerminalConfi" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@NameImpreTicket" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="NameImpreTicket" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="typePrint" ColumnName="typePrint" DataSourceName="JSofwareCommerceDB.stm.TerminalConfi" DataTypeServer="varchar(9)" DbType="AnsiString" Direction="Input" ParameterName="@typePrint" Precision="0" ProviderType="VarChar" Scale="0" Size="9" SourceColumn="typePrint" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="isDefault" ColumnName="isDefault" DataSourceName="JSofwareCommerceDB.stm.TerminalConfi" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@isDefault" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="isDefault" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="PrintLogo" ColumnName="PrintLogo" DataSourceName="JSofwareCommerceDB.stm.TerminalConfi" DataTypeServer="bit" DbType="Boolean" Direction="Input" ParameterName="@PrintLogo" Precision="0" ProviderType="Bit" Scale="0" Size="1" SourceColumn="PrintLogo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="idTerminal" ColumnName="idTerminal" DataSourceName="JSofwareCommerceDB.stm.TerminalConfi" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@idTerminal" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="idTerminal" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="idTypoDocumento" ColumnName="idTypoDocumento" DataSourceName="JSofwareCommerceDB.stm.TerminalConfi" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@idTypoDocumento" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="idTypoDocumento" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetTicket" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetTicket" msprop:Generator_UserDSName="DataSetTicket">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TerminalConfi" msprop:Generator_TableClassName="TerminalConfiDataTable" msprop:Generator_TableVarName="tableTerminalConfi" msprop:Generator_RowChangedName="TerminalConfiRowChanged" msprop:Generator_TablePropName="TerminalConfi" msprop:Generator_RowDeletingName="TerminalConfiRowDeleting" msprop:Generator_RowChangingName="TerminalConfiRowChanging" msprop:Generator_RowEvHandlerName="TerminalConfiRowChangeEventHandler" msprop:Generator_RowDeletedName="TerminalConfiRowDeleted" msprop:Generator_RowClassName="TerminalConfiRow" msprop:Generator_UserTableName="TerminalConfi" msprop:Generator_RowEvArgName="TerminalConfiRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idTerminalConfi" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnidTerminalConfi" msprop:Generator_ColumnPropNameInRow="idTerminalConfi" msprop:Generator_ColumnPropNameInTable="idTerminalConfiColumn" msprop:Generator_UserColumnName="idTerminalConfi" type="xs:int" />
+              <xs:element name="NumFact01" msprop:Generator_ColumnVarNameInTable="columnNumFact01" msprop:Generator_ColumnPropNameInRow="NumFact01" msprop:Generator_ColumnPropNameInTable="NumFact01Column" msprop:Generator_UserColumnName="NumFact01">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NumFact02" msprop:Generator_ColumnVarNameInTable="columnNumFact02" msprop:Generator_ColumnPropNameInRow="NumFact02" msprop:Generator_ColumnPropNameInTable="NumFact02Column" msprop:Generator_UserColumnName="NumFact02">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NumFact03" msprop:Generator_ColumnVarNameInTable="columnNumFact03" msprop:Generator_ColumnPropNameInRow="NumFact03" msprop:Generator_ColumnPropNameInTable="NumFact03Column" msprop:Generator_UserColumnName="NumFact03">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NumFact04" msprop:Generator_ColumnVarNameInTable="columnNumFact04" msprop:Generator_ColumnPropNameInRow="NumFact04" msprop:Generator_ColumnPropNameInTable="NumFact04Column" msprop:Generator_UserColumnName="NumFact04">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="7" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NameImpreTicket" msprop:Generator_ColumnVarNameInTable="columnNameImpreTicket" msprop:Generator_ColumnPropNameInRow="NameImpreTicket" msprop:Generator_ColumnPropNameInTable="NameImpreTicketColumn" msprop:Generator_UserColumnName="NameImpreTicket" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ColorTicket" msprop:Generator_ColumnVarNameInTable="columnColorTicket" msprop:Generator_ColumnPropNameInRow="ColorTicket" msprop:Generator_ColumnPropNameInTable="ColorTicketColumn" msprop:Generator_UserColumnName="ColorTicket" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="itemsPrintTicket" msprop:Generator_ColumnVarNameInTable="columnitemsPrintTicket" msprop:Generator_ColumnPropNameInRow="itemsPrintTicket" msprop:Generator_ColumnPropNameInTable="itemsPrintTicketColumn" msprop:Generator_UserColumnName="itemsPrintTicket" type="xs:int" />
+              <xs:element name="fech_Reg" msprop:Generator_ColumnVarNameInTable="columnfech_Reg" msprop:Generator_ColumnPropNameInRow="fech_Reg" msprop:Generator_ColumnPropNameInTable="fech_RegColumn" msprop:Generator_UserColumnName="fech_Reg" type="xs:dateTime" />
+              <xs:element name="NumDocumento" msprop:Generator_ColumnVarNameInTable="columnNumDocumento" msprop:Generator_ColumnPropNameInRow="NumDocumento" msprop:Generator_ColumnPropNameInTable="NumDocumentoColumn" msprop:Generator_UserColumnName="NumDocumento" type="xs:int" />
+              <xs:element name="NumRetur" msprop:Generator_ColumnVarNameInTable="columnNumRetur" msprop:Generator_ColumnPropNameInRow="NumRetur" msprop:Generator_ColumnPropNameInTable="NumReturColumn" msprop:Generator_UserColumnName="NumRetur" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="idTerminal" msprop:Generator_ColumnVarNameInTable="columnidTerminal" msprop:Generator_ColumnPropNameInRow="idTerminal" msprop:Generator_ColumnPropNameInTable="idTerminalColumn" msprop:Generator_UserColumnName="idTerminal" type="xs:int" />
+              <xs:element name="idTypoDocumento" msprop:Generator_ColumnVarNameInTable="columnidTypoDocumento" msprop:Generator_ColumnPropNameInRow="idTypoDocumento" msprop:Generator_ColumnPropNameInTable="idTypoDocumentoColumn" msprop:Generator_UserColumnName="idTypoDocumento" type="xs:int" />
+              <xs:element name="isDefault" msprop:Generator_ColumnVarNameInTable="columnisDefault" msprop:Generator_ColumnPropNameInRow="isDefault" msprop:Generator_ColumnPropNameInTable="isDefaultColumn" msprop:Generator_UserColumnName="isDefault" type="xs:boolean" minOccurs="0" />
+              <xs:element name="typePrint" msprop:Generator_ColumnVarNameInTable="columntypePrint" msprop:Generator_ColumnPropNameInRow="typePrint" msprop:Generator_ColumnPropNameInTable="typePrintColumn" msprop:Generator_UserColumnName="typePrint">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PrintLogo" msprop:Generator_ColumnVarNameInTable="columnPrintLogo" msprop:Generator_ColumnPropNameInRow="PrintLogo" msprop:Generator_ColumnPropNameInTable="PrintLogoColumn" msprop:Generator_UserColumnName="PrintLogo" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TerminalConfi" />
+      <xs:field xpath="mstns:idTerminalConfi" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

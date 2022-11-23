@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DataContextLinq">
+  <DataContextMoniker Name="/DataContextLinqDataContext" />
+  <nestedChildShapes>
+    <classShape Id="3f6c59b3-7da3-4740-ae29-aa7317d0511a" absoluteBounds="0.5, 0.5, 2, 1.3862939453125">
+      <DataClassMoniker Name="/DataContextLinqDataContext/TypesVoucher" />
+      <nestedChildShapes>
+        <elementListCompartment Id="822129b0-f720-4ace-beec-8aa47828ec5b" absoluteBounds="0.515, 0.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bc5383a5-1be6-417d-a274-2212894be977" absoluteBounds="2.75, 0.5, 2, 2.5401025390625">
+      <DataClassMoniker Name="/DataContextLinqDataContext/Voucher" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6373e067-5262-46bd-841f-c885764461eb" absoluteBounds="2.765, 0.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f4250934-ea6e-49dc-9561-f7afd4a009d0" absoluteBounds="0.5, 2.5, 2, 2.5401025390625">
+      <DataClassMoniker Name="/DataContextLinqDataContext/MySetting" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f0d6562b-feee-4707-9a12-8bf65be146c0" absoluteBounds="0.51500000000000012, 2.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
