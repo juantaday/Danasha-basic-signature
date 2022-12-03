@@ -130,24 +130,31 @@ Public Class frm_Presentacion
             sql = sql & MyWHERE
         End If
 
-        conecta_sql()
+
         Try
-            Dim cmd As New SqlCommand(sql, Cnn_sql)
-            cmd.CommandType = CommandType.Text
-            Dim dat As New SqlDataAdapter(cmd)
-            Dim dt As New DataTable
 
-            dat.Fill(dt)
-            If dt.Rows.Count > 0 Then
-                With Me.cmbPresentResult
-                    .DataSource = dt
-                    .ValueMember = "idProUndMed"
-                    .DisplayMember = "Nom_Medida"
-                End With
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-            Else
-                cmbPresentResult.DataSource = Nothing
-            End If
+
+                Dim cmd As New SqlCommand(sql, cnn)
+                cmd.CommandType = CommandType.Text
+                Dim dat As New SqlDataAdapter(cmd)
+                Dim dt As New DataTable
+
+                dat.Fill(dt)
+                If dt.Rows.Count > 0 Then
+                    With Me.cmbPresentResult
+                        .DataSource = dt
+                        .ValueMember = "idProUndMed"
+                        .DisplayMember = "Nom_Medida"
+                    End With
+
+                Else
+                    cmbPresentResult.DataSource = Nothing
+                End If
+            End Using
+
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el CargarPresent")
@@ -236,22 +243,29 @@ Public Class frm_Presentacion
             sql = sql & "WHERE idProUndMed  = 1"
         End If
 
-        conecta_sql()
-        Try
-            Dim cmd As New SqlCommand(sql, Cnn_sql)
-            cmd.CommandType = CommandType.Text
-            Dim dat As New SqlDataAdapter(cmd)
-            Dim dt As New DataTable
 
-            dat.Fill(dt)
-            cmbUndMedPresentRefery.DataSource = Nothing
-            If dt.Rows.Count > 0 Then
-                With cmbUndMedPresentRefery
-                    .DataSource = dt
-                    .ValueMember = "idProUndMed"
-                    .DisplayMember = "Nom_Medida"
-                End With
-            End If
+        Try
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Dim cmd As New SqlCommand(sql, cnn)
+                cmd.CommandType = CommandType.Text
+                Dim dat As New SqlDataAdapter(cmd)
+                Dim dt As New DataTable
+
+                dat.Fill(dt)
+                cmbUndMedPresentRefery.DataSource = Nothing
+                If dt.Rows.Count > 0 Then
+                    With cmbUndMedPresentRefery
+                        .DataSource = dt
+                        .ValueMember = "idProUndMed"
+                        .DisplayMember = "Nom_Medida"
+                    End With
+                End If
+
+            End Using
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el frm_AddProducto en el sub Carga_CmbPresentRefery")
         End Try
@@ -322,25 +336,30 @@ Public Class frm_Presentacion
         End If
 
         sql = sql & " order by  Nom_Medida "
-        conecta_sql()
-        Try
-            Dim cmd As New SqlCommand(sql, Cnn_sql)
-            cmd.CommandType = CommandType.Text
-            Dim dat As New SqlDataAdapter(cmd)
-            Dim dt As New DataTable
 
-            dat.Fill(dt)
-            If dt.Rows.Count > 0 Then
-                With Me.cmbPresentResult
-                    .DataSource = dt
-                    .ValueMember = "idProUndMed"
-                    .DisplayMember = "Nom_Medida"
-                End With
-                Return True
-            Else
-                cmbPresentResult.DataSource = Nothing
-                Return False
-            End If
+        Try
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Dim cmd As New SqlCommand(sql, cnn)
+                cmd.CommandType = CommandType.Text
+                Dim dat As New SqlDataAdapter(cmd)
+                Dim dt As New DataTable
+
+                dat.Fill(dt)
+                If dt.Rows.Count > 0 Then
+                    With Me.cmbPresentResult
+                        .DataSource = dt
+                        .ValueMember = "idProUndMed"
+                        .DisplayMember = "Nom_Medida"
+                    End With
+                    Return True
+                Else
+                    cmbPresentResult.DataSource = Nothing
+                    Return False
+                End If
+
+            End Using
 
         Catch ex As Exception
             MsgBox(ex.Message + " en el Carga_cmbPresentResult ", MsgBoxStyle.Critical, "Error")
@@ -394,73 +413,81 @@ Public Class frm_Presentacion
 
         isLoad = False
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
 
-                dat.Fill(dt)
-                DataGridPresent.Columns.Clear()
-                DataGridPresent.DataSource = Nothing
-                If dt.Rows.Count > 0 Then
-                    With DataGridPresent
-                        .DataSource = dt
-                        .AutoSizeColumnsMode =
-                                DataGridViewAutoSizeColumnsMode.AllCells
-                        .RowHeadersWidth = 4
-                        .Columns(0).Visible = False ' idProdMedi
-                        .Columns(4).Visible = False 'idUndMediPreseRefery
-                        .Columns(5).Visible = False 'Cantidad_Present
-                        .Columns(6).Visible = False 'idPresentacion
-                        .Columns(7).Visible = False 'Medida de la presentacion [UND]
-                        .Columns(8).Visible = False 'Medida de referencia [KL]
-                        .Columns(9).Visible = False 'Codigo de barra.
-                        .Columns.Add(columncontrol)
-                        .Columns.Add(columnBarrCode)
-                        .Enabled = True
-                        .BackgroundColor = Color.Gray
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
 
-                        For i = 0 To .RowCount - 1
-                            Dim Cantidad As Double = .Rows(i).Cells("Cant_Present").Value
-                            Dim valor As String = Cantidad
-                            valor = valor & " " & .Rows(i).Cells("MedidaReferi").Value
-                            'si se refiere a la misma medida lo presentamos la del padre
-                            If .Rows(i).Cells("idProUndMed").Value = .Rows(i).Cells("idProUndReferen").Value Then
-                                .Rows(i).Cells("En cada empaque").Value = Me.myDescriptionEmpaque(Me.id_producto)
-                            Else
-                                .Rows(i).Cells("En cada empaque").Value = valor
-                            End If
+                    dat.Fill(dt)
+                    DataGridPresent.Columns.Clear()
+                    DataGridPresent.DataSource = Nothing
+                    If dt.Rows.Count > 0 Then
+                        With DataGridPresent
+                            .DataSource = dt
+                            .AutoSizeColumnsMode =
+                                    DataGridViewAutoSizeColumnsMode.AllCells
+                            .RowHeadersWidth = 4
+                            .Columns(0).Visible = False ' idProdMedi
+                            .Columns(4).Visible = False 'idUndMediPreseRefery
+                            .Columns(5).Visible = False 'Cantidad_Present
+                            .Columns(6).Visible = False 'idPresentacion
+                            .Columns(7).Visible = False 'Medida de la presentacion [UND]
+                            .Columns(8).Visible = False 'Medida de referencia [KL]
+                            .Columns(9).Visible = False 'Codigo de barra.
+                            .Columns.Add(columncontrol)
+                            .Columns.Add(columnBarrCode)
+                            .Enabled = True
+                            .BackgroundColor = Color.Gray
 
-                            If .Rows(i).Cells(0).Value = idSecompra Then
-                                .Rows(i).Cells("Se Compra").Value = True 'ok como presentacion en la que se compra
-                            End If
-                            If .Rows(i).Cells(0).Value = idSeVende Then
-                                .Rows(i).Cells("Se Vende").Value = True
-                            End If
-                            .Rows(i).Cells("barrCodeButoon").Value = .Rows(i).Cells("Barcode").Value
-                        Next
-                    End With
+                            For i = 0 To .RowCount - 1
+                                Dim Cantidad As Double = .Rows(i).Cells("Cant_Present").Value
+                                Dim valor As String = Cantidad
+                                valor = valor & " " & .Rows(i).Cells("MedidaReferi").Value
+                                'si se refiere a la misma medida lo presentamos la del padre
+                                If .Rows(i).Cells("idProUndMed").Value = .Rows(i).Cells("idProUndReferen").Value Then
+                                    .Rows(i).Cells("En cada empaque").Value = Me.myDescriptionEmpaque(Me.id_producto)
+                                Else
+                                    .Rows(i).Cells("En cada empaque").Value = valor
+                                End If
 
-                    ImpideOrdenamiento(DataGridPresent)
-                    'pada determinar que si hay datos
-                    CotrolsHayDatos()
-                Else
-                    lblCNTpresent.Visible = True
-                    txtCant_Present.Visible = True
-                    lblPresentDeText.Visible = True
-                    lblPresentDeText.Text = "Unidad (s)"
-                    lblCodigo.Visible = True
-                    txtCodigo.Visible = True
-                    btnAdd_Present.Enabled = True
-                    btnAdd_Present.BackColor = Color.Aqua
-                    Agregar = True
-                    panePresentacion.TabIndex = 0
-                    txtCodigo.TabIndex = 0
-                    Label2.Visible = False
-                    isPresentFabricCheckedListBox.Visible = False
-                End If
+                                If .Rows(i).Cells(0).Value = idSecompra Then
+                                    .Rows(i).Cells("Se Compra").Value = True 'ok como presentacion en la que se compra
+                                End If
+                                If .Rows(i).Cells(0).Value = idSeVende Then
+                                    .Rows(i).Cells("Se Vende").Value = True
+                                End If
+                                .Rows(i).Cells("barrCodeButoon").Value = .Rows(i).Cells("Barcode").Value
+                            Next
+                        End With
+
+                        ImpideOrdenamiento(DataGridPresent)
+                        'pada determinar que si hay datos
+                        CotrolsHayDatos()
+                    Else
+                        lblCNTpresent.Visible = True
+                        txtCant_Present.Visible = True
+                        lblPresentDeText.Visible = True
+                        lblPresentDeText.Text = "Unidad (s)"
+                        lblCodigo.Visible = True
+                        txtCodigo.Visible = True
+                        btnAdd_Present.Enabled = True
+                        btnAdd_Present.BackColor = Color.Aqua
+                        Agregar = True
+                        panePresentacion.TabIndex = 0
+                        txtCodigo.TabIndex = 0
+                        Label2.Visible = False
+                        isPresentFabricCheckedListBox.Visible = False
+                    End If
+                End Using
+
             End Using
+
+
+
         Catch ex As Exception
             MsgBox(ex.Message + "en el modulo Mostrar_ListPresent del " + Me.Name, MsgBoxStyle.Critical)
             DataGridPresent.DataSource = Nothing

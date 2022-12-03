@@ -5,13 +5,12 @@ Imports CADsisVenta.Data.Emuns.EnumSatateModule
 Imports CADsisVenta.DataSetClientesTableAdapters
 Imports CADsisVenta.DataSetComprasTableAdapters
 Imports CADsisVenta.DataSetSystemTableAdapters
+Imports CADsisVenta.Funtions
 Imports CADsisVenta.Helpers.FInicio
 Imports CADsisVenta.Statics
-Imports CrystalDecisions.[Shared].Json
-Imports DocumentFormat.OpenXml.Office.CustomUI
-Imports Domain.Logica
 Imports ec.gob.sri.comprobantes.Enum
 Imports InterfaceSignatureAndSRI.Processes
+Imports iTextSharp.text.pdf
 
 Public Class frmVentas
     'Para sumar totales
@@ -172,25 +171,39 @@ Public Class frmVentas
             End With
             Call MostrarTotal()
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+            MsgBox(ex.Message & vbLf & ex.StackTrace, MsgBoxStyle.Critical, "Error")
         End Try
     End Sub
 
     Private Function Carga_Item_ProductoIdPresent(ByVal idPresent As Integer) As DataTable
 
-        sql = "Select Top(1) pr.idPresentacion, p.idProducto, pr.codProducto, p.Nom_Comercial,"
-        sql = sql & "pr.precioCompra, pr.PresentacionPrint As [Medida], pr.precioVenta, p.IvaPorcentaje,"
-        sql = sql & "pr.Empaquetado, pr.idProUndMed, pr.idProUndReferen, pr.Cant_Present, pr.Empaquetado,Presentacion "
-        sql = sql & "From dbo.Productos As p "
-        sql = sql & "INNER Join  dbo.ProductoPresentacion AS pr ON p.idProducto = pr.idProducto "
-        sql = sql & "INNER Join  dbo.ProductoUndMedida As m On pr.idProUndMed = m.idProUndMed "
-        sql = sql & "WHERE  pr.idPresentacion =" & idPresent & " "
+        sql = "Select Top(1) pr.idPresentacion, p.idProducto, pr.codProducto, p.Nom_Comercial,pr.precioCompra,
+        pr.PresentacionPrint As [Medida], pr.precioVenta, p.IvaPorcentaje,pr.Empaquetado,
+        pr.idProUndMed, pr.idProUndReferen, pr.Cant_Present, pr.Empaquetado, Presentacion, 
+        case when  s.stock is null  then 0 else  s.stock end as [Stock]
+        From dbo.Productos As p 
+        INNER Join  dbo.ProductoPresentacion AS pr ON p.idProducto = pr.idProducto 
+        INNER Join  dbo.ProductoUndMedida As m On pr.idProUndMed = m.idProUndMed
+        left join ProductosStock as s  on s.idProducto = p.idProducto and s.idBodega =@idBodega
+        WHERE   pr.idPresentacion =@idPresent"
 
         Try
-            Dim cmd As New ClassCargadorProducto
-            Return cmd.RetornaTabla(sql)
+            Using cmd As New SqlComandExec
+
+                cmd.ParameterCollection = New SqlParameter() {New SqlParameter With {
+                    .ParameterName = "@idPresent",
+                    .SqlDbType = SqlDbType.VarChar,
+                    .Value = idPresent
+                }, New SqlParameter With {
+                    .ParameterName = "@idBodega",
+                    .SqlDbType = SqlDbType.Int,
+                    .Value = TerminalActivo.idBodega
+                }}
+
+                Return cmd.RetornaTabla(sql)
+            End Using
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al cargar Item Producto")
+            MsgBox(ex.Message & vbLf & ex.StackTrace, MsgBoxStyle.Critical, "Error al cargar Item Producto")
             Return Nothing
         End Try
 
@@ -199,19 +212,33 @@ Public Class frmVentas
 
     Private Function Carga_Item_ProductoBarcode(ByVal BarCode As String) As DataTable
 
-        sql = "Select Top(1) pr.idPresentacion, p.idProducto, pr.codProducto, p.Nom_Comercial,"
-        sql = sql & "pr.precioCompra, pr.PresentacionPrint As [Medida], pr.precioVenta, p.IvaPorcentaje,"
-        sql = sql & "pr.Empaquetado, pr.idProUndMed, pr.idProUndReferen, pr.Cant_Present, pr.Empaquetado, Presentacion "
-        sql = sql & "From dbo.Productos As p "
-        sql = sql & "INNER Join  dbo.ProductoPresentacion AS pr ON p.idProducto = pr.idProducto "
-        sql = sql & "INNER Join  dbo.ProductoUndMedida As m On pr.idProUndMed = m.idProUndMed "
-        sql = sql & "WHERE  pr.Barcode ='" & BarCode & "' "
+        sql = "Select Top(1) pr.idPresentacion, p.idProducto, pr.codProducto, p.Nom_Comercial,pr.precioCompra,
+        pr.PresentacionPrint As [Medida], pr.precioVenta, p.IvaPorcentaje,pr.Empaquetado,
+        pr.idProUndMed, pr.idProUndReferen, pr.Cant_Present, pr.Empaquetado, Presentacion, 
+        case when  s.stock is null  then 0 else  s.stock end as [Stock]
+        From dbo.Productos As p 
+        INNER Join  dbo.ProductoPresentacion AS pr ON p.idProducto = pr.idProducto 
+        INNER Join  dbo.ProductoUndMedida As m On pr.idProUndMed = m.idProUndMed
+        left join ProductosStock as s  on s.idProducto = p.idProducto and s.idBodega =@idBodega
+        WHERE  pr.Barcode =@Barcode"
 
         Try
-            Dim cmd As New ClassCargadorProducto
-            Return cmd.RetornaTabla(sql)
+            Using cmd As New SqlComandExec
+
+                cmd.ParameterCollection = New SqlParameter() {New SqlParameter With {
+                    .ParameterName = "@Barcode",
+                    .SqlDbType = SqlDbType.VarChar,
+                    .Value = BarCode
+                }, New SqlParameter With {
+                    .ParameterName = "@idBodega",
+                    .SqlDbType = SqlDbType.Int,
+                    .Value = TerminalActivo.idBodega
+                }}
+
+                Return cmd.RetornaTabla(sql)
+            End Using
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al cargar Item Producto")
+            MsgBox(ex.Message & vbLf & ex.StackTrace, MsgBoxStyle.Critical, "Error al cargar Item Producto")
             Return Nothing
         End Try
 
@@ -271,7 +298,7 @@ Public Class frmVentas
 Agrega_Item:
             'Buscamos si ya emos ingreasado el idPresentacion para modificar la cantidad *********************************************************************
             For i = 0 To Me.ListView1.Items.Count - 1
-                If Integer.Parse(dtProducItem(0)("idPresentacion").ToString) = Integer.Parse(ListView1.Items(i).Text) Then
+                If Integer.Parse(dtProducItem(0)("idPresentacion").ToString()) = Integer.Parse(ListView1.Items(i).Text) Then
                     If IsNumeric(ListView1.Items(i).SubItems(5).Text) Then
                         fila = i
                         totalCantidad = Cantidad + Double.Parse(ListView1.Items(i).SubItems(5).Text)
@@ -320,27 +347,34 @@ Agrega_Item:
             ListView1.Items.Item(fila).SubItems.Add(Cantidad)
             Cant = Cantidad  'cargo el valor en una variable para luego multiplicar
 
-            'Precio unitario [6]
-            ListView1.Items.Item(fila).SubItems.Add(dtProducItem(0)("precioVenta").ToString)
-            PUnt = Double.Parse(ListView1.Items.Item(fila).SubItems(6).Text)
+            'STOCK  [6]
+            ListView1.Items.Item(fila).SubItems.Add(dtProducItem(0)("Stock").ToString())
 
-            'Precio Total [7]
+            'Precio unitario [7]
+            ListView1.Items.Item(fila).SubItems.Add(dtProducItem(0)("precioVenta").ToString())
+            PUnt = Double.Parse(ListView1.Items.Item(fila).SubItems(PUnitarioClm.Index).Text)
+
+            'Precio Total [8]
             totalFact = RedondearSi(PUnt * Cant, 2)
             ListView1.Items.Item(fila).SubItems.Add(totalFact.ToString("N2"))
 
-            'porcentage iva [8]
+            'porcentage iva [9]
             ListView1.Items.Item(fila).SubItems.Add(dtProducItem(0)("IvaPorcentaje").ToString)
 
-            'Precio compra  [8]
+            'Precio compra  [10]
             ListView1.Items.Item(fila).SubItems.Add(dtProducItem(0)("precioCompra").ToString)
-            'descuento  [10]
+
+            'descuento  [11]
             ListView1.Items.Item(fila).SubItems.Add(0)
-            'tarifa  [11]
+
+            'tarifa  [12]
             ListView1.Items.Item(fila).SubItems.Add(0)
+
             'para avisar al cliente quien ingreso al ultimo
-            Me.counUltimo = ListView1.Items(fila).SubItems(5).Text
+            Me.counUltimo = ListView1.Items(fila).SubItems(CantidadClm.Index).Text
             Me.nameProductUltimo = ListView1.Items(fila).SubItems(3).Text
             Me.itemUltimoIngreso = fila
+
 CalculaOfertas:
             Ofertas(fila)
 
@@ -348,7 +382,7 @@ PintaRepedidas:
             'PintaRepetido(fila, Color.Bisque)
             Return True
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al calcular los costos")
+            MsgBox(ex.Message & vbLet & ex.StackTrace, MsgBoxStyle.Critical, "Error")
             Return False
         End Try
 
@@ -431,7 +465,7 @@ PintaRepedidas:
         Try
             Dim i As Integer
             Dim idPresnt As Integer = Integer.Parse(ListView1.Items(Items).SubItems(0).Text)
-            Dim Cantid As Double = Double.Parse(ListView1.Items(Items).SubItems(5).Text)
+            Dim Cantid As Double = Double.Parse(ListView1.Items(Items).SubItems(CantidadClm.Index).Text)
             'Aliminamos si antes ya se aplico 
             ListView1.Items(Items).SubItems(DescuentoClm.Index).Text = "0"
 
@@ -464,14 +498,16 @@ PintaRepedidas:
 Aplicando:
             'bamos aplicar el descuento ******************************************************************************************
             'ValTotal  = cantidad * Precio unitario
-            Dim ValTotal As Double = Double.Parse(ListView1.Items(Items).SubItems(5).Text) * Double.Parse(ListView1.Items(Items).SubItems(6).Text)
+            Dim ValTotal As Double = Double.Parse(ListView1.Items(Items).SubItems(CantidadClm.Index).Text) *
+                Double.Parse(ListView1.Items(Items).SubItems(PUnitarioClm.Index).Text)
+
             Dim Oferta As Double = Double.Parse(dt(i)("valor_Oferta").ToString)
             Dim Descuento = RedondearSi(ValTotal * Oferta, 2)
             'aplicamos los cambio a listview
             '---Total descuento del item
-            ListView1.Items(Items).SubItems(10).Text = Descuento
+            ListView1.Items(Items).SubItems(DescuentoClm.Index).Text = Descuento
             '---total Precio del item
-            ListView1.Items(Items).SubItems(7).Text = ValTotal - Descuento
+            ListView1.Items(Items).SubItems(PTotalClm.Index).Text = ValTotal - Descuento
             Beep()
 
         Catch ex As Exception
@@ -538,7 +574,7 @@ Aplicando:
         Dim mss As String = ""
 
         Try
-            If (String.IsNullOrWhiteSpace(SettingObject.SignatureOptios.TOKEN)) Then
+            If (SettingObject.SignatureOptios Is Nothing OrElse String.IsNullOrWhiteSpace(SettingObject.SignatureOptios.TOKEN)) Then
                 mss = "Debe configurar elgùn token kalido para firma electronica.."
                 GoTo viewMesagge
             End If
@@ -850,27 +886,29 @@ viewMesagge:
             If ListView1.SelectedItems.Count = 1 Then
                 Using newform As New frmImputData()
                     With newform
-                        .txtNumber.Value = ListView1.SelectedItems(0).SubItems(5).Text
+                        .txtNumber.Value = ListView1.SelectedItems(0).SubItems(CantidadClm.Index).Text
                         .ShowDialog()
                         If .DialogResult = DialogResult.OK Then
                             If .txtNumber.Value = 0 Then
                                 MsgBox("No se puede modificar la canidad a cero, puede tomar la opción de Eliminar", MsgBoxStyle.Exclamation, "Aviso")
                             Else
                                 Cant = .txtNumber.Value
-                                PUnt = ListView1.SelectedItems(0).SubItems(6).Text  'cojemos precio unitario
-                                ListView1.SelectedItems(0).SubItems(5).Text = Cant 'actualizamos cantidad
+                                PUnt = ListView1.SelectedItems(0).SubItems(PUnitarioClm.Index).Text  'cojemos precio unitario
+                                ListView1.SelectedItems(0).SubItems(CantidadClm.Index).Text = Cant 'actualizamos cantidad
                                 'precio total////
                                 Dim total As Double = RedondearSi(Cant * PUnt, 2)
-                                ListView1.SelectedItems(0).SubItems(7).Text = total.ToString("N2") 'catualizamosm precio total
+                                ListView1.SelectedItems(0).SubItems(PTotalClm.Index).Text = total.ToString("N2") 'catualizamosm precio total
                                 Ofertas(ListView1.SelectedItems(0).Index)
-                                SumatoriaTotal()
+
                             End If
                         End If
                     End With
                 End Using
+                SumatoriaTotal()
+
             End If
         Catch ex As Exception
-            MsgBox(ex.Message + " en le btnEditLine_Click del  " + Name, MsgBoxStyle.Critical, "Error")
+            MsgBox(ex.Message & vbLf & ex.StackTrace, MsgBoxStyle.Critical, "Error")
         Finally
             ListView1.Focus()
         End Try
@@ -1008,11 +1046,11 @@ viewMesagge:
                             list.Items(i).SubItems(2).Text = dt.Rows(0)("codProducto")  'codido de producto
                             list.Items(i).SubItems(3).Text = dt.Rows(0)("Nom_Comercial")  'codido de producto
                             list.Items(i).SubItems(4).Text = dt.Rows(0)("Medida")  'codido de producto
-                            list.Items(i).SubItems(6).Text = dt.Rows(0)("precioVenta")  'codido de producto
+                            list.Items(i).SubItems(PUnitarioClm.Index).Text = dt.Rows(0)("precioVenta")  'codido de producto
                             'precio tatal  = cantidad * precio unitario
-                            total = Double.Parse(list.Items(i).SubItems(5).Text) * Double.Parse(list.Items(i).SubItems(6).Text)
+                            total = Double.Parse(list.Items(i).SubItems(CantidadClm.Index).Text) * Double.Parse(list.Items(i).SubItems(PUnitarioClm.Index).Text)
                             total = RedondearSi(total, 2)
-                            list.Items(i).SubItems(7).Text = total.ToString("N2")
+                            list.Items(i).SubItems(PTotalClm.Index).Text = total.ToString("N2")
                         End If
                     End If
 
@@ -1229,12 +1267,12 @@ viewMesagge:
             cn.Open()
             For i = 0 To ListView1.Items.Count - 1
                 idPresent = Integer.Parse(ListView1.Items(i).SubItems(0).Text)
-                cat = Decimal.Parse(ListView1.Items(i).SubItems(5).Text)
-                prec_Compra = Decimal.Parse(ListView1.Items(i).SubItems(9).Text)
-                prec_Venta = Decimal.Parse(ListView1.Items(i).SubItems(7).Text)
-                ivaPorcent = Decimal.Parse(ListView1.Items(i).SubItems(8).Text)
-                descuento = Decimal.Parse(ListView1.Items(i).SubItems(10).Text)
-                tarifa = Decimal.Parse(ListView1.Items(i).SubItems(11).Text)
+                cat = Decimal.Parse(ListView1.Items(i).SubItems(CantidadClm.Index).Text)
+                prec_Compra = Decimal.Parse(ListView1.Items(i).SubItems(PrecCompraClm.Index).Text)
+                prec_Venta = Decimal.Parse(ListView1.Items(i).SubItems(PTotalClm.Index).Text)
+                ivaPorcent = Decimal.Parse(ListView1.Items(i).SubItems(IvaPorClm.Index).Text)
+                descuento = Decimal.Parse(ListView1.Items(i).SubItems(DescuentoClm.Index).Text)
+                tarifa = Decimal.Parse(ListView1.Items(i).SubItems(TarifaClm.Index).Text)
                 codUserAhotorize = Convert.ToString(ListView1.Items(i).SubItems(PTotalClm.Index).Tag)
 
                 'alim¿nimiento de sql

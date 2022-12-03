@@ -26,20 +26,26 @@ Module fCompras
 
     Private Function BuscarOrderCompra() As Integer
         sql = "Select TOP 1 [idOrden] From [Orden_Pedido] "
-        conecta_sql()
-        Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
 
-                dat.Fill(dt)
-                If dt.Rows.Count > 0 Then
-                    Return Integer.Parse(dt(0)(0).ToString)
-                Else
-                    Return 0
-                End If
+        Try
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
+
+                    dat.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        Return Integer.Parse(dt(0)(0).ToString)
+                    Else
+                        Return 0
+                    End If
+                End Using
             End Using
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error :fCompras en el BuscarOrderCompra")
             Return 0
@@ -49,16 +55,22 @@ Module fCompras
     Private Function ActualizaOrderCompra(ByVal NewOrder As String) As Boolean
 
         sql = "Update Orden_Pedido set [idOrden] ='" & NewOrder & "' "
-        conecta_sql()
+
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End Using
             End Using
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error :fCompras en el ActualizaOrderCompra")
             Return False
@@ -73,59 +85,74 @@ Module fCompras
         sql = sql & "FROM Pedidos "
         sql = sql & "WHERE(idPedido = " & IdPedido & ") "
 
-        conecta_sql()
-        Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
 
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
+
+        Try
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End Using
             End Using
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error: fCompras en el ELimina_Pedido")
             Return False
 
         Finally
-            desconecta_sql()
+
         End Try
 
     End Function
     Public Function Busca_New_NumDoc() As Integer
-        If conecta_sql() Then
-            Dim Ult_Docum As Integer = BuscaNum_Docum()
+
+        Dim Ult_Docum As Integer = BuscaNum_Docum()
             If Ult_Docum > 0 Then
                 'calculo nueva orde en la variable sql 
                 sql = Convert.ToString(Ult_Docum + 1)
             Else
                 sql = 1
             End If
-            If ActualizaNumDocum(sql) Then
-                Return Ult_Docum
-            End If
+        If ActualizaNumDocum(sql) Then
+            Return Ult_Docum
         End If
+
         Return 0
     End Function
 
     Private Function BuscaNum_Docum() As Integer
         sql = "Select TOP 1 [Num_DocActual] From [Num_Documento] "
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
 
-                dat.Fill(dt)
-                If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
-                    Return Integer.Parse(dt(0)(0).ToString)
-                Else
-                    cmd.CommandText = "insert [Num_Documento] (Num_DocActual) VALUES ('1');"
-                    cmd.ExecuteNonQuery()
-                    Return "1"
-                End If
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
+
+                    dat.Fill(dt)
+                    If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
+                        Return Integer.Parse(dt(0)(0).ToString)
+                    Else
+                        cmd.CommandText = "insert [Num_Documento] (Num_DocActual) VALUES ('1');"
+                        cmd.ExecuteNonQuery()
+                        Return "1"
+                    End If
+                End Using
             End Using
+
+
+
         Catch ex As Exception
             MsgBox(ex.Message & vbLf & ex.StackTrace, MsgBoxStyle.Critical, "Error")
             Return 0
@@ -135,14 +162,22 @@ Module fCompras
     Private Function ActualizaNumDocum(ByVal New_NumDco As String) As Boolean
         sql = "Update Num_Documento set [Num_DocActual] ='" & New_NumDco & "' "
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End Using
             End Using
+
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error :fCompras en el ActualizaOrderCompra")
             Return False
@@ -242,21 +277,29 @@ Module fCompras
         sql = sql & "FROM FacturaCompra "
         sql = sql & "WHERE idOrderPedido= " & idOrderPedido & " "
 
-        conecta_sql()
+
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
 
-                Dim da As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-                da.Fill(dt)
-                If dt.Rows.Count > 0 Then
-                    Return dt.Rows(0)(0).ToString()
-                Else
-                    Return 0
-                End If
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+
+                    Dim da As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
+
+                    da.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        Return dt.Rows(0)(0).ToString()
+                    Else
+                        Return 0
+                    End If
+                End Using
             End Using
+
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al buscar Pedido")
             Return 0

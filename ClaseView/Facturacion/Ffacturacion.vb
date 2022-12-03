@@ -124,21 +124,29 @@ Module FfacturacionVenta
     End Function
     Public Function Medida(ByVal idPresent As Integer) As DataTable
         Try
-            Dim cmd = New SqlCommand("[dbo].[returnMedida]", Cnn_sql)
-            cmd.CommandType = CommandType.StoredProcedure
 
-            cmd.Parameters.AddWithValue("@idPresent", idPresent)
-            If cmd.ExecuteNonQuery Then
-                Dim dt As New DataTable
-                Dim da As New SqlDataAdapter(cmd)
-                da.Fill(dt)
-                If dt.Rows.Count > 0 Then
-                    Return dt
-                Else
-                    Return Nothing
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+
+                Dim cmd = New SqlCommand("[dbo].[returnMedida]", cnn)
+                cmd.CommandType = CommandType.StoredProcedure
+
+                cmd.Parameters.AddWithValue("@idPresent", idPresent)
+                If cmd.ExecuteNonQuery Then
+                    Dim dt As New DataTable
+                    Dim da As New SqlDataAdapter(cmd)
+                    da.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        Return dt
+                    Else
+                        Return Nothing
+                    End If
                 End If
-            End If
-            Return Nothing
+                Return Nothing
+            End Using
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Al validar Usuario")
             Return Nothing

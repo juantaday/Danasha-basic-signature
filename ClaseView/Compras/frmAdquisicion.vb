@@ -209,27 +209,30 @@ inicia:
 
     Public Sub Carga_Declaracion()
         sql = "select * from Declaracion Order By Nom_declaracion"
-        conecta_sql()
 
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
 
-                Dim da As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
+                    Dim da As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
 
-                da.Fill(dt)
+                    da.Fill(dt)
 
-                cmbDeclaracion.DataSource = Nothing
-                If dt.Rows.Count > 0 Then
-                    With cmbDeclaracion
-                        .DataSource = dt
-                        .DisplayMember = "Nom_declaracion"
-                        .ValueMember = "iddeclaracion"
-                    End With
-                    dt = Nothing
-                End If
+                    cmbDeclaracion.DataSource = Nothing
+                    If dt.Rows.Count > 0 Then
+                        With cmbDeclaracion
+                            .DataSource = dt
+                            .DisplayMember = "Nom_declaracion"
+                            .ValueMember = "iddeclaracion"
+                        End With
+                        dt = Nothing
+                    End If
+                End Using
             End Using
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el: Carga_Declaracion ")
         End Try
@@ -572,36 +575,40 @@ inicia:
             If Not (Guarda_PedidoTmp()) Then 'si no puedo guardar detalle salgo
                 Return False
             End If
-            Using cmd = New SqlCommand("[dbo].[prcOrdenCompra]", Cnn_sql)
-                cmd.CommandType = CommandType.StoredProcedure
-                'bodega
-                cmd.Parameters.Add(New SqlParameter("@idBodega", SqlDbType.Int))
-                cmd.Parameters("@idBodega").Value = FacturCompra.idBodega  'esto de obtiene en el load
-                'fecha de pedido
-                cmd.Parameters.Add(New SqlParameter("@FechaPedido", SqlDbType.Date))
-                cmd.Parameters("@FechaPedido").Value = FechaPedidoDatatime.Value
-                'id proveedor
-                cmd.Parameters.Add(New SqlParameter("@IdProveedor", SqlDbType.Int))
-                cmd.Parameters("@IdProveedor").Value = FacturCompra.idProveedor
-                'codigo de uduario
-                cmd.Parameters.Add(New SqlParameter("@codUser", SqlDbType.Char, 8))
-                cmd.Parameters("@codUser").Value = UsuarioActivo.codUser
-                'codigo de terminal
-                cmd.Parameters.Add(New SqlParameter("@codTerminal", SqlDbType.Char, 8))
-                cmd.Parameters("@codTerminal").Value = TerminalActivo.codTerminal
-                'salida de [id] automumerico
-                cmd.Parameters.Add(New SqlParameter("@idPedido", SqlDbType.Int))
-                cmd.Parameters("@idPedido").Direction = ParameterDirection.Output
-                If cmd.ExecuteNonQuery Then
-                    FacturCompra.idPedido = 0
-                    txtOrden.Text = CInt(cmd.Parameters("@idPedido").Value)
-                    FacturCompra.idPedido = txtOrden.Text
-                    Return True
-                End If
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Using cmd = New SqlCommand("[dbo].[prcOrdenCompra]", cnn)
+                    cmd.CommandType = CommandType.StoredProcedure
+                    'bodega
+                    cmd.Parameters.Add(New SqlParameter("@idBodega", SqlDbType.Int))
+                    cmd.Parameters("@idBodega").Value = FacturCompra.idBodega  'esto de obtiene en el load
+                    'fecha de pedido
+                    cmd.Parameters.Add(New SqlParameter("@FechaPedido", SqlDbType.Date))
+                    cmd.Parameters("@FechaPedido").Value = FechaPedidoDatatime.Value
+                    'id proveedor
+                    cmd.Parameters.Add(New SqlParameter("@IdProveedor", SqlDbType.Int))
+                    cmd.Parameters("@IdProveedor").Value = FacturCompra.idProveedor
+                    'codigo de uduario
+                    cmd.Parameters.Add(New SqlParameter("@codUser", SqlDbType.Char, 8))
+                    cmd.Parameters("@codUser").Value = UsuarioActivo.codUser
+                    'codigo de terminal
+                    cmd.Parameters.Add(New SqlParameter("@codTerminal", SqlDbType.Char, 8))
+                    cmd.Parameters("@codTerminal").Value = TerminalActivo.codTerminal
+                    'salida de [id] automumerico
+                    cmd.Parameters.Add(New SqlParameter("@idPedido", SqlDbType.Int))
+                    cmd.Parameters("@idPedido").Direction = ParameterDirection.Output
+                    If cmd.ExecuteNonQuery Then
+                        FacturCompra.idPedido = 0
+                        txtOrden.Text = CInt(cmd.Parameters("@idPedido").Value)
+                        FacturCompra.idPedido = txtOrden.Text
+                        Return True
+                    End If
+                End Using
             End Using
+
             Return False
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error: frmAdquisicion en el Guarda_Pedido")
+            MsgBox("Guarda_Pedido: " & ex.Message, MsgBoxStyle.Critical, "Error: frmAdquisicion en el Guarda_Pedido")
             Return False
         End Try
     End Function
@@ -645,7 +652,7 @@ inicia:
                 Return False
             End If
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+            MsgBox("Guarda_PedidoTmp: " & ex.Message, MsgBoxStyle.Critical, "Error")
             Return False
         End Try
     End Function
@@ -685,26 +692,30 @@ inicia:
 
     Public Sub Carga_Tipo_Consumo()
 
-        conecta_sql()
         Try
             sql = "Select * from Consumo "
-            Dim cmd As New SqlCommand(sql, Cnn_sql)
-            cmd.CommandType = CommandType.Text
 
-            Dim da As New SqlDataAdapter(cmd)
-            Dim dt As New DataTable
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Dim cmd As New SqlCommand(sql, cnn)
+                cmd.CommandType = CommandType.Text
 
-            da.Fill(dt)
-            cmbItmTipconsumo.DataSource = Nothing
-            If dt.Rows.Count > 0 Then
-                With cmbItmTipconsumo
-                    .DataSource = dt
-                    .ValueMember = "idconsumo"
-                    .DisplayMember = "Nom_Consumo"
-                End With
-                dt = Nothing
-                cmbItmTipconsumo.SelectedValue = 1
-            End If
+                Dim da As New SqlDataAdapter(cmd)
+                Dim dt As New DataTable
+
+                da.Fill(dt)
+                cmbItmTipconsumo.DataSource = Nothing
+                If dt.Rows.Count > 0 Then
+                    With cmbItmTipconsumo
+                        .DataSource = dt
+                        .ValueMember = "idconsumo"
+                        .DisplayMember = "Nom_Consumo"
+                    End With
+                    dt = Nothing
+                    cmbItmTipconsumo.SelectedValue = 1
+                End If
+            End Using
+
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error: frmAdquisicion en el  cargar Carga_Tipo_Consumo")
@@ -806,24 +817,28 @@ inicia:
         End Try
     End Sub
     Private Sub Carga_Tipo_Doc()
-        conecta_sql()
+
         Try
             sql = "Select * from [STM].[TypoDocumento] "
-            Dim cmd As New SqlCommand(sql, Cnn_sql)
-            cmd.CommandType = CommandType.Text
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Dim cmd As New SqlCommand(sql, cnn)
+                cmd.CommandType = CommandType.Text
 
-            Dim da As New SqlDataAdapter(cmd)
-            Dim dt As New DataTable
+                Dim da As New SqlDataAdapter(cmd)
+                Dim dt As New DataTable
 
-            da.Fill(dt)
-            If dt.Rows.Count > 0 Then
-                With cmbTipoDocumento
-                    .DataSource = dt
-                    .ValueMember = "idTypoDocu"
-                    .DisplayMember = "Nom_Docu"
-                End With
-                dt = Nothing
-            End If
+                da.Fill(dt)
+                If dt.Rows.Count > 0 Then
+                    With cmbTipoDocumento
+                        .DataSource = dt
+                        .ValueMember = "idTypoDocu"
+                        .DisplayMember = "Nom_Docu"
+                    End With
+                    dt = Nothing
+                End If
+            End Using
+
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error: frmAdquisicion en el  cargar Carga_Tipo_Doc")

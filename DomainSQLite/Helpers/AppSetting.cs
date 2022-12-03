@@ -43,6 +43,7 @@ namespace DomainSQLite.Helpers
                         System.Environment.SpecialFolder.UserProfile);
 
             string folder = Properties.Settings.Default.FolderPath;
+
             if(!string.IsNullOrEmpty ( folder ))
                 phat = String.Format("{0}\\{1}", directoryDB, folder);
             else 

@@ -24,22 +24,27 @@ Module Predeterminados
     Public Function GuardaImpreTicket(ByVal idMaquina As Integer, ByVal name As String, Color As String, items As Integer) As Boolean
         'obtengo el ip de esta maquina---------------------------------------------------------------
 
-        conecta_sql()
         Try
             sql = "Update Num_Factura set NameImpreTicket='" & name & "', ColorTicket='" & Color & "', itemsPrintTicket = " & items & " "
             sql = sql & "FROM Num_Factura "
             sql = sql & "WHERE (idNumera= " & idMaquina & ") "
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
 
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+                    End If
 
+                End Using
             End Using
+
+
+
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "En el GuardaImpreTicket del predeterminados")
@@ -52,22 +57,24 @@ Module Predeterminados
     Public Function GuardaFacturaTicket(ByVal idMaquina As Integer, ByVal name As String, Color As String, items As Integer) As Boolean
         'obtengo el ip de esta maquina---------------------------------------------------------------
 
-        conecta_sql()
+
         Try
             sql = "Update [STM].[Terminal] set NameImpreFactura='" & name & "', ColorFactura='" & Color & "', itemsPrintFact = " & items & " "
             sql = sql & "WHERE (idNumera= " & idMaquina & ") "
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
 
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+                    End If
 
+                End Using
             End Using
-
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "En el GuardaImpreTicket del predeterminados")
@@ -77,19 +84,26 @@ Module Predeterminados
     End Function
     Public Function GuardaDominio(ByVal dominio As String, ip As String) As Boolean
 
-        conecta_sql()
+
         Try
             sql = "insert into  [stm].[Terminal] (Dominio, ip) Values ('" & dominio & "','" & ip & "') "
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
 
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+
+                End Using
             End Using
+
+
 
         Catch ex As Exception
             MsgBox(ex.Message + "en el GuardaDominio del " + nameClass, MsgBoxStyle.Critical, "Aviso")
@@ -100,22 +114,27 @@ Module Predeterminados
 
     Public Function ModificaDominio(ByVal idMaquina As Integer, ByVal dominio As String, ip As String) As Boolean
 
-        conecta_sql()
         Try
             sql = "Update Num_Factura set Dominio='" & dominio & "', ip ='" & ip & "' "
             sql = sql & "FROM Num_Factura "
             sql = sql & "WHERE (idNumera= " & idMaquina & ") "
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
 
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+
+                End Using
             End Using
+
+
 
         Catch ex As Exception
             MsgBox(ex.Message + " en el ModificaDominio del " + nameClass, MsgBoxStyle.Critical, "Aviso")
@@ -240,19 +259,25 @@ Module Predeterminados
         sql = sql & "From  [stm].Terminal as t "
         sql = sql & "Inner join [stm].TerminalConfi as tc on t.idTerminal  = tc.idTerminal "
         sql = sql & "where t.codTerminal='" & TerminalActivo.codTerminal & "'"
-        conecta_sql()
+
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
-                dat.Fill(dt)
-                If dt.Rows.Count > 0 Then
-                    Return dt
-                Else
-                    Return Nothing
-                End If
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
+                    dat.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        Return dt
+                    Else
+                        Return Nothing
+                    End If
+                End Using
             End Using
+
+
 
         Catch ex As Exception
             MsgBox(ex.Message + "en el Carga_MauinaRegistradas del " + nameClass, MsgBoxStyle.Critical, "Aviso")
@@ -266,18 +291,25 @@ Module Predeterminados
 
         sql = "Update [stm].[TerminalConfi] set NumFact01 = '" & Nun1 & "',NumFact02 = '" & Nun2 & "',NumFact03 = '" & Nun3 & "',NumFact04 = '" & Nun4 & "' "
         sql = sql + "where idTerminal =" & TerminalActivo.idTerminal & " "
-        conecta_sql()
+
 
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+
+                End Using
 
             End Using
+
+
 
         Catch ex As Exception
             MsgBox(ex.Message + "en el ModificaNumeroFactura del " + nameClass, MsgBoxStyle.Critical, "Error")

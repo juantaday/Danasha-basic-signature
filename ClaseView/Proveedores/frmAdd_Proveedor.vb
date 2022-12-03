@@ -33,34 +33,41 @@ Public Class frmAdd_Proveedor
         sql = sql & "WHERE(idProveedor = " & idProveedor & ") "
 
 
-        conecta_sql()
         Try
-            Dim cmd As New SqlCommand(sql)
-            cmd.CommandType = CommandType.Text
-            cmd.Connection = Cnn_sql
-            Dim da As New SqlDataAdapter(cmd)
-            Dim dt As New DataTable
 
-            da.Fill(dt)
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-            If dt.Rows.Count > 0 Then
-                Me.cmbTipoEmp.SelectedValue = dt(0)("idTypoProvee").ToString
-                Me.txtRuc.Text = dt(0)("Ruc_Ci").ToString
-                Me.txtRazon.Text = dt(0)("Razon_social").ToString
-                Me.cmbTiopo_razon.SelectedValue = dt(0)("Razon_tipo").ToString
-                Me.txtRepresentante.Text = dt(0)("Represent").ToString
-                Me.txtDireccion.Text = dt(0)("Direccion").ToString
-                Me.txtTelefono.Text = dt(0)("Telefono").ToString
-                Me.txtUser.Text = dt(0)("codUser").ToString
-                Me.chekboxIva.Checked = dt(0)("ivaSubtotal").ToString
-            Else
-                MsgBox("No se pudo cargar información", MsgBoxStyle.Information, "Aviso")
-                Me.btnAcepter.Visible = False
-            End If
+                Dim cmd As New SqlCommand(sql)
+                cmd.CommandType = CommandType.Text
+                cmd.Connection = cnn
+                Dim da As New SqlDataAdapter(cmd)
+                Dim dt As New DataTable
+
+                da.Fill(dt)
+
+                If dt.Rows.Count > 0 Then
+                    Me.cmbTipoEmp.SelectedValue = dt(0)("idTypoProvee").ToString
+                    Me.txtRuc.Text = dt(0)("Ruc_Ci").ToString
+                    Me.txtRazon.Text = dt(0)("Razon_social").ToString
+                    Me.cmbTiopo_razon.SelectedValue = dt(0)("Razon_tipo").ToString
+                    Me.txtRepresentante.Text = dt(0)("Represent").ToString
+                    Me.txtDireccion.Text = dt(0)("Direccion").ToString
+                    Me.txtTelefono.Text = dt(0)("Telefono").ToString
+                    Me.txtUser.Text = dt(0)("codUser").ToString
+                    Me.chekboxIva.Checked = dt(0)("ivaSubtotal").ToString
+                Else
+                    MsgBox("No se pudo cargar información", MsgBoxStyle.Information, "Aviso")
+                    Me.btnAcepter.Visible = False
+                End If
+            End Using
+
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Carga_Amodificar")
         Finally
-            desconecta_sql()
+
         End Try
 
     End Sub
@@ -114,23 +121,30 @@ Public Class frmAdd_Proveedor
                 MsgBox("No se pudo validar el estado de boton [Modificar] y/o [Guardar]", MsgBoxStyle.Critical, "Error ")
                 Return False
             End If
-            conecta_sql()
+
             Try
-                Dim cmd As New SqlCommand(sql)
-                cmd.CommandType = CommandType.Text
-                cmd.Connection = Cnn_sql
-                If cmd.ExecuteNonQuery Then
-                    If flag = "Agregar" Then
-                        MsgBox("Agregado Exitosamente", MsgBoxStyle.Information, "Guardando proveedor")
-                    ElseIf flag = "Modificar" Then
-                        MsgBox("Modificado Exitosamente", MsgBoxStyle.Information, "Información")
+
+                Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                    cnn.Open()
+
+                    Dim cmd As New SqlCommand(sql)
+                    cmd.CommandType = CommandType.Text
+                    cmd.Connection = cnn
+                    If cmd.ExecuteNonQuery Then
+                        If flag = "Agregar" Then
+                            MsgBox("Agregado Exitosamente", MsgBoxStyle.Information, "Guardando proveedor")
+                        ElseIf flag = "Modificar" Then
+                            MsgBox("Modificado Exitosamente", MsgBoxStyle.Information, "Información")
+                        End If
+                        Return True
+                    Else
+                        MsgBox("No se pudo ejecutar", MsgBoxStyle.Information, "Guardando proveedor")
+                        frmStateCancel = True
+                        Return False
                     End If
-                    Return True
-                Else
-                    MsgBox("No se pudo ejecutar", MsgBoxStyle.Information, "Guardando proveedor")
-                    frmStateCancel = True
-                    Return False
-                End If
+                End Using
+
+
             Catch ex As Exception
                 frmStateCancel = True
                 MsgBox(ex.Message & vbLet & ex.StackTrace, MsgBoxStyle.Critical, "Error en el btnAcepter_Click")
@@ -140,7 +154,7 @@ Public Class frmAdd_Proveedor
             MsgBox(ex.Message & vbLet & ex.StackTrace, MsgBoxStyle.Critical, "Error")
             Return False
         Finally
-            desconecta_sql()
+
         End Try
     End Function
 
@@ -201,22 +215,30 @@ Public Class frmAdd_Proveedor
 
     Private Function Buscar_Ruc(ByVal strRuc As String) As Boolean
         sql = "SElect Top(1) idProveedor from Proveedores where Ruc_Ci ='" & strRuc & "'"
-        conecta_sql()
+
+
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
 
-                dat.Fill(dt)
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-                If dt.Rows.Count > 0 Then
-                    Return True
-                Else
-                    Return False
-                End If
 
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
+
+                    dat.Fill(dt)
+
+                    If dt.Rows.Count > 0 Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+
+                End Using
             End Using
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "en el Buscar_Ruc del fproveedor")
             Return False

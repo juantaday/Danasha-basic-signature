@@ -142,59 +142,71 @@ Public Class frm_Categoria
     End Sub
 
     Private Function Agregar_Categoria(ByVal Tipo As String) As Boolean
-        conecta_sql()
-        Dim cmd As New SqlCommand()
-        cmd.CommandType = CommandType.Text
-        cmd.Connection = Cnn_sql
+
+
+
         Try
-            Select Case Tipo
-                Case "Categoria"
-                    sql = "Insert into ProductoCategoria (Nom_Categoria) "
-                    sql = sql & "Values ('" & Me.txtNameCategoria.Text & "') "
-                    sql = sql & "SET @identity = SCOPE_IDENTITY() "
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-                    cmd.CommandText = sql
-                    cmd.Parameters.Add(New SqlParameter("@identity", SqlDbType.Int))
-                    cmd.Parameters("@identity").Direction = ParameterDirection.Output
-                    If cmd.ExecuteNonQuery Then
-                        id_subCategory = (cmd.Parameters("@identity").Value)
-                        Return True
-                    End If
-                Case "SubCategoria"
 
-                    sql = "Insert into ProductoSubCategoria (idCategoria, Nom_SubCategoria) "
-                    sql = sql & "Values ((Select idCategoria from ProductoCategoria where Nom_Categoria = '" & Nodes(0).ToString() & "'),'" & Me.txtNameCategoria.Text & "') "
-                    sql = sql & "SET @identity = SCOPE_IDENTITY() "
+                Dim cmd As New SqlCommand()
+                cmd.CommandType = CommandType.Text
+                cmd.Connection = cnn
 
-                    cmd.CommandText = sql
-                    cmd.Parameters.Add(New SqlParameter("@identity", SqlDbType.Int))
-                    cmd.Parameters("@identity").Direction = ParameterDirection.Output
-                    If cmd.ExecuteNonQuery Then
-                        id_subCategory = (cmd.Parameters("@identity").Value)
-                        Return True
-                    End If
-                Case "Modifica"
-                    Select Case Nodes.Length
-                        Case 1
-                            sql = "Update ProductoCategoria set Nom_Categoria = '" & Me.txtNameCategoria.Text & "' where  Nom_Categoria = '" & Nodes(0).ToString & "' "
-                            cmd.CommandText = sql
 
-                            If cmd.ExecuteNonQuery Then
-                                Return True
-                            End If
-                        Case 2
-                            sql = "Update ProductoSubCategoria set "
-                            sql = sql & "Nom_SubCategoria = '" & Me.txtNameCategoria.Text & "' "
-                            sql = sql & "where  ((Nom_SubCategoria = '" & Nodes(1).ToString & "') and "
-                            sql = sql & " (idCategoria = (Select idCategoria from ProductoCategoria where Nom_Categoria = '" & Nodes(0).ToString & "'))) "
+                Select Case Tipo
+                    Case "Categoria"
+                        sql = "Insert into ProductoCategoria (Nom_Categoria) "
+                        sql = sql & "Values ('" & Me.txtNameCategoria.Text & "') "
+                        sql = sql & "SET @identity = SCOPE_IDENTITY() "
 
-                            cmd.CommandText = sql
-                            If cmd.ExecuteNonQuery Then
-                                Return True
-                            End If
-                    End Select
-            End Select
-            Return False
+                        cmd.CommandText = sql
+                        cmd.Parameters.Add(New SqlParameter("@identity", SqlDbType.Int))
+                        cmd.Parameters("@identity").Direction = ParameterDirection.Output
+                        If cmd.ExecuteNonQuery Then
+                            id_subCategory = (cmd.Parameters("@identity").Value)
+                            Return True
+                        End If
+                    Case "SubCategoria"
+
+                        sql = "Insert into ProductoSubCategoria (idCategoria, Nom_SubCategoria) "
+                        sql = sql & "Values ((Select idCategoria from ProductoCategoria where Nom_Categoria = '" & Nodes(0).ToString() & "'),'" & Me.txtNameCategoria.Text & "') "
+                        sql = sql & "SET @identity = SCOPE_IDENTITY() "
+
+                        cmd.CommandText = sql
+                        cmd.Parameters.Add(New SqlParameter("@identity", SqlDbType.Int))
+                        cmd.Parameters("@identity").Direction = ParameterDirection.Output
+                        If cmd.ExecuteNonQuery Then
+                            id_subCategory = (cmd.Parameters("@identity").Value)
+                            Return True
+                        End If
+                    Case "Modifica"
+                        Select Case Nodes.Length
+                            Case 1
+                                sql = "Update ProductoCategoria set Nom_Categoria = '" & Me.txtNameCategoria.Text & "' where  Nom_Categoria = '" & Nodes(0).ToString & "' "
+                                cmd.CommandText = sql
+
+                                If cmd.ExecuteNonQuery Then
+                                    Return True
+                                End If
+                            Case 2
+                                sql = "Update ProductoSubCategoria set "
+                                sql = sql & "Nom_SubCategoria = '" & Me.txtNameCategoria.Text & "' "
+                                sql = sql & "where  ((Nom_SubCategoria = '" & Nodes(1).ToString & "') and "
+                                sql = sql & " (idCategoria = (Select idCategoria from ProductoCategoria where Nom_Categoria = '" & Nodes(0).ToString & "'))) "
+
+                                cmd.CommandText = sql
+                                If cmd.ExecuteNonQuery Then
+                                    Return True
+                                End If
+                        End Select
+                End Select
+                Return False
+            End Using
+
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
             Return False

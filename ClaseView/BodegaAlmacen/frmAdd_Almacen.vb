@@ -31,27 +31,31 @@ Public Class frmAdd_Almacen
         sql = sql & "INNER JOIN TypoBodega as tb on tb.idTypoBodega = b.TypoBodega "
         sql = sql & "ORDER BY b.idBodega;"
 
-        conecta_sql()
+
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
-                dat.Fill(dt)
-                Me.datalistado.DataSource = Nothing
-                If dt.Rows.Count > 0 Then
-                    Me.datalistado.DataSource = dt
-                    Me.datalistado.Columns(0).Visible = False  'idBodega
-                    Me.datalistado.Columns(4).Visible = False  'apellidos + nombre de responsable
-                    Me.datalistado.Columns(5).Visible = False  'direccion de bodega
-                    Me.datalistado.Columns(6).Visible = False  'id empleado del responsable
-                    Me.datalistado.Columns(8).Visible = False  'Ruc de responsable
-                    Me.datalistado.Columns(9).Visible = False  'id del emplado de cheque
-                    Me.datalistado.Columns(10).Visible = False  'responsable del cheque
-                    Me.datalistado.Columns(12).Visible = False  'tipo de bodegaS
-                    Me.datalistado.Columns(13).Visible = False  'codigo establec
-                    Me.datalistado.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
-                End If
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Using cmd As New SqlCommand(sql, cnn)
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
+                    dat.Fill(dt)
+                    Me.datalistado.DataSource = Nothing
+                    If dt.Rows.Count > 0 Then
+                        Me.datalistado.DataSource = dt
+                        Me.datalistado.Columns(0).Visible = False  'idBodega
+                        Me.datalistado.Columns(4).Visible = False  'apellidos + nombre de responsable
+                        Me.datalistado.Columns(5).Visible = False  'direccion de bodega
+                        Me.datalistado.Columns(6).Visible = False  'id empleado del responsable
+                        Me.datalistado.Columns(8).Visible = False  'Ruc de responsable
+                        Me.datalistado.Columns(9).Visible = False  'id del emplado de cheque
+                        Me.datalistado.Columns(10).Visible = False  'responsable del cheque
+                        Me.datalistado.Columns(12).Visible = False  'tipo de bodegaS
+                        Me.datalistado.Columns(13).Visible = False  'codigo establec
+                        Me.datalistado.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+                    End If
+                End Using
             End Using
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
             Me.datalistado.DataSource = Nothing
@@ -303,16 +307,20 @@ Public Class frmAdd_Almacen
     End Sub
     Private Function EliminaBodega(ByVal idBodega As Integer) As Boolean
         sql = "Delete Bodegas from Bodegas where idBodega = " & idBodega & ""
-        conecta_sql()
+
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End Using
             End Using
+
         Catch ex As Exception
             MsgBox(ex.Message + "en el EliminaBodega del " + Me.Name, MsgBoxStyle.Critical, "Error")
             Return False

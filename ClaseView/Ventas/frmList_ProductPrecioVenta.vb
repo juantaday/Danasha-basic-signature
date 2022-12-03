@@ -69,7 +69,7 @@ Public Class frmList_ProductPrecioVenta
         Try
             Using adat As New pcdGetListProductVentaTableAdapter
                 Using dt As New pcdGetListProductVentaDataTable
-                    adat.Fill(dt, codUser:=UsuarioActivo.codUser, codTerminal:=TerminalActivo.codTerminal)
+                    adat.Fill(dt, codUser:=UsuarioActivo.codUser, codTerminal:=TerminalActivo.codTerminal, idBodega:=TerminalActivo.idBodega)
                     If dt.Rows.Count > 0 Then
                         With datalistado
                             .DataSource = dt
@@ -91,16 +91,16 @@ Public Class frmList_ProductPrecioVenta
         Try
             Using adat As New pcdGetListProductVentaTableAdapter
                 Using dt As New pcdGetListProductVentaDataTable
-                    adat.Fill(dt, codUser:=UsuarioActivo.codUser, codTerminal:=TerminalActivo.codTerminal)
+                    adat.Fill(dt, codUser:=UsuarioActivo.codUser, codTerminal:=TerminalActivo.codTerminal, idBodega:=TerminalActivo.idBodega)
                     If dt.Rows.Count > 0 Then
                         With datalistado
                             .DataSource = dt
                             .AutoSizeColumnsMode =
                           DataGridViewAutoSizeColumnsMode.AllCells
-                            .Columns(4).Visible = False  'id otra presentacion
-                            .Columns(5).Visible = False  'id oferta
-                            .Columns(6).Visible = False  'id producto REAL
-                            .Columns(7).Visible = False  'id presentacion REAL
+                            .Columns(5).Visible = False  'id otra presentacion
+                            .Columns(6).Visible = False  'id oferta
+                            .Columns(7).Visible = False  'id producto REAL
+                            .Columns(8).Visible = False  'id presentacion REAL
                         End With
                     End If
                 End Using

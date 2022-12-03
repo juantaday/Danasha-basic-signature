@@ -232,19 +232,26 @@ Salida_Validacion:
     End Sub
 
     Private Function Elimina_Empleado(ByVal idempleado As Integer) As Boolean
-        conecta_sql()
+
 
         sql = "Delete Empleados from Empleados where idEmpleado = " & idempleado & " "
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+
+                End Using
 
             End Using
+
         Catch ex As Exception
             MsgBox(ex.Message + " en el Elimina_Empleado del " + Me.Name, MsgBoxStyle.Critical, "Error")
             Return False
@@ -253,19 +260,27 @@ Salida_Validacion:
     End Function
 
     Private Function Elimina_Persona(ByVal idpersona As Integer) As Boolean
-        conecta_sql()
+
 
         sql = "Delete personas from personas where idPersona = " & idpersona & ""
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+
+                End Using
 
             End Using
+
 
         Catch ex As Exception
             MsgBox(ex.Message + " en el Elimina_Persona del " + Me.Name, MsgBoxStyle.Critical, "Error")

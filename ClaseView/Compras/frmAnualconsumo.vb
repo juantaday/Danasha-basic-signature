@@ -23,28 +23,36 @@ Public Class frmAnualconsumo
 
     Private Function Carga_Declaracion()
         sql = "select * from Declaracion Order By Nom_declaracion"
-        conecta_sql()
+
 
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
 
-                Dim da As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
 
-                da.Fill(dt)
+                    Dim da As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
 
-                cmbDeclaracion.DataSource = Nothing
-                If dt.Rows.Count > 0 Then
-                    With cmbDeclaracion
-                        .DataSource = dt
-                        .DisplayMember = "Nom_declaracion"
-                        .ValueMember = "iddeclaracion"
-                    End With
-                    dt = Nothing
-                End If
-                Return True
+                    da.Fill(dt)
+
+                    cmbDeclaracion.DataSource = Nothing
+                    If dt.Rows.Count > 0 Then
+                        With cmbDeclaracion
+                            .DataSource = dt
+                            .DisplayMember = "Nom_declaracion"
+                            .ValueMember = "iddeclaracion"
+                        End With
+                        dt = Nothing
+                    End If
+                    Return True
+                End Using
             End Using
+
+
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el: Carga_Declaracion ")
             Return False
@@ -53,7 +61,7 @@ Public Class frmAnualconsumo
 
     Private Sub Carga_Item_Productos(ByVal idProveedor As Integer)
 
-        conecta_sql()
+
 
         Try
 
@@ -69,24 +77,31 @@ Public Class frmAnualconsumo
             sql = sql & "WHERE(ppr.idProveedor =" & idProveedor & ") "
             sql = sql & "ORDER BY p.Nom_Comercial"
 
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
 
-                Dim da As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
+                    Dim da As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
 
-                da.Fill(dt)
-                cmbItemProducto.DataSource = Nothing
-                If dt.Rows.Count > 0 Then
-                    With cmbItemProducto
-                        .DataSource = dt
-                        .DisplayMember = "Unidad"
-                        .ValueMember = "idPresentacion"
-                    End With
-                    dt = Nothing
-                End If
+                    da.Fill(dt)
+                    cmbItemProducto.DataSource = Nothing
+                    If dt.Rows.Count > 0 Then
+                        With cmbItemProducto
+                            .DataSource = dt
+                            .DisplayMember = "Unidad"
+                            .ValueMember = "idPresentacion"
+                        End With
+                        dt = Nothing
+                    End If
+                End Using
+
             End Using
+
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al cargar Proveedor")
         End Try
@@ -96,25 +111,34 @@ Public Class frmAnualconsumo
 
     Private Sub Carga_Combo_Proveedor()
         sql = "Select * from Proveedores ORDER BY [Razon_social]"
-        conecta_sql()
+
+
+
         Try
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
 
-                Dim da As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
+                    Dim da As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
 
-                da.Fill(dt)
-                cmbProveedor.DataSource = Nothing
-                If dt.Rows.Count > 0 Then
-                    With cmbProveedor
-                        .DataSource = dt
-                        .ValueMember = "idProveedor"
-                        .DisplayMember = "Razon_social"
-                    End With
-                End If
+                    da.Fill(dt)
+                    cmbProveedor.DataSource = Nothing
+                    If dt.Rows.Count > 0 Then
+                        With cmbProveedor
+                            .DataSource = dt
+                            .ValueMember = "idProveedor"
+                            .DisplayMember = "Razon_social"
+                        End With
+                    End If
+                End Using
             End Using
+
+
+
+
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en frmAdquisicion en el Carga_Combo_Proveedor")
@@ -171,22 +195,31 @@ Public Class frmAnualconsumo
         sql = sql & "WHERE(ppr.idProProveedor = " & idProProveedor & ") "
 
 
-        conecta_sql()
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
 
 
-                Dim da As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
+                    Dim da As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
 
-                da.Fill(dt)
-                If dt.Rows.Count > 0 Then
-                    Return dt
-                Else
-                    Return Nothing
-                End If
+                    da.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        Return dt
+                    Else
+                        Return Nothing
+                    End If
+                End Using
+
             End Using
+
+
+
+
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el frmAdquisicion en el Cargar_dtCosto")
@@ -444,27 +477,34 @@ Public Class frmAnualconsumo
         End Try
     End Sub
     Private Sub carga_Forma_Pago()
-        conecta_sql()
+
         Try
             sql = "Select * from [stm].[FormaPago] order by formaPago "
 
-            Dim cmd As New SqlCommand(sql, Cnn_sql)
-            cmd.CommandType = CommandType.Text
 
-            Dim da As New SqlDataAdapter(cmd)
-            Dim dt As New DataTable
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-            da.Fill(dt)
-            cmbFormaPago.DataSource = Nothing
-            If dt.Rows.Count > 0 Then
-                With cmbFormaPago
-                    .DataSource = dt
-                    .ValueMember = "idformaPago"
-                    .DisplayMember = "formaPago"
-                    .SelectedValue = 1
-                End With
-                dt = Nothing
-            End If
+                Dim cmd As New SqlCommand(sql, cnn)
+                cmd.CommandType = CommandType.Text
+
+                Dim da As New SqlDataAdapter(cmd)
+                Dim dt As New DataTable
+
+                da.Fill(dt)
+                cmbFormaPago.DataSource = Nothing
+                If dt.Rows.Count > 0 Then
+                    With cmbFormaPago
+                        .DataSource = dt
+                        .ValueMember = "idformaPago"
+                        .DisplayMember = "formaPago"
+                        .SelectedValue = 1
+                    End With
+                    dt = Nothing
+                End If
+            End Using
+
+
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al cargar Proveedor")
@@ -583,28 +623,36 @@ Public Class frmAnualconsumo
     End Sub
     Private Function IvaLook(ByVal CodProduct As String) As Double
         sql = "SELECT IvaPorcetaje  from Productos where idproducto  = (SELECT TOP 1 idproducto  from ProductoPresentacion where codProducto  = '" & CodProduct & "')"
-        conecta_sql()
+
 
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
 
-                dat.Fill(dt)
-                If dt.Rows.Count > 0 Then
-                    Return dt(0)(0)
-                Else
-                    Return -1
-                End If
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
 
+                    dat.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        Return dt(0)(0)
+                    Else
+                        Return -1
+                    End If
+
+                End Using
             End Using
+
+
+
+
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error: frmAdquisicion en el IvaLook")
             Return -1
         Finally
-            desconecta_sql()
+
         End Try
     End Function
 
@@ -792,16 +840,23 @@ Public Class frmAnualconsumo
             sql = "insert into Pedidos (FechaPedido, IdProveedor, base00Iva, base12Iva, Descuento, Iva, TotalPedido, codUser) "
             sql = sql & "Values ('" & MyFecha & "', " & id_proveedor & ", " & txt0Iva.Text & ", " & txt12Iva.Text & ", " & txtDescuento.Text & ", " & txtIva.Text & ", " & txtTotal.Text & ", '" & UsuarioActivo.codUser & "') "
 
-            conecta_sql()
+
             Try
-                Using cmd = New SqlCommand(sql, Cnn_sql)
-                    cmd.CommandType = CommandType.Text
-                    If cmd.ExecuteNonQuery Then
-                        Return True
-                    Else
-                        Return False
-                    End If
+
+                Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                    cnn.Open()
+                    Using cmd = New SqlCommand(sql, cnn)
+                        cmd.CommandType = CommandType.Text
+                        If cmd.ExecuteNonQuery Then
+                            Return True
+                        Else
+                            Return False
+                        End If
+                    End Using
                 End Using
+
+
+
 
             Catch ex As Exception
                 MsgBox(ex.Message, MsgBoxStyle.Critical, "Error: frmAdquisicion en el Guarda_Pedido")
@@ -828,24 +883,28 @@ Public Class frmAnualconsumo
 
     Private Sub Carga_Tipo_Doc()
 
-        conecta_sql()
+
         Try
             sql = "Select * from [stm].[TypoDocumento] "
-            Dim cmd As New SqlCommand(sql, Cnn_sql)
-            cmd.CommandType = CommandType.Text
 
-            Dim da As New SqlDataAdapter(cmd)
-            Dim dt As New DataTable
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Dim cmd As New SqlCommand(sql, cnn)
+                cmd.CommandType = CommandType.Text
 
-            da.Fill(dt)
-            If dt.Rows.Count > 0 Then
-                With cmbTipoDocumento
-                    .DataSource = dt
-                    .ValueMember = "idTypoDocu"
-                    .DisplayMember = "Nom_Docu"
-                End With
-                dt = Nothing
-            End If
+                Dim da As New SqlDataAdapter(cmd)
+                Dim dt As New DataTable
+
+                da.Fill(dt)
+                If dt.Rows.Count > 0 Then
+                    With cmbTipoDocumento
+                        .DataSource = dt
+                        .ValueMember = "idTypoDocu"
+                        .DisplayMember = "Nom_Docu"
+                    End With
+                    dt = Nothing
+                End If
+            End Using
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error: frmAdquisicion en el  cargar Carga_Tipo_Doc")
@@ -855,25 +914,32 @@ Public Class frmAnualconsumo
 
     Private Sub Carga_Tipo_Consumo()
 
-        conecta_sql()
+
         Try
             sql = "Select * from Consumo "
-            Dim cmd As New SqlCommand(sql, Cnn_sql)
-            cmd.CommandType = CommandType.Text
 
-            Dim da As New SqlDataAdapter(cmd)
-            Dim dt As New DataTable
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-            da.Fill(dt)
-            cmbItmTipconsumo.DataSource = Nothing
-            If dt.Rows.Count > 0 Then
-                With cmbItmTipconsumo
-                    .DataSource = dt
-                    .ValueMember = "idconsumo"
-                    .DisplayMember = "Nom_Consumo"
-                End With
-                dt = Nothing
-            End If
+                Dim cmd As New SqlCommand(sql, cnn)
+                cmd.CommandType = CommandType.Text
+
+                Dim da As New SqlDataAdapter(cmd)
+                Dim dt As New DataTable
+
+                da.Fill(dt)
+                cmbItmTipconsumo.DataSource = Nothing
+                If dt.Rows.Count > 0 Then
+                    With cmbItmTipconsumo
+                        .DataSource = dt
+                        .ValueMember = "idconsumo"
+                        .DisplayMember = "Nom_Consumo"
+                    End With
+                    dt = Nothing
+                End If
+            End Using
+
+
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error: frmAdquisicion en el  cargar Carga_Tipo_Consumo")

@@ -85,54 +85,70 @@ Public Class frmList_Proveedores
         sql = sql & "FROM dbo.Proveedores "
         sql = sql & "WHERE ((Ruc_Ci Like '%" & Buscardo & "%') or (Razon_social Like '%" & Buscardo & "%') or (Represent Like '%" & Buscardo & "%'))"
 
-        conecta_sql()
-        Try
-            Dim cmd As New SqlCommand(sql)
-            cmd.CommandType = CommandType.Text
-            cmd.Connection = Cnn_sql
-            Dim dt As New DataTable
-            Dim da As New SqlDataAdapter(cmd)
-            da.Fill(dt)
 
-            If dt.Rows.Count <> 0 Then
-                Me.lblNoExiste.Visible = False
-                Me.dataListado.DataSource = dt
-                Me.lblTotalListado.Text = "Total listado: " & dt.Rows.Count
-                dataListado.Columns(0).Visible = False
-                dataListado.ColumnHeadersVisible = True
-                dataListado.Columns(5).Visible = False
-            Else
-                Me.lblNoExiste.Visible = True
-                Me.dataListado.DataSource = Nothing
-                Me.lblTotalListado.Text = "Total listado: 0"
-            End If
+        Try
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+
+                Dim cmd As New SqlCommand(sql)
+                cmd.CommandType = CommandType.Text
+                cmd.Connection = cnn
+                Dim dt As New DataTable
+                Dim da As New SqlDataAdapter(cmd)
+                da.Fill(dt)
+
+                If dt.Rows.Count <> 0 Then
+                    Me.lblNoExiste.Visible = False
+                    Me.dataListado.DataSource = dt
+                    Me.lblTotalListado.Text = "Total listado: " & dt.Rows.Count
+                    dataListado.Columns(0).Visible = False
+                    dataListado.ColumnHeadersVisible = True
+                    dataListado.Columns(5).Visible = False
+                Else
+                    Me.lblNoExiste.Visible = True
+                    Me.dataListado.DataSource = Nothing
+                    Me.lblTotalListado.Text = "Total listado: 0"
+                End If
+            End Using
+
+
+
 
         Catch ex As Exception
             Me.lblNoExiste.Visible = False
             Me.dataListado.DataSource = Nothing
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al buscar Proveedor")
         Finally
-            desconecta_sql()
+
         End Try
     End Sub
 
     Private Function Elimina_Proveedor(idprovee As Integer) As Boolean
         sql = "Delete  Proveedores from Proveedores where idproveedor = " & idprovee & ""
-        conecta_sql()
+
         Try
-            Dim cmd As New SqlCommand(sql)
-            cmd.CommandType = CommandType.Text
-            cmd.Connection = Cnn_sql
-            If cmd.ExecuteNonQuery Then
-                Return True
-            Else
-                Return False
-            End If
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+
+                Dim cmd As New SqlCommand(sql)
+                cmd.CommandType = CommandType.Text
+                cmd.Connection = cnn
+                If cmd.ExecuteNonQuery Then
+                    Return True
+                Else
+                    Return False
+                End If
+            End Using
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Elimina_Proveedor")
             Return False
         Finally
-            desconecta_sql()
+
         End Try
     End Function
 
@@ -140,31 +156,40 @@ Public Class frmList_Proveedores
         sql = "SELECt idProveedor, Ruc_Ci, Razon_social, Represent, Telefono, ivaSubTotal "
         sql = sql & "FROM dbo.Proveedores "
         sql = sql & "WHERE idProveedor = " & idProveedor & ""
-        conecta_sql()
-        Try
-            Dim cmd As New SqlCommand(sql)
-            cmd.CommandType = CommandType.Text
-            cmd.Connection = Cnn_sql
-            Dim dt As New DataTable
-            Dim da As New SqlDataAdapter(cmd)
-            da.Fill(dt)
 
-            If dt.Rows.Count <> 0 Then
-                Me.lblNoExiste.Visible = False
-                Me.dataListado.DataSource = dt
-                Me.lblTotalListado.Text = "Total listado: " & dt.Rows.Count
-            Else
-                Me.lblNoExiste.Visible = True
-                Me.dataListado.DataSource = Nothing
-                Me.lblTotalListado.Text = "Total listado: 0"
-            End If
+        Try
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+
+                Dim cmd As New SqlCommand(sql)
+                cmd.CommandType = CommandType.Text
+                cmd.Connection = cnn
+                Dim dt As New DataTable
+                Dim da As New SqlDataAdapter(cmd)
+                da.Fill(dt)
+
+                If dt.Rows.Count <> 0 Then
+                    Me.lblNoExiste.Visible = False
+                    Me.dataListado.DataSource = dt
+                    Me.lblTotalListado.Text = "Total listado: " & dt.Rows.Count
+                Else
+                    Me.lblNoExiste.Visible = True
+                    Me.dataListado.DataSource = Nothing
+                    Me.lblTotalListado.Text = "Total listado: 0"
+                End If
+
+            End Using
+
 
         Catch ex As Exception
             Me.lblNoExiste.Visible = False
             Me.dataListado.DataSource = Nothing
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al buscar Proveedor")
         Finally
-            desconecta_sql()
+
+
         End Try
     End Sub
     Private Sub dataListado_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dataListado.CellDoubleClick

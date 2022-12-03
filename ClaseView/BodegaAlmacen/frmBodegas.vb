@@ -93,22 +93,29 @@ Public Class frmBodegas
         sql = sql & "where f.codTerminal ='" & TerminalActivo.codTerminal & "' and f.idBodega = b.idbodega),0)= 0,0,1) AS bit) AS Selecciona,  "
         sql = sql & "b.Nom_Bodega, b.Direc_Bodega, b.Telef1_Bodega "
         sql = sql & "FROM Bodegas as b "
-        conecta_sql()
+
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
-                dat.Fill(dt)
-                Me.datalistado.DataSource = Nothing
-                If dt.Rows.Count > 0 Then
-                    Me.datalistado.DataSource = dt
-                    Me.datalistado.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
-                    Me.datalistado.Columns(0).Visible = False
-                    Return True
-                Else
-                    Return False
-                End If
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
+                    dat.Fill(dt)
+                    Me.datalistado.DataSource = Nothing
+                    If dt.Rows.Count > 0 Then
+                        Me.datalistado.DataSource = dt
+                        Me.datalistado.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+                        Me.datalistado.Columns(0).Visible = False
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End Using
             End Using
+
+
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")

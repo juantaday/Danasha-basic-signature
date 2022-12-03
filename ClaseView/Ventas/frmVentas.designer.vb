@@ -65,6 +65,7 @@ Partial Class frmVentas
         Me.productoClm = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.EmpClm = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.CantidadClm = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.StockClm = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.PUnitarioClm = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.PTotalClm = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.IvaPorClm = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -586,7 +587,7 @@ Partial Class frmVentas
         Me.ListView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.idPresentClm, Me.idProductoClm, Me.codigoClm, Me.productoClm, Me.EmpClm, Me.CantidadClm, Me.PUnitarioClm, Me.PTotalClm, Me.IvaPorClm, Me.PrecCompraClm, Me.DescuentoClm, Me.TarifaClm})
+        Me.ListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.idPresentClm, Me.idProductoClm, Me.codigoClm, Me.productoClm, Me.EmpClm, Me.CantidadClm, Me.StockClm, Me.PUnitarioClm, Me.PTotalClm, Me.IvaPorClm, Me.PrecCompraClm, Me.DescuentoClm, Me.TarifaClm})
         Me.ListView1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.ListView1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListView1.FullRowSelect = True
@@ -601,13 +602,13 @@ Partial Class frmVentas
         '
         'idPresentClm
         '
-        Me.idPresentClm.DisplayIndex = 6
+        Me.idPresentClm.DisplayIndex = 7
         Me.idPresentClm.Text = "idPresent"
         Me.idPresentClm.Width = 0
         '
         'idProductoClm
         '
-        Me.idProductoClm.DisplayIndex = 10
+        Me.idProductoClm.DisplayIndex = 11
         Me.idProductoClm.Text = "idProducto"
         Me.idProductoClm.Width = 0
         '
@@ -636,9 +637,16 @@ Partial Class frmVentas
         Me.CantidadClm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.CantidadClm.Width = 80
         '
+        'StockClm
+        '
+        Me.StockClm.DisplayIndex = 4
+        Me.StockClm.Text = "Stock"
+        Me.StockClm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.StockClm.Width = 120
+        '
         'PUnitarioClm
         '
-        Me.PUnitarioClm.DisplayIndex = 4
+        Me.PUnitarioClm.DisplayIndex = 5
         Me.PUnitarioClm.Text = "Precio Unitario $"
         Me.PUnitarioClm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.PUnitarioClm.Width = 140
@@ -661,7 +669,7 @@ Partial Class frmVentas
         '
         'DescuentoClm
         '
-        Me.DescuentoClm.DisplayIndex = 5
+        Me.DescuentoClm.DisplayIndex = 6
         Me.DescuentoClm.Text = "Descuento $"
         Me.DescuentoClm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.DescuentoClm.Width = 100
@@ -1403,5 +1411,5 @@ Partial Class frmVentas
     Friend WithEvents PanelHerder As Panel
     Friend WithEvents Panel3 As Panel
     Friend WithEvents labelViewProgresSing As Label
-
+    Friend WithEvents StockClm As ColumnHeader
 End Class

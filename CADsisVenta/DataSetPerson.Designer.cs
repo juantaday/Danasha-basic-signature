@@ -4866,7 +4866,6 @@ SELECT idPersona, Apellidos, Nombre, Ruc_Ci, Direccion, telefono, fecha_reg, mai
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdatePerson(string Apellidos, string Nombre, string Ruc_Ci, string Direccion, string telefono, string mail, global::System.Nullable<global::System.DateTime> fech_Naci, global::System.Nullable<bool> genero, string nota, byte[] foto, string telef_casa, string telef_ofic, global::System.Nullable<int> Original_idPersona, global::System.Nullable<bool> sendEmail) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[6];
             if ((Apellidos == null)) {

@@ -348,17 +348,18 @@ Public Class frmPagos
         End Try
     End Function
     Private Function Elimina_DatoTemporal() As Boolean
-        If conecta_sql() Then
-            Try
+
+        Try
                 sql = "DELETE  [tmp].[CobroTmp] where (CodTerminal = '" & TerminalActivo.codTerminal & "' and codUser = '" & UsuarioActivo.codUser & "') "
-                Dim cmd As New ClassCargadorProducto()
-                Return cmd.ExecuteComand(sql)
+                Using cmd As New ClassCargadorProducto()
+                    Return cmd.ExecuteComand(sql)
+                End Using
+
             Catch ex As Exception
                 MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
                 Return True
             End Try
-        End If
-        Return False
+
     End Function
     Private Sub Carga_UltimosPagos()
         Try

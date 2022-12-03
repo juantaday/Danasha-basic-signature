@@ -6,7 +6,10 @@ Public Class fbackup
 
     Public Function backupbase(fileName As String, NameArchiv As String)
         Try
-            If conecta_sql() Then
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
                 cmd = New SqlCommand("backup_base")
                 cmd.CommandType = CommandType.StoredProcedure
                 cmd.Parameters.Add("@Direcions", SqlDbType.VarChar)
@@ -15,19 +18,23 @@ Public Class fbackup
                 cmd.Parameters("@Direcions").Value = fileName
                 cmd.Parameters("@NameArchiv").Value = NameArchiv
 
-                cmd.Connection = Cnn_sql
+                cmd.Connection = cnn
                 If cmd.ExecuteNonQuery Then
                     Return True
                 Else
                     Return False
                 End If
-            End If
-            Return False
+
+                Return False
+
+            End Using
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en ele backup")
             Return False
         Finally
-            desconecta_sql()
+
         End Try
     End Function
 

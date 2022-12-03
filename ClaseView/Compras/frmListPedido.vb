@@ -14,31 +14,38 @@ Public Class frmListPedido
         sql = sql & "FROM   dbo.Pedidos INNER JOIN "
         sql = sql & "dbo.Proveedores ON dbo.Pedidos.idProveedor = dbo.Proveedores.idProveedor "
 
-        conecta_sql()
+
         Try
-            Dim cmd As New SqlCommand(sql)
-            cmd.CommandType = CommandType.Text
-            cmd.Connection = Cnn_sql
 
-            Dim da As New SqlDataAdapter(cmd)
-            Dim dt As New DataTable
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-            da.Fill(dt)
+                Dim cmd As New SqlCommand(sql)
+                cmd.CommandType = CommandType.Text
+                cmd.Connection = cnn
 
-            If dt.Rows.Count > 0 Then
-                datalistado.DataSource = dt
-                datalistado.AutoSizeColumnsMode =
-                                 DataGridViewAutoSizeColumnsMode.AllCells
-            Else
-                datalistado.DataSource = Nothing
-            End If
+                Dim da As New SqlDataAdapter(cmd)
+                Dim dt As New DataTable
 
-            dt = Nothing
+                da.Fill(dt)
+
+                If dt.Rows.Count > 0 Then
+                    datalistado.DataSource = dt
+                    datalistado.AutoSizeColumnsMode =
+                                     DataGridViewAutoSizeColumnsMode.AllCells
+                Else
+                    datalistado.DataSource = Nothing
+                End If
+
+                dt = Nothing
+            End Using
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al cargar Listado")
             datalistado.DataSource = Nothing
         Finally
-            desconecta_sql()
+
         End Try
 
     End Sub

@@ -150,8 +150,8 @@ Public Class frmCajaDetail
             ListViewList.GridLines = True
             ListViewList.FullRowSelect = True
             sql = "select * from stm.FormaPago  where Not (FormaPago = 'Crédito')"
-            If conecta_sql() Then
-                Dim cmd As New ClassCargadorProducto()
+
+            Using cmd As New ClassCargadorProducto()
                 Dim dt As DataTable = cmd.RetornaTabla(sql)
                 For i = 0 To dt.Rows.Count - 1
                     Dim item As New ListViewItem
@@ -160,7 +160,9 @@ Public Class frmCajaDetail
                     item.SubItems.Add(dt.Rows(i)("formaPago"))
                     ListViewList.Items.Add(item)
                 Next
-            End If
+
+            End Using
+
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

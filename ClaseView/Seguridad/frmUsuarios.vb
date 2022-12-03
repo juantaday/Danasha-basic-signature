@@ -37,18 +37,24 @@ Public Class frmUsuarios
             Return False
         End If
 
+
         sql = "Delete Usuarios from Usuarios where Login = '" & LoginUser & "'"
 
-        conecta_sql()
+
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End Using
             End Using
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en ELimina_Usuario en el frmUsuario ")
             Return False
@@ -60,32 +66,40 @@ Public Class frmUsuarios
     Private Sub CargaUsuarios()
 
         'sql viene de cada comando de acuerdo alo que quiere filtra
-        conecta_sql()
+
+
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
 
-                dat.Fill(dt)
-                Me.dataGridUser.DataSource = Nothing
-                If dt.Rows.Count > 0 Then
-                    With dataGridUser
-                        .DataSource = dt
-                        .AutoSizeColumnsMode =
-                        DataGridViewAutoSizeColumnsMode.AllCells
-                        .Columns(2).Visible = False
-                        .Columns(3).Visible = False
-                        .Columns(4).Visible = False
-                        .Columns(5).Visible = False
-                        .Columns(6).Visible = False
-                        .Columns(7).Visible = False
-                        Me.lblTotal.Text = "Total de registro: " & dt.Rows.Count
-                        lblnoExiste.Visible = False
-                    End With
-                End If
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
 
+                    dat.Fill(dt)
+                    Me.dataGridUser.DataSource = Nothing
+                    If dt.Rows.Count > 0 Then
+                        With dataGridUser
+                            .DataSource = dt
+                            .AutoSizeColumnsMode =
+                            DataGridViewAutoSizeColumnsMode.AllCells
+                            .Columns(2).Visible = False
+                            .Columns(3).Visible = False
+                            .Columns(4).Visible = False
+                            .Columns(5).Visible = False
+                            .Columns(6).Visible = False
+                            .Columns(7).Visible = False
+                            Me.lblTotal.Text = "Total de registro: " & dt.Rows.Count
+                            lblnoExiste.Visible = False
+                        End With
+                    End If
+
+                End Using
             End Using
+
+
+
         Catch ex As Exception
             Me.dataGridUser.DataSource = Nothing
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en CargaTodoUsuarios del " & Me.Name)
@@ -168,27 +182,34 @@ Public Class frmUsuarios
 
         sql = sql + " WHERE        (U.Login = '" & Login & "')"
 
-        conecta_sql()
+
+
 
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
 
-                dat.Fill(dt)
-                Me.dataGridGrupo.DataSource = Nothing
-                If dt.Rows.Count > 0 Then
-                    With dataGridGrupo
-                        .DataSource = dt
-                        .Columns(0).Visible = False
-                        .AutoSizeColumnsMode =
-                        DataGridViewAutoSizeColumnsMode.AllCells
-                        btnAplicar.Enabled = False
-                        Me.txtUltimoLogin.Text = Login
-                    End With
-                End If
+                    dat.Fill(dt)
+                    Me.dataGridGrupo.DataSource = Nothing
+                    If dt.Rows.Count > 0 Then
+                        With dataGridGrupo
+                            .DataSource = dt
+                            .Columns(0).Visible = False
+                            .AutoSizeColumnsMode =
+                            DataGridViewAutoSizeColumnsMode.AllCells
+                            btnAplicar.Enabled = False
+                            Me.txtUltimoLogin.Text = Login
+                        End With
+                    End If
+                End Using
             End Using
+
+
+
             Return True
 
         Catch ex As Exception
@@ -243,17 +264,25 @@ Public Class frmUsuarios
     Public Function EliminaGrupo() As Boolean
 
         sql = "Delete UsuarioGrupo from  UsuarioGrupo where Login = '" & Me.txtlogin.Text & "' "
-        conecta_sql()
+
         Try
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End Using
+
             End Using
+
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "En el EliminaGrupo del " & Me.Name)
             Return False
@@ -261,18 +290,24 @@ Public Class frmUsuarios
     End Function
 
     Public Function ExecuteComand(ByVal StrinSql As String) As Boolean
-        conecta_sql()
-        Try
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    MsgBox("No se realizo la operación ", MsgBoxStyle.Information, "Aviso")
-                    Return False
-                End If
+
+        Try
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        MsgBox("No se realizo la operación ", MsgBoxStyle.Information, "Aviso")
+                        Return False
+                    End If
+                End Using
+
             End Using
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "En el ExecuteComand del " & Me.Name)
             Return False

@@ -7,23 +7,31 @@ Module fProducto
         sql = sql & "Where (Nom_Comercial = '" & Nom_Comerc & "' or Nom_Comercial = '" & Nom_comun & "') "
         sql = sql & "or (Nom_Comun = '" & Nom_Comerc & "' or Nom_Comun = '" & Nom_comun & "') "
 
-        conecta_sql()
+
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
 
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-                dat.Fill(dt)
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
 
-                If dt.Rows.Count = 1 Then
-                    Return dt.Rows(0)("IDProducto").ToString()
-                Else
-                    Return 0
-                End If
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
+
+                    dat.Fill(dt)
+
+                    If dt.Rows.Count = 1 Then
+                        Return dt.Rows(0)("IDProducto").ToString()
+                    Else
+                        Return 0
+                    End If
+
+                End Using
 
             End Using
+
+
 
         Catch ex As Exception
             MsgBox(ex.Message + " en el  Busca_IdProducto del " + ClassName, MsgBoxStyle.Critical, "Error al buscar Registro")
@@ -34,23 +42,31 @@ Module fProducto
 
     Public Function Elimina_Producto(IdProducto As Integer)
         sql = "Delete Productos Where idProducto = " & IdProducto & ""
-        conecta_sql()
-        Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
 
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
+
+        Try
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+
+                End Using
 
             End Using
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Elimina_Producto del modulo fProducto")
             Return False
         Finally
-            desconecta_sql()
+
         End Try
 
     End Function
@@ -59,21 +75,32 @@ Module fProducto
         sql = "Select  idProProveedor "
         sql = sql & "FROM dbo.ProductoProveedor "
         sql = sql & "WHERE  (idPresentacion = " & idPresent & ") And (idProveedor = " & IdProveedor & ") "
-        conecta_sql()
-        Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
 
-                dat.Fill(dt)
-                If dt.Rows.Count > 0 Then
-                    Return dt(0)(0).ToString
-                Else
-                    Return 0
-                End If
+
+        Try
+
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
+
+                    dat.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        Return dt(0)(0).ToString
+                    Else
+                        Return 0
+                    End If
+
+                End Using
 
             End Using
+
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el fproducto en el Busca_idProductProveedor")
             Return 0
@@ -113,43 +140,58 @@ Module fProducto
     Public Function Elimina_presentacion(ByVal codPreset As String) As Boolean
 
         sql = "delete ProductoPresentacion where codProducto='" & codPreset & " '"
-        conecta_sql()
+
+
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
 
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-                End If
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+
+                    End If
+                End Using
+
             End Using
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el fproducto en la funcion Elimina_presentacion")
             Return False
         Finally
-            desconecta_sql()
+
         End Try
     End Function
     Public Function Elimina_ProductoProveedor(ByVal idProProveedor As Integer)
         sql = "delete ProductoProveedor where idProProveedor='" & idProProveedor & " '"
-        conecta_sql()
-        Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
 
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
+        Try
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End Using
+
             End Using
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el fproducto en la funcion Elimina_presentacion")
             Return False
         Finally
-            desconecta_sql()
+
         End Try
     End Function
     Public Function CambiaIvaTodos(ivaPorcent As Double) As Boolean

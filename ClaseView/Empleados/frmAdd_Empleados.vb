@@ -117,66 +117,89 @@ Public Class frmAdd_Empleados
         End Try
     End Sub
     Private Sub Cargo_reporta_A(ByVal idempleado As Integer)
-        conecta_sql()
 
         sql = "Select   e.idEmpleado, p.Ruc_Ci, p.Apellidos, p.Nombre "
         sql = sql + "FROM            dbo.Empleados As e INNER JOIN "
         sql = sql + "       dbo.Personas As p On e.idPersona = p.idPersona "
         sql = sql + " WHERE(e.idEmpleado = " & idempleado & ")"
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
 
-                dat.Fill(dt)
-                If dt.Rows.Count > 0 Then
-                    If IsNumeric(dt(0)("idEmpleado")) Then
-                        Me.idReportTo = dt(0)("idEmpleado")
-                        Me.txtNameReportto.Text = dt(0)("Ruc_Ci").ToString + " " + dt(0)("Apellidos").ToString + " " + dt(0)("Nombre").ToString
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
+
+                    dat.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        If IsNumeric(dt(0)("idEmpleado")) Then
+                            Me.idReportTo = dt(0)("idEmpleado")
+                            Me.txtNameReportto.Text = dt(0)("Ruc_Ci").ToString + " " + dt(0)("Apellidos").ToString + " " + dt(0)("Nombre").ToString
+                        End If
                     End If
-                End If
+                End Using
+
             End Using
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Alerta")
         End Try
 
     End Sub
     Private Sub Cargar_Cargos()
-        conecta_sql()
+
+
         sql = "Select distinct cargo from Empleados "
         Try
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim dar As SqlDataReader = cmd.ExecuteReader()
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-                CargoBombox.Items.Clear()
-                CargoBombox.Items.Add("Selecciona...")
-                While dar.Read()
-                    CargoBombox.Items.Add(dar(0).ToString)
-                End While
-                dar.Close()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim dar As SqlDataReader = cmd.ExecuteReader()
+
+                    CargoBombox.Items.Clear()
+                    CargoBombox.Items.Add("Selecciona...")
+                    While dar.Read()
+                        CargoBombox.Items.Add(dar(0).ToString)
+                    End While
+                    dar.Close()
+                End Using
+
             End Using
+
+
         Catch ex As Exception
             MsgBox(ex.Message & "en el Cargar_Cargos del " & Me.Name, MsgBoxStyle.Critical, "Error")
         End Try
     End Sub
 
     Private Sub Cargar_Titulos()
-        conecta_sql()
+
         sql = "Select Distinct titulo from Empleados "
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim dar As SqlDataReader = cmd.ExecuteReader()
 
-                CargoBombox.Items.Clear()
-                While dar.Read()
-                    CargoBombox.Items.Add(dar(0).ToString)
-                End While
-                dar.Close()
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim dar As SqlDataReader = cmd.ExecuteReader()
+
+                    CargoBombox.Items.Clear()
+                    While dar.Read()
+                        CargoBombox.Items.Add(dar(0).ToString)
+                    End While
+                    dar.Close()
+                End Using
+
             End Using
+
         Catch ex As Exception
             MsgBox(ex.Message & "en el Cargar_Titulos del " & Me.Name, MsgBoxStyle.Critical, "Error")
         End Try

@@ -61,28 +61,37 @@ Public Class FunInicio
     Public Function PruevaSecion(ByVal data As GetInicio) As Response
         Dim response As New Response()
         Try
-            Dim cmd = New SqlCommand("ValidaUsuario")
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Connection = Cnn_sql
-            cmd.Parameters.AddWithValue("@Login", data.GUsuario)
-            cmd.Parameters.AddWithValue("@Password", data.gContrasena)
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Dim cmd = New SqlCommand("ValidaUsuario")
+                cmd.CommandType = CommandType.StoredProcedure
+                cmd.Connection = cnn
+                cmd.Parameters.AddWithValue("@Login", data.GUsuario)
+                cmd.Parameters.AddWithValue("@Password", data.gContrasena)
 
 
-            Dim dt As New DataTable
-            Dim da As New SqlDataAdapter(cmd)
-            da.Fill(dt)
-            If dt.Rows.Count > 0 Then
-                response.Success = True
-                Return response
-            Else
+                Dim dt As New DataTable
+                Dim da As New SqlDataAdapter(cmd)
+                da.Fill(dt)
+                If dt.Rows.Count > 0 Then
+                    response.Success = True
+                    Return response
+                Else
+                    response.Messague = "Contraseña actual Incorrecta"
+                    response.Success = False
+                    Return response
+                End If
+
                 response.Messague = "Contraseña actual Incorrecta"
                 response.Success = False
                 Return response
-            End If
 
-            response.Messague = "Contraseña actual Incorrecta"
-            response.Success = False
-            Return response
+            End Using
+
+
+
         Catch ex As Exception
             response.Messague = ex.Message
             response.Success = False

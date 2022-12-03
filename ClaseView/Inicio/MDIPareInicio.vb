@@ -928,7 +928,7 @@ Salida:
         Try
             Dim data As New Object
             data = My.Computer.Clipboard.GetText()
-            If (Me.ActiveMdiChild IsNot Nothing) Then
+            If (Me.ActiveMdiChild IsNot Nothing) AndAlso (Me.ActiveMdiChild.ActiveControl IsNot Nothing) Then
                 If (Me.ActiveMdiChild.ActiveControl.GetType().Name.Equals("TextBox")) Then
                     Dim textbos = CType(Me.ActiveMdiChild.ActiveControl, TextBox)
                     textbos.Text = My.Computer.Clipboard.GetText()

@@ -45,84 +45,94 @@ Public Class frmProductoPresentacion
         sql = sql & "dbo.Productos AS p ON pr.idProducto = p.idProducto INNER JOIN "
         sql = sql & "dbo.ProductoUndMin AS pum ON p.idUnidad = pum.idUnidad "
         sql = sql & "WHERE(pr.idProducto = " & idproducto & ") "
-        Dim cmd As New ClassCargadorProducto()
-        Dim fila As Integer = 0
 
-        Try
-            Dim dt As DataTable = cmd.RetornaTabla(sql)
-            If Not IsNothing(dt) Then
-                If dt.Rows.Count > 0 Then
-                    Dim dtg As DataGridView = Me.DataGridView1
-                    dtg.Columns(0).Visible = False  'oculto idpresent
-                    dtg.Columns(6).Visible = False  'oculto medida
-                    dtg.Columns(7).Visible = False  'oculto Precio Unitario de cada presentacion
 
-                    For i = 0 To dt.Rows.Count - 1
-                        dtg.Rows.Add()
-                        dtg.Item(0, fila).Value = dt.Rows(i)("idPresentacion")   'idPresent
-                        dtg.Item(1, fila).Value = dt.Rows(i)(1)   'Presenatción
+        Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+            cnn.Open()
 
-                        dtg.Item(2, fila).Value = dt.Rows(i)("detalle")
-                        dtg.Item(3, fila).Value = "--------"      '# de oferta
-                        dtg.Item(4, fila).Value = "=====>"        'a partir de 
-                        dtg.Item(5, fila).Value = dt.Rows(i)(3)   'precio venta 
-                        dtg.Item(5, fila).Style.Alignment = DataGridViewContentAlignment.MiddleRight
-                        dtg.Item(6, fila).Value = dt.Rows(i)(4)   'Medida
-                        dtg.Item(7, fila).Value = dt.Rows(i)(3)   'precio venta en cada presentación
+            Dim cmd As New ClassCargadorProducto()
+            Dim fila As Integer = 0
 
-                        dtg.Rows(fila).DefaultCellStyle.BackColor = Color.Silver
-                        dtg.Rows(fila).DefaultCellStyle.Font = New Drawing.Font("Tahoma", 10, FontStyle.Bold, GraphicsUnit.Point)
-                        dtg.Rows(fila).DefaultCellStyle.ForeColor = Color.Blue
+            Try
+                Dim dt As DataTable = cmd.RetornaTabla(sql)
+                If Not IsNothing(dt) Then
+                    If dt.Rows.Count > 0 Then
+                        Dim dtg As DataGridView = Me.DataGridView1
+                        dtg.Columns(0).Visible = False  'oculto idpresent
+                        dtg.Columns(6).Visible = False  'oculto medida
+                        dtg.Columns(7).Visible = False  'oculto Precio Unitario de cada presentacion
 
-                        'DETALLE DE ofertas si existen
-                        sql = "Select  o.CantOferta,o.valor_Oferta, o.Caducidad,o.fech_Caduce from ofertas As o "
-                        sql = sql & "where o.idPresent = " & dt.Rows(i)("idPresentacion") & " "
-                        sql = sql & "Order by o.orden "
+                        For i = 0 To dt.Rows.Count - 1
+                            dtg.Rows.Add()
+                            dtg.Item(0, fila).Value = dt.Rows(i)("idPresentacion")   'idPresent
+                            dtg.Item(1, fila).Value = dt.Rows(i)(1)   'Presenatción
 
-                        Dim sqlpro As New SqlDataAdapter(sql, Cnn_sql)
-                        Dim dtOfer As New DataTable
-                        sqlpro.Fill(dtOfer)
-                        If dtOfer.Rows.Count > 0 Then
-                            For o = 0 To dtOfer.Rows.Count - 1
-                                fila += 1
-                                dtg.Rows.Add()
-                                'agrego codigos ocultos
-                                dtg.Item(0, fila).Value = dt.Rows(i)("idPresentacion")   'idPresent
-                                dtg.Item(6, fila).Value = dt.Rows(i)(4)   'Medida
-                                dtg.Item(7, fila).Value = dt.Rows(i)(3)   'precio venta en cada presentación
+                            dtg.Item(2, fila).Value = dt.Rows(i)("detalle")
+                            dtg.Item(3, fila).Value = "--------"      '# de oferta
+                            dtg.Item(4, fila).Value = "=====>"        'a partir de 
+                            dtg.Item(5, fila).Value = dt.Rows(i)(3)   'precio venta 
+                            dtg.Item(5, fila).Style.Alignment = DataGridViewContentAlignment.MiddleRight
+                            dtg.Item(6, fila).Value = dt.Rows(i)(4)   'Medida
+                            dtg.Item(7, fila).Value = dt.Rows(i)(3)   'precio venta en cada presentación
 
-                                'verifico si ya está caducado 
-                                If Boolean.Parse(dtOfer.Rows(o)("Caducidad").ToString) Then
-                                    Dim ahora As Date = FormatDateTime(Now(), DateFormat.ShortDate)
-                                    Dim evaluar As Date = Date.Parse(dtOfer.Rows(o)("fech_Caduce").ToString)
+                            dtg.Rows(fila).DefaultCellStyle.BackColor = Color.Silver
+                            dtg.Rows(fila).DefaultCellStyle.Font = New Drawing.Font("Tahoma", 10, FontStyle.Bold, GraphicsUnit.Point)
+                            dtg.Rows(fila).DefaultCellStyle.ForeColor = Color.Blue
 
-                                    If Date.Parse(evaluar) < Date.Parse(ahora) Then
-                                        dtg.Item(3, fila).Value = "Caducada =>"
-                                        dtg.Item(3, fila).Style.Font = New Drawing.Font("Tahoma", 9, FontStyle.Bold, GraphicsUnit.Point)
-                                        dtg.Item(3, fila).Style.ForeColor = Color.Red
+                            'DETALLE DE ofertas si existen
+                            sql = "Select  o.CantOferta,o.valor_Oferta, o.Caducidad,o.fech_Caduce from ofertas As o "
+                            sql = sql & "where o.idPresent = " & dt.Rows(i)("idPresentacion") & " "
+                            sql = sql & "Order by o.orden "
+
+                            Dim sqlpro As New SqlDataAdapter(sql, cnn)
+                            Dim dtOfer As New DataTable
+                            sqlpro.Fill(dtOfer)
+                            If dtOfer.Rows.Count > 0 Then
+                                For o = 0 To dtOfer.Rows.Count - 1
+                                    fila += 1
+                                    dtg.Rows.Add()
+                                    'agrego codigos ocultos
+                                    dtg.Item(0, fila).Value = dt.Rows(i)("idPresentacion")   'idPresent
+                                    dtg.Item(6, fila).Value = dt.Rows(i)(4)   'Medida
+                                    dtg.Item(7, fila).Value = dt.Rows(i)(3)   'precio venta en cada presentación
+
+                                    'verifico si ya está caducado 
+                                    If Boolean.Parse(dtOfer.Rows(o)("Caducidad").ToString) Then
+                                        Dim ahora As Date = FormatDateTime(Now(), DateFormat.ShortDate)
+                                        Dim evaluar As Date = Date.Parse(dtOfer.Rows(o)("fech_Caduce").ToString)
+
+                                        If Date.Parse(evaluar) < Date.Parse(ahora) Then
+                                            dtg.Item(3, fila).Value = "Caducada =>"
+                                            dtg.Item(3, fila).Style.Font = New Drawing.Font("Tahoma", 9, FontStyle.Bold, GraphicsUnit.Point)
+                                            dtg.Item(3, fila).Style.ForeColor = Color.Red
+                                        Else
+                                            dtg.Item(3, fila).Value = "Oferta " & o + 1
+                                        End If
+
                                     Else
                                         dtg.Item(3, fila).Value = "Oferta " & o + 1
                                     End If
-
-                                Else
-                                    dtg.Item(3, fila).Value = "Oferta " & o + 1
-                                End If
-                                dtg.Item(4, fila).Value = dtOfer.Rows(o)("CantOferta").ToString
-                                'precio de venta
-                                Dim pventas As Double = 0
-                                pventas = (dtOfer.Rows(0).Field(Of Decimal)("valor_Oferta") * dt.Rows(i).Field(Of Decimal)("Precio Venta"))
-                                dtg.Item(5, fila).Value = RedondearSi(Double.Parse(dt.Rows(i)(3)) - pventas, 5)
-                                dtg.Item(5, fila).Style.Alignment = DataGridViewContentAlignment.MiddleRight  'alineamos acia la derecha
-                            Next
-                        End If
-                        fila += 1
-                    Next
-                    Me.DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+                                    dtg.Item(4, fila).Value = dtOfer.Rows(o)("CantOferta").ToString
+                                    'precio de venta
+                                    Dim pventas As Double = 0
+                                    pventas = (dtOfer.Rows(0).Field(Of Decimal)("valor_Oferta") * dt.Rows(i).Field(Of Decimal)("Precio Venta"))
+                                    dtg.Item(5, fila).Value = RedondearSi(Double.Parse(dt.Rows(i)(3)) - pventas, 5)
+                                    dtg.Item(5, fila).Style.Alignment = DataGridViewContentAlignment.MiddleRight  'alineamos acia la derecha
+                                Next
+                            End If
+                            fila += 1
+                        Next
+                        Me.DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+                    End If
                 End If
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message + " en el Carga_Datos del " + Me.Name, MsgBoxStyle.Critical, "Error")
-        End Try
+            Catch ex As Exception
+                MsgBox(ex.Message + " en el Carga_Datos del " + Me.Name, MsgBoxStyle.Critical, "Error")
+            End Try
+
+        End Using
+
+
+
     End Sub
 
     Private Sub DataGridView1_CellFormatting(sender As Object, e As DataGridViewCellPaintingEventArgs) Handles DataGridView1.CellPainting

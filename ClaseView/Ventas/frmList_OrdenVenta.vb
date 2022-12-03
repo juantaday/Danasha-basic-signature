@@ -45,38 +45,43 @@ Public Class frmList_OrdenVenta
     Private Sub Carga_Orden()
         Dim i As Integer
 
-        conecta_sql()
-
         Try
-            Dim cmd As New SqlCommand(sql, Cnn_sql)
-            cmd.CommandType = CommandType.Text
-            Dim dat As New SqlDataAdapter(cmd)
-            Dim dt As New DataTable
 
-            dat.Fill(dt)
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-            If dt.Rows.Count > 0 Then
-                i = dt.Rows.Count
+                Dim cmd As New SqlCommand(sql, cnn)
+                cmd.CommandType = CommandType.Text
+                Dim dat As New SqlDataAdapter(cmd)
+                Dim dt As New DataTable
 
-                Me.DataGridView1.DataSource = dt
-                DataGridView1.AutoSizeColumnsMode =
-                                     DataGridViewAutoSizeColumnsMode.AllCells
-                DataGridView1.Columns(0).DefaultCellStyle.Alignment =
-                    DataGridViewContentAlignment.MiddleRight 'Alineado a la derecha a la orden
+                dat.Fill(dt)
 
-                DataGridView1.Columns(4).DefaultCellStyle.Alignment =
-                     DataGridViewContentAlignment.MiddleCenter 'Alineado al centro a la fecha
+                If dt.Rows.Count > 0 Then
+                    i = dt.Rows.Count
 
-                DataGridView1.Columns(2).DefaultCellStyle.Alignment =
-                    DataGridViewContentAlignment.MiddleRight 'Alineado a la derecha valor de venta
+                    Me.DataGridView1.DataSource = dt
+                    DataGridView1.AutoSizeColumnsMode =
+                                         DataGridViewAutoSizeColumnsMode.AllCells
+                    DataGridView1.Columns(0).DefaultCellStyle.Alignment =
+                        DataGridViewContentAlignment.MiddleRight 'Alineado a la derecha a la orden
 
-                DataGridView1.Columns(3).DefaultCellStyle.Alignment =
-                  DataGridViewContentAlignment.MiddleRight 'Alineado a la derecha item pr
-                DataGridView1.Columns(5).Visible = False  'otro valor
-                DataGridView1.Columns(6).Visible = False  'nom apellido
-                DataGridView1.Columns(7).Visible = False  'ruc
-                DataGridView1.Columns(8).Visible = False  'idcliente
-            End If
+                    DataGridView1.Columns(4).DefaultCellStyle.Alignment =
+                         DataGridViewContentAlignment.MiddleCenter 'Alineado al centro a la fecha
+
+                    DataGridView1.Columns(2).DefaultCellStyle.Alignment =
+                        DataGridViewContentAlignment.MiddleRight 'Alineado a la derecha valor de venta
+
+                    DataGridView1.Columns(3).DefaultCellStyle.Alignment =
+                      DataGridViewContentAlignment.MiddleRight 'Alineado a la derecha item pr
+                    DataGridView1.Columns(5).Visible = False  'otro valor
+                    DataGridView1.Columns(6).Visible = False  'nom apellido
+                    DataGridView1.Columns(7).Visible = False  'ruc
+                    DataGridView1.Columns(8).Visible = False  'idcliente
+                End If
+            End Using
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error Al cargar Ordenes")
         End Try

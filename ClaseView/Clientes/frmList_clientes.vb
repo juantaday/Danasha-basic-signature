@@ -273,22 +273,31 @@ Public Class frmList_clientes
     End Sub
     Private Function Eliminar_clinete(idPersona As Integer) As Boolean
         sql = "Delete Clientes from Clientes where idPersona=" & idPersona & ""
-        conecta_sql()
+
+
         Try
-            Using cmd As New SqlCommand(sql)
-                cmd.CommandType = CommandType.Text
-                cmd.Connection = Cnn_sql
-                If cmd.ExecuteNonQuery() Then
-                    Return True
-                Else
-                    Return False
-                End If
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql)
+                    cmd.CommandType = CommandType.Text
+                    cmd.Connection = cnn
+                    If cmd.ExecuteNonQuery() Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End Using
+
             End Using
+
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Erro en el Eliminar_clinete")
             Return True
         Finally
-            desconecta_sql()
+
         End Try
 
     End Function

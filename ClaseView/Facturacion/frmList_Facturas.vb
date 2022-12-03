@@ -75,21 +75,29 @@ Public Class frmList_Facturas
         sql = sql & "FROM Ventas as v "
         sql = sql & "WHERE (v.tipoVenta=" & codRecupa & ") and (v.codUser = '" & UsuarioActivo.codUser & "') "
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
 
-                dat.Fill(dt)
-                If dt.Rows.Count > 0 Then
-                    FacturVenta.fechDesde = FormatDateTime(dt.Rows(0)("fecha1").ToString, DateFormat.ShortDate)
-                    FacturVenta.fechHasta = FormatDateTime(dt.Rows(0)("Fecha2").ToString, DateFormat.ShortDate)
-                    Return True
-                Else
-                    Return False
-                End If
-                dt = Nothing
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
+
+                    dat.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        FacturVenta.fechDesde = FormatDateTime(dt.Rows(0)("fecha1").ToString, DateFormat.ShortDate)
+                        FacturVenta.fechHasta = FormatDateTime(dt.Rows(0)("Fecha2").ToString, DateFormat.ShortDate)
+                        Return True
+                    Else
+                        Return False
+                    End If
+                    dt = Nothing
+                End Using
+
             End Using
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el BuscandoFecha")
             Return False
@@ -185,7 +193,7 @@ Public Class frmList_Facturas
             Dim breakfast As System.Windows.Forms.ListView.CheckedListViewItemCollection = ListViewCabecera.CheckedItems
             Dim item As System.Windows.Forms.ListViewItem
             Dim resul As Boolean = False
-            conecta_sql()
+
             For Each item In breakfast
                 resul = True
                 Dim idFactur As Integer = Integer.Parse(item.SubItems(0).Text)
@@ -193,14 +201,23 @@ Public Class frmList_Facturas
                 sql = "update FacturaVenta set Impreso  = 1 "
                 sql = sql & "Where idFactVenta  = " & idFactur & " "
                 Try
-                    Using cmd As New SqlCommand(sql, Cnn_sql)
-                        cmd.CommandType = CommandType.Text
-                        If cmd.ExecuteNonQuery Then
-                        Else
-                            resul = False
-                            Exit For
-                        End If
+
+                    Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                        cnn.Open()
+
+                        Using cmd As New SqlCommand(sql, cnn)
+                            cmd.CommandType = CommandType.Text
+                            If cmd.ExecuteNonQuery Then
+                            Else
+                                resul = False
+                                Exit For
+                            End If
+                        End Using
+
                     End Using
+
+
+
                 Catch ex As Exception
                     MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el MarqImpreso")
                     Return False
@@ -210,10 +227,18 @@ Public Class frmList_Facturas
                 sql = "update FacturaVenta set Estado  = 1 "
                 sql = sql & "Where (idFactVenta  = " & idFactur & ")  and (Estado = 255) "
                 Try
-                    Using cmd As New SqlCommand(sql, Cnn_sql)
-                        cmd.CommandType = CommandType.Text
-                        cmd.ExecuteNonQuery()
+
+                    Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                        cnn.Open()
+
+                        Using cmd As New SqlCommand(sql, cnn)
+                            cmd.CommandType = CommandType.Text
+                            cmd.ExecuteNonQuery()
+                        End Using
+
                     End Using
+
+
                 Catch ex As Exception
                     MsgBox("No se retiro de la cola se impresión", MsgBoxStyle.Critical, "Error en el MarqImpreso")
                 End Try
@@ -692,55 +717,70 @@ Public Class frmList_Facturas
         sql = sql & SrtWhere
         sql = sql & "ORDER BY fv.idFactVenta desc"
         SplitContainer1.Panel2Collapsed = True
-        conecta_sql()
+
         Try
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim data As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
-                data.Fill(dt)
-                ListViewCabecera.Items.Clear()
-                If dt.Rows.Count > 0 Then
-                    Dim subTotalFila As Double = 0
-                    With Me.ListViewCabecera
-                        lbltotalFactur.Text = "Total factura:" & 0
-                        For i = 0 To dt.Rows.Count - 1
-                            Dim Filas As Integer = .Items.Count
-                            .Items.Add(dt(i)("idFactVenta").ToString)
-                            .Items.Item(Filas).SubItems.Add(dt(i)("Num_Factu").ToString)
-                            .Items.Item(Filas).SubItems.Add(dt(i)("Nom_Docu").ToString)
-                            .Items.Item(Filas).SubItems.Add(dt(i)("Cliente").ToString)
-                            .Items.Item(Filas).SubItems.Add(FormatDateTime(dt(i)("fechaDesde").ToString, DateFormat.ShortDate))
-                            .Items.Item(Filas).SubItems.Add(FormatDateTime(dt(i)("fechaHasta").ToString, DateFormat.ShortDate))
-                            .Items.Item(Filas).SubItems.Add(dt(i)("Base00Iva").ToString)  'Format((Precio), "###,##0.00")
-                            .Items.Item(Filas).SubItems.Add(dt(i)("Base12Iva").ToString)
-                            .Items.Item(Filas).SubItems.Add(dt(i)("Iva"))
 
-                            subTotalFila = dt(i)("OtroValor")
-                            .Items.Item(Filas).SubItems.Add(subTotalFila.ToString("C2"))
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-                            subTotalFila = dt(i)("Total")
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    cmd.ExecuteNonQuery()
+                End Using
 
-                            .Items.Item(Filas).SubItems.Add(subTotalFila.ToString("C2"))
-                            .Items.Item(Filas).SubItems.Add(dt(i)("Direccion").ToString)
-                            .Items.Item(Filas).SubItems.Add(dt(i)("formaPago").ToString)
-                            .Items.Item(Filas).SubItems.Add(dt(i)("Ruc_Ci").ToString)
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim data As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
+                    data.Fill(dt)
+                    ListViewCabecera.Items.Clear()
+                    If dt.Rows.Count > 0 Then
+                        Dim subTotalFila As Double = 0
+                        With Me.ListViewCabecera
+                            lbltotalFactur.Text = "Total factura:" & 0
+                            For i = 0 To dt.Rows.Count - 1
+                                Dim Filas As Integer = .Items.Count
+                                .Items.Add(dt(i)("idFactVenta").ToString)
+                                .Items.Item(Filas).SubItems.Add(dt(i)("Num_Factu").ToString)
+                                .Items.Item(Filas).SubItems.Add(dt(i)("Nom_Docu").ToString)
+                                .Items.Item(Filas).SubItems.Add(dt(i)("Cliente").ToString)
+                                .Items.Item(Filas).SubItems.Add(FormatDateTime(dt(i)("fechaDesde").ToString, DateFormat.ShortDate))
+                                .Items.Item(Filas).SubItems.Add(FormatDateTime(dt(i)("fechaHasta").ToString, DateFormat.ShortDate))
+                                .Items.Item(Filas).SubItems.Add(dt(i)("Base00Iva").ToString)  'Format((Precio), "###,##0.00")
+                                .Items.Item(Filas).SubItems.Add(dt(i)("Base12Iva").ToString)
+                                .Items.Item(Filas).SubItems.Add(dt(i)("Iva"))
 
-                            'cambio el color del total
-                            .Items(Filas).UseItemStyleForSubItems = False
-                            .Items(Filas).SubItems(TotalColum.Index).BackColor = Color.Aqua
-                            .Items(Filas).SubItems(TotalColum.Index).ForeColor = Color.Blue
+                                subTotalFila = dt(i)("OtroValor")
+                                .Items.Item(Filas).SubItems.Add(subTotalFila.ToString("C2"))
 
-                            lbltotalFactur.Text = "Total documentos: " & i + 1
-                            lblNoInforcion.Visible = False
-                        Next
-                        ListViewCabecera.Focus()
-                    End With
-                    Return True
-                End If
-                Return False
+                                subTotalFila = dt(i)("Total")
+
+                                .Items.Item(Filas).SubItems.Add(subTotalFila.ToString("C2"))
+                                .Items.Item(Filas).SubItems.Add(dt(i)("Direccion").ToString)
+                                .Items.Item(Filas).SubItems.Add(dt(i)("formaPago").ToString)
+                                .Items.Item(Filas).SubItems.Add(dt(i)("Ruc_Ci").ToString)
+
+                                'cambio el color del total
+                                .Items(Filas).UseItemStyleForSubItems = False
+                                .Items(Filas).SubItems(TotalColum.Index).BackColor = Color.Aqua
+                                .Items(Filas).SubItems(TotalColum.Index).ForeColor = Color.Blue
+
+                                lbltotalFactur.Text = "Total documentos: " & i + 1
+                                lblNoInforcion.Visible = False
+                            Next
+                            ListViewCabecera.Focus()
+                        End With
+                        Return True
+                    End If
+                    Return False
+                End Using
+
             End Using
+
+
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error: frmlistFactura en el MostarFactura_Select")
             ListViewCabecera.Items.Clear()
@@ -799,44 +839,53 @@ Public Class frmList_Facturas
         sql = sql & "FROM dbo.FacturaVentaDetail AS fd "
         sql = sql & "WHERE(fd.idFacturaVenta = " & IdFactur & ") "
         sql = sql & "ORDER BY fd.idFacturVentaDetail "
-        conecta_sql()
+
+
         Dim Filas As Integer = 0
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim data As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable()
-                Dim DR As New DataTable()
 
-                data.Fill(dt)
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-                With Me.ListViewDetail
-                    .Items.Clear()
-                    For i = 0 To dt.Rows.Count - 1
-                        Filas = .Items.Count
-                        DR = Medida(dt.Rows(i)("idPresent"))
-                        If IsNothing(DR) Then Exit For
-                        .Items.Add(dt(i)("Cantidad").ToString)                       '[0]cantidad
-                        .Items.Item(Filas).SubItems.Add(DR.Rows(0)("Empaque"))       '[1]'empaque
-                        .Items.Item(Filas).SubItems.Add(DR.Rows(0)("NomComun"))      '[2] nombre
-                        .Items.Item(Filas).SubItems.Add(dt(i)("pvp").ToString)       '[3] nombre    
-                        .Items.Item(Filas).SubItems.Add(dt(i)("Prec_Venta").ToString) '[4] nombre 
-                        .Items.Item(Filas).SubItems.Add(dt(i)("Iva").ToString)         '[5] nombre 
-                        .Items.Item(Filas).SubItems.Add(dt(i)("totalDecimal").ToString) '[6] nombre 
-                    Next
-                    If Filas >= 0 Then
-                        Me.lblCountItem.Text = "Total de Articulos: " & Filas + 1
-                        Me.lblCountItem.Visible = True
-                        .Columns(5).Width = 0
-                        .Columns(6).Width = 0  'precioTotal a dos cecimales
-                        Return True
-                    Else
-                        Me.lblCountItem.Visible = False
-                        Return False
-                    End If
-                End With
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim data As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable()
+                    Dim DR As New DataTable()
+
+                    data.Fill(dt)
+
+                    With Me.ListViewDetail
+                        .Items.Clear()
+                        For i = 0 To dt.Rows.Count - 1
+                            Filas = .Items.Count
+                            DR = Medida(dt.Rows(i)("idPresent"))
+                            If IsNothing(DR) Then Exit For
+                            .Items.Add(dt(i)("Cantidad").ToString)                       '[0]cantidad
+                            .Items.Item(Filas).SubItems.Add(DR.Rows(0)("Empaque"))       '[1]'empaque
+                            .Items.Item(Filas).SubItems.Add(DR.Rows(0)("NomComun"))      '[2] nombre
+                            .Items.Item(Filas).SubItems.Add(dt(i)("pvp").ToString)       '[3] nombre    
+                            .Items.Item(Filas).SubItems.Add(dt(i)("Prec_Venta").ToString) '[4] nombre 
+                            .Items.Item(Filas).SubItems.Add(dt(i)("Iva").ToString)         '[5] nombre 
+                            .Items.Item(Filas).SubItems.Add(dt(i)("totalDecimal").ToString) '[6] nombre 
+                        Next
+                        If Filas >= 0 Then
+                            Me.lblCountItem.Text = "Total de Articulos: " & Filas + 1
+                            Me.lblCountItem.Visible = True
+                            .Columns(5).Width = 0
+                            .Columns(6).Width = 0  'precioTotal a dos cecimales
+                            Return True
+                        Else
+                            Me.lblCountItem.Visible = False
+                            Return False
+                        End If
+                    End With
+
+                End Using
 
             End Using
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error: " & Me.Name & "en el frmTicket_Load")
             Return False

@@ -19,41 +19,47 @@ Public Class frmProduc_Proveedor
 
         sql = "select idProveedor from ProductoProveedor where (idPresentacion = " & idPresent & " and idProveedor <> " & idProveedor & ")"
 
-        conecta_sql()
         Try
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
 
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
 
-                dat.Fill(dt)
-                For i = 0 To dt.Rows.Count - 1
-                    Dim band As Boolean = False
+                    dat.Fill(dt)
+                    For i = 0 To dt.Rows.Count - 1
+                        Dim band As Boolean = False
 
-                    If IsNothing(arrProveedor) Then
-                        ReDim arrProveedor(0, 1, 0)
-                        arrProveedor(arrProveedor.GetLowerBound(0), 0, 0) = dt(i)(0).ToString
-                        arrProveedor(arrProveedor.GetLowerBound(0), 1, 0) += 1
-                    Else
-                        For j = 0 To arrProveedor.GetLength(2) - 1
-                            If arrProveedor(0, 0, j) = dt(i)(0).ToString Then
-                                arrProveedor(0, 1, j) += 1
-                                band = True
+                        If IsNothing(arrProveedor) Then
+                            ReDim arrProveedor(0, 1, 0)
+                            arrProveedor(arrProveedor.GetLowerBound(0), 0, 0) = dt(i)(0).ToString
+                            arrProveedor(arrProveedor.GetLowerBound(0), 1, 0) += 1
+                        Else
+                            For j = 0 To arrProveedor.GetLength(2) - 1
+                                If arrProveedor(0, 0, j) = dt(i)(0).ToString Then
+                                    arrProveedor(0, 1, j) += 1
+                                    band = True
+                                End If
+                            Next
+                            If band = False Then
+                                ReDim Preserve arrProveedor(0, 1, arrProveedor.GetLength(2))
+                                arrProveedor(0, 0, arrProveedor.GetUpperBound(2)) = dt(i)(0).ToString
+                                arrProveedor(0, 1, arrProveedor.GetUpperBound(2)) += 1
                             End If
-                        Next
-                        If band = False Then
-                            ReDim Preserve arrProveedor(0, 1, arrProveedor.GetLength(2))
-                            arrProveedor(0, 0, arrProveedor.GetUpperBound(2)) = dt(i)(0).ToString
-                            arrProveedor(0, 1, arrProveedor.GetUpperBound(2)) += 1
+
                         End If
 
-                    End If
 
-
-                Next
+                    Next
+                End Using
             End Using
+
+
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "En el Motrar_Productos del " & Me.Name)
 
@@ -74,37 +80,46 @@ Public Class frmProduc_Proveedor
         sql = sql + "ORDER BY p.Nom_Comun"
 
 
-        conecta_sql()
+
         Try
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
 
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-                dat.Fill(dt)
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
 
-                Me.dataListado.DataSource = Nothing
-                lbltotal.Text = "Total :0"
-                If dt.Rows.Count > 0 Then
-                    With Me.dataListado
-                        .DataSource = dt
-                        .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
-                        .Columns(0).Visible = False
-                        lbltotal.Text = "Total del listado: " & dt.Rows.Count
-                    End With
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
 
-                End If
+                    dat.Fill(dt)
 
-                'If dar.HasRows Then
-                '    While dar.Read()
-                '        Quienes_Venden(dar(0).ToString, idProveedor)
-                '    End While
-                'End If
+                    Me.dataListado.DataSource = Nothing
+                    lbltotal.Text = "Total :0"
+                    If dt.Rows.Count > 0 Then
+                        With Me.dataListado
+                            .DataSource = dt
+                            .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+                            .Columns(0).Visible = False
+                            lbltotal.Text = "Total del listado: " & dt.Rows.Count
+                        End With
 
-                'dar.Close()
+                    End If
+
+                    'If dar.HasRows Then
+                    '    While dar.Read()
+                    '        Quienes_Venden(dar(0).ToString, idProveedor)
+                    '    End While
+                    'End If
+
+                    'dar.Close()
+                End Using
             End Using
+
+
+
+
         Catch ex As Exception
             dataListado.DataSource = Nothing
             MsgBox(ex.Message, MsgBoxStyle.Critical, "En el Motrar_Productos del " & Me.Name)
@@ -189,22 +204,31 @@ Public Class frmProduc_Proveedor
             sql += "FROM dbo.ProductoProveedor "
             sql += "WHERE  (idPresentacion = " & rowIndex & " ) AND (idProveedor = " & idProveedor & ") "
 
-            conecta_sql()
 
             Try
-                Using cmd As New SqlCommand(sql, Cnn_sql)
-                    cmd.CommandType = CommandType.Text
-                    Dim dat As New SqlDataAdapter(cmd)
-                    Dim dt As New DataTable
 
-                    dat.Fill(dt)
+                Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                    cnn.Open()
 
-                    If dt.Rows.Count > 0 Then
-                        Me.dataListado.Rows(i).Cells(dataListado.Columns.Count - 1).Value = dt(0)(0).ToString
-                    Else
-                        Me.dataListado.Rows(i).Cells(dataListado.Columns.Count - 1).Value = "-"
-                    End If
+                    Using cmd As New SqlCommand(sql, cnn)
+                        cmd.CommandType = CommandType.Text
+                        Dim dat As New SqlDataAdapter(cmd)
+                        Dim dt As New DataTable
+
+                        dat.Fill(dt)
+
+                        If dt.Rows.Count > 0 Then
+                            Me.dataListado.Rows(i).Cells(dataListado.Columns.Count - 1).Value = dt(0)(0).ToString
+                        Else
+                            Me.dataListado.Rows(i).Cells(dataListado.Columns.Count - 1).Value = "-"
+                        End If
+                    End Using
+
                 End Using
+
+
+
+
 
             Catch ex As Exception
 
@@ -217,26 +241,29 @@ Public Class frmProduc_Proveedor
 
 
     Private Function NombreProveedor(ByVal idproveedor As Integer) As String
-        conecta_sql()
 
         Try
 
             sql = "Select Razon_social from Proveedores where idProveedor  = " & idproveedor & ""
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-                dat.Fill(dt)
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
 
-                If dt.Rows.Count > 0 Then
-                    Return dt(0)(0).ToString
-                Else
-                    Return "No hay"
-                End If
+                    dat.Fill(dt)
+
+                    If dt.Rows.Count > 0 Then
+                        Return dt(0)(0).ToString
+                    Else
+                        Return "No hay"
+                    End If
+                End Using
+
             End Using
-
 
 
         Catch ex As Exception

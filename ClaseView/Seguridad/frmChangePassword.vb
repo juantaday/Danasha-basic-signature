@@ -97,18 +97,19 @@ Public Class frmChangePassword
         Try
             dts.GUsuario = (UsuarioActivo.codUser)
             dts.gContrasena = currentPaswordTextBox.Text
-            If conecta_sql() Then
-                Dim loginREsponse As New Response
-                loginREsponse = func.PruevaSecion(dts)
-                If loginREsponse.Success Then
-                    response.Success = True
-                Else
-                    response.Messague = loginREsponse.Messague
-                    response.Success = False
-                End If
-                Return response
+
+
+            Dim loginREsponse As New Response
+            loginREsponse = func.PruevaSecion(dts)
+            If loginREsponse.Success Then
+                response.Success = True
+            Else
+                response.Messague = loginREsponse.Messague
+                response.Success = False
             End If
+
             response.Success = True
+
             Return response
         Catch ex As Exception
             response.Success = ex.Message

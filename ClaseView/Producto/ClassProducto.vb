@@ -1,20 +1,26 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class ClassCargadorProducto
+    Implements IDisposable
+
+    Private cnn As SqlConnection
     Public Sub New()
+        cnn = New SqlConnection(SimpleDataApp.Utility.GetConnectionString())
+        cnn.Open()
     End Sub
+
+
+
     Public Function ExecuteComand(ByVal sqlStri As String) As Boolean
         Try
-            If conecta_sql() Then
-                Using cmd As New SqlCommand(sqlStri, Cnn_sql)
-                    cmd.CommandType = CommandType.Text
-                    If cmd.ExecuteNonQuery Then
-                        Return True
-                    Else
-                        Return False
-                    End If
-                End Using
-            End If
+            Using cmd As New SqlCommand(sqlStri, cnn)
+                cmd.CommandType = CommandType.Text
+                If cmd.ExecuteNonQuery Then
+                    Return True
+                Else
+                    Return False
+                End If
+            End Using
             Return False
         Catch ex As Exception
             MsgBox(ex.Message + "en le ExecuteComand del ", MsgBoxStyle.Critical, "Error")
@@ -24,25 +30,33 @@ Public Class ClassCargadorProducto
 
     Public Function RetornaTabla(ByVal sqlStri As String) As DataTable
         Try
-            If conecta_sql() Then
-                Using cmd As New SqlCommand(sqlStri, Cnn_sql)
-                    cmd.CommandType = CommandType.Text
-                    Dim dat As New SqlDataAdapter(cmd)
-                    Dim dt As New DataTable
-                    dat.Fill(dt)
-                    If dt.Rows.Count > 0 Then
-                        Return dt
-                    Else
-                        Return Nothing
-                    End If
-                End Using
-            End If
+            Using cmd As New SqlCommand(sqlStri, cnn)
+                cmd.CommandType = CommandType.Text
+                Dim dat As New SqlDataAdapter(cmd)
+                Dim dt As New DataTable
+                dat.Fill(dt)
+                If dt.Rows.Count > 0 Then
+                    Return dt
+                Else
+                    Return Nothing
+                End If
+            End Using
             Return Nothing
         Catch ex As Exception
             MsgBox(ex.Message + "en le RetornaTabla del ", MsgBoxStyle.Critical, "Error")
             Return Nothing
         End Try
     End Function
+
+    Public Sub Dispose() Implements IDisposable.Dispose
+        If (cnn IsNot Nothing AndAlso cnn.State = ConnectionState.Open) Then
+            cnn.Close()
+            cnn.Dispose()
+        ElseIf (cnn IsNot Nothing) Then
+            cnn.Dispose()
+        End If
+    End Sub
+
 
 End Class
 

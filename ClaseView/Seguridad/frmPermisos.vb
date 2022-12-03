@@ -80,9 +80,18 @@ Public Class frmPermisos
     Private Function Elimina_MenuObsoleto() As Boolean
         Try
             sql = "DElete  From Permisos where ValueMenu =0"
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                Return cmd.ExecuteNonQuery()
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    Return cmd.ExecuteNonQuery()
+                End Using
             End Using
+
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
             Return False
@@ -96,29 +105,36 @@ Public Class frmPermisos
 
     Private Function Carga_Grupos()
         sql = "Select idGrupo, Nom_Grupo [Grupos] from Grupo "
-        conecta_sql()
+
         Try
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-                dat.Fill(dt)
-                dataGridGrupo.DataSource = Nothing
-                If dt.Rows.Count > 0 Then
-                    With dataGridGrupo
-                        .DataSource = dt
-                        .Columns(0).Visible = False
-                        .AutoSizeColumnsMode =
-                        DataGridViewAutoSizeColumnsMode.AllCells
-                    End With
-                    Return True
-                Else
-                    Return False
-                End If
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
 
+                    dat.Fill(dt)
+                    dataGridGrupo.DataSource = Nothing
+                    If dt.Rows.Count > 0 Then
+                        With dataGridGrupo
+                            .DataSource = dt
+                            .Columns(0).Visible = False
+                            .AutoSizeColumnsMode =
+                            DataGridViewAutoSizeColumnsMode.AllCells
+                        End With
+                        Return True
+                    Else
+                        Return False
+                    End If
+
+                End Using
             End Using
+
+
+
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "en el Carga_Permisos del " & Me.Name)
@@ -161,30 +177,39 @@ Public Class frmPermisos
         sql = sql + "FROM  dbo.Permisos AS P CROSS JOIN dbo.Grupo AS G  WHERE (G.idGrupo = " & Me.txtIdGrupo.Text & ") "
         sql = sql + "ORDER BY P.Orden"
 
-        conecta_sql()
+
 
         Try
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
 
-                dat.Fill(dt)
-                DataGridMenu.DataSource = Nothing
-                If dt.Rows.Count > 0 Then
-                    With DataGridMenu
-                        .DataSource = dt
-                        .Columns(0).Visible = False
-                        .AutoSizeColumnsMode =
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
+
+                    dat.Fill(dt)
+                    DataGridMenu.DataSource = Nothing
+                    If dt.Rows.Count > 0 Then
+                        With DataGridMenu
+                            .DataSource = dt
+                            .Columns(0).Visible = False
+                            .AutoSizeColumnsMode =
                         DataGridViewAutoSizeColumnsMode.AllCells
-                        Me.btnAplicar.Enabled = False
-                    End With
-                    Me.txtIdUltimo.Text = IdGrupo
-                    Return True
-                Else
-                    Return False
-                End If
+                            Me.btnAplicar.Enabled = False
+                        End With
+                        Me.txtIdUltimo.Text = IdGrupo
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End Using
+
             End Using
+
+
+
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "en el Carga_Menus del " & Me.Name)
@@ -195,20 +220,27 @@ Public Class frmPermisos
     End Function
 
     Private Function Guarda_ModificaPermisos() As Boolean
-        conecta_sql()
+
         Try
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-                If cmd.ExecuteNonQuery Then
-                    MsgBox("Guardado Exitosamente", MsgBoxStyle.Information, "Aviso")
-                    Return True
-                Else
-                    MsgBox("No se guardo informacion", MsgBoxStyle.Information, "Aviso")
-                    Return False
-                End If
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+
+                    If cmd.ExecuteNonQuery Then
+                        MsgBox("Guardado Exitosamente", MsgBoxStyle.Information, "Aviso")
+                        Return True
+                    Else
+                        MsgBox("No se guardo informacion", MsgBoxStyle.Information, "Aviso")
+                        Return False
+                    End If
+                End Using
             End Using
+
+
+
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "En el Guarda_ModificaPermisos del " & Me.Name)
@@ -350,22 +382,26 @@ ControErr:
 
     Private Function BuscaExecute() As Integer
 
-        conecta_sql()
-
         Try
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                Dim dat As New SqlDataAdapter(cmd)
-                Dim dt As New DataTable
 
-                dat.Fill(dt)
-                If dt.Rows.Count > 0 Then
-                    Return dt(0)(0).ToString
-                Else
-                    Return 0
-                End If
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    Dim dat As New SqlDataAdapter(cmd)
+                    Dim dt As New DataTable
+
+                    dat.Fill(dt)
+                    If dt.Rows.Count > 0 Then
+                        Return dt(0)(0).ToString
+                    Else
+                        Return 0
+                    End If
+                End Using
             End Using
+
+
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "en el BuscaSubNemu del " & Me.Name)
@@ -382,17 +418,25 @@ ControErr:
     Public Function EliminaMenu() As Boolean
 
         sql = "Delete GrupoPermiso from  GrupoPermiso where idGrupo = " & Me.txtIdGrupo.Text & " "
-        conecta_sql()
+
         Try
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    Return False
-                End If
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        Return False
+                    End If
+                End Using
+
             End Using
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "En el Guarda_ModificaPermisos del " & Me.Name)
             Return False
@@ -401,18 +445,24 @@ ControErr:
 
 
     Public Function ExecuteComand(ByVal StrinSql As String) As Boolean
-        conecta_sql()
-        Try
 
-            Using cmd As New SqlCommand(sql, Cnn_sql)
-                cmd.CommandType = CommandType.Text
-                If cmd.ExecuteNonQuery Then
-                    Return True
-                Else
-                    MsgBox("No se realizo la operación ", MsgBoxStyle.Information, "Aviso")
-                    Return False
-                End If
+        Try
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Using cmd As New SqlCommand(sql, cnn)
+                    cmd.CommandType = CommandType.Text
+                    If cmd.ExecuteNonQuery Then
+                        Return True
+                    Else
+                        MsgBox("No se realizo la operación ", MsgBoxStyle.Information, "Aviso")
+                        Return False
+                    End If
+                End Using
+
             End Using
+
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "En el Guarda_ModificaPermisos del " & Me.Name)
             Return False

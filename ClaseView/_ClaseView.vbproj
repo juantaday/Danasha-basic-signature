@@ -320,7 +320,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Conexion\Class1.vb" />
-    <Compile Include="Conexion\Conexiones.vb" />
     <Compile Include="Conexion\DataContext.vb" />
     <Compile Include="Conexion\Utilidad.vb" />
     <Compile Include="Configuracion\frmMyCommerce.Designer.vb">

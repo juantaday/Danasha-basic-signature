@@ -101,7 +101,7 @@ namespace CADsisVenta
                              SqlDbType = System.Data.SqlDbType.VarChar ,
                              Value =  telef_ofic
                         },new System.Data.SqlClient.SqlParameter {
-                             ParameterName ="@sendMail",
+                             ParameterName ="@sendEmail",
                              SqlDbType = System.Data.SqlDbType.Bit ,
                              Value =  SendMail
                         }
@@ -131,9 +131,11 @@ namespace CADsisVenta
             Person_TableAdapter.Connection = new System.Data.SqlClient.SqlConnection(Configuration.ConectionString);
 
 
-            return Person_TableAdapter.UpdatePerson(apellidos, nombre, Ruc_Ci, Direccion, telefono, 
+           var result = Person_TableAdapter.UpdatePerson(apellidos, nombre, Ruc_Ci, Direccion, telefono, 
                 mail, fech_Naci, genero, nota, foto, telef_casa, telef_ofic,
-                idPerson_Original, senMail);
+                idPerson_Original,senMail);
+
+            return (int)result;
 
         }
         public static int DeletePerson(int idPerson_Original)

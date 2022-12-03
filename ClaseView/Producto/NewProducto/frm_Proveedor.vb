@@ -148,31 +148,38 @@ Public Class frm_Proveedor
 
         sql = sql & "ORDER BY ppr.Fech_Compra DESC "
 
-        conecta_sql()
-        Try
-            Dim cmd As New SqlCommand(sql, Cnn_sql)
-            cmd.CommandType = CommandType.Text
 
-            Dim da As New SqlDataAdapter(cmd)
-            Dim dt As New DataTable
-            da.Fill(dt)
-            datalist_ProveeVende.DataSource = Nothing
-            With Me.myPadre
-                If dt.Rows.Count > 0 Then
-                    With datalist_ProveeVende
-                        .DataSource = dt
-                        .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
-                        .Columns(0).Visible = False  'idProductoProveedor
-                        .Columns(1).Visible = False   'idPresentacion
-                        .Columns(2).Visible = False   'idProveedor 
-                    End With
-                    If (Me.myPadre.lblProdcutodesc.Text.Contains("Agregando")) Then
-                        .OkButton.Enabled = True
+        Try
+
+            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
+                cnn.Open()
+
+                Dim cmd As New SqlCommand(sql, cnn)
+                cmd.CommandType = CommandType.Text
+
+                Dim da As New SqlDataAdapter(cmd)
+                Dim dt As New DataTable
+                da.Fill(dt)
+                datalist_ProveeVende.DataSource = Nothing
+                With Me.myPadre
+                    If dt.Rows.Count > 0 Then
+                        With datalist_ProveeVende
+                            .DataSource = dt
+                            .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+                            .Columns(0).Visible = False  'idProductoProveedor
+                            .Columns(1).Visible = False   'idPresentacion
+                            .Columns(2).Visible = False   'idProveedor 
+                        End With
+                        If (Me.myPadre.lblProdcutodesc.Text.Contains("Agregando")) Then
+                            .OkButton.Enabled = True
+                        End If
+                    Else
+                        .OkButton.Enabled = False
                     End If
-                Else
-                    .OkButton.Enabled = False
-                End If
-            End With
+                End With
+
+            End Using
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el frmAdd_Producto en sl sub CargaQuien_Vende")
         End Try

@@ -197,7 +197,7 @@ inicia:
         Try
             Dim dt As New DataTable()
             If Me.IsMain Then
-                dt = GetTerminalDataByDominio(Dominio._HotName, TerminalActivo.idTerminal)
+                dt = GetTerminalDataByDominio(Dominio._HotName, TerminalActivo.idBodega)
             Else
                 dt = GetTerminalDataByDominio(Dominio._HotName, TerminalActivo.idBodega)
             End If
