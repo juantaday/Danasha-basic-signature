@@ -19,15 +19,17 @@ namespace UpdateApp.Views
     public partial class ExecuteScripForm : Form
     {
         private readonly string _codeUserNamager;
+        private readonly string cnn;
         private List<FileObjectSelect> _FileObjects;
         private PictureBox _imageRunning;
 
-        public ExecuteScripForm()
+        public ExecuteScripForm(string conection)
         {
             InitializeComponent();
 
             _imageRunning = new PictureBox();
             _imageRunning.Visible = false;
+            this.cnn = conection;
 
         }
 
@@ -151,7 +153,7 @@ namespace UpdateApp.Views
          
                     IEnumerable<string> commandStrings = Regex.Split(script, @"^\s*GO\s*$", RegexOptions.Multiline | RegexOptions.IgnoreCase);
                    
-                    using (var cnn = new SqlConnection(DomainSQLite.Setting.Configuration.ConectionString))
+                    using (var cnn = new SqlConnection(this.cnn))
                     {
 
                         if (cnn.State != System.Data.ConnectionState.Open)
@@ -236,20 +238,62 @@ namespace UpdateApp.Views
         }
 
         private string stringGetVrtsio() {
-            return @"IF not exists
-                (
-                SELECT *
-                FROM INFORMATION_SCHEMA.COLUMNS
-                WHERE TABLE_NAME = '__MigrationHistory'
-                )
-                BEGIN
-                   select  0  as ProductValue;
-  
-                END
-                else begin 
-	                select  top (1) ProductValue 
-	                from __MigrationHistory order by ProductValue desc;
-                end";
+                        return @"if exists (SELECT  1
+            FROM INFORMATION_SCHEMA.TABLES
+            WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = '__MigrationHistory') begin 
+            -- exsiste la tabla pero no existe el campo ProductValue destruyo y crea nuevamenete
+            print 'Existe tabla __MigrationHistory';
+            IF not exists
+               (
+	            SELECT 1
+	            FROM INFORMATION_SCHEMA.COLUMNS
+	            WHERE COLUMN_NAME = 'ProductValue' AND TABLE_NAME = '__MigrationHistory'
+	            )
+	            BEGIN
+	              print 'No existe columna ProductValue';
+                  drop table dbo.__MigrationHistory;
+	  
+	              create table dbo.__MigrationHistory (
+	              [MigrationId] varchar (150) primary key not null,
+	              [ProductVersion] varchar (30) not null,
+	              [ProductValue] int not null);
+
+	              declare  @ParmDefinition nvarchar(255);
+	              declare @qry nvarchar (max) =N'
+	              Insert into dbo.__MigrationHistory (MigrationId,ProductValue,ProductVersion)
+	              values (@nameVersion,@valueVersion,0);'
+	              SET @ParmDefinition = N'@nameVersion varchar(15), @valueVersion int';  
+	              EXECUTE sp_executesql @qry,@ParmDefinition,@nameVersion ='StartinSystem',@valueVersion =0;
+	             select 0 as ProductValue;
+	              END
+               else begin  --Existe la table __MigrationHistory y el campo ProductValue
+                  print 'Existe la columna  ProductValue';
+	              DECLARE @valueVersion int;  
+
+	              declare @qry1 nvarchar (max) =N'
+		            select  top (1) @valueVersionOUT = ProductValue  
+		            from __MigrationHistory order by ProductValue desc;';
+
+	             SET @ParmDefinition = N'@valueVersionOUT int OUTPUT';  
+
+	             EXECUTE sp_executesql @qry1, @ParmDefinition, @valueVersionOUT=@valueVersion OUTPUT;
+
+	             if (@valueVersion is null ) begin 
+	               select 0 as ProductValue;
+	               end
+                 else begin 
+	               select @valueVersion AS ProductValue;
+	             end
+	            end
+            end
+            else  begin  -- si no existe la tabla __MigrationHistory la CREA y retorna 0
+               create table dbo.__MigrationHistory (
+	              [MigrationId] varchar (150) primary key not null,
+	              [ProductVersion] varchar (30) not null,
+	              [ProductValue] int not null);
+	             select 0 as ProductValue;
+            end 
+            ";
         }
 
         private void objectListView1_FormatCell(object sender, BrightIdeasSoftware.FormatCellEventArgs e)

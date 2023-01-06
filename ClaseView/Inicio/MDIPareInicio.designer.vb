@@ -300,21 +300,21 @@ Partial Class MDIPareInicio
         '
         Me.PorProveedorToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Proveedor
         Me.PorProveedorToolStripMenuItem.Name = "PorProveedorToolStripMenuItem"
-        Me.PorProveedorToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PorProveedorToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
         Me.PorProveedorToolStripMenuItem.Text = "Por proveedor"
         '
         'PorProdcutoToolStripMenuItem
         '
         Me.PorProdcutoToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Product_Icon_64
         Me.PorProdcutoToolStripMenuItem.Name = "PorProdcutoToolStripMenuItem"
-        Me.PorProdcutoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PorProdcutoToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
         Me.PorProdcutoToolStripMenuItem.Text = "Por producto"
         '
         'PorDocumentoToolStripMenuItem
         '
         Me.PorDocumentoToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.invoice_icon_48
         Me.PorDocumentoToolStripMenuItem.Name = "PorDocumentoToolStripMenuItem"
-        Me.PorDocumentoToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PorDocumentoToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
         Me.PorDocumentoToolStripMenuItem.Text = "Por documento"
         '
         'StockDeProductosToolStripMenuItem
@@ -664,7 +664,7 @@ Partial Class MDIPareInicio
         Me.AcercaDeToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.AcercaDeToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.AcercaDeToolStripMenuItem.Name = "AcercaDeToolStripMenuItem"
-        Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(180, 38)
+        Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
         Me.AcercaDeToolStripMenuItem.Text = "Acerca de"
         Me.AcercaDeToolStripMenuItem.ToolTipText = "Información de esta aplicación"
         '
@@ -674,13 +674,13 @@ Partial Class MDIPareInicio
         Me.ContagtoToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ContagtoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ContagtoToolStripMenuItem.Name = "ContagtoToolStripMenuItem"
-        Me.ContagtoToolStripMenuItem.Size = New System.Drawing.Size(180, 38)
+        Me.ContagtoToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
         Me.ContagtoToolStripMenuItem.Text = "Contacto"
         '
         'AjecutarScripToolStripMenuItem
         '
         Me.AjecutarScripToolStripMenuItem.Name = "AjecutarScripToolStripMenuItem"
-        Me.AjecutarScripToolStripMenuItem.Size = New System.Drawing.Size(180, 38)
+        Me.AjecutarScripToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
         Me.AjecutarScripToolStripMenuItem.Text = "Ajecutar scrip"
         '
         'notificacion

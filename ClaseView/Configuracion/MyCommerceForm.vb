@@ -183,7 +183,7 @@ Public Class MyCommerceForm
                     rjRadioButton2.Checked = False
                     rjRadioButton1.Checked = True
 
-                    TokenListComboBox.SelectedItem = TokensValidos.valueOfIdName(_signatureOption.TOKEN)
+                    TokenListComboBox.SelectedItem = TokensValidos.valueOf(_signatureOption.TOKEN)
                 End If
                 If Not String.IsNullOrEmpty(_signatureOption.RUTA_ARCHIVO) Then
                     rjRadioButton1.Checked = False

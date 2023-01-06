@@ -603,7 +603,7 @@ Aplicando:
             Try
                 Using axion = New SignSendInvoice(New CancellationTokenSource())
                     axion.ActionToExecute = Sub(t) axion.ExecuteWidhtIdProcess(token,
-                                    SettingObject.WareHouseActive.TIPO_AMBIENTE.ToString(),
+                                    SettingObject.SignatureOptios.TIPO_AMBIENTE.ToString(),
                                     progress, idFactur, SettingObject.EcommerceActive.CommerceId,
                                     SaveFile:=True, 'SettingObject.WareHouseActive.SaveToFile,
                                     SaveInDataBase:=SettingObject.WareHouseActive.SaveToDataBase, files:=Nothing)
@@ -716,17 +716,22 @@ viewMesagge:
 
                 Using newfom2 As New frmImputData()
                     With newfom2
-                        .txtNumber.Maximum = oldTotal
                         .txtNumber.Value = oldTotal
                         .ShowDialog()
                         If .DialogResult = DialogResult.OK Then
 
+                            If (oldTotal > .txtNumber.Value) Then
+                                Me.ListView1.SelectedItems(0).SubItems(DescuentoClm.Index).Text = (oldTotal - .txtNumber.Value).ToString()
+                            ElseIf (oldTotal < .txtNumber.Value) Then
+                                Me.ListView1.SelectedItems(0).SubItems(TarifaClm.Index).Text = (.txtNumber.Value - oldTotal).ToString()
+                            End If
+
                             Me.ListView1.SelectedItems(0).SubItems(PTotalClm.Index).Text = .txtNumber.Value.ToString("N2")
-                            Me.ListView1.SelectedItems(0).SubItems(DescuentoClm.Index).Text = (oldTotal - .txtNumber.Value).ToString()
+
                             Me.ListView1.SelectedItems(0).SubItems(PTotalClm.Index).Tag = codUserAuthorizwe
 
-                            SumatoriaTotal()
-                        End If
+                                SumatoriaTotal()
+                            End If
                     End With
 
                 End Using

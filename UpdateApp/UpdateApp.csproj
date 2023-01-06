@@ -35,6 +35,9 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>updateApp.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -110,6 +113,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ok_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="updateApp.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

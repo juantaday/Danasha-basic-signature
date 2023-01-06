@@ -291,7 +291,7 @@ Partial Class frmVentas
         Me.FacturaButton.Name = "FacturaButton"
         Me.FacturaButton.Size = New System.Drawing.Size(77, 58)
         Me.FacturaButton.TabIndex = 30
-        Me.FacturaButton.Tag = "Factura"
+        Me.FacturaButton.Tag = "Nota de venta"
         Me.FacturaButton.Text = "Factura"
         Me.FacturaButton.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.ToolTip1.SetToolTip(Me.FacturaButton, "Documento por emitir")
@@ -602,13 +602,13 @@ Partial Class frmVentas
         '
         'idPresentClm
         '
-        Me.idPresentClm.DisplayIndex = 7
+        Me.idPresentClm.DisplayIndex = 8
         Me.idPresentClm.Text = "idPresent"
         Me.idPresentClm.Width = 0
         '
         'idProductoClm
         '
-        Me.idProductoClm.DisplayIndex = 11
+        Me.idProductoClm.DisplayIndex = 12
         Me.idProductoClm.Text = "idProducto"
         Me.idProductoClm.Width = 0
         '
@@ -653,17 +653,20 @@ Partial Class frmVentas
         '
         'PTotalClm
         '
+        Me.PTotalClm.DisplayIndex = 9
         Me.PTotalClm.Text = "Precio Total $"
         Me.PTotalClm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.PTotalClm.Width = 140
         '
         'IvaPorClm
         '
+        Me.IvaPorClm.DisplayIndex = 10
         Me.IvaPorClm.Text = "Iva"
         Me.IvaPorClm.Width = 0
         '
         'PrecCompraClm
         '
+        Me.PrecCompraClm.DisplayIndex = 11
         Me.PrecCompraClm.Text = "PrecCompra"
         Me.PrecCompraClm.Width = 0
         '
@@ -676,8 +679,9 @@ Partial Class frmVentas
         '
         'TarifaClm
         '
-        Me.TarifaClm.Text = "Tarifa"
-        Me.TarifaClm.Width = 0
+        Me.TarifaClm.DisplayIndex = 7
+        Me.TarifaClm.Text = "Adicional"
+        Me.TarifaClm.Width = 120
         '
         'ContextMenuStrip1
         '

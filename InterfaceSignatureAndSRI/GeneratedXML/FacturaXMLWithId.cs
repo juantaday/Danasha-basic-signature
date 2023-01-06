@@ -27,7 +27,7 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
         private static List<FacturaVentaImpuestos> _listImpuestos;
         private static List<CADsisVenta.IMPUESTO_VALOR> _listImpuestosSRI;
         private static SignatureOptions _signatureOptions;
-        private readonly int _idFactur;
+        private  readonly int _idFactur;
         private readonly int _myCommerceId;
         private static int idFactur;
         private static factura _fact;
@@ -47,16 +47,16 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
         private static List<ItemsImpuestValor> _qryImpuesto;
 
-        public FacturaXMLWithId(string ambiente, int idFactur, int myCommerceId)
+        public FacturaXMLWithId(string ambiente, int idFactur_, int myCommerceId)
         {
             db = new DataContext();
             _fact = new factura();
             _ambiente = ambiente;
-            this._idFactur = idFactur;
+            _idFactur = idFactur_;
             this._myCommerceId = myCommerceId;
             _listVats = new List<ItemVats>();
+            idFactur = idFactur_;
 
-            idFactur = this._idFactur;
         }
 
         public async Task<string> GetXmlFactura()
@@ -103,21 +103,35 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
                     }).ToList();
 
                 _listImpuestos = db.FacturaVentaImpuestos.Where(x => x.IdFactVenta == _idFactur).ToList();
-                _ItemsVat = db.FacturaVenta.Include(c=>c.Clientes).ThenInclude(p=>p.Personas)
+
+                _ItemsVat = db.FacturaVenta.Include(c => c.Clientes).ThenInclude(p => p.Personas)
                          .Where(x => x.idFactVenta == _idFactur).Select(op => new Domain.Models.ItemsVats
-                        {
-                             WareHouseId = op.idBodega ,
+                         {
+                             WareHouseId = op.idBodega,
                              Phone = op.Clientes.Personas.telefono,
                              AddressCustomer = op.Clientes.Personas.Direccion,
                              Ruc = op.Clientes.Personas.Ruc_Ci,
-                             FullName = op.Clientes.Personas.Apellidos + " " +op.Clientes.Personas.Nombre,
+                             FullName = op.Clientes.Personas.Apellidos + " " + op.Clientes.Personas.Nombre,
                              Emails = op.Clientes.Personas.mail,
                              CustomerId = op.Clientes.idCliente,
                              SendEmail = op.Clientes.Personas.SendMail,
-                             Num_Factu =op.Num_Factu,
-                             fechaDesde =op.fechaDesde,
-                             BaseIva =op.Base00Iva,ICE =0,IRBPNR =0,IVA = op.Iva,Total =op.Total,TotalWithOutVat=  System.Math.Round( op.Total - op.Iva,2, MidpointRounding.AwayFromZero)
-                        }).FirstOrDefault();
+                             Num_Factu = op.Num_Factu,
+                             fechaDesde = op.fechaDesde,
+                             BaseIva = op.Base00Iva,
+                             ICE = 0, IRBPNR = 0,
+                             IVA = op.Iva,
+                             Total = op.Total,
+                             TotalWithOutVat = System.Math.Round(op.Total - op.Iva, 2, MidpointRounding.AwayFromZero)
+                         }).FirstOrDefault();
+
+                //sum total discout for facture
+                decimal totalDiscout = 0;
+                foreach (var item in _listSales)
+                {
+                    totalDiscout += item.Discount;
+                }
+                _ItemsVat.TotalDiscount = totalDiscout;
+
 
                 var adreeLocal = db.Bodegas.Where(x => x.idBodega == _ItemsVat.WareHouseId).FirstOrDefault();
                 if (adreeLocal != null)
@@ -133,7 +147,7 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new Exception(ex.Message + "\n"+ ex.StackTrace , ex.InnerException);
             }
             finally {
                 if (db != null) {
@@ -156,8 +170,6 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
                 _fact.infoAdicional = await getInfoAdicional();
 
                 return  XMLSerializers.Serialize(_fact, "");
-
-
             }
             catch (Exception ex)
             {
@@ -324,6 +336,7 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
                 List<facturaDetalle> lisDetall = new List<facturaDetalle>();
 
+          
                 foreach (var item in _listSales)
                 {
                     BigDecimal bigDecimal = new BigDecimal(1.000000);
@@ -331,7 +344,7 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
                     Decimal.TryParse("0.000000", out result);
                     var pvp = ((item.Prec_Venta - item.Iva) + item.Discount) / item.Cantidad;
                     var sTotal = item.Prec_Venta - item.Iva;
-
+ 
                     facturaDetalle facDetail = new facturaDetalle
                     {
 

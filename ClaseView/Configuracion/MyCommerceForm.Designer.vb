@@ -280,7 +280,7 @@ Partial Class MyCommerceForm
         Me.TokenListComboBox.Padding = New System.Windows.Forms.Padding(1)
         Me.TokenListComboBox.Size = New System.Drawing.Size(390, 30)
         Me.TokenListComboBox.TabIndex = 1
-        Me.TokenListComboBox.Texts = ""
+        Me.TokenListComboBox.Text = ""
         Me.TokenListComboBox.VisibleButtonOption = False
         Me.TokenListComboBox.WidthButton = 30
         '
@@ -340,7 +340,7 @@ Partial Class MyCommerceForm
         Me.txtRimpe.Padding = New System.Windows.Forms.Padding(1)
         Me.txtRimpe.Size = New System.Drawing.Size(408, 30)
         Me.txtRimpe.TabIndex = 35
-        Me.txtRimpe.Texts = ""
+        Me.txtRimpe.Text = ""
         Me.txtRimpe.VisibleButtonOption = False
         Me.txtRimpe.WidthButton = 32
         '
@@ -578,7 +578,7 @@ Partial Class MyCommerceForm
         Me.tipoAmbienteComboBox.Padding = New System.Windows.Forms.Padding(1)
         Me.tipoAmbienteComboBox.Size = New System.Drawing.Size(310, 30)
         Me.tipoAmbienteComboBox.TabIndex = 1
-        Me.tipoAmbienteComboBox.Texts = ""
+        Me.tipoAmbienteComboBox.Text = ""
         Me.tipoAmbienteComboBox.VisibleButtonOption = False
         Me.tipoAmbienteComboBox.WidthButton = 30
         '

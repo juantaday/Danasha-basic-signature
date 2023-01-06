@@ -1192,7 +1192,7 @@ Salida:
                 Return
             End If
 
-            Using excecScrip As New UpdateApp.Views.ExecuteScripForm()
+            Using excecScrip As New UpdateApp.Views.ExecuteScripForm(DomainSQLite.Setting.Configuration.ConectionString)
                 excecScrip.StartPosition = FormStartPosition.CenterScreen
                 excecScrip.ShowDialog()
             End Using
