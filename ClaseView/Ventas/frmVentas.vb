@@ -8,6 +8,7 @@ Imports CADsisVenta.DataSetSystemTableAdapters
 Imports CADsisVenta.Funtions
 Imports CADsisVenta.Helpers.FInicio
 Imports CADsisVenta.Statics
+Imports Domain.Data.Entities
 Imports ec.gob.sri.comprobantes.Enum
 Imports InterfaceSignatureAndSRI.Processes
 Imports iTextSharp.text.pdf
@@ -444,7 +445,7 @@ PintaRepedidas:
         lbldescuento.Text = "Total descuento $: " & descuento.ToString("N2")
         lblIva0.Text = "Base 0%  : " & base0.ToString("N2")
         lblIva12.Text = "Base 12%  : " & base12.ToString("N2")
-        lbltotal.Text = "Total $: " & totalFact.ToString ("N2")
+        lbltotal.Text = "Total $: " & totalFact.ToString("N2")
     End Sub
     Private Sub PintaRepetido(Filas As Integer, myColor As Color)
         Try
@@ -579,7 +580,7 @@ Aplicando:
                 GoTo viewMesagge
             End If
 
-            token = TokensValidos.valueOf(SettingObject.SignatureOptios.TOKEN)
+            token = TokensValidos.obtenerToken(SettingObject.SignatureOptios.TOKEN, SettingObject.SignatureOptios.THUMBPRINT)
         Catch ex As Exception
             mss = ex.Message & vbNewLine & ex.StackTrace
             GoTo viewMesagge
@@ -729,9 +730,8 @@ viewMesagge:
                             Me.ListView1.SelectedItems(0).SubItems(PTotalClm.Index).Text = .txtNumber.Value.ToString("N2")
 
                             Me.ListView1.SelectedItems(0).SubItems(PTotalClm.Index).Tag = codUserAuthorizwe
-
-                                SumatoriaTotal()
-                            End If
+                            SumatoriaTotal()
+                        End If
                     End With
 
                 End Using

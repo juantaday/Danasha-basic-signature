@@ -1351,7 +1351,7 @@ namespace InterfaceSignatureAndSRI.Views
                         Interaction.MsgBox("Debe configurar elgùn token kalido para firma electronica..");
                         return;
                     }
-                    token = TokensValidos.valueOf(SettingObject.SignatureOptios.TOKEN);
+                    token = TokensValidos.obtenerToken(SettingObject.SignatureOptios.TOKEN, SettingObject.SignatureOptios.THUMBPRINT);
                 }
                 catch (Exception ex)
                 {

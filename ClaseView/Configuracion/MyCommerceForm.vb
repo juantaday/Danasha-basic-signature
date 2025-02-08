@@ -184,6 +184,7 @@ Public Class MyCommerceForm
                 End If
 
                 altoNumericUpDown1.Value = _signatureOption.TIEMPO_ESPERA
+                txtHuella.Text = _signatureOption.THUMBPRINT
                 tipoAmbienteComboBox.SelectedItem = ec.gob.sri.comprobantes.Enum.TipoAmbienteEnum.obtenerAmbiente(_signatureOption.TIPO_AMBIENTE.ToString())
 
             End If
