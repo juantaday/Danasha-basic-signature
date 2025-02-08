@@ -9,7 +9,7 @@ namespace DomainSQLite.Setting
         //public static string klibraryKey = "DC307C3AD386C44F9CCD1EC2F1F9ADC23B3636C0ABBA9319729C238AD713F9BA8282EB491506";
 
         //for demo
-        public static string klibraryKey = "89979BD86E62BCE69B80A72A993E9973A46C3A48CA948CD447D6D37D7F43778146AB41727FF4";
+        public static string klibraryKey = "5F7589FD15E7FA58F8911854AF8FE4F2F4693DF5F8CE02";
 
         public static string StrigFileTextConection
         {

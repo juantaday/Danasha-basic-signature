@@ -50,17 +50,14 @@ Public NotInheritable Class SplashScreen1
         Me.progressBar1.Value = 0
 
         Try
-            'If (OnInit() = True) Then
+            If (OnInit() = True) Then
 
-            'End If
+                LoadDashaboar()
 
-
-            LoadDashaboar()
-
-            If Not (backgroundWorker1.IsBusy) Then
-                backgroundWorker1.RunWorkerAsync()
+                If Not (backgroundWorker1.IsBusy) Then
+                    backgroundWorker1.RunWorkerAsync()
+                End If
             End If
-
 
         Catch ex As Exception
             MsgBox(ex.Message & vbNewLine & ex.StackTrace, MsgBoxStyle.Critical, "Error")

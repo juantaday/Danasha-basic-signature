@@ -1,14 +1,11 @@
-﻿Imports CADsisVenta
-Imports CrystalDecisions.Shared.Json
+﻿Imports System.ComponentModel
+Imports System.IO
+Imports System.Threading
+Imports CADsisVenta
 Imports Domain.Data.Enums
-Imports Domain.Logica
+Imports Domain.Extensions
 Imports Domain.Models
 Imports ec.gob.sri.comprobantes.Enum
-Imports ec.gob.sri.Models
-Imports System.ComponentModel
-Imports System.IO
-Imports System.Runtime.CompilerServices
-Imports System.Threading
 
 Public Class MyCommerceForm
     Private _currentCommerce As CADsisVenta.myCommerce
@@ -33,13 +30,14 @@ Public Class MyCommerceForm
         AddHandler rjRadioButton2.CheckedChanged, AddressOf RjRadioButton1_CheckedChanged
         AddHandler rjRadioButton3.CheckedChanged, AddressOf RjRadioButton1_CheckedChanged
 
-        txtFindFile.Text = String.Empty
+        txtHuella.Text = String.Empty
         jmTabControl1.SelectedIndex = 0
 
     End Sub
 
     Private Sub MyCommerceForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         jmTabControl1.TabIndex = 0
+        rjRadioButton1.Checked = True
 
         If Not backgroundWorker1.IsBusy Then
             Me.circularProgressBar1.Visible = True
@@ -57,14 +55,12 @@ Public Class MyCommerceForm
         Dim nameControl As String = CType(sender, JMControls.Controls.RJRadioButton).Name
 
         If nameControl.Equals(rjRadioButton1.Name) Then
-            expandCollapsePanel2.IsExpanded = False
-            expandCollapsePanel2.Enabled = False
+
 
             expandCollapsePanel1.IsExpanded = True
             expandCollapsePanel1.Enabled = True
         ElseIf nameControl.Equals(rjRadioButton2.Name) Then
-            expandCollapsePanel2.IsExpanded = True
-            expandCollapsePanel2.Enabled = True
+
 
             expandCollapsePanel1.IsExpanded = False
             expandCollapsePanel1.Enabled = False
@@ -169,13 +165,8 @@ Public Class MyCommerceForm
             txtNumResolucion.Text = _currentCommerce.SpecialTaxNumber
             txtAgentRetenNum.Text = _currentCommerce.AgenteRetencion
             ContabiliteChecBox.Checked = _currentCommerce.KeepAccounting
-            Me.RegMicroEmChecBox.Checked = If(typeRegimen = TypeECommerceEnum.Microenterprise, True, False)
-            Me.RegRimpeChecBox.Checked = If(typeRegimen = TypeECommerceEnum.RIMPE_Taxpayer, True, False)
 
-            If Me.RegRimpeChecBox.Checked Then
-                txtRimpe.Enabled = True
-                txtRimpe.SelectedItem = _currentCommerce.ContribuyenteRimpe
-            End If
+
             If _signatureOption IsNot Nothing Then
                 GetDataSourceComboBox()
 
@@ -189,8 +180,7 @@ Public Class MyCommerceForm
                     rjRadioButton1.Checked = False
                     rjRadioButton2.Checked = True
 
-                    txtFindFile.Text = _signatureOption.RUTA_ARCHIVO
-                    txtClaveInterna.Text = _signatureOption.CLAVE_INTERNA
+                    txtHuella.Text = _signatureOption.RUTA_ARCHIVO
                 End If
 
                 altoNumericUpDown1.Value = _signatureOption.TIEMPO_ESPERA
@@ -207,7 +197,9 @@ Public Class MyCommerceForm
 
     Private Sub jmTabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles jmTabControl1.SelectedIndexChanged
 
-        If jmTabControl1.SelectedIndex = 2 Then
+        If jmTabControl1.SelectedIndex = 1 Then
+            GetTypeEcommerceComboBox()
+        ElseIf jmTabControl1.SelectedIndex = 2 Then
             GetDataSourceComboBox()
         ElseIf jmTabControl1.SelectedIndex = 3 Then
             ViewImage()
@@ -227,12 +219,33 @@ Public Class MyCommerceForm
         If tipoAmbienteComboBox.DataSource Is Nothing Then
             tipoAmbienteComboBox.DataSource = ec.gob.sri.comprobantes.Enum.TipoAmbienteEnum.values().ToList()
             If Not String.IsNullOrEmpty(_signatureOption?.TIPO_AMBIENTE.ToString()) Then
-                Dim token = ec.gob.sri.comprobantes.Enum.TipoAmbienteEnum.obtenerAmbiente(_signatureOption.TIPO_AMBIENTE.ToString())
-                tipoAmbienteComboBox.SelectedItem = token
+                Dim ambiente = ec.gob.sri.comprobantes.Enum.TipoAmbienteEnum.obtenerAmbiente(_signatureOption.TIPO_AMBIENTE.ToString())
+                tipoAmbienteComboBox.SelectedItem = ambiente
             End If
         End If
     End Sub
 
+
+    Private Sub GetTypeEcommerceComboBox()
+
+        Dim listTypes As List(Of SelectListItemModel) = [Enum].GetValues(GetType(Domain.Data.Enums.TypeECommerceEnum)) _
+            .Cast(Of Domain.Data.Enums.TypeECommerceEnum)() _
+            .Select(Function(c) New SelectListItemModel With {
+                .Value = CInt(c),
+                .Text = c.GetDisplayName()
+            }) _
+            .ToList()
+
+        Me.cmbTypeBusiness.DisplayMember = NameOf(SelectListItemModel.Text)
+        Me.cmbTypeBusiness.ValueMember = NameOf(SelectListItemModel.Value)
+        Me.cmbTypeBusiness.DataSource = listTypes
+
+
+        If _currentCommerce IsNot Nothing Then
+            Me.cmbTypeBusiness.SelectedValue = CInt(_currentCommerce.IdTypeRegimen)
+        End If
+
+    End Sub
 
     Private Sub ViewImage()
         If _currentCommerce?.LogoPDF IsNot Nothing AndAlso _currentCommerce.LogoPDF.Length > 0 AndAlso Me.logoPictureBox.Image Is Nothing Then
@@ -322,6 +335,7 @@ Public Class MyCommerceForm
     End Sub
 
     Private Function ValidateData() As Boolean
+
         'tab 1
         If True Then
             ' ruc
@@ -373,60 +387,86 @@ Public Class MyCommerceForm
             End If
 
         End If
-        ' tab 2
-        If True Then
-            If Not Me.ContabiliteChecBox.Checked AndAlso Not RegMicroEmChecBox.Checked AndAlso Not RegRimpeChecBox.Checked Then
-                jmTabControl1.SelectedIndex = 1
-                errorProvider1.SetError(ContabiliteChecBox, "Detrmine el tipo de contribuyente")
-                errorProvider1.SetError(RegMicroEmChecBox, "Detrmine el tipo de contribuyente")
-                errorProvider1.SetError(RegRimpeChecBox, "Detrmine el tipo de contribuyente")
-                Return False
-            Else
-                errorProvider1.SetError(ContabiliteChecBox, "")
-                errorProvider1.SetError(RegMicroEmChecBox, "")
-                errorProvider1.SetError(RegRimpeChecBox, "")
-            End If
 
+
+        ' Tab 2
+        Dim typeECommerce As TypeECommerceEnum = TypeECommerceEnum.Regimen_General
+
+        ' Validar tipo de negocio
+        If cmbTypeBusiness.SelectedIndex = -1 Then
+            errorProvider1.SetError(cmbTypeBusiness, "Seleccione el tipo de negocio..")
+            Return False
         End If
-        ' tab 3
-        If True Then
-            If rjRadioButton1.Checked AndAlso (TokenListComboBox.SelectedIndex = -1 OrElse TokenListComboBox.SelectedValue Is Nothing) Then
-                jmTabControl1.SelectedIndex = 2
-                errorProvider1.SetError(TokenListComboBox, "Seleccione el tipo de token válido para firmar.")
-                Return False
-            ElseIf rjRadioButton2.Checked AndAlso (String.IsNullOrEmpty(txtFindFile.Text) OrElse String.IsNullOrEmpty(txtClaveInterna.Text)) Then
-                jmTabControl1.SelectedIndex = 2
+        errorProvider1.SetError(cmbTypeBusiness, "")
 
-                errorProvider1.SetError(txtFindFile, "Especifique la ruta y la contraseña de la firma..")
-                errorProvider1.SetError(txtClaveInterna, "Especifique la ruta y la contraseña de la firma..")
-                Return False
+        Dim selectedValue As TypeECommerceEnum = CType(cmbTypeBusiness.SelectedValue, TypeECommerceEnum)
+
+        If [Enum].IsDefined(GetType(TypeECommerceEnum), selectedValue) Then
+            typeECommerce = CType(selectedValue, TypeECommerceEnum)
+
+            If typeECommerce = TypeECommerceEnum.Regimen_General Then
+                txtNumResolucion.Text = Nothing
+                txtAgentRetenNum.Text = Nothing
+
+                txtNumResolucion.Enabled = False
+                txtAgentRetenNum.Enabled = False
             End If
-
-            If tipoAmbienteComboBox.SelectedIndex = -1 Then
-                jmTabControl1.SelectedIndex = 2
-                errorProvider1.SetError(tipoAmbienteComboBox, "Seleccione en tipo de ambiente a emitir los documentos..")
-                Return False
-            End If
-
-            errorProvider1.SetError(tipoAmbienteComboBox, "")
-            errorProvider1.SetError(TokenListComboBox, "")
-            errorProvider1.SetError(txtFindFile, "")
-            errorProvider1.SetError(txtClaveInterna, "")
-        End If
-
-
-
-        '
-        Dim idTypeTributario As TypeECommerceEnum = TypeECommerceEnum.UNDETERMINED
-
-        If Not String.IsNullOrEmpty(Me.txtNumResolucion.Text) Then
-            idTypeTributario = TypeECommerceEnum.SpecialTaxpayer
-        ElseIf Me.RegMicroEmChecBox.Checked Then
-            idTypeTributario = TypeECommerceEnum.Microenterprise
-        ElseIf Me.RegRimpeChecBox.Checked Then
-            idTypeTributario = TypeECommerceEnum.RIMPE_Taxpayer
         Else
-            Throw New Exception("No se puede tederminar a que regimen pertenece")
+            Interaction.MsgBox("Valor fuera de rango..", MsgBoxStyle.Exclamation, "Alerta..")
+            Return False
+        End If
+
+        ' Validar número de resolución
+        If typeECommerce = TypeECommerceEnum.SpecialTaxpayer AndAlso String.IsNullOrEmpty(txtNumResolucion.Text) Then
+            errorProvider1.SetError(txtNumResolucion, "Ingrese el número de resolución")
+            Return False
+        End If
+        errorProvider1.SetError(txtNumResolucion, "")
+
+        ' Validar número de resolución para Microenterprise
+        If typeECommerce = TypeECommerceEnum.Microenterprise AndAlso String.IsNullOrEmpty(txtAgentRetenNum.Text) Then
+            errorProvider1.SetError(txtAgentRetenNum, "Ingrese el número de resolución")
+            Return False
+        End If
+        errorProvider1.SetError(txtAgentRetenNum, "")
+
+        If typeECommerce = TypeECommerceEnum.Regimen_General Then
+            txtNumResolucion.Text = Nothing
+            txtAgentRetenNum.Text = Nothing
+        End If
+
+        ' Validar RIMPE Taxpayer
+        If typeECommerce = TypeECommerceEnum.RIMPE_Taxpayer AndAlso String.IsNullOrEmpty(txtRegimenRIMPE.Text) Then
+            errorProvider1.SetError(txtRegimenRIMPE, "Determine la etiqueta del régimen")
+            Return False
+        End If
+        errorProvider1.SetError(txtRegimenRIMPE, "")
+
+        ' Tab 3
+        If rjRadioButton1.Checked AndAlso (TokenListComboBox.SelectedIndex = -1 OrElse TokenListComboBox.SelectedValue Is Nothing) Then
+            jmTabControl1.SelectedIndex = 2
+            errorProvider1.SetError(TokenListComboBox, "Seleccione el tipo de token válido para firmar.")
+            Return False
+        ElseIf rjRadioButton2.Checked Then
+            jmTabControl1.SelectedIndex = 2
+
+            Return False
+        End If
+
+        If tipoAmbienteComboBox.SelectedIndex = -1 Then
+            jmTabControl1.SelectedIndex = 2
+            errorProvider1.SetError(tipoAmbienteComboBox, "Seleccione el tipo de ambiente a emitir los documentos..")
+            Return False
+        End If
+
+        errorProvider1.SetError(tipoAmbienteComboBox, "")
+        errorProvider1.SetError(TokenListComboBox, "")
+
+        Dim idTypeTributario As TypeECommerceEnum
+        If cmbTypeBusiness.SelectedValue IsNot Nothing Then
+            idTypeTributario = CType(cmbTypeBusiness.SelectedValue, TypeECommerceEnum)
+        Else
+            MessageBox.Show("Seleccione un tipo de negocio válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
 
         If _currentCommerce Is Nothing Then
@@ -445,7 +485,7 @@ Public Class MyCommerceForm
         _currentCommerce.note = Nothing
         _currentCommerce.SpecialTaxNumber = If(String.IsNullOrWhiteSpace(txtNumResolucion.Text.Trim()), Nothing, txtNumResolucion.Text.Trim())
         _currentCommerce.RegimenMicroempresas = txtRegimenMicro.Text
-        _currentCommerce.ContribuyenteRimpe = txtRimpe.SelectedItem.ToString().Trim()
+        _currentCommerce.ContribuyenteRimpe = cmbTypeBusiness.SelectedItem.ToString().Trim()
         _currentCommerce.RazonSocial = txtRazonSocial.Text.Trim()
         _currentCommerce.Ruc = txtRuc.Text
         _currentCommerce.NameComercial = txtNomComercial.Text.Trim()
@@ -460,13 +500,14 @@ Public Class MyCommerceForm
 
 
         _signatureOption.TOKEN = TokenListComboBox.SelectedItem.ToString()
-        _signatureOption.CLAVE_INTERNA = If(txtClaveInterna.Text.Equals(txtClaveInterna.PlaceHolderText), Nothing, txtClaveInterna.Text)
+
+        _signatureOption.CLAVE_INTERNA = Nothing
 
         _signatureOption.TIPO_EMISION = "1"
 
         _signatureOption.TIPO_AMBIENTE = ec.gob.sri.comprobantes.Enum.TipoAmbienteEnum.GetValueByName(tipoAmbienteComboBox.SelectedItem.ToString())
 
-        _signatureOption.RUTA_ARCHIVO = If(txtFindFile.Text.Trim().Equals(txtFindFile.PlaceHolderText.Trim()), Nothing, txtFindFile.Text.Trim())
+        _signatureOption.THUMBPRINT = If(txtHuella.Text.Trim().Equals(txtHuella.PlaceHolderText.Trim()), Nothing, txtHuella.Text.Trim())
 
         _signatureOption.TIEMPO_ESPERA = CByte(altoNumericUpDown1.Value)
 
@@ -548,33 +589,34 @@ Public Class MyCommerceForm
 
     End Sub
 
-    Private Sub RegRimpeChecBox_CheckedChanged(sender As Object, e As EventArgs) Handles RegRimpeChecBox.CheckedChanged
-        If (RegRimpeChecBox.Checked) Then
-            txtRimpe.Enabled = True
-        Else
-            txtRimpe.Enabled = False
-            txtRimpe.SelectedIndex = -1
-        End If
-
-        If (txtNumResolucion.Text.Length = 0 AndAlso RegRimpeChecBox.Checked) Then
-
-            RegMicroEmChecBox.Checked = False
-        End If
-
-    End Sub
-
-    Private Sub RegMicroEmChecBox_CheckedChanged(sender As Object, e As EventArgs) Handles RegMicroEmChecBox.CheckedChanged
-
-        If (txtNumResolucion.Text.Length = 0 AndAlso RegMicroEmChecBox.Checked) Then
-            RegRimpeChecBox.Checked = False
-        End If
-
-    End Sub
-
     Private Sub timer1_Tick(sender As Object, e As EventArgs) Handles timer1.Tick
         timer1.Stop()
         lblState.Visible = False
         Me.DialogResult = DialogResult.OK
         Me.Close()
+    End Sub
+
+    Private Sub cmbTypeBusiness_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTypeBusiness.SelectedIndexChanged
+        If String.IsNullOrEmpty(cmbTypeBusiness.DisplayMember) OrElse
+     String.IsNullOrEmpty(cmbTypeBusiness.ValueMember) OrElse
+     cmbTypeBusiness.SelectedIndex = -1 Then
+            Exit Sub
+        End If
+
+        Dim selectedValue As TypeECommerceEnum = CType(cmbTypeBusiness.SelectedValue, TypeECommerceEnum)
+
+        If [Enum].IsDefined(GetType(TypeECommerceEnum), selectedValue) Then
+            Dim typeECommerce As TypeECommerceEnum = CType(selectedValue, TypeECommerceEnum)
+
+            If typeECommerce = TypeECommerceEnum.Regimen_General Then
+                txtNumResolucion.Text = Nothing
+                txtAgentRetenNum.Text = Nothing
+
+                txtNumResolucion.Enabled = False
+                txtAgentRetenNum.Enabled = False
+            End If
+        Else
+            Interaction.MsgBox("Valor fuera de rango..", MsgBoxStyle.Exclamation, "Alerta..")
+        End If
     End Sub
 End Class

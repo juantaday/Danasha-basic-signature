@@ -310,9 +310,11 @@ namespace InterfaceSignatureAndSRI.Data
                         totalDetaImpuesto.Columns.Add(new DataColumn("tarifa", Type.GetType("System.Decimal")));
                         totalDetaImpuesto.Columns.Add(new DataColumn("valor", Type.GetType("System.Decimal")));
 
-                        //base de impuestos de iva
 
-                        foreach (IMPUESTO_VALOR item in viewmodel.listImpuestoValor.Where(x => x.CODIGO_IMPUESTO == 2))
+                        //base de impuestos de iva
+                        var excludeList = new List<string> { "2", "3", "6", "7" }; // 6 , 7 
+                        foreach (IMPUESTO_VALOR item in viewmodel.listImpuestoValor
+                                .Where(x => x.CODIGO_IMPUESTO == 2 && !excludeList.Contains(x.CODIGO)).OrderBy(o => o.CODIGO_ADM))
                         {
                             var newRow = totalDetaImpuesto.NewRow();
 
@@ -362,12 +364,24 @@ namespace InterfaceSignatureAndSRI.Data
                             var listIva = viewmodel.listImpuestoValor
                                 .Where(x => x.CODIGO == item.Field<string>("codigoPorcentaje")).FirstOrDefault();
 
-                            newRow["index"] = ("2" + item.Field<Int32>("codigo").ToString());
-                            newRow["codigo"] = item.Field<Int32>("codigo").ToString();
-                            newRow["descripcionImpuesto"] = $"IVA {listIva.DESCRIPCION}";
-                            newRow["codigoPorcentaje"] = item.Field<string>("codigoPorcentaje");
-                            newRow["baseImponible"] = item.Field<decimal>("baseImponible");
-                            newRow["valor"] = item.Field<decimal>("valor");
+                            if (listIva is null)
+                            {
+                                newRow["index"] = ("2" + item["codigo"].ToString());
+                                newRow["codigo"] = item["codigo"];
+                                newRow["descripcionImpuesto"] = $"IVA Desconocido";
+                                newRow["codigoPorcentaje"] = item["codigoPorcentaje"];
+                                newRow["baseImponible"] = item["baseImponible"];
+                                newRow["valor"] = item["valor"];
+                            }
+                            else {
+                                newRow["index"] = ("2" + item.Field<Int32>("codigo").ToString());
+                                newRow["codigo"] = item.Field<Int32>("codigo").ToString();
+                                newRow["descripcionImpuesto"] = $"IVA {listIva.DESCRIPCION}";
+                                newRow["codigoPorcentaje"] = item.Field<string>("codigoPorcentaje");
+                                newRow["baseImponible"] = item.Field<decimal>("baseImponible");
+                                newRow["valor"] = item.Field<decimal>("valor");
+                            }
+
 
                             totalDetaImpuesto.Rows.Add(newRow);
 

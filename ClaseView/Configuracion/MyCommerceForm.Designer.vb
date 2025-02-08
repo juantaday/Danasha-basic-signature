@@ -23,28 +23,22 @@ Partial Class MyCommerceForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MyCommerceForm))
         Me.panel3 = New System.Windows.Forms.Panel()
-        Me.expandCollapsePanel2 = New JMControls.ExpandCollapsePanel.ExpandCollapsePanel()
-        Me.txtClaveInterna = New JMControls.Controls.RJTextBox()
-        Me.label19 = New System.Windows.Forms.Label()
-        Me.txtFindFile = New JMControls.Controls.TextBoxRounded()
+        Me.txtHuella = New JMControls.Controls.TextBoxRounded()
         Me.label18 = New System.Windows.Forms.Label()
         Me.expandCollapsePanel1 = New JMControls.ExpandCollapsePanel.ExpandCollapsePanel()
         Me.label16 = New System.Windows.Forms.Label()
         Me.TokenListComboBox = New JMControls.Controls.RJComboBox()
         Me.label17 = New System.Windows.Forms.Label()
         Me.tabPageEx2 = New JMControls.TabControlGRD.TabPageEx()
-        Me.txtRimpe = New JMControls.Controls.RJComboBox()
+        Me.cmbTypeBusiness = New JMControls.Controls.RJComboBox()
         Me.txtRegimenMicro = New System.Windows.Forms.TextBox()
         Me.txtAgentRetenNum = New System.Windows.Forms.TextBox()
         Me.txtNumResolucion = New System.Windows.Forms.TextBox()
-        Me.RegMicroEmChecBox = New System.Windows.Forms.CheckBox()
-        Me.RegRimpeChecBox = New System.Windows.Forms.CheckBox()
         Me.ContabiliteChecBox = New System.Windows.Forms.CheckBox()
         Me.label14 = New System.Windows.Forms.Label()
         Me.label13 = New System.Windows.Forms.Label()
-        Me.label15 = New System.Windows.Forms.Label()
-        Me.label9 = New System.Windows.Forms.Label()
         Me.label12 = New System.Windows.Forms.Label()
         Me.ContabiliteLabel = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -89,8 +83,9 @@ Partial Class MyCommerceForm
         Me.panel4 = New System.Windows.Forms.Panel()
         Me.jmTabControl1 = New JMControls.TabControlGRD.JMTabControl()
         Me.tabPageEx4 = New JMControls.TabControlGRD.TabPageEx()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.txtRegimenRIMPE = New System.Windows.Forms.TextBox()
         Me.panel3.SuspendLayout()
-        Me.expandCollapsePanel2.SuspendLayout()
         Me.expandCollapsePanel1.SuspendLayout()
         Me.tabPageEx2.SuspendLayout()
         Me.groupBoxLiner1.SuspendLayout()
@@ -109,138 +104,83 @@ Partial Class MyCommerceForm
         '
         'panel3
         '
-        Me.panel3.Controls.Add(Me.expandCollapsePanel2)
         Me.panel3.Controls.Add(Me.expandCollapsePanel1)
         Me.panel3.Location = New System.Drawing.Point(32, 86)
         Me.panel3.Name = "panel3"
-        Me.panel3.Size = New System.Drawing.Size(565, 201)
+        Me.panel3.Size = New System.Drawing.Size(565, 227)
         Me.panel3.TabIndex = 6
         '
-        'expandCollapsePanel2
+        'txtHuella
         '
-        Me.expandCollapsePanel2.AlignmentIcon = JMControls.ExpandCollapsePanel.ExpandCollapseButton.ExpandIconAlignment.Right
-        Me.expandCollapsePanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(153, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(209, Byte), Integer))
-        Me.expandCollapsePanel2.BottonTitleLocation = New System.Drawing.Point(761, 329)
-        Me.expandCollapsePanel2.ButtonBackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(65, Byte), Integer))
-        Me.expandCollapsePanel2.ButtonBackColorHover = System.Drawing.Color.FromArgb(CType(CType(153, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(209, Byte), Integer))
-        Me.expandCollapsePanel2.ButtonImage = Nothing
-        Me.expandCollapsePanel2.ButtonImageLocation = New System.Drawing.Point(65, 111)
-        Me.expandCollapsePanel2.ButtonImageSize = New System.Drawing.Size(656, 1097)
-        Me.expandCollapsePanel2.ButtonLogoSize = JMControls.ExpandCollapsePanel.ExpandCollapseButton.ExpandButtonSize.Normal
-        Me.expandCollapsePanel2.ButtonLogoStyle = JMControls.ExpandCollapsePanel.ExpandCollapseButton.ExpandButtonStyle.Arrow
-        Me.expandCollapsePanel2.Controls.Add(Me.txtClaveInterna)
-        Me.expandCollapsePanel2.Controls.Add(Me.label19)
-        Me.expandCollapsePanel2.Controls.Add(Me.txtFindFile)
-        Me.expandCollapsePanel2.Controls.Add(Me.label18)
-        Me.expandCollapsePanel2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.expandCollapsePanel2.ExpandedHeight = 161
-        Me.expandCollapsePanel2.IsExpanded = False
-        Me.expandCollapsePanel2.Location = New System.Drawing.Point(0, 102)
-        Me.expandCollapsePanel2.Name = "expandCollapsePanel2"
-        Me.expandCollapsePanel2.Size = New System.Drawing.Size(565, 37)
-        Me.expandCollapsePanel2.TabIndex = 6
-        Me.expandCollapsePanel2.Text = "En una ruta específica"
-        Me.expandCollapsePanel2.UseAnimation = True
-        Me.expandCollapsePanel2.VisibleDefaultButton = False
-        Me.expandCollapsePanel2.VisibleIconButton = False
-        '
-        'txtClaveInterna
-        '
-        Me.txtClaveInterna.BackColor = System.Drawing.SystemColors.Window
-        Me.txtClaveInterna.BorderColor = System.Drawing.Color.MediumSlateBlue
-        Me.txtClaveInterna.BorderFocusColor = System.Drawing.Color.HotPink
-        Me.txtClaveInterna.BorderRadius = 8
-        Me.txtClaveInterna.BorderThickness = 2
-        Me.txtClaveInterna.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
-        Me.txtClaveInterna.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.5!)
-        Me.txtClaveInterna.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.txtClaveInterna.Location = New System.Drawing.Point(131, 115)
-        Me.txtClaveInterna.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtClaveInterna.MaxLength = 32767
-        Me.txtClaveInterna.Multiline = False
-        Me.txtClaveInterna.Name = "txtClaveInterna"
-        Me.txtClaveInterna.Padding = New System.Windows.Forms.Padding(10, 7, 10, 7)
-        Me.txtClaveInterna.PasswordChar = True
-        Me.txtClaveInterna.PlaceHolderColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(200, Byte), Integer))
-        Me.txtClaveInterna.PlaceHolderText = "Contraseña de la firma"
-        Me.txtClaveInterna.ReadOnly = False
-        Me.txtClaveInterna.Size = New System.Drawing.Size(245, 31)
-        Me.txtClaveInterna.TabIndex = 3
-        Me.txtClaveInterna.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtClaveInterna.Text = ""
-        Me.txtClaveInterna.TypeData = JMControls.Enums.TypeDataEnum.VarChar
-        Me.txtClaveInterna.UnderlinedStyle = False
-        '
-        'label19
-        '
-        Me.label19.AutoSize = True
-        Me.label19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.label19.Location = New System.Drawing.Point(28, 120)
-        Me.label19.Name = "label19"
-        Me.label19.Size = New System.Drawing.Size(96, 20)
-        Me.label19.TabIndex = 2
-        Me.label19.Text = "Contraseña:"
-        '
-        'txtFindFile
-        '
-        Me.txtFindFile.BorderColorActive = System.Drawing.Color.Empty
-        Me.txtFindFile.BorderColorDisable = System.Drawing.Color.FromArgb(CType(CType(160, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.txtFindFile.BorderColorHover = System.Drawing.Color.Empty
-        Me.txtFindFile.BorderColorIdle = System.Drawing.Color.Teal
-        Me.txtFindFile.BorderRadius = 8
-        Me.txtFindFile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtFindFile.BorderThickness = 1
-        Me.txtFindFile.ButtonImage = Nothing
-        Me.txtFindFile.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
-        Me.txtFindFile.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
-        Me.txtFindFile.Location = New System.Drawing.Point(20, 69)
-        Me.txtFindFile.Multiline = False
-        Me.txtFindFile.Name = "txtFindFile"
-        Me.txtFindFile.Padding = New System.Windows.Forms.Padding(5, 3, 5, 3)
-        Me.txtFindFile.PlaceHolderColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(200, Byte), Integer))
-        Me.txtFindFile.PlaceHolderText = "Busque la ruta del archivo "
-        Me.txtFindFile.ReadOnly = False
-        Me.txtFindFile.SelectionLength = 0
-        Me.txtFindFile.Size = New System.Drawing.Size(523, 25)
-        Me.txtFindFile.TabIndex = 1
-        Me.txtFindFile.TabStop = False
-        Me.txtFindFile.Text = "Busque la ruta del archivo "
-        Me.txtFindFile.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtFindFile.Text = "Busque la ruta del archivo "
-        Me.txtFindFile.ToolTipButton = ""
-        Me.txtFindFile.VisibleButton = True
-
+        Me.txtHuella.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None
+        Me.txtHuella.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None
+        Me.txtHuella.BackColor = System.Drawing.Color.White
+        Me.txtHuella.BorderColorActive = System.Drawing.Color.Empty
+        Me.txtHuella.BorderColorDisable = System.Drawing.Color.FromArgb(CType(CType(160, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.txtHuella.BorderColorHover = System.Drawing.Color.Empty
+        Me.txtHuella.BorderColorIdle = System.Drawing.Color.Teal
+        Me.txtHuella.BorderRadius = 8
+        Me.txtHuella.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtHuella.BorderThickness = 1
+        Me.txtHuella.ButtonImage = Nothing
+        Me.txtHuella.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.txtHuella.DecimalPosition = 2
+        Me.txtHuella.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
+        Me.txtHuella.IconLeft = CType(resources.GetObject("txtHuella.IconLeft"), System.Drawing.Image)
+        Me.txtHuella.IconLeftBackColor = System.Drawing.Color.White
+        Me.txtHuella.IconLeftVisible = False
+        Me.txtHuella.Location = New System.Drawing.Point(25, 139)
+        Me.txtHuella.MaxLength = 32767
+        Me.txtHuella.Multiline = False
+        Me.txtHuella.Name = "txtHuella"
+        Me.txtHuella.Padding = New System.Windows.Forms.Padding(5, 3, 5, 3)
+        Me.txtHuella.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.txtHuella.PlaceHolderColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(200, Byte), Integer))
+        Me.txtHuella.PlaceHolderText = "Busque la ruta del archivo "
+        Me.txtHuella.ReadOnly = False
+        Me.txtHuella.SelectedText = ""
+        Me.txtHuella.SelectionLength = 0
+        Me.txtHuella.Size = New System.Drawing.Size(523, 36)
+        Me.txtHuella.TabIndex = 1
+        Me.txtHuella.TabStop = False
+        Me.txtHuella.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.txtHuella.ToolTipButton = ""
+        Me.txtHuella.TypeData = JMControls.Enums.TypeDataEnum.VarChar
+        Me.txtHuella.UseSystemPasswordChar = False
+        Me.txtHuella.VisibleButton = True
         '
         'label18
         '
         Me.label18.AutoSize = True
         Me.label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(50, Byte), Integer))
-        Me.label18.Location = New System.Drawing.Point(16, 46)
+        Me.label18.Location = New System.Drawing.Point(21, 116)
         Me.label18.Name = "label18"
-        Me.label18.Size = New System.Drawing.Size(173, 20)
+        Me.label18.Size = New System.Drawing.Size(97, 20)
         Me.label18.TabIndex = 0
-        Me.label18.Text = "Ruta de archivo (firma)."
+        Me.label18.Text = "Huella dijital:"
         '
         'expandCollapsePanel1
         '
         Me.expandCollapsePanel1.AlignmentIcon = JMControls.ExpandCollapsePanel.ExpandCollapseButton.ExpandIconAlignment.Right
         Me.expandCollapsePanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(153, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(209, Byte), Integer))
-        Me.expandCollapsePanel1.BottonTitleLocation = New System.Drawing.Point(761, 329)
+        Me.expandCollapsePanel1.BottonTitleLocation = New System.Drawing.Point(888, 405)
         Me.expandCollapsePanel1.ButtonBackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.expandCollapsePanel1.ButtonBackColorHover = System.Drawing.Color.FromArgb(CType(CType(153, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(209, Byte), Integer))
         Me.expandCollapsePanel1.ButtonImage = Nothing
-        Me.expandCollapsePanel1.ButtonImageLocation = New System.Drawing.Point(65, 111)
-        Me.expandCollapsePanel1.ButtonImageSize = New System.Drawing.Size(656, 1097)
+        Me.expandCollapsePanel1.ButtonImageLocation = New System.Drawing.Point(76, 137)
+        Me.expandCollapsePanel1.ButtonImageSize = New System.Drawing.Size(765, 1350)
         Me.expandCollapsePanel1.ButtonLogoSize = JMControls.ExpandCollapsePanel.ExpandCollapseButton.ExpandButtonSize.Normal
         Me.expandCollapsePanel1.ButtonLogoStyle = JMControls.ExpandCollapsePanel.ExpandCollapseButton.ExpandButtonStyle.Arrow
         Me.expandCollapsePanel1.Controls.Add(Me.label16)
         Me.expandCollapsePanel1.Controls.Add(Me.TokenListComboBox)
+        Me.expandCollapsePanel1.Controls.Add(Me.txtHuella)
+        Me.expandCollapsePanel1.Controls.Add(Me.label18)
         Me.expandCollapsePanel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.expandCollapsePanel1.ExpandedHeight = 102
         Me.expandCollapsePanel1.IsExpanded = True
         Me.expandCollapsePanel1.Location = New System.Drawing.Point(0, 0)
         Me.expandCollapsePanel1.Name = "expandCollapsePanel1"
-        Me.expandCollapsePanel1.Size = New System.Drawing.Size(565, 102)
+        Me.expandCollapsePanel1.Size = New System.Drawing.Size(565, 207)
         Me.expandCollapsePanel1.TabIndex = 5
         Me.expandCollapsePanel1.Text = "Instalada en el equipo"
         Me.expandCollapsePanel1.UseAnimation = True
@@ -263,6 +203,7 @@ Partial Class MyCommerceForm
         Me.TokenListComboBox.BorderColor = System.Drawing.Color.MediumSlateBlue
         Me.TokenListComboBox.BorderThickness = 1
         Me.TokenListComboBox.ButtonImage = Nothing
+        Me.TokenListComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
         Me.TokenListComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown
         Me.TokenListComboBox.DroppedDown = False
         Me.TokenListComboBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
@@ -276,14 +217,13 @@ Partial Class MyCommerceForm
         Me.TokenListComboBox.Padding = New System.Windows.Forms.Padding(1)
         Me.TokenListComboBox.Size = New System.Drawing.Size(390, 30)
         Me.TokenListComboBox.TabIndex = 1
-        Me.TokenListComboBox.Text = ""
         Me.TokenListComboBox.VisibleButtonOption = False
         Me.TokenListComboBox.WidthButton = 30
         '
         'label17
         '
         Me.label17.AutoSize = True
-        Me.label17.Location = New System.Drawing.Point(32, 325)
+        Me.label17.Location = New System.Drawing.Point(32, 352)
         Me.label17.Name = "label17"
         Me.label17.Size = New System.Drawing.Size(168, 32)
         Me.label17.TabIndex = 0
@@ -293,57 +233,55 @@ Partial Class MyCommerceForm
         '
         Me.tabPageEx2.AutoScroll = True
         Me.tabPageEx2.BackColor = System.Drawing.Color.White
-        Me.tabPageEx2.Controls.Add(Me.txtRimpe)
+        Me.tabPageEx2.Controls.Add(Me.cmbTypeBusiness)
+        Me.tabPageEx2.Controls.Add(Me.txtRegimenRIMPE)
         Me.tabPageEx2.Controls.Add(Me.txtRegimenMicro)
         Me.tabPageEx2.Controls.Add(Me.txtAgentRetenNum)
         Me.tabPageEx2.Controls.Add(Me.txtNumResolucion)
-        Me.tabPageEx2.Controls.Add(Me.RegMicroEmChecBox)
-        Me.tabPageEx2.Controls.Add(Me.RegRimpeChecBox)
         Me.tabPageEx2.Controls.Add(Me.ContabiliteChecBox)
+        Me.tabPageEx2.Controls.Add(Me.Label5)
         Me.tabPageEx2.Controls.Add(Me.label14)
         Me.tabPageEx2.Controls.Add(Me.label13)
-        Me.tabPageEx2.Controls.Add(Me.label15)
-        Me.tabPageEx2.Controls.Add(Me.label9)
         Me.tabPageEx2.Controls.Add(Me.label12)
         Me.tabPageEx2.Controls.Add(Me.ContabiliteLabel)
         Me.tabPageEx2.Controls.Add(Me.Label11)
         Me.tabPageEx2.Font = New System.Drawing.Font("Arial", 10.0!)
         Me.tabPageEx2.ImageLocation = New System.Drawing.Point(15, 5)
         Me.tabPageEx2.IsClosable = False
-        Me.tabPageEx2.Location = New System.Drawing.Point(1, 36)
+        Me.tabPageEx2.Location = New System.Drawing.Point(1, 41)
         Me.tabPageEx2.Name = "tabPageEx2"
-        Me.tabPageEx2.Size = New System.Drawing.Size(615, 499)
+        Me.tabPageEx2.Size = New System.Drawing.Size(615, 528)
         Me.tabPageEx2.TabIndex = 1
         Me.tabPageEx2.Text = "Métodos tributarios"
         '
-        'txtRimpe
+        'cmbTypeBusiness
         '
-        Me.txtRimpe.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.txtRimpe.BorderColor = System.Drawing.Color.MediumSlateBlue
-        Me.txtRimpe.BorderThickness = 1
-        Me.txtRimpe.ButtonImage = Nothing
-        Me.txtRimpe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown
-        Me.txtRimpe.DroppedDown = False
-        Me.txtRimpe.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
-        Me.txtRimpe.ForeColor = System.Drawing.Color.DimGray
-        Me.txtRimpe.IconColor = System.Drawing.Color.MediumSlateBlue
-        Me.txtRimpe.Items.AddRange(New Object() {"ONTRIBUYENTE RÉGIMEN RIMPE", "CONTRIBUYENTE NEGOCIO POPULAR - RÉGIMEN RIMPE"})
-        Me.txtRimpe.ListBackColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(245, Byte), Integer))
-        Me.txtRimpe.ListTextColor = System.Drawing.Color.DimGray
-        Me.txtRimpe.Location = New System.Drawing.Point(121, 422)
-        Me.txtRimpe.MinimumSize = New System.Drawing.Size(200, 30)
-        Me.txtRimpe.Name = "txtRimpe"
-        Me.txtRimpe.Padding = New System.Windows.Forms.Padding(1)
-        Me.txtRimpe.Size = New System.Drawing.Size(408, 30)
-        Me.txtRimpe.TabIndex = 35
-        Me.txtRimpe.Text = ""
-        Me.txtRimpe.VisibleButtonOption = False
-        Me.txtRimpe.WidthButton = 32
+        Me.cmbTypeBusiness.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.cmbTypeBusiness.BorderColor = System.Drawing.Color.MediumSlateBlue
+        Me.cmbTypeBusiness.BorderThickness = 1
+        Me.cmbTypeBusiness.ButtonImage = Nothing
+        Me.cmbTypeBusiness.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbTypeBusiness.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown
+        Me.cmbTypeBusiness.DroppedDown = False
+        Me.cmbTypeBusiness.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
+        Me.cmbTypeBusiness.ForeColor = System.Drawing.Color.DimGray
+        Me.cmbTypeBusiness.IconColor = System.Drawing.Color.MediumSlateBlue
+        Me.cmbTypeBusiness.Items.AddRange(New Object() {"ONTRIBUYENTE RÉGIMEN RIMPE", "CONTRIBUYENTE NEGOCIO POPULAR - RÉGIMEN RIMPE"})
+        Me.cmbTypeBusiness.ListBackColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.cmbTypeBusiness.ListTextColor = System.Drawing.Color.DimGray
+        Me.cmbTypeBusiness.Location = New System.Drawing.Point(85, 70)
+        Me.cmbTypeBusiness.MinimumSize = New System.Drawing.Size(200, 30)
+        Me.cmbTypeBusiness.Name = "cmbTypeBusiness"
+        Me.cmbTypeBusiness.Padding = New System.Windows.Forms.Padding(1)
+        Me.cmbTypeBusiness.Size = New System.Drawing.Size(425, 30)
+        Me.cmbTypeBusiness.TabIndex = 35
+        Me.cmbTypeBusiness.VisibleButtonOption = False
+        Me.cmbTypeBusiness.WidthButton = 32
         '
         'txtRegimenMicro
         '
         Me.txtRegimenMicro.ForeColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.txtRegimenMicro.Location = New System.Drawing.Point(121, 323)
+        Me.txtRegimenMicro.Location = New System.Drawing.Point(102, 390)
         Me.txtRegimenMicro.Name = "txtRegimenMicro"
         Me.txtRegimenMicro.Size = New System.Drawing.Size(408, 23)
         Me.txtRegimenMicro.TabIndex = 36
@@ -352,41 +290,23 @@ Partial Class MyCommerceForm
         'txtAgentRetenNum
         '
         Me.txtAgentRetenNum.ForeColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.txtAgentRetenNum.Location = New System.Drawing.Point(320, 210)
+        Me.txtAgentRetenNum.Location = New System.Drawing.Point(158, 295)
         Me.txtAgentRetenNum.Name = "txtAgentRetenNum"
-        Me.txtAgentRetenNum.Size = New System.Drawing.Size(153, 23)
+        Me.txtAgentRetenNum.Size = New System.Drawing.Size(284, 23)
         Me.txtAgentRetenNum.TabIndex = 37
         '
         'txtNumResolucion
         '
         Me.txtNumResolucion.ForeColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.txtNumResolucion.Location = New System.Drawing.Point(320, 31)
+        Me.txtNumResolucion.Location = New System.Drawing.Point(158, 209)
         Me.txtNumResolucion.Name = "txtNumResolucion"
-        Me.txtNumResolucion.Size = New System.Drawing.Size(153, 23)
+        Me.txtNumResolucion.Size = New System.Drawing.Size(284, 23)
         Me.txtNumResolucion.TabIndex = 38
-        '
-        'RegMicroEmChecBox
-        '
-        Me.RegMicroEmChecBox.AutoSize = True
-        Me.RegMicroEmChecBox.Location = New System.Drawing.Point(320, 128)
-        Me.RegMicroEmChecBox.Name = "RegMicroEmChecBox"
-        Me.RegMicroEmChecBox.Size = New System.Drawing.Size(15, 14)
-        Me.RegMicroEmChecBox.TabIndex = 43
-        Me.RegMicroEmChecBox.UseVisualStyleBackColor = True
-        '
-        'RegRimpeChecBox
-        '
-        Me.RegRimpeChecBox.AutoSize = True
-        Me.RegRimpeChecBox.Location = New System.Drawing.Point(320, 170)
-        Me.RegRimpeChecBox.Name = "RegRimpeChecBox"
-        Me.RegRimpeChecBox.Size = New System.Drawing.Size(15, 14)
-        Me.RegRimpeChecBox.TabIndex = 44
-        Me.RegRimpeChecBox.UseVisualStyleBackColor = True
         '
         'ContabiliteChecBox
         '
         Me.ContabiliteChecBox.AutoSize = True
-        Me.ContabiliteChecBox.Location = New System.Drawing.Point(320, 85)
+        Me.ContabiliteChecBox.Location = New System.Drawing.Point(359, 122)
         Me.ContabiliteChecBox.Name = "ContabiliteChecBox"
         Me.ContabiliteChecBox.Size = New System.Drawing.Size(15, 14)
         Me.ContabiliteChecBox.TabIndex = 45
@@ -397,51 +317,29 @@ Partial Class MyCommerceForm
         Me.label14.AutoSize = True
         Me.label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.label14.Location = New System.Drawing.Point(121, 393)
+        Me.label14.Location = New System.Drawing.Point(85, 41)
         Me.label14.Name = "label14"
-        Me.label14.Size = New System.Drawing.Size(189, 20)
+        Me.label14.Size = New System.Drawing.Size(146, 20)
         Me.label14.TabIndex = 39
-        Me.label14.Text = "Etiqueta régimen RIMPE:"
+        Me.label14.Text = "Tipo Contribuyente:"
         '
         'label13
         '
         Me.label13.AutoSize = True
         Me.label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.label13.Location = New System.Drawing.Point(121, 294)
+        Me.label13.Location = New System.Drawing.Point(102, 361)
         Me.label13.Name = "label13"
         Me.label13.Size = New System.Drawing.Size(246, 20)
         Me.label13.TabIndex = 40
         Me.label13.Text = "Etiqueta régimen microempresas:"
-        '
-        'label15
-        '
-        Me.label15.AutoSize = True
-        Me.label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.label15.Location = New System.Drawing.Point(135, 127)
-        Me.label15.Name = "label15"
-        Me.label15.Size = New System.Drawing.Size(174, 15)
-        Me.label15.TabIndex = 32
-        Me.label15.Text = "Contribuyente Microempresas:"
-        '
-        'label9
-        '
-        Me.label9.AutoSize = True
-        Me.label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.label9.Location = New System.Drawing.Point(182, 169)
-        Me.label9.Name = "label9"
-        Me.label9.Size = New System.Drawing.Size(127, 15)
-        Me.label9.TabIndex = 33
-        Me.label9.Text = "Contribuyente RIMPE:"
         '
         'label12
         '
         Me.label12.AutoSize = True
         Me.label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.label12.Location = New System.Drawing.Point(97, 214)
+        Me.label12.Location = New System.Drawing.Point(176, 271)
         Me.label12.Name = "label12"
         Me.label12.Size = New System.Drawing.Size(212, 15)
         Me.label12.TabIndex = 41
@@ -452,7 +350,7 @@ Partial Class MyCommerceForm
         Me.ContabiliteLabel.AutoSize = True
         Me.ContabiliteLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ContabiliteLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.ContabiliteLabel.Location = New System.Drawing.Point(137, 83)
+        Me.ContabiliteLabel.Location = New System.Drawing.Point(176, 120)
         Me.ContabiliteLabel.Name = "ContabiliteLabel"
         Me.ContabiliteLabel.Size = New System.Drawing.Size(172, 15)
         Me.ContabiliteLabel.TabIndex = 34
@@ -463,7 +361,7 @@ Partial Class MyCommerceForm
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.Label11.Location = New System.Drawing.Point(86, 35)
+        Me.Label11.Location = New System.Drawing.Point(188, 182)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(223, 15)
         Me.Label11.TabIndex = 42
@@ -474,10 +372,11 @@ Partial Class MyCommerceForm
         Me.altoNumericUpDown1.ButtonBackColor = System.Drawing.Color.Gray
         Me.altoNumericUpDown1.DecimalPlace = 0
         Me.altoNumericUpDown1.Font = New System.Drawing.Font("Comic Sans MS", 12.0!)
-        Me.altoNumericUpDown1.Location = New System.Drawing.Point(210, 327)
+        Me.altoNumericUpDown1.Location = New System.Drawing.Point(210, 354)
         Me.altoNumericUpDown1.Maximum = New Decimal(New Integer() {6, 0, 0, 0})
         Me.altoNumericUpDown1.Minimum = New Decimal(New Integer() {2, 0, 0, 0})
         Me.altoNumericUpDown1.Name = "altoNumericUpDown1"
+        Me.altoNumericUpDown1.ReadOnly = False
         Me.altoNumericUpDown1.SignColor = System.Drawing.Color.White
         Me.altoNumericUpDown1.Size = New System.Drawing.Size(100, 30)
         Me.altoNumericUpDown1.TabIndex = 2
@@ -549,7 +448,7 @@ Partial Class MyCommerceForm
         '
         Me.label20.AutoSize = True
         Me.label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(160, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.label20.Location = New System.Drawing.Point(313, 334)
+        Me.label20.Location = New System.Drawing.Point(313, 361)
         Me.label20.Name = "label20"
         Me.label20.Size = New System.Drawing.Size(71, 16)
         Me.label20.TabIndex = 7
@@ -561,6 +460,7 @@ Partial Class MyCommerceForm
         Me.tipoAmbienteComboBox.BorderColor = System.Drawing.Color.MediumSlateBlue
         Me.tipoAmbienteComboBox.BorderThickness = 1
         Me.tipoAmbienteComboBox.ButtonImage = Nothing
+        Me.tipoAmbienteComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
         Me.tipoAmbienteComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown
         Me.tipoAmbienteComboBox.DroppedDown = False
         Me.tipoAmbienteComboBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
@@ -568,24 +468,23 @@ Partial Class MyCommerceForm
         Me.tipoAmbienteComboBox.IconColor = System.Drawing.Color.MediumSlateBlue
         Me.tipoAmbienteComboBox.ListBackColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(245, Byte), Integer))
         Me.tipoAmbienteComboBox.ListTextColor = System.Drawing.Color.DimGray
-        Me.tipoAmbienteComboBox.Location = New System.Drawing.Point(210, 402)
+        Me.tipoAmbienteComboBox.Location = New System.Drawing.Point(210, 429)
         Me.tipoAmbienteComboBox.MinimumSize = New System.Drawing.Size(200, 30)
         Me.tipoAmbienteComboBox.Name = "tipoAmbienteComboBox"
         Me.tipoAmbienteComboBox.Padding = New System.Windows.Forms.Padding(1)
-        Me.tipoAmbienteComboBox.Size = New System.Drawing.Size(310, 30)
+        Me.tipoAmbienteComboBox.Size = New System.Drawing.Size(287, 30)
         Me.tipoAmbienteComboBox.TabIndex = 1
-        Me.tipoAmbienteComboBox.Text = ""
         Me.tipoAmbienteComboBox.VisibleButtonOption = False
         Me.tipoAmbienteComboBox.WidthButton = 30
         '
         'label10
         '
         Me.label10.AutoSize = True
-        Me.label10.Location = New System.Drawing.Point(32, 409)
+        Me.label10.Location = New System.Drawing.Point(32, 436)
         Me.label10.Name = "label10"
-        Me.label10.Size = New System.Drawing.Size(116, 16)
+        Me.label10.Size = New System.Drawing.Size(120, 16)
         Me.label10.TabIndex = 0
-        Me.label10.Text = "Tipo de ambiente"
+        Me.label10.Text = "Tipo de ambiente:"
         '
         'timer1
         '
@@ -610,9 +509,9 @@ Partial Class MyCommerceForm
         Me.tabPageEx1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
         Me.tabPageEx1.ImageLocation = New System.Drawing.Point(15, 5)
         Me.tabPageEx1.IsClosable = False
-        Me.tabPageEx1.Location = New System.Drawing.Point(1, 36)
+        Me.tabPageEx1.Location = New System.Drawing.Point(1, 41)
         Me.tabPageEx1.Name = "tabPageEx1"
-        Me.tabPageEx1.Size = New System.Drawing.Size(615, 499)
+        Me.tabPageEx1.Size = New System.Drawing.Size(615, 528)
         Me.tabPageEx1.TabIndex = 0
         Me.tabPageEx1.Text = "Opciones generales"
         '
@@ -626,7 +525,7 @@ Partial Class MyCommerceForm
         Me.circularProgressBar1.InnerColor = System.Drawing.SystemColors.Window
         Me.circularProgressBar1.InnerMargin = 2
         Me.circularProgressBar1.InnerWidth = -1
-        Me.circularProgressBar1.Location = New System.Drawing.Point(142, 280)
+        Me.circularProgressBar1.Location = New System.Drawing.Point(272, 375)
         Me.circularProgressBar1.MarqueeAnimationSpeed = 2000
         Me.circularProgressBar1.Name = "circularProgressBar1"
         Me.circularProgressBar1.OuterColor = System.Drawing.Color.Gray
@@ -652,7 +551,7 @@ Partial Class MyCommerceForm
         '
         Me.lblRucCount.AutoSize = True
         Me.lblRucCount.ForeColor = System.Drawing.Color.FromArgb(CType(CType(160, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.lblRucCount.Location = New System.Drawing.Point(373, 16)
+        Me.lblRucCount.Location = New System.Drawing.Point(379, 45)
         Me.lblRucCount.Name = "lblRucCount"
         Me.lblRucCount.Size = New System.Drawing.Size(16, 17)
         Me.lblRucCount.TabIndex = 2
@@ -665,10 +564,12 @@ Partial Class MyCommerceForm
         Me.txtDirMatriz.BorderFocusColor = System.Drawing.Color.HotPink
         Me.txtDirMatriz.BorderRadius = 6
         Me.txtDirMatriz.BorderThickness = 1
+        Me.txtDirMatriz.CharacterCasin = System.Windows.Forms.CharacterCasing.Normal
         Me.txtDirMatriz.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.txtDirMatriz.DecimalPosition = 2
         Me.txtDirMatriz.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDirMatriz.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.txtDirMatriz.Location = New System.Drawing.Point(142, 190)
+        Me.txtDirMatriz.Location = New System.Drawing.Point(148, 219)
         Me.txtDirMatriz.Margin = New System.Windows.Forms.Padding(1)
         Me.txtDirMatriz.MaxLength = 32767
         Me.txtDirMatriz.Multiline = True
@@ -678,17 +579,17 @@ Partial Class MyCommerceForm
         Me.txtDirMatriz.PlaceHolderColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(200, Byte), Integer))
         Me.txtDirMatriz.PlaceHolderText = "Obligatorio"
         Me.txtDirMatriz.ReadOnly = False
+        Me.txtDirMatriz.SelectionLength = 0
         Me.txtDirMatriz.Size = New System.Drawing.Size(427, 86)
         Me.txtDirMatriz.TabIndex = 4
         Me.txtDirMatriz.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtDirMatriz.Text = ""
         Me.txtDirMatriz.TypeData = JMControls.Enums.TypeDataEnum.VarChar
         Me.txtDirMatriz.UnderlinedStyle = False
         '
         'label4
         '
         Me.label4.AutoSize = True
-        Me.label4.Location = New System.Drawing.Point(8, 194)
+        Me.label4.Location = New System.Drawing.Point(14, 223)
         Me.label4.Name = "label4"
         Me.label4.Size = New System.Drawing.Size(113, 17)
         Me.label4.TabIndex = 0
@@ -701,10 +602,12 @@ Partial Class MyCommerceForm
         Me.txtCompany.BorderFocusColor = System.Drawing.Color.HotPink
         Me.txtCompany.BorderRadius = 6
         Me.txtCompany.BorderThickness = 1
+        Me.txtCompany.CharacterCasin = System.Windows.Forms.CharacterCasing.Normal
         Me.txtCompany.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.txtCompany.DecimalPosition = 2
         Me.txtCompany.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCompany.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.txtCompany.Location = New System.Drawing.Point(142, 148)
+        Me.txtCompany.Location = New System.Drawing.Point(148, 177)
         Me.txtCompany.Margin = New System.Windows.Forms.Padding(1)
         Me.txtCompany.MaxLength = 20
         Me.txtCompany.Multiline = False
@@ -714,17 +617,17 @@ Partial Class MyCommerceForm
         Me.txtCompany.PlaceHolderColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(200, Byte), Integer))
         Me.txtCompany.PlaceHolderText = "Nombre a imprimir en ticket"
         Me.txtCompany.ReadOnly = False
+        Me.txtCompany.SelectionLength = 0
         Me.txtCompany.Size = New System.Drawing.Size(226, 24)
         Me.txtCompany.TabIndex = 3
         Me.txtCompany.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtCompany.Text = ""
         Me.txtCompany.TypeData = JMControls.Enums.TypeDataEnum.VarChar
         Me.txtCompany.UnderlinedStyle = False
         '
         'label8
         '
         Me.label8.AutoSize = True
-        Me.label8.Location = New System.Drawing.Point(7, 152)
+        Me.label8.Location = New System.Drawing.Point(13, 181)
         Me.label8.Name = "label8"
         Me.label8.Size = New System.Drawing.Size(107, 17)
         Me.label8.TabIndex = 0
@@ -737,10 +640,12 @@ Partial Class MyCommerceForm
         Me.txtNomComercial.BorderFocusColor = System.Drawing.Color.HotPink
         Me.txtNomComercial.BorderRadius = 6
         Me.txtNomComercial.BorderThickness = 1
+        Me.txtNomComercial.CharacterCasin = System.Windows.Forms.CharacterCasing.Normal
         Me.txtNomComercial.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.txtNomComercial.DecimalPosition = 2
         Me.txtNomComercial.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNomComercial.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.txtNomComercial.Location = New System.Drawing.Point(142, 103)
+        Me.txtNomComercial.Location = New System.Drawing.Point(148, 132)
         Me.txtNomComercial.Margin = New System.Windows.Forms.Padding(1)
         Me.txtNomComercial.MaxLength = 50
         Me.txtNomComercial.Multiline = False
@@ -750,17 +655,17 @@ Partial Class MyCommerceForm
         Me.txtNomComercial.PlaceHolderColor = System.Drawing.Color.DarkGray
         Me.txtNomComercial.PlaceHolderText = "Obligatorio"
         Me.txtNomComercial.ReadOnly = False
+        Me.txtNomComercial.SelectionLength = 0
         Me.txtNomComercial.Size = New System.Drawing.Size(426, 24)
         Me.txtNomComercial.TabIndex = 2
         Me.txtNomComercial.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtNomComercial.Text = ""
         Me.txtNomComercial.TypeData = JMControls.Enums.TypeDataEnum.VarChar
         Me.txtNomComercial.UnderlinedStyle = False
         '
         'label3
         '
         Me.label3.AutoSize = True
-        Me.label3.Location = New System.Drawing.Point(8, 107)
+        Me.label3.Location = New System.Drawing.Point(14, 136)
         Me.label3.Name = "label3"
         Me.label3.Size = New System.Drawing.Size(126, 17)
         Me.label3.TabIndex = 0
@@ -773,10 +678,12 @@ Partial Class MyCommerceForm
         Me.txtRazonSocial.BorderFocusColor = System.Drawing.Color.HotPink
         Me.txtRazonSocial.BorderRadius = 6
         Me.txtRazonSocial.BorderThickness = 1
+        Me.txtRazonSocial.CharacterCasin = System.Windows.Forms.CharacterCasing.Normal
         Me.txtRazonSocial.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.txtRazonSocial.DecimalPosition = 2
         Me.txtRazonSocial.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtRazonSocial.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.txtRazonSocial.Location = New System.Drawing.Point(142, 49)
+        Me.txtRazonSocial.Location = New System.Drawing.Point(148, 78)
         Me.txtRazonSocial.Margin = New System.Windows.Forms.Padding(1)
         Me.txtRazonSocial.MaxLength = 32767
         Me.txtRazonSocial.Multiline = False
@@ -786,17 +693,17 @@ Partial Class MyCommerceForm
         Me.txtRazonSocial.PlaceHolderColor = System.Drawing.Color.DarkGray
         Me.txtRazonSocial.PlaceHolderText = "Obligatorio"
         Me.txtRazonSocial.ReadOnly = False
+        Me.txtRazonSocial.SelectionLength = 0
         Me.txtRazonSocial.Size = New System.Drawing.Size(426, 24)
         Me.txtRazonSocial.TabIndex = 1
         Me.txtRazonSocial.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtRazonSocial.Text = ""
         Me.txtRazonSocial.TypeData = JMControls.Enums.TypeDataEnum.VarChar
         Me.txtRazonSocial.UnderlinedStyle = False
         '
         'label2
         '
         Me.label2.AutoSize = True
-        Me.label2.Location = New System.Drawing.Point(8, 44)
+        Me.label2.Location = New System.Drawing.Point(14, 73)
         Me.label2.Name = "label2"
         Me.label2.Size = New System.Drawing.Size(130, 34)
         Me.label2.TabIndex = 0
@@ -809,10 +716,12 @@ Partial Class MyCommerceForm
         Me.txtRuc.BorderFocusColor = System.Drawing.Color.HotPink
         Me.txtRuc.BorderRadius = 6
         Me.txtRuc.BorderThickness = 1
+        Me.txtRuc.CharacterCasin = System.Windows.Forms.CharacterCasing.Normal
         Me.txtRuc.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.txtRuc.DecimalPosition = 2
         Me.txtRuc.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtRuc.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.txtRuc.Location = New System.Drawing.Point(142, 12)
+        Me.txtRuc.Location = New System.Drawing.Point(148, 41)
         Me.txtRuc.Margin = New System.Windows.Forms.Padding(1)
         Me.txtRuc.MaxLength = 13
         Me.txtRuc.Multiline = False
@@ -822,17 +731,17 @@ Partial Class MyCommerceForm
         Me.txtRuc.PlaceHolderColor = System.Drawing.Color.DarkGray
         Me.txtRuc.PlaceHolderText = "Obligatorio"
         Me.txtRuc.ReadOnly = False
+        Me.txtRuc.SelectionLength = 0
         Me.txtRuc.Size = New System.Drawing.Size(223, 24)
         Me.txtRuc.TabIndex = 0
         Me.txtRuc.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtRuc.Text = ""
         Me.txtRuc.TypeData = JMControls.Enums.TypeDataEnum.Numeric
         Me.txtRuc.UnderlinedStyle = False
         '
         'label1
         '
         Me.label1.AutoSize = True
-        Me.label1.Location = New System.Drawing.Point(8, 16)
+        Me.label1.Location = New System.Drawing.Point(14, 45)
         Me.label1.Name = "label1"
         Me.label1.Size = New System.Drawing.Size(37, 17)
         Me.label1.TabIndex = 0
@@ -1025,7 +934,7 @@ Partial Class MyCommerceForm
         Me.panel1.Controls.Add(Me.lblState)
         Me.panel1.Controls.Add(Me.Accep_Button)
         Me.panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.panel1.Location = New System.Drawing.Point(0, 573)
+        Me.panel1.Location = New System.Drawing.Point(0, 607)
         Me.panel1.Name = "panel1"
         Me.panel1.Size = New System.Drawing.Size(685, 44)
         Me.panel1.TabIndex = 5
@@ -1044,9 +953,9 @@ Partial Class MyCommerceForm
         Me.tabPageEx3.Font = New System.Drawing.Font("Arial", 10.0!)
         Me.tabPageEx3.ImageLocation = New System.Drawing.Point(15, 5)
         Me.tabPageEx3.IsClosable = False
-        Me.tabPageEx3.Location = New System.Drawing.Point(1, 36)
+        Me.tabPageEx3.Location = New System.Drawing.Point(1, 41)
         Me.tabPageEx3.Name = "tabPageEx3"
-        Me.tabPageEx3.Size = New System.Drawing.Size(615, 499)
+        Me.tabPageEx3.Size = New System.Drawing.Size(615, 528)
         Me.tabPageEx3.TabIndex = 2
         Me.tabPageEx3.Text = "Ambiente y firma dijital"
         '
@@ -1054,7 +963,7 @@ Partial Class MyCommerceForm
         '
         Me.panel4.BackColor = System.Drawing.Color.LightSteelBlue
         Me.panel4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.panel4.Location = New System.Drawing.Point(0, 617)
+        Me.panel4.Location = New System.Drawing.Point(0, 651)
         Me.panel4.Name = "panel4"
         Me.panel4.Size = New System.Drawing.Size(685, 10)
         Me.panel4.TabIndex = 7
@@ -1072,11 +981,11 @@ Partial Class MyCommerceForm
         Me.jmTabControl1.IsCaptionVisible = False
         Me.jmTabControl1.IsDrawHeader = False
         Me.jmTabControl1.IsDrawTabSeparator = True
-        Me.jmTabControl1.ItemSize = New System.Drawing.Size(0, 30)
+        Me.jmTabControl1.ItemSize = New System.Drawing.Size(300, 35)
         Me.jmTabControl1.Location = New System.Drawing.Point(0, 37)
         Me.jmTabControl1.Name = "jmTabControl1"
-        Me.jmTabControl1.SelectedIndex = 1
-        Me.jmTabControl1.Size = New System.Drawing.Size(617, 536)
+        Me.jmTabControl1.SelectedIndex = 2
+        Me.jmTabControl1.Size = New System.Drawing.Size(617, 570)
         Me.jmTabControl1.TabBorderColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(50, Byte), Integer), CType(CType(65, Byte), Integer))
         Me.jmTabControl1.TabGradient.ColorEnd = System.Drawing.Color.MediumSlateBlue
         Me.jmTabControl1.TabGradient.ColorStart = System.Drawing.Color.FromArgb(CType(CType(194, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(201, Byte), Integer))
@@ -1100,11 +1009,31 @@ Partial Class MyCommerceForm
         Me.tabPageEx4.TabIndex = 3
         Me.tabPageEx4.Text = "Perfiles visuales"
         '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(38, Byte), Integer))
+        Me.Label5.Location = New System.Drawing.Point(106, 454)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(189, 20)
+        Me.Label5.TabIndex = 40
+        Me.Label5.Text = "Etiqueta régimen RIMPE:"
+        '
+        'txtRegimenRIMPE
+        '
+        Me.txtRegimenRIMPE.ForeColor = System.Drawing.Color.FromArgb(CType(CType(34, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(38, Byte), Integer))
+        Me.txtRegimenRIMPE.Location = New System.Drawing.Point(106, 483)
+        Me.txtRegimenRIMPE.Name = "txtRegimenRIMPE"
+        Me.txtRegimenRIMPE.Size = New System.Drawing.Size(408, 23)
+        Me.txtRegimenRIMPE.TabIndex = 36
+        Me.txtRegimenRIMPE.Text = "CONTRIBUYENTE RÉGIMEN MICROEMPRESAS"
+        '
         'MyCommerceForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(685, 627)
+        Me.ClientSize = New System.Drawing.Size(685, 661)
         Me.Controls.Add(Me.jmTabControl1)
         Me.Controls.Add(Me.panel2)
         Me.Controls.Add(Me.panel1)
@@ -1112,8 +1041,6 @@ Partial Class MyCommerceForm
         Me.Name = "MyCommerceForm"
         Me.Text = "MyCommerceForm"
         Me.panel3.ResumeLayout(False)
-        Me.expandCollapsePanel2.ResumeLayout(False)
-        Me.expandCollapsePanel2.PerformLayout()
         Me.expandCollapsePanel1.ResumeLayout(False)
         Me.expandCollapsePanel1.PerformLayout()
         Me.tabPageEx2.ResumeLayout(False)
@@ -1140,27 +1067,20 @@ Partial Class MyCommerceForm
     End Sub
 
     Private WithEvents panel3 As Panel
-    Private WithEvents expandCollapsePanel2 As JMControls.ExpandCollapsePanel.ExpandCollapsePanel
-    Private WithEvents txtClaveInterna As JMControls.Controls.RJTextBox
-    Private WithEvents label19 As Label
-    Private WithEvents txtFindFile As JMControls.Controls.TextBoxRounded
+    Private WithEvents txtHuella As JMControls.Controls.TextBoxRounded
     Private WithEvents label18 As Label
     Private WithEvents expandCollapsePanel1 As JMControls.ExpandCollapsePanel.ExpandCollapsePanel
     Private WithEvents label16 As Label
     Private WithEvents TokenListComboBox As JMControls.Controls.RJComboBox
     Private WithEvents label17 As Label
     Private WithEvents tabPageEx2 As JMControls.TabControlGRD.TabPageEx
-    Friend WithEvents txtRimpe As JMControls.Controls.RJComboBox
+    Friend WithEvents cmbTypeBusiness As JMControls.Controls.RJComboBox
     Friend WithEvents txtRegimenMicro As TextBox
     Friend WithEvents txtAgentRetenNum As TextBox
     Friend WithEvents txtNumResolucion As TextBox
-    Friend WithEvents RegMicroEmChecBox As CheckBox
-    Friend WithEvents RegRimpeChecBox As CheckBox
     Friend WithEvents ContabiliteChecBox As CheckBox
     Friend WithEvents label14 As Label
     Friend WithEvents label13 As Label
-    Friend WithEvents label15 As Label
-    Friend WithEvents label9 As Label
     Friend WithEvents label12 As Label
     Friend WithEvents ContabiliteLabel As Label
     Friend WithEvents Label11 As Label
@@ -1205,4 +1125,6 @@ Partial Class MyCommerceForm
     Private WithEvents rjButton1 As JMControls.Controls.RJButton
     Private WithEvents backgroundWorker1 As System.ComponentModel.BackgroundWorker
     Private WithEvents circularProgressBar1 As CircularProgressBar.CircularProgressBar
+    Friend WithEvents txtRegimenRIMPE As TextBox
+    Friend WithEvents Label5 As Label
 End Class

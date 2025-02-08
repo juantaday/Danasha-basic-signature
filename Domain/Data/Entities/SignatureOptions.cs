@@ -11,7 +11,7 @@ namespace Domain.Data.Entities
     [Table("SignatureOptions", Schema = "cmc")]
     public class SignatureOption
     {
-    
+
         [Key]
         public int Id { get; set; }
         public int MyCommerceId { get; set; }
@@ -29,15 +29,22 @@ namespace Domain.Data.Entities
         [StringLength(250)]
         public string CLAVE_INTERNA { get; set; }
 
-   
+
         [Required]
         public TipoAmbienteEnum TIPO_AMBIENTE { get; set; }
 
         /// <summary>
         /// Tipo de token para firmar...
         /// </summary>
-        [StringLength(30)]
+        [StringLength(40)]
         public string TOKEN { get; set; }
+
+        /// <summary>
+        /// Heulla dijital de la firma
+        /// Esta velor se ecuentra en en la propiedades de la firma.
+        /// </summary>
+        [StringLength(64)]
+        public string THUMBPRINT { get; set; }
 
         [StringLength(255)]
         public string RUTA_ARCHIVO { get; set; }

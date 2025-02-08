@@ -217,41 +217,50 @@ namespace InterfaceSignatureAndSRI.Views
 
         private async Task GetDataListAsync()
         {
-            try
-            {
-                DataGridSingned.DataSource = null; // Limpia la grilla antes de cargar datos
+            string errorMessage = string.Empty;
 
-                using (var db = new DataContextReflex())
+            await Task.Run (() => {
+                try
                 {
-                    var dt = await db.Voucher
-                        .Select(v => new
-                        {
-                            v.VoucherID,
-                            v.IDRelationData,
-                            v.ClaveAcceso,
-                            v.Estado,
-                            v.FechaEmision,
-                            v.FechaAutorizacion,
-                            v.ErrorMesage
-                        })
-                        .Take(300)
-                        .ToListAsync()
-                        .ConfigureAwait(false); // Evita bloqueos en el UI thread
+                    DataGridSingned.DataSource = null; // Limpia la grilla antes de cargar datos
 
-                    // Actualiza la UI en el hilo principal
-                    this.Invoke(new MethodInvoker(() =>
+                    using (var db = new DataContextReflex())
                     {
-                        var bindingSource = new BindingSource { DataSource = dt };
-                        DataGridSingned.DataSource = bindingSource;
-                        DataGridSingned.Columns[0].Visible = false;
-                        DataGridSingned.Columns[1].HeaderText = "IDFacturacion";
-                    }));
+                        var dt = db.Voucher
+                            .Select(v => new
+                            {
+                                v.VoucherID,
+                                v.IDRelationData,
+                                v.ClaveAcceso,
+                                v.Estado,
+                                v.FechaEmision,
+                                v.FechaAutorizacion,
+                                v.ErrorMesage
+                            })
+                            .Take(300)
+                            .ToList(); // Evita bloqueos en el UI thread
+
+                        // Actualiza la UI en el hilo principal
+                        this.Invoke(new MethodInvoker(() =>
+                        {
+                            var bindingSource = new BindingSource { DataSource = dt };
+                            DataGridSingned.DataSource = bindingSource;
+                            DataGridSingned.Columns[0].Visible = false;
+                            DataGridSingned.Columns[1].HeaderText = "IDFacturacion";
+                        }));
+                    }
                 }
-            }
-            catch (Exception ex)
+                catch (Exception ex)
+                {
+                    errorMessage = ex.Message + "\n" + ex.StackTrace;
+                }
+            });    
+
+            if (!string.IsNullOrEmpty(errorMessage))
             {
-                MessageBox.Show($"Error al obtener los datos:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                Interaction.MsgBox(errorMessage, MsgBoxStyle.Critical, "Error");
+            }   
+
         }
 
 
