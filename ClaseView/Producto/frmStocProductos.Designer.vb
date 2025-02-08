@@ -83,7 +83,7 @@ Partial Class frmStocProductos
         '
         'PictureBox1
         '
-        Me.PictureBox1.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.stock_Product_128
+        Me.PictureBox1.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.stock_Product_128
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PictureBox1.Location = New System.Drawing.Point(3, 3)
         Me.PictureBox1.Name = "PictureBox1"
@@ -94,7 +94,7 @@ Partial Class frmStocProductos
         'FindClienteButton
         '
         Me.FindClienteButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FindClienteButton.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.Product_Icon_64
+        Me.FindClienteButton.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.Product_Icon_64
         Me.FindClienteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.FindClienteButton.Location = New System.Drawing.Point(1073, 26)
         Me.FindClienteButton.Name = "FindClienteButton"
@@ -105,7 +105,7 @@ Partial Class frmStocProductos
         '
         'FindButton
         '
-        Me.FindButton.Image =  Global.DanashaBasic.My.Resources.Resources.zoom_icon_24
+        Me.FindButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.zoom_icon_24
         Me.FindButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.FindButton.Location = New System.Drawing.Point(0, 0)
         Me.FindButton.Margin = New System.Windows.Forms.Padding(0)

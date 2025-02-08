@@ -154,7 +154,7 @@ Partial Class FrmSaldo_caja
         'AbrirCajaToolStripMenuItem
         '
         Me.AbrirCajaToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.AbrirCajaToolStripMenuItem.Image =  Global.DanashaBasic.My.Resources.Resources.Open_
+        Me.AbrirCajaToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Open_
         Me.AbrirCajaToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.AbrirCajaToolStripMenuItem.Name = "AbrirCajaToolStripMenuItem"
         Me.AbrirCajaToolStripMenuItem.Size = New System.Drawing.Size(100, 6)
@@ -165,7 +165,7 @@ Partial Class FrmSaldo_caja
         '
         Me.ArqueoDeCajaToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.ArqueoDeCajaToolStripMenuItem.Enabled = False
-        Me.ArqueoDeCajaToolStripMenuItem.Image =  Global.DanashaBasic.My.Resources.Resources.Caja_regidter
+        Me.ArqueoDeCajaToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Caja_regidter
         Me.ArqueoDeCajaToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ArqueoDeCajaToolStripMenuItem.Name = "ArqueoDeCajaToolStripMenuItem"
         Me.ArqueoDeCajaToolStripMenuItem.Size = New System.Drawing.Size(98, 6)
@@ -176,7 +176,7 @@ Partial Class FrmSaldo_caja
         '
         Me.HibernarToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.HibernarToolStripMenuItem.Enabled = False
-        Me.HibernarToolStripMenuItem.Image =  Global.DanashaBasic.My.Resources.Resources.Hiberna_x40
+        Me.HibernarToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Hiberna_x40
         Me.HibernarToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.HibernarToolStripMenuItem.Name = "HibernarToolStripMenuItem"
         Me.HibernarToolStripMenuItem.Size = New System.Drawing.Size(114, 6)
@@ -186,7 +186,7 @@ Partial Class FrmSaldo_caja
         'EliminarToolStripMenuItem
         '
         Me.EliminarToolStripMenuItem.Enabled = False
-        Me.EliminarToolStripMenuItem.Image =  Global.DanashaBasic.My.Resources.Resources.Delete_48
+        Me.EliminarToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Delete_48
         Me.EliminarToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.EliminarToolStripMenuItem.Name = "EliminarToolStripMenuItem"
         Me.EliminarToolStripMenuItem.Size = New System.Drawing.Size(110, 6)

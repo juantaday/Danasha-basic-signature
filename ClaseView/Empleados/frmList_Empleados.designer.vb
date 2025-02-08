@@ -180,7 +180,7 @@ Partial Class frmList_Empleados
         'EditDetailButton
         '
         Me.EditDetailButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.EditDetailButton.Image =  Global.DanashaBasic.My.Resources.Resources.Detail_Employee_64
+        Me.EditDetailButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Detail_Employee_64
         Me.EditDetailButton.Location = New System.Drawing.Point(74, 0)
         Me.EditDetailButton.Margin = New System.Windows.Forms.Padding(5)
         Me.EditDetailButton.Name = "EditDetailButton"
@@ -198,7 +198,7 @@ Partial Class frmList_Empleados
         Me.EdidEmployeeCliente.Enabled = False
         Me.EdidEmployeeCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.EdidEmployeeCliente.ForeColor = System.Drawing.Color.Blue
-        Me.EdidEmployeeCliente.Image =  Global.DanashaBasic.My.Resources.Resources.edid_pencil_64
+        Me.EdidEmployeeCliente.Image =  Global.DanashaBasicSignature.My.Resources.Resources.edid_pencil_64
         Me.EdidEmployeeCliente.Location = New System.Drawing.Point(72, 0)
         Me.EdidEmployeeCliente.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.EdidEmployeeCliente.Name = "EdidEmployeeCliente"
@@ -215,7 +215,7 @@ Partial Class frmList_Empleados
         Me.AddNewEmplToList.Dock = System.Windows.Forms.DockStyle.Left
         Me.AddNewEmplToList.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AddNewEmplToList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.AddNewEmplToList.Image =  Global.DanashaBasic.My.Resources.Resources.New_green_64
+        Me.AddNewEmplToList.Image =  Global.DanashaBasicSignature.My.Resources.Resources.New_green_64
         Me.AddNewEmplToList.Location = New System.Drawing.Point(0, 0)
         Me.AddNewEmplToList.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.AddNewEmplToList.Name = "AddNewEmplToList"
@@ -229,7 +229,7 @@ Partial Class frmList_Empleados
         '
         Me.btnBuscar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnBuscar.BackColor = System.Drawing.Color.White
-        Me.btnBuscar.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.zoom_Grin_24
+        Me.btnBuscar.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.zoom_Grin_24
         Me.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnBuscar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnBuscar.ForeColor = System.Drawing.Color.White
@@ -246,7 +246,7 @@ Partial Class frmList_Empleados
         Me.DeleteReportToButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(210, Byte), Integer))
         Me.DeleteReportToButton.Dock = System.Windows.Forms.DockStyle.Top
         Me.DeleteReportToButton.ForeColor = System.Drawing.Color.White
-        Me.DeleteReportToButton.Image =  Global.DanashaBasic.My.Resources.Resources.Delete_cliente_48
+        Me.DeleteReportToButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Delete_cliente_48
         Me.DeleteReportToButton.Location = New System.Drawing.Point(0, 33)
         Me.DeleteReportToButton.Name = "DeleteReportToButton"
         Me.DeleteReportToButton.Size = New System.Drawing.Size(50, 33)
@@ -260,7 +260,7 @@ Partial Class frmList_Empleados
         Me.ReportToButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(210, Byte), Integer))
         Me.ReportToButton.Dock = System.Windows.Forms.DockStyle.Top
         Me.ReportToButton.ForeColor = System.Drawing.Color.White
-        Me.ReportToButton.Image =  Global.DanashaBasic.My.Resources.Resources.feje_24pgn
+        Me.ReportToButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.feje_24pgn
         Me.ReportToButton.Location = New System.Drawing.Point(0, 0)
         Me.ReportToButton.Name = "ReportToButton"
         Me.ReportToButton.Size = New System.Drawing.Size(50, 33)
@@ -278,7 +278,7 @@ Partial Class frmList_Empleados
         Me.deleteEmployeeButton.Enabled = False
         Me.deleteEmployeeButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.deleteEmployeeButton.ForeColor = System.Drawing.Color.Blue
-        Me.deleteEmployeeButton.Image =  Global.DanashaBasic.My.Resources.Resources.delete_red_64
+        Me.deleteEmployeeButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.delete_red_64
         Me.deleteEmployeeButton.Location = New System.Drawing.Point(136, 0)
         Me.deleteEmployeeButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.deleteEmployeeButton.Name = "deleteEmployeeButton"
@@ -295,7 +295,7 @@ Partial Class frmList_Empleados
         Me.EditCardButton.Dock = System.Windows.Forms.DockStyle.Left
         Me.EditCardButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.EditCardButton.ForeColor = System.Drawing.Color.Red
-        Me.EditCardButton.Image =  Global.DanashaBasic.My.Resources.Resources.Edit_cart_Employee_64
+        Me.EditCardButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Edit_cart_Employee_64
         Me.EditCardButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.EditCardButton.Location = New System.Drawing.Point(0, 0)
         Me.EditCardButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
@@ -602,14 +602,14 @@ Partial Class frmList_Empleados
         '
         'BorrarDeLaListaDeEmpleadosToolStripMenuItem
         '
-        Me.BorrarDeLaListaDeEmpleadosToolStripMenuItem.Image =  Global.DanashaBasic.My.Resources.Resources.delete_card_32
+        Me.BorrarDeLaListaDeEmpleadosToolStripMenuItem.Image =  Global.DanashaBasicSignature.My.Resources.Resources.delete_card_32
         Me.BorrarDeLaListaDeEmpleadosToolStripMenuItem.Name = "BorrarDeLaListaDeEmpleadosToolStripMenuItem"
         Me.BorrarDeLaListaDeEmpleadosToolStripMenuItem.Size = New System.Drawing.Size(317, 22)
         Me.BorrarDeLaListaDeEmpleadosToolStripMenuItem.Text = "Borrar de la lista de empleados."
         '
         'EliminarTotaLaInformacionDeEsteEmpleadoToolStripMenuItem
         '
-        Me.EliminarTotaLaInformacionDeEsteEmpleadoToolStripMenuItem.Image =  Global.DanashaBasic.My.Resources.Resources.Delete_32
+        Me.EliminarTotaLaInformacionDeEsteEmpleadoToolStripMenuItem.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Delete_32
         Me.EliminarTotaLaInformacionDeEsteEmpleadoToolStripMenuItem.Name = "EliminarTotaLaInformacionDeEsteEmpleadoToolStripMenuItem"
         Me.EliminarTotaLaInformacionDeEsteEmpleadoToolStripMenuItem.Size = New System.Drawing.Size(317, 22)
         Me.EliminarTotaLaInformacionDeEsteEmpleadoToolStripMenuItem.Text = "Eliminar tota la informacion de este empleado"

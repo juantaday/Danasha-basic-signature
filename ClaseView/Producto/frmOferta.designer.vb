@@ -182,7 +182,7 @@ Partial Class frmOferta
         'EditButton
         '
         Me.EditButton.Enabled = False
-        Me.EditButton.Image =  Global.DanashaBasic.My.Resources.Resources.edid_pencil_32
+        Me.EditButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.edid_pencil_32
         Me.EditButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.EditButton.Location = New System.Drawing.Point(129, 58)
         Me.EditButton.Name = "EditButton"
@@ -196,7 +196,7 @@ Partial Class frmOferta
         'DeleteButton
         '
         Me.DeleteButton.Enabled = False
-        Me.DeleteButton.Image =  Global.DanashaBasic.My.Resources.Resources.Delete_32
+        Me.DeleteButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Delete_32
         Me.DeleteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.DeleteButton.Location = New System.Drawing.Point(227, 58)
         Me.DeleteButton.Name = "DeleteButton"
@@ -261,7 +261,7 @@ Partial Class frmOferta
         '
         'btnNuevo
         '
-        Me.btnNuevo.Image =  Global.DanashaBasic.My.Resources.Resources.New_green_32
+        Me.btnNuevo.Image =  Global.DanashaBasicSignature.My.Resources.Resources.New_green_32
         Me.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnNuevo.Location = New System.Drawing.Point(12, 58)
         Me.btnNuevo.Name = "btnNuevo"

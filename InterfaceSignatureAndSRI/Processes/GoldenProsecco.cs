@@ -3,24 +3,15 @@ using Domain.Models;
 using ec.gob.sri.comprobantes.Enum;
 using ec.gob.sri.comprobantes.Net;
 using ec.gob.sri.comprobantes.Utils;
-using ec.gob.sri.Xml.modelo_v1_1_0.Factura;
-using FirmaXadesNet.Signature;
 using InterfaceSignatureAndSRI.Data;
-using InterfaceSignatureAndSRI.Models;
 using InterfaceSignatureAndSRI.SendMail;
 using InterfaceSignatureAndSRI.SigningXML;
 using InterfaceSignatureAndSRI.Utils;
-using iTextSharp.text.pdf.codec.wmf;
-using java.net;
-using java.nio.file;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 
 namespace InterfaceSignatureAndSRI.Processes
 {
@@ -36,7 +27,7 @@ namespace InterfaceSignatureAndSRI.Processes
             bool SaveInDataBase = false, string[] files = null)
         {
 
-            
+
             _estado = string.Empty;
             _xml = string.Empty;
             _isFinally = false;
@@ -61,7 +52,7 @@ namespace InterfaceSignatureAndSRI.Processes
                         _xml = pathGenera;
                         _estado = "GENERADO";
                     }
-                    
+
                     //si piden que guarde en base de datos
 
                     //Firmado del documento si pudo ya guarda en carpeta firmados..
@@ -90,7 +81,7 @@ namespace InterfaceSignatureAndSRI.Processes
 
                     if (result.Estado.Contains("RECIBIDA")) // Si es recibida
                     {
-                       progress.Report("Xml recibido por SRI");
+                        progress.Report("Xml recibido por SRI");
 
                         if (SaveInDataBase && voucherID > 0)
                         {
@@ -101,7 +92,7 @@ namespace InterfaceSignatureAndSRI.Processes
                         progress.Report("Consultando aprobación..");
                         Thread.Sleep(1500);
                         // consulto si fuen aprobado
-                        var check =  CheckedState(ambiente, claveAcceso, progress, SaveFile, files);
+                        var check = CheckedState(ambiente, claveAcceso, progress, SaveFile, files);
 
                         if (check.Estado.Equals("AUTORIZADO") && emailsSend != null && emailsSend.Count > 0)
                         {
@@ -110,7 +101,7 @@ namespace InterfaceSignatureAndSRI.Processes
 
                         if (SaveInDataBase && voucherID > 0)
                         {
-          
+
                             CRUD_database.UpdateAutorize(voucherID, check.XML, check.Estado, check.fechaAutorizacion, check.Message);
                         }
 
@@ -121,7 +112,7 @@ namespace InterfaceSignatureAndSRI.Processes
                         progress.Report(result.Message);
                         if (SaveInDataBase && voucherID > 0)
                         {
-                             CRUD_database.UpdateRejected(voucherID, result.Message);
+                            CRUD_database.UpdateRejected(voucherID, result.Message);
                         }
                     }
 
@@ -140,7 +131,8 @@ namespace InterfaceSignatureAndSRI.Processes
             });
         }
 
-        public  static ResultSend SendFromSRI(string ambiente , string xmlFirmado , string claveAcceso, IProgress<string> progress, bool  SaveFile, string[] files=null) {
+        public static ResultSend SendFromSRI(string ambiente, string xmlFirmado, string claveAcceso, IProgress<string> progress, bool SaveFile, string[] files = null)
+        {
             if (SaveFile && (files == null || files.Length == 0))
                 throw new Exception("Pide  que guarde el archivo, pero no envia la ruta..");
 
@@ -152,13 +144,13 @@ namespace InterfaceSignatureAndSRI.Processes
                 progress.Report("Enviado al sri para su aprobación");
                 send.Estado = "ENVIANDO";
                 send.Message = sri.EnviarComprobante(xmlFirmado, ambiente);
-                send.Estado = sri.GetEstado ();
+                send.Estado = sri.GetEstado();
                 return send;
             }
 
         }
 
-        public static ResultSend CheckedState(string ambiente,  string claveAcceso, IProgress<string> progress, bool SaveFile, string[] files = null)
+        public static ResultSend CheckedState(string ambiente, string claveAcceso, IProgress<string> progress, bool SaveFile, string[] files = null)
         {
             if (SaveFile && (files == null || files.Length == 0))
                 throw new Exception("Pide  que guarde el archivo, pero no envia la ruta..");
@@ -173,9 +165,9 @@ namespace InterfaceSignatureAndSRI.Processes
                 var autorization = sri.GetAutorizacions();
                 if (autorization != null && autorization.Count > 0)
                 {
-                    if (!send.Estado.Equals("AUTORIZADO")) 
-                        progress.Report("Documento " + send.Estado  + "\n\n" + send.Message);
-                    else 
+                    if (!send.Estado.Equals("AUTORIZADO"))
+                        progress.Report("Documento " + send.Estado + "\n\n" + send.Message);
+                    else
                         progress.Report("Documento " + send.Estado);
 
                     send.fechaAutorizacion = sri.GetFechaAutoriza();
@@ -183,16 +175,16 @@ namespace InterfaceSignatureAndSRI.Processes
                     _xml = autorization[0].CDataComprobante;
                     _estado = sri.GetEstado();
                     send.XML = _xml;
-                   
+
                 }
                 else
-                   progress.Report(send.Message);
-                  
+                    progress.Report(send.Message);
+
                 return send;
             }
         }
 
-        public static string  Estado { get => _estado;}
+        public static string Estado { get => _estado; }
 
         internal static string GetXmlProcess()
         {
@@ -201,7 +193,7 @@ namespace InterfaceSignatureAndSRI.Processes
 
 
 
-        public static bool IsFinally { get => _isFinally;}
+        public static bool IsFinally { get => _isFinally; }
 
     }
 

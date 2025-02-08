@@ -4558,6 +4558,8 @@ namespace CADsisVenta
 		
 		private string _RUTA_ARCHIVO;
 		
+		private string _THUMBPRINT;
+		
 		private EntityRef<myCommerce> _myCommerce;
 		
     #region Definiciones de métodos de extensibilidad
@@ -4580,6 +4582,8 @@ namespace CADsisVenta
     partial void OnTOKENChanged();
     partial void OnRUTA_ARCHIVOChanging(string value);
     partial void OnRUTA_ARCHIVOChanged();
+    partial void OnTHUMBPRINTChanging(string value);
+    partial void OnTHUMBPRINTChanged();
     #endregion
 		
 		public SignatureOptions()
@@ -4748,6 +4752,26 @@ namespace CADsisVenta
 					this._RUTA_ARCHIVO = value;
 					this.SendPropertyChanged("RUTA_ARCHIVO");
 					this.OnRUTA_ARCHIVOChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_THUMBPRINT", DbType="NVarChar(64)")]
+		public string THUMBPRINT
+		{
+			get
+			{
+				return this._THUMBPRINT;
+			}
+			set
+			{
+				if ((this._THUMBPRINT != value))
+				{
+					this.OnTHUMBPRINTChanging(value);
+					this.SendPropertyChanging();
+					this._THUMBPRINT = value;
+					this.SendPropertyChanged("THUMBPRINT");
+					this.OnTHUMBPRINTChanged();
 				}
 			}
 		}

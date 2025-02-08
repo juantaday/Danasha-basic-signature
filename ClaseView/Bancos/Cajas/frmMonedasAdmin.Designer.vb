@@ -68,13 +68,13 @@ Partial Class frmMonedasAdmin
         'OptionMenu
         '
         Me.OptionMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarToolStripMenuItem, Me.EditMenuItem})
-        Me.OptionMenu.Image =  Global.DanashaBasic.My.Resources.Resources.men_punto_48x48
+        Me.OptionMenu.Image = Global.DanashaBasicSignature.My.Resources.men_punto_48x48
         Me.OptionMenu.Name = "OptionMenu"
         Me.OptionMenu.Size = New System.Drawing.Size(28, 50)
         '
         'EliminarToolStripMenuItem
         '
-        Me.EliminarToolStripMenuItem.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Delete_12x12_
+        Me.EliminarToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Action_Delete_12x12
         Me.EliminarToolStripMenuItem.Name = "EliminarToolStripMenuItem"
         Me.EliminarToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.EliminarToolStripMenuItem.Size = New System.Drawing.Size(117, 22)
@@ -82,7 +82,7 @@ Partial Class frmMonedasAdmin
         '
         'EditMenuItem
         '
-        Me.EditMenuItem.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Inline_Edit
+        Me.EditMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Action_Inline_Edit
         Me.EditMenuItem.Name = "EditMenuItem"
         Me.EditMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.EditMenuItem.Size = New System.Drawing.Size(117, 22)
@@ -112,7 +112,7 @@ Partial Class frmMonedasAdmin
         '
         Me.RealizedMenu.AutoSize = False
         Me.RealizedMenu.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.RealizedMenu.Image =  Global.DanashaBasic.My.Resources.Resources.checkbox_notChecked_16
+        Me.RealizedMenu.Image = Global.DanashaBasicSignature.My.Resources.Resources.checkbox_notChecked_16
         Me.RealizedMenu.Name = "RealizedMenu"
         Me.RealizedMenu.Size = New System.Drawing.Size(40, 50)
         Me.RealizedMenu.Tag = "0"
@@ -123,7 +123,7 @@ Partial Class frmMonedasAdmin
         Me.DeleteMenu.BackColor = System.Drawing.Color.Red
         Me.DeleteMenu.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold)
         Me.DeleteMenu.ForeColor = System.Drawing.Color.White
-        Me.DeleteMenu.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Delete_16x16
+        Me.DeleteMenu.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
         Me.DeleteMenu.Name = "DeleteMenu"
         Me.DeleteMenu.Size = New System.Drawing.Size(86, 50)
         Me.DeleteMenu.Text = "Eliminar"
@@ -133,7 +133,7 @@ Partial Class frmMonedasAdmin
         'EditMenu
         '
         Me.EditMenu.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.EditMenu.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Inline_Edit_32x32
+        Me.EditMenu.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit_32x32
         Me.EditMenu.Name = "EditMenu"
         Me.EditMenu.Size = New System.Drawing.Size(65, 50)
         Me.EditMenu.Text = "Editar"
@@ -143,7 +143,7 @@ Partial Class frmMonedasAdmin
         'ReturToolStripMenuItem
         '
         Me.ReturToolStripMenuItem.AutoSize = False
-        Me.ReturToolStripMenuItem.Image =  Global.DanashaBasic.My.Resources.Resources.arrow_left_48x48
+        Me.ReturToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.arrow_left_48x48
         Me.ReturToolStripMenuItem.Name = "ReturToolStripMenuItem"
         Me.ReturToolStripMenuItem.Size = New System.Drawing.Size(60, 50)
         '
@@ -232,7 +232,7 @@ Partial Class frmMonedasAdmin
         '
         'ConfimButton
         '
-        Me.ConfimButton.Image =  Global.DanashaBasic.My.Resources.Resources.ok_16
+        Me.ConfimButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.ok_16
         Me.ConfimButton.Location = New System.Drawing.Point(201, 20)
         Me.ConfimButton.Name = "ConfimButton"
         Me.ConfimButton.Size = New System.Drawing.Size(30, 29)

@@ -45,7 +45,7 @@ Public Class rptRentabilidadXMes
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "DanashaBasic.rptRentabilidadXMes.rpt"
+            Return "DanashaBasicSignature.rptRentabilidadXMes.rpt"
         End Get
         Set
             'Do nothing

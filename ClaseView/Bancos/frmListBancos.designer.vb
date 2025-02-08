@@ -98,7 +98,7 @@ Partial Class frmListBancos
         'deleteBancosButton
         '
         Me.deleteBancosButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.deleteBancosButton.Image =  Global.DanashaBasic.My.Resources.Resources.Delete_32
+        Me.deleteBancosButton.Image = Global.DanashaBasicSignature.My.Resources.Delete_32
         Me.deleteBancosButton.Location = New System.Drawing.Point(261, 0)
         Me.deleteBancosButton.Name = "deleteBancosButton"
         Me.deleteBancosButton.Size = New System.Drawing.Size(44, 40)
@@ -108,7 +108,7 @@ Partial Class frmListBancos
         'EditBancosButton
         '
         Me.EditBancosButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.EditBancosButton.Image =  Global.DanashaBasic.My.Resources.Resources.edid_pencil_32
+        Me.EditBancosButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.edid_pencil_32
         Me.EditBancosButton.Location = New System.Drawing.Point(217, 0)
         Me.EditBancosButton.Name = "EditBancosButton"
         Me.EditBancosButton.Size = New System.Drawing.Size(44, 40)
@@ -118,7 +118,7 @@ Partial Class frmListBancos
         'addBancosButton
         '
         Me.addBancosButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.addBancosButton.Image =  Global.DanashaBasic.My.Resources.Resources.New_green_32
+        Me.addBancosButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.New_green_32
         Me.addBancosButton.Location = New System.Drawing.Point(173, 0)
         Me.addBancosButton.Name = "addBancosButton"
         Me.addBancosButton.Size = New System.Drawing.Size(44, 40)

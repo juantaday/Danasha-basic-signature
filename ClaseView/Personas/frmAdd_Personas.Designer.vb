@@ -320,7 +320,7 @@ Partial Class frmAdd_Personas
         '
         Me.PersonPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PersonPictureBox.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PersonPictureBox.Image = Global.DanashaBasic.My.Resources.Resources.user_nothing_72
+        Me.PersonPictureBox.Image = Global.DanashaBasicSignature.My.Resources.Resources.user_nothing_72
         Me.PersonPictureBox.Location = New System.Drawing.Point(0, 21)
         Me.PersonPictureBox.Name = "PersonPictureBox"
         Me.PersonPictureBox.Size = New System.Drawing.Size(132, 122)
@@ -381,7 +381,7 @@ Partial Class frmAdd_Personas
         '
         'gotoBancoButton
         '
-        Me.gotoBancoButton.Image = Global.DanashaBasic.My.Resources.Resources.Arrow_Forward_48
+        Me.gotoBancoButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Arrow_Forward_48
         Me.gotoBancoButton.Location = New System.Drawing.Point(345, 422)
         Me.gotoBancoButton.Name = "gotoBancoButton"
         Me.gotoBancoButton.Size = New System.Drawing.Size(69, 39)
@@ -391,7 +391,7 @@ Partial Class frmAdd_Personas
         '
         'returnLocalizaButton
         '
-        Me.returnLocalizaButton.Image = Global.DanashaBasic.My.Resources.Resources.Arrow_Back_48
+        Me.returnLocalizaButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Arrow_Back_48
         Me.returnLocalizaButton.Location = New System.Drawing.Point(8, 422)
         Me.returnLocalizaButton.Name = "returnLocalizaButton"
         Me.returnLocalizaButton.Size = New System.Drawing.Size(69, 39)
@@ -462,7 +462,7 @@ Partial Class frmAdd_Personas
         '
         'LocatedButton
         '
-        Me.LocatedButton.Image = Global.DanashaBasic.My.Resources.Resources.Located_48x48
+        Me.LocatedButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Located_48x48
         Me.LocatedButton.Location = New System.Drawing.Point(325, 22)
         Me.LocatedButton.Name = "LocatedButton"
         Me.LocatedButton.Size = New System.Drawing.Size(58, 62)
@@ -637,7 +637,7 @@ Partial Class frmAdd_Personas
         Me.accionButton.ContextMenuStrip = Me.actionContextMenuStrip
         Me.accionButton.Dock = System.Windows.Forms.DockStyle.Left
         Me.accionButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.accionButton.Image = Global.DanashaBasic.My.Resources.Resources.down_32
+        Me.accionButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.down_32
         Me.accionButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.accionButton.Location = New System.Drawing.Point(0, 0)
         Me.accionButton.Name = "accionButton"
@@ -655,28 +655,28 @@ Partial Class frmAdd_Personas
         '
         'AgregarCuentaToolStripMenuItem
         '
-        Me.AgregarCuentaToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.New_green_32
+        Me.AgregarCuentaToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.New_green_32
         Me.AgregarCuentaToolStripMenuItem.Name = "AgregarCuentaToolStripMenuItem"
         Me.AgregarCuentaToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.AgregarCuentaToolStripMenuItem.Text = "Agregar cuenta"
         '
         'EditarCuentaToolStripMenuItem
         '
-        Me.EditarCuentaToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.edid_pencil_32
+        Me.EditarCuentaToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.edid_pencil_32
         Me.EditarCuentaToolStripMenuItem.Name = "EditarCuentaToolStripMenuItem"
         Me.EditarCuentaToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.EditarCuentaToolStripMenuItem.Text = "Editar cuenta"
         '
         'BorrarCuentaToolStripMenuItem
         '
-        Me.BorrarCuentaToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Delete_32
+        Me.BorrarCuentaToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Delete_32
         Me.BorrarCuentaToolStripMenuItem.Name = "BorrarCuentaToolStripMenuItem"
         Me.BorrarCuentaToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.BorrarCuentaToolStripMenuItem.Text = "Borrar cuenta"
         '
         'returnBancosButton
         '
-        Me.returnBancosButton.Image = Global.DanashaBasic.My.Resources.Resources.Arrow_Back_48
+        Me.returnBancosButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Arrow_Back_48
         Me.returnBancosButton.Location = New System.Drawing.Point(18, 422)
         Me.returnBancosButton.Name = "returnBancosButton"
         Me.returnBancosButton.Size = New System.Drawing.Size(69, 39)

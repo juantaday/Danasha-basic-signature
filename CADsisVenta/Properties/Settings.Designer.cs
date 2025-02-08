@@ -25,7 +25,7 @@ namespace CADsisVenta.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DanashaBasic")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DanashaBasicSignature")]
         public string FolderPath {
             get {
                 return ((string)(this["FolderPath"]));

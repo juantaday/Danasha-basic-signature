@@ -219,7 +219,7 @@ Partial Class frmBodegas
         '
         'RefreshCodTerminalButton
         '
-        Me.RefreshCodTerminalButton.Image = Global.DanashaBasic.My.Resources.Resources.refresh_16
+        Me.RefreshCodTerminalButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.refresh_16
         Me.RefreshCodTerminalButton.Location = New System.Drawing.Point(254, 103)
         Me.RefreshCodTerminalButton.Name = "RefreshCodTerminalButton"
         Me.RefreshCodTerminalButton.Size = New System.Drawing.Size(27, 27)

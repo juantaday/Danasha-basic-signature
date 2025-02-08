@@ -130,7 +130,7 @@ Partial Class frmList_DeudaClientes
         Me.todosClientButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.todosClientButton.Dock = System.Windows.Forms.DockStyle.Right
         Me.todosClientButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.todosClientButton.Image =  Global.DanashaBasic.My.Resources.Resources.fin_deudor_32
+        Me.todosClientButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.fin_deudor_32
         Me.todosClientButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.todosClientButton.Location = New System.Drawing.Point(958, 3)
         Me.todosClientButton.Name = "todosClientButton"
@@ -161,7 +161,7 @@ Partial Class frmList_DeudaClientes
         '
         'BuscNomApelliButton
         '
-        Me.BuscNomApelliButton.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.zoom_icon_24
+        Me.BuscNomApelliButton.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.zoom_icon_24
         Me.BuscNomApelliButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.BuscNomApelliButton.Dock = System.Windows.Forms.DockStyle.Right
         Me.BuscNomApelliButton.Enabled = False

@@ -208,6 +208,7 @@
       <Column Name="TIPO_AMBIENTE" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TOKEN" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
       <Column Name="RUTA_ARCHIVO" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="THUMBPRINT" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
       <Association Name="myCommerce_SignatureOptions" Member="myCommerce" ThisKey="MyCommerceId" OtherKey="CommerceId" Type="myCommerce" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>

@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Sistema para administracion de negocios con facturación electronica")>
 <Assembly: AssemblyCompany("JMT System Software")>
 <Assembly: AssemblyProduct("Danasha Basic Signature")>
-<Assembly: AssemblyCopyright("JMT System Software ©  2022")>
+<Assembly: AssemblyCopyright("JMT System Software ©  2025")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(True)>
@@ -31,6 +31,6 @@ Imports System.Runtime.InteropServices
 ' mediante el asterisco ('*'), como se muestra a continuación:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("3.0.1.1")>
-<Assembly: AssemblyFileVersion("3.0.1.1")>
+<Assembly: AssemblyVersion("4.0.0.0")>
+<Assembly: AssemblyFileVersion("4.0.0.0")>
 <Assembly: NeutralResourcesLanguage("es-ES")>

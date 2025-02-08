@@ -134,7 +134,7 @@ Partial Class frmCobro
         '
         'MarcarTodoToolStripMenuItem
         '
-        Me.MarcarTodoToolStripMenuItem.Image =  Global.DanashaBasic.My.Resources.Resources.check_16
+        Me.MarcarTodoToolStripMenuItem.Image =  Global.DanashaBasicSignature.My.Resources.Resources.check_16
         Me.MarcarTodoToolStripMenuItem.Name = "MarcarTodoToolStripMenuItem"
         Me.MarcarTodoToolStripMenuItem.Size = New System.Drawing.Size(99, 37)
         Me.MarcarTodoToolStripMenuItem.Text = "Cobrar todo"
@@ -150,7 +150,7 @@ Partial Class frmCobro
         '
         'DesmarcarTotoToolStripMenuItem
         '
-        Me.DesmarcarTotoToolStripMenuItem.Image =  Global.DanashaBasic.My.Resources.Resources.check_not16
+        Me.DesmarcarTotoToolStripMenuItem.Image =  Global.DanashaBasicSignature.My.Resources.Resources.check_not16
         Me.DesmarcarTotoToolStripMenuItem.Name = "DesmarcarTotoToolStripMenuItem"
         Me.DesmarcarTotoToolStripMenuItem.Size = New System.Drawing.Size(116, 37)
         Me.DesmarcarTotoToolStripMenuItem.Text = "Desmarcar toto"
@@ -183,14 +183,14 @@ Partial Class frmCobro
         '
         'CpiarToolStripMenuItem
         '
-        Me.CpiarToolStripMenuItem.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Copy
+        Me.CpiarToolStripMenuItem.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Copy
         Me.CpiarToolStripMenuItem.Name = "CpiarToolStripMenuItem"
         Me.CpiarToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
         Me.CpiarToolStripMenuItem.Text = "Copiar"
         '
         'ImprimirToolStripMenuItem
         '
-        Me.ImprimirToolStripMenuItem.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Printing_Print_16x16
+        Me.ImprimirToolStripMenuItem.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Printing_Print_16x16
         Me.ImprimirToolStripMenuItem.Name = "ImprimirToolStripMenuItem"
         Me.ImprimirToolStripMenuItem.Size = New System.Drawing.Size(81, 37)
         Me.ImprimirToolStripMenuItem.Text = "Imprimir"
@@ -303,7 +303,7 @@ Partial Class frmCobro
         'btnCancelPago
         '
         Me.btnCancelPago.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnCancelPago.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Cancel_32x32
+        Me.btnCancelPago.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Cancel_32x32
         Me.btnCancelPago.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnCancelPago.Location = New System.Drawing.Point(196, 3)
         Me.btnCancelPago.Name = "btnCancelPago"
@@ -316,7 +316,7 @@ Partial Class frmCobro
         'btnPago
         '
         Me.btnPago.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnPago.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Save_32x32
+        Me.btnPago.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Save_32x32
         Me.btnPago.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnPago.Location = New System.Drawing.Point(124, 3)
         Me.btnPago.Name = "btnPago"
@@ -356,7 +356,7 @@ Partial Class frmCobro
         Me.btnViewDetailPago.BackColor = System.Drawing.Color.Orange
         Me.btnViewDetailPago.Dock = System.Windows.Forms.DockStyle.Left
         Me.btnViewDetailPago.ForeColor = System.Drawing.Color.Black
-        Me.btnViewDetailPago.Image =  Global.DanashaBasic.My.Resources.Resources.ActionsInDetailView
+        Me.btnViewDetailPago.Image =  Global.DanashaBasicSignature.My.Resources.Resources.ActionsInDetailView
         Me.btnViewDetailPago.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnViewDetailPago.Location = New System.Drawing.Point(128, 25)
         Me.btnViewDetailPago.Name = "btnViewDetailPago"
@@ -370,7 +370,7 @@ Partial Class frmCobro
         Me.PrintMatricialPago.BackColor = System.Drawing.Color.Orange
         Me.PrintMatricialPago.Dock = System.Windows.Forms.DockStyle.Left
         Me.PrintMatricialPago.ForeColor = System.Drawing.Color.Black
-        Me.PrintMatricialPago.Image =  Global.DanashaBasic.My.Resources.Resources.printMatrix_24
+        Me.PrintMatricialPago.Image =  Global.DanashaBasicSignature.My.Resources.Resources.printMatrix_24
         Me.PrintMatricialPago.Location = New System.Drawing.Point(67, 25)
         Me.PrintMatricialPago.Name = "PrintMatricialPago"
         Me.PrintMatricialPago.Size = New System.Drawing.Size(61, 38)
@@ -382,7 +382,7 @@ Partial Class frmCobro
         Me.btnPrintPago.BackColor = System.Drawing.Color.Orange
         Me.btnPrintPago.Dock = System.Windows.Forms.DockStyle.Left
         Me.btnPrintPago.ForeColor = System.Drawing.Color.Black
-        Me.btnPrintPago.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Printing_Print_16x16
+        Me.btnPrintPago.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Printing_Print_16x16
         Me.btnPrintPago.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnPrintPago.Location = New System.Drawing.Point(0, 25)
         Me.btnPrintPago.Name = "btnPrintPago"

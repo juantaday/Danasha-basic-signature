@@ -87,7 +87,7 @@ Partial Class FrmFacturCompProducto
         '
         'PictureBox1
         '
-        Me.PictureBox1.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.Articulos_72_png
+        Me.PictureBox1.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.Articulos_72_png
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBox1.Location = New System.Drawing.Point(3, 2)
         Me.PictureBox1.Name = "PictureBox1"
@@ -98,7 +98,7 @@ Partial Class FrmFacturCompProducto
         'FindProviderButton
         '
         Me.FindProviderButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FindProviderButton.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.Product_Icon_64
+        Me.FindProviderButton.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.Product_Icon_64
         Me.FindProviderButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.FindProviderButton.Location = New System.Drawing.Point(1059, 33)
         Me.FindProviderButton.Name = "FindProviderButton"
@@ -157,7 +157,7 @@ Partial Class FrmFacturCompProducto
         '
         'FindButton
         '
-        Me.FindButton.Image =  Global.DanashaBasic.My.Resources.Resources.zoom_icon_24
+        Me.FindButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.zoom_icon_24
         Me.FindButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.FindButton.Location = New System.Drawing.Point(4, 4)
         Me.FindButton.Margin = New System.Windows.Forms.Padding(4)

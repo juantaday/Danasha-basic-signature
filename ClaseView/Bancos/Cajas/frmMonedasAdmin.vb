@@ -139,7 +139,7 @@ Public Class frmMonedasAdmin
     Private Sub LoadView(idMoney As Integer)
         Try
             Dim M_MoneyDetail As MoneyDetail
-            M_MoneyDetail = New DanashaBasic.MoneyDetail(RealizedMenu, DeleteMenu, EditMenu, TotalLabel, idMoney)
+            M_MoneyDetail = New DanashaBasicSignature.MoneyDetail(RealizedMenu, DeleteMenu, EditMenu, TotalLabel, idMoney)
             Me.ElementHost1.Child = M_MoneyDetail
             EditMenu.Visible = False
         Catch ex As Exception
@@ -201,11 +201,11 @@ Public Class frmMonedasAdmin
     Private Sub RealizedMenu_Click(sender As Object, e As EventArgs) Handles RealizedMenu.Click
         Dim state As Boolean
         If RealizedMenu.Tag = 0 Then
-            RealizedMenu.Image =  Global.DanashaBasic.My.Resources.Resources.checkbox_notChecked_16
+            RealizedMenu.Image =  Global.DanashaBasicSignature.My.Resources.Resources.checkbox_notChecked_16
             RealizedMenu.Tag = 1
             state = False
         Else
-            RealizedMenu.Image =  Global.DanashaBasic.My.Resources.Resources.checkbox_checked_16
+            RealizedMenu.Image =  Global.DanashaBasicSignature.My.Resources.Resources.checkbox_checked_16
             RealizedMenu.Tag = 0
             state = True
         End If

@@ -108,7 +108,7 @@ Partial Class MDI_AddProdcutos
         'menuDetalle
         '
         Me.menuDetalle.AutoSize = False
-        Me.menuDetalle.Image =  Global.DanashaBasic.My.Resources.Resources.Detail_32
+        Me.menuDetalle.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Detail_32
         Me.menuDetalle.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.menuDetalle.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder
         Me.menuDetalle.Name = "menuDetalle"
@@ -119,7 +119,7 @@ Partial Class MDI_AddProdcutos
         'menuCategory
         '
         Me.menuCategory.AutoSize = False
-        Me.menuCategory.Image =  Global.DanashaBasic.My.Resources.Resources.BO_Category_32x32
+        Me.menuCategory.Image =  Global.DanashaBasicSignature.My.Resources.Resources.BO_Category_32x32
         Me.menuCategory.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.menuCategory.Name = "menuCategory"
         Me.menuCategory.Size = New System.Drawing.Size(180, 36)
@@ -129,7 +129,7 @@ Partial Class MDI_AddProdcutos
         'menuPresentacion
         '
         Me.menuPresentacion.AutoSize = False
-        Me.menuPresentacion.Image =  Global.DanashaBasic.My.Resources.Resources.CrossbandBox_32x32
+        Me.menuPresentacion.Image =  Global.DanashaBasicSignature.My.Resources.Resources.CrossbandBox_32x32
         Me.menuPresentacion.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.menuPresentacion.Name = "menuPresentacion"
         Me.menuPresentacion.Size = New System.Drawing.Size(180, 36)
@@ -162,7 +162,7 @@ Partial Class MDI_AddProdcutos
         '
         Me.NewToolStripButton.AutoSize = False
         Me.NewToolStripButton.ForeColor = System.Drawing.Color.Blue
-        Me.NewToolStripButton.Image =  Global.DanashaBasic.My.Resources.Resources.List_32x32
+        Me.NewToolStripButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.List_32x32
         Me.NewToolStripButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.NewToolStripButton.ImageTransparentColor = System.Drawing.Color.Transparent
         Me.NewToolStripButton.Name = "NewToolStripButton"

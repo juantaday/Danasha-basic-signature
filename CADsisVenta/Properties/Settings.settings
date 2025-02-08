@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="FolderPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">DanashaBasic</Value>
+      <Value Profile="(Default)">DanashaBasicSignature</Value>
     </Setting>
     <Setting Name="JsofConneccionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;

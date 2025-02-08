@@ -150,7 +150,7 @@ Partial Class frmFormaPago
         '
         'ToolStripMenuCredito
         '
-        Me.ToolStripMenuCredito.Image =  Global.DanashaBasic.My.Resources.Resources.Credid_48
+        Me.ToolStripMenuCredito.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Credid_48
         Me.ToolStripMenuCredito.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ToolStripMenuCredito.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ToolStripMenuCredito.Name = "ToolStripMenuCredito"
@@ -159,7 +159,7 @@ Partial Class frmFormaPago
         '
         'ToolStripMenuCheque
         '
-        Me.ToolStripMenuCheque.Image =  Global.DanashaBasic.My.Resources.Resources.check_48png
+        Me.ToolStripMenuCheque.Image =  Global.DanashaBasicSignature.My.Resources.Resources.check_48png
         Me.ToolStripMenuCheque.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ToolStripMenuCheque.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ToolStripMenuCheque.Name = "ToolStripMenuCheque"
@@ -168,7 +168,7 @@ Partial Class frmFormaPago
         '
         'ToolStripMenuCreditCar
         '
-        Me.ToolStripMenuCreditCar.Image =  Global.DanashaBasic.My.Resources.Resources.credit_card48png
+        Me.ToolStripMenuCreditCar.Image =  Global.DanashaBasicSignature.My.Resources.Resources.credit_card48png
         Me.ToolStripMenuCreditCar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ToolStripMenuCreditCar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ToolStripMenuCreditCar.Name = "ToolStripMenuCreditCar"

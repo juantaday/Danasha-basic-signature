@@ -1,21 +1,21 @@
 ﻿
 using CADsisVenta;
 using CADsisVenta.Funtions;
+using CADsisVenta.Statics;
 using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Windows.Forms;
 using ec.gob.sri.comprobantes;
 using ec.gob.sri.comprobantes.Enum;
 using ec.gob.sri.comprobantes.Net;
 using ec.gob.sri.comprobantes.Utils;
 using ec.gob.sri.Xml;
 using InterfaceSignatureAndSRI.Data;
-
 using InterfaceSignatureAndSRI.GeneratedXML;
 using InterfaceSignatureAndSRI.Models;
 using InterfaceSignatureAndSRI.SendMail;
+using InterfaceSignatureAndSRI.SigningXML;
 using InterfaceSignatureAndSRI.Utils;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
-using sun.misc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,10 +29,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using XmlGridViewSample;
-using CADsisVenta.Statics;
-using InterfaceSignatureAndSRI.Processes;
-using InterfaceSignatureAndSRI.SigningXML;
-using System.Web.UI.WebControls.WebParts;
 
 namespace InterfaceSignatureAndSRI.Views
 {
@@ -111,13 +107,13 @@ namespace InterfaceSignatureAndSRI.Views
             xmlGridView = new XmlGridView();
             xmlGridView.Dock = DockStyle.Fill;
             panelViewXml.Controls.Add(xmlGridView);
-            comboBox1.DataSource =  ec.gob.sri.comprobantes.Enum.TipoAmbienteEnum.values().ToList();
+            comboBox1.DataSource = ec.gob.sri.comprobantes.Enum.TipoAmbienteEnum.values().ToList();
             comboBox1.DisplayMember = "TypeName";
             comboBox1.ValueMember = "IntId";
             isLoated = true;
 
             checkedListBox1.SelectedIndex = 0;
-           
+
 
         }
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -134,15 +130,16 @@ namespace InterfaceSignatureAndSRI.Views
 
             if (checkedListBox1.GetItemChecked(0) == true)
             {
-                if (rptViewer.Dock != DockStyle.Fill) {
+                if (rptViewer.Dock != DockStyle.Fill)
+                {
                     rptViewer.Dock = DockStyle.Fill;
                     rptViewer.BringToFront();
                 }
-                panelSigMnager.Visible =  false;
+                panelSigMnager.Visible = false;
                 PanelECommerce.Visible = false;
                 panelResum.Visible = true;
             }
-           else if (checkedListBox1.GetItemChecked(1) == true)
+            else if (checkedListBox1.GetItemChecked(1) == true)
             {
                 panelSigMnager.BringToFront();
                 panelSigMnager.Visible = true;
@@ -217,38 +214,48 @@ namespace InterfaceSignatureAndSRI.Views
         }
 
         #region Region Get Datas XML
-        private async void GetDataList()
-        {
-            DataGridSingned.DataSource = false;
-            await Task.Factory.StartNew(() =>
-            {
-                using (DataContextReflex db = new DataContextReflex())
-                {
-                    var dt = (from v in db.Voucher
-                              select (
-                              new
-                              {
-                                  v.VoucherID,
-                                  v.IDRelationData,
-                                  v.ClaveAcceso,
-                                  v.Estado,
-                                  v.FechaEmision,
-                                  v.FechaAutorizacion,
-                                  v.ErrorMesage
-                              })).Take(300);
 
+        private async Task GetDataListAsync()
+        {
+            try
+            {
+                DataGridSingned.DataSource = null; // Limpia la grilla antes de cargar datos
+
+                using (var db = new DataContextReflex())
+                {
+                    var dt = await db.Voucher
+                        .Select(v => new
+                        {
+                            v.VoucherID,
+                            v.IDRelationData,
+                            v.ClaveAcceso,
+                            v.Estado,
+                            v.FechaEmision,
+                            v.FechaAutorizacion,
+                            v.ErrorMesage
+                        })
+                        .Take(300)
+                        .ToListAsync()
+                        .ConfigureAwait(false); // Evita bloqueos en el UI thread
+
+                    // Actualiza la UI en el hilo principal
                     this.Invoke(new MethodInvoker(() =>
                     {
-                        DataGridSingned.DataSource = dt.ToList();
+                        var bindingSource = new BindingSource { DataSource = dt };
+                        DataGridSingned.DataSource = bindingSource;
                         DataGridSingned.Columns[0].Visible = false;
                         DataGridSingned.Columns[1].HeaderText = "IDFacturacion";
                     }));
-
                 }
-
-            });
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al obtener los datos:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+
+
         private async void GetDataListByID(int idFacture)
         {
             DataGridSingned.DataSource = false;
@@ -485,7 +492,7 @@ namespace InterfaceSignatureAndSRI.Views
                           Interaction.MsgBox(mesa, Title: "Responda",
                           Buttons: Microsoft.VisualBasic.MsgBoxStyle.YesNo) == Microsoft.VisualBasic.MsgBoxResult.Yes)
                     {
-                        ConsultWithEnterClaveAcc(ClaveAccesoTextBox.Text, comboBox1.SelectedValue.ToString ());
+                        ConsultWithEnterClaveAcc(ClaveAccesoTextBox.Text, comboBox1.SelectedValue.ToString());
                     }
 
                     return;
@@ -500,9 +507,9 @@ namespace InterfaceSignatureAndSRI.Views
                 FacturaViewModels viewmodel =
                     new FacturaViewModels(dbReflexion.Connection.ConnectionString);
                 viewmodel.GetInformation(_VoucherID);
-                comboBox1.SelectedValue =  Convert.ToByte (viewmodel.ambiente);
+                comboBox1.SelectedValue = Convert.ToByte(viewmodel.ambiente);
 
-                ConsultWithEnterClaveAcc(viewmodel.ClaveAcceso, comboBox1.SelectedValue.ToString ());
+                ConsultWithEnterClaveAcc(viewmodel.ClaveAcceso, comboBox1.SelectedValue.ToString());
                 CRUD_database.UpdateAutorize(_VoucherID, this.viewModel.Data, estadoLabel.Text,
                       this.viewModel.fechaAutoriza.Value, LabelError.Text);
                 FindXamlButton.PerformClick();
@@ -543,7 +550,7 @@ namespace InterfaceSignatureAndSRI.Views
 
                     return;
                 }
-           
+
 
                 xmlFirmado = XMLSerializers.Serialize(data[0], "");
                 if (xmlFirmado.Length == 0)
@@ -862,7 +869,7 @@ namespace InterfaceSignatureAndSRI.Views
                 }
                 else
                 {
-                    GetDataList();
+                    GetDataListAsync();
                 }
 
 
@@ -983,8 +990,8 @@ namespace InterfaceSignatureAndSRI.Views
                     return;
                 }
 
-                using (FacturaXMLWithId generaFac = new FacturaXMLWithId(this.comboBox1.SelectedValue.ToString (),
-                    idFactura , SettingObject.EcommerceActive.CommerceId))
+                using (FacturaXMLWithId generaFac = new FacturaXMLWithId(this.comboBox1.SelectedValue.ToString(),
+                    idFactura, SettingObject.EcommerceActive.CommerceId))
                 {
                     xmlFirmado = await NewMethod(generaFac);
                     _fechaEmision = generaFac.GetFechaEmision();
@@ -1330,7 +1337,8 @@ namespace InterfaceSignatureAndSRI.Views
                 TokensValidos token = null;
                 try
                 {
-                    if (String.IsNullOrWhiteSpace(SettingObject.SignatureOptios.TOKEN)) {
+                    if (String.IsNullOrWhiteSpace(SettingObject.SignatureOptios.TOKEN))
+                    {
                         Interaction.MsgBox("Debe configurar elgùn token kalido para firma electronica..");
                         return;
                     }
@@ -1339,7 +1347,7 @@ namespace InterfaceSignatureAndSRI.Views
                 catch (Exception ex)
                 {
 
-                    Interaction.MsgBox(ex.Message  +"\n"+ ex.StackTrace , MsgBoxStyle.Critical ,"Error");
+                    Interaction.MsgBox(ex.Message + "\n" + ex.StackTrace, MsgBoxStyle.Critical, "Error");
                     return;
                 }
 
@@ -1455,7 +1463,7 @@ namespace InterfaceSignatureAndSRI.Views
 
                     this.claveAcceso = viewmodel.ClaveAcceso;
                     this.ambiente = viewmodel.ambiente;
-                    this.comboBox1.SelectedValue =  Convert.ToByte(this.ambiente);
+                    this.comboBox1.SelectedValue = Convert.ToByte(this.ambiente);
 
                     xmlFirmado = "<?xml version=" + "\"1.0\"" + " encoding=" + "\"UTF-8\"" + "?>" + viewmodel.Data;
                     ClaveAccesoLabel.Text = this.claveAcceso;
@@ -1721,9 +1729,9 @@ namespace InterfaceSignatureAndSRI.Views
             catch (Exception ex)
             {
 
-                Interaction.MsgBox (ex.Message);
+                Interaction.MsgBox(ex.Message);
             }
-           
+
 
         }
 
@@ -1735,15 +1743,16 @@ namespace InterfaceSignatureAndSRI.Views
                 FechaEmisButton.Text = LastMonthStripMenuItem4.Text;
                 OcultarFiltroFecha();
                 DateTime date = DateTime.Now.Date;
-                int year = date.Year ;
+                int year = date.Year;
                 int month = date.Month;
 
-                if (date.Month == 1) {
+                if (date.Month == 1)
+                {
                     year = year - 1;
                     month = 12;
                 }
 
-                StardateTimePicker1.Value = new DateTime(year, month-1, 1); 
+                StardateTimePicker1.Value = new DateTime(year, month - 1, 1);
 
                 //Y de la siguiente forma obtenemos el ultimo dia del mes
                 //agregamos 1 mes al objeto anterior y restamos 1 día.
@@ -1922,7 +1931,7 @@ namespace InterfaceSignatureAndSRI.Views
             {
                 Cursor = Cursors.WaitCursor;
                 int idVouche = (int)DataGridSingned.SelectedRows[0].Cells[0].Value;
-                using (ViewPdfForm vieForm = new ViewPdfForm( Data.Enums.ViewTypePDFEnum.PDF, idVouche))
+                using (ViewPdfForm vieForm = new ViewPdfForm(Data.Enums.ViewTypePDFEnum.PDF, idVouche))
                 {
                     vieForm.ShowDialog();
                 }
@@ -1961,7 +1970,7 @@ namespace InterfaceSignatureAndSRI.Views
 
                     this.claveAcceso = viewModel.ClaveAcceso;
                     this.ambiente = viewModel.ambiente;
-                    this.comboBox1.SelectedValue =  Convert.ToByte ( this.ambiente);
+                    this.comboBox1.SelectedValue = Convert.ToByte(this.ambiente);
 
                     xmlFirmado = "<?xml version=" + "\"1.0\"" + " encoding=" + "\"UTF-8\"" + "?>" + viewModel.Data;
                     ClaveAccesoLabel.Text = this.claveAcceso;
@@ -2001,7 +2010,7 @@ namespace InterfaceSignatureAndSRI.Views
             {
                 if (viewModel != null)
                 {
-                    using (ViewPdfForm viewRide = new ViewPdfForm(Data.Enums.ViewTypePDFEnum.PDF,viewModel))
+                    using (ViewPdfForm viewRide = new ViewPdfForm(Data.Enums.ViewTypePDFEnum.PDF, viewModel))
                     {
                         viewRide.ShowDialog();
                     }
@@ -2161,13 +2170,13 @@ namespace InterfaceSignatureAndSRI.Views
                 viewmodel.GetInformation(_VoucherID);
 
                 this.claveAcceso = viewmodel.ClaveAcceso;
-                this.ambiente = viewmodel.ambiente; 
+                this.ambiente = viewmodel.ambiente;
                 this.comboBox1.SelectedValue = Convert.ToByte(this.ambiente);
                 this.ClaveAccesoLabel.Text = this.claveAcceso;
 
                 xmlFirmado = "<?xml version=" + "\"1.0\"" + " encoding=" + "\"UTF-8\"" + "?>" + viewmodel.Data;
 
-                ToolsMail.SendMailDefault(Domain.Data.Enums.OwnerEnum.Customer,listMail, xmlFirmado, fechaEmision: viewmodel.fechaEmision);
+                ToolsMail.SendMailDefault(Domain.Data.Enums.OwnerEnum.Customer, listMail, xmlFirmado, fechaEmision: viewmodel.fechaEmision);
 
             }
             catch (Exception ex)
@@ -2191,20 +2200,20 @@ namespace InterfaceSignatureAndSRI.Views
 
         private void rjRadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-           
-            if (rjRadioButton1.Checked )
+
+            if (rjRadioButton1.Checked)
                 panelFilterDateResum.Visible = false;
 
         }
 
         private void rjRadioButton2_CheckedChanged(object sender, EventArgs e)
         {
-          
+
 
             if (rjRadioButton2.Checked)
-                panelFilterDateResum.Visible =true;
+                panelFilterDateResum.Visible = true;
 
-  
+
         }
 
         private void rjRadioButton1_MouseClick(object sender, MouseEventArgs e)
@@ -2217,7 +2226,7 @@ namespace InterfaceSignatureAndSRI.Views
             rjRadioButton2.Checked = true;
         }
 
-        private  async  void GetResumeButton_Click(object sender, EventArgs e)
+        private async void GetResumeButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2230,11 +2239,11 @@ namespace InterfaceSignatureAndSRI.Views
                 rptViewer.Visible = true;
                 rptViewer.Dock = DockStyle.Fill;
 
-                DataTable  dsSource = await StoreProcedure.GetElectronicInvoice(dateTimePicker1.Value, dateTimePicker2.Value, rjRadioButton2.Checked);
+                DataTable dsSource = await StoreProcedure.GetElectronicInvoice(dateTimePicker1.Value, dateTimePicker2.Value, rjRadioButton2.Checked);
                 rpt.SetDataSource(dsSource);
-                
+
                 rptViewer.ReportSource = rpt;
-              
+
             }
             catch (Exception ex)
             {
@@ -2242,10 +2251,10 @@ namespace InterfaceSignatureAndSRI.Views
                 Interaction.MsgBox(ex.Message + "\n" + ex.StackTrace, MsgBoxStyle.Critical, "Error");
             }
             finally { this.Cursor = Cursors.Default; }
-           
+
         }
 
-        private async   void GetDetalleElectroButton_Click(object sender, EventArgs e)
+        private async void GetDetalleElectroButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2257,7 +2266,7 @@ namespace InterfaceSignatureAndSRI.Views
                 fastObjectListView1.Visible = true;
                 fastObjectListView1.Dock = DockStyle.Fill;
 
-            
+
 
                 if (data_All == null || data_All.Rows.Count == 0)
                 {
@@ -2268,14 +2277,15 @@ namespace InterfaceSignatureAndSRI.Views
 
                     //astObjectListView1.Columns.Clear();
                 }
-                else {
+                else
+                {
                     lblRegitros.Text = $"Registro extraido {data_All.Rows.Count} visibilidad maxima de : 10000";
                     fastObjectListView1.DataSource = data_All.AsEnumerable().Take(1000).CopyToDataTable();
                     fastObjectListView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                 }
-         
-            
-                
+
+
+
                 data_All.Dispose();
             }
             catch (Exception ex)
@@ -2288,7 +2298,7 @@ namespace InterfaceSignatureAndSRI.Views
 
         }
 
-        private  async  void ExportDetailExcel_Click(object sender, EventArgs e)
+        private async void ExportDetailExcel_Click(object sender, EventArgs e)
         {
             try
             {
@@ -2296,10 +2306,10 @@ namespace InterfaceSignatureAndSRI.Views
 
                 string messague = "Escoja una de las sigientes opciones..\n"
                     + "\n1.- Visualizar en excel.."
-                    +"\n2.- Enviar a la carpera de descarga." 
-                    +"\n3.- Cancelar.";
+                    + "\n2.- Enviar a la carpera de descarga."
+                    + "\n3.- Cancelar.";
 
-                var result = Interaction.InputBox(messague, "Responda","1");
+                var result = Interaction.InputBox(messague, "Responda", "1");
 
                 if (!(result.Equals("1") || result.Equals("2")))
                     return;
@@ -2316,20 +2326,20 @@ namespace InterfaceSignatureAndSRI.Views
 
 
                 DataTable data_All = await StoreProcedure.GetElectronicInvoiceDeatil(dateTimePicker1.Value, dateTimePicker2.Value, rjRadioButton2.Checked);
-                
-                data_All.ExportToExcel(filePath.Length >0? filePath : "");
+
+                data_All.ExportToExcel(filePath.Length > 0 ? filePath : "");
                 this.Cursor = Cursors.Default;
                 Interaction.MsgBox("Fin de proceso");
 
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 this.Cursor = Cursors.Default;
-                Interaction.MsgBox (ex.Message + "\n"+ ex.StackTrace  ,MsgBoxStyle.Critical,"Error");
+                Interaction.MsgBox(ex.Message + "\n" + ex.StackTrace, MsgBoxStyle.Critical, "Error");
             }
         }
 
-        
+
     }
 
 

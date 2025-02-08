@@ -6,13 +6,15 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{57482504-49D2-4DE7-8FC9-A5F2EC6EDD00}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>DanashaBasic.My.MyApplication</StartupObject>
-    <RootNamespace>DanashaBasic</RootNamespace>
-    <AssemblyName>Dabasha Basic</AssemblyName>
+    <StartupObject>DanashaBasicSignature.My.MyApplication</StartupObject>
+    <RootNamespace>DanashaBasicSignature</RootNamespace>
+    <AssemblyName>DanashaBasicSignature</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <PublishUrl>publicar\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -27,8 +29,6 @@
     <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,7 +37,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Dabasha Basic.xml</DocumentationFile>
+    <DocumentationFile>DanashaBasicSignature.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <Prefer32Bit>false</Prefer32Bit>
@@ -49,7 +49,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Dabasha Basic.xml</DocumentationFile>
+    <DocumentationFile>DanashaBasicSignature.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
@@ -72,8 +72,8 @@
     <ApplicationIcon>dansha basic.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.5.1\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
     <Reference Include="CircularProgressBar, Version=2.8.0.16, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
       <HintPath>..\packages\CircularProgressBar.2.8.0.16\lib\net40\CircularProgressBar.dll</HintPath>
@@ -85,9 +85,7 @@
     <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
-    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
-    </Reference>
+    <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="SpreadsheetLight, Version=3.4.11.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
@@ -378,6 +376,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Facturacion\Ffacturacion.vb" />
+    <Compile Include="Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Inicio\AboutBox.designer.vb">
       <DependentUpon>AboutBox.vb</DependentUpon>
     </Compile>
@@ -971,6 +975,9 @@
     <EmbeddedResource Include="Facturacion\frmList_Facturas.resx">
       <DependentUpon>frmList_Facturas.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Inicio\AboutBox.resx">
       <DependentUpon>AboutBox.vb</DependentUpon>
     </EmbeddedResource>
@@ -994,10 +1001,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
-      <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
-      <SubType>Designer</SubType>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Pagos\frmFormaPago.resx">
       <DependentUpon>frmFormaPago.vb</DependentUpon>
@@ -1868,6 +1875,9 @@
     <Content Include="danasha amd bodega.ico" />
     <Content Include="dansha basic.ico" />
     <Content Include="JsofWareIcon.ico" />
+    <None Include="Resources\commece_24.png" />
+    <None Include="Resources\clear-filter.png" />
+    <None Include="Resources\Logo_Delivery_QR_25.png" />
     <None Include="Resources\Sinature_32.png" />
     <None Include="Resources\producto_241.png" />
     <None Include="Resources\Option_20.png" />
@@ -1991,9 +2001,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\CustomControls\JMTControls\JMTControls.csproj">
+    <ProjectReference Include="..\..\..\Proyect generic\JMTControls\JMTControls\JMTControls.csproj">
       <Project>{f2127f73-480e-4841-944c-d1e9db1ebc25}</Project>
       <Name>JMTControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Proyect generic\ObjectListView\ObjectListView.csproj">
+      <Project>{18feda0c-d147-4286-b39a-01204808106a}</Project>
+      <Name>ObjectListView</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Danasha Gold Price\ec.gob.sri\ec.gob.sri.csproj">
       <Project>{C8243CEF-FFBC-460E-B2D8-C61CCE6CD8FF}</Project>
@@ -2002,10 +2016,6 @@
     <ProjectReference Include="..\..\Danasha Gold Price\LibPrintTicket\LibPrintTicket.csproj">
       <Project>{6e9ce6bc-fa36-48fb-b592-56e4f440e61b}</Project>
       <Name>LibPrintTicket</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Danasha Gold Price\ObjectListView\ObjectListView.csproj">
-      <Project>{18feda0c-d147-4286-b39a-01204808106a}</Project>
-      <Name>ObjectListView</Name>
     </ProjectReference>
     <ProjectReference Include="..\CADsisVenta\CADsisVenta.csproj">
       <Project>{a8751b79-0344-46e3-99b8-9d92418ec0c5}</Project>
@@ -2020,7 +2030,7 @@
       <Name>Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\InterfaceSignatureAndSRI\InterfaceSignatureAndSRI.csproj">
-      <Project>{8A711FD8-A605-4BFC-8B8C-D4C1B6F23C0A}</Project>
+      <Project>{8a711fd8-a605-4bfc-8b8c-d4c1b6f23c0a}</Project>
       <Name>InterfaceSignatureAndSRI</Name>
     </ProjectReference>
     <ProjectReference Include="..\UpdateApp\UpdateApp.csproj">

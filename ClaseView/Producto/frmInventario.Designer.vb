@@ -90,7 +90,7 @@ Partial Class frmInventario
         Me.EditCountStockButton.Dock = System.Windows.Forms.DockStyle.Right
         Me.EditCountStockButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.EditCountStockButton.ForeColor = System.Drawing.Color.Black
-        Me.EditCountStockButton.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Inline_Edit
+        Me.EditCountStockButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
         Me.EditCountStockButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.EditCountStockButton.Location = New System.Drawing.Point(607, 2)
         Me.EditCountStockButton.Margin = New System.Windows.Forms.Padding(0)
@@ -134,7 +134,7 @@ Partial Class frmInventario
         Me.findButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.findButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.findButton.ForeColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.findButton.Image =  Global.DanashaBasic.My.Resources.Resources.zoom_Grin_24
+        Me.findButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.zoom_Grin_24
         Me.findButton.Location = New System.Drawing.Point(286, 2)
         Me.findButton.Name = "findButton"
         Me.findButton.Size = New System.Drawing.Size(31, 27)
@@ -146,7 +146,7 @@ Partial Class frmInventario
         Me.PrintButton.Dock = System.Windows.Forms.DockStyle.Left
         Me.PrintButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PrintButton.ForeColor = System.Drawing.Color.Black
-        Me.PrintButton.Image =  Global.DanashaBasic.My.Resources.Resources.Excel_24
+        Me.PrintButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Excel_24
         Me.PrintButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.PrintButton.Location = New System.Drawing.Point(171, 2)
         Me.PrintButton.Margin = New System.Windows.Forms.Padding(0)
@@ -161,7 +161,7 @@ Partial Class frmInventario
         '
         Me.CategoryButton.Dock = System.Windows.Forms.DockStyle.Left
         Me.CategoryButton.ForeColor = System.Drawing.Color.Black
-        Me.CategoryButton.Image =  Global.DanashaBasic.My.Resources.Resources.Category_TreeView24
+        Me.CategoryButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Category_TreeView24
         Me.CategoryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.CategoryButton.Location = New System.Drawing.Point(82, 2)
         Me.CategoryButton.Margin = New System.Windows.Forms.Padding(0)
@@ -176,7 +176,7 @@ Partial Class frmInventario
         '
         Me.SelectAllButton.Dock = System.Windows.Forms.DockStyle.Left
         Me.SelectAllButton.ForeColor = System.Drawing.Color.Black
-        Me.SelectAllButton.Image =  Global.DanashaBasic.My.Resources.Resources.Resum_28
+        Me.SelectAllButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Resum_28
         Me.SelectAllButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.SelectAllButton.Location = New System.Drawing.Point(2, 2)
         Me.SelectAllButton.Margin = New System.Windows.Forms.Padding(0)
@@ -192,7 +192,7 @@ Partial Class frmInventario
         Me.EditPvPStockButton.Dock = System.Windows.Forms.DockStyle.Right
         Me.EditPvPStockButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.EditPvPStockButton.ForeColor = System.Drawing.Color.Black
-        Me.EditPvPStockButton.Image =  Global.DanashaBasic.My.Resources.Resources.confirCost_32
+        Me.EditPvPStockButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.confirCost_32
         Me.EditPvPStockButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.EditPvPStockButton.Location = New System.Drawing.Point(722, 2)
         Me.EditPvPStockButton.Margin = New System.Windows.Forms.Padding(0)
@@ -209,7 +209,7 @@ Partial Class frmInventario
         Me.UpdateFromExelButton.Dock = System.Windows.Forms.DockStyle.Right
         Me.UpdateFromExelButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.UpdateFromExelButton.ForeColor = System.Drawing.Color.Black
-        Me.UpdateFromExelButton.Image =  Global.DanashaBasic.My.Resources.Resources.Option_20
+        Me.UpdateFromExelButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Option_20
         Me.UpdateFromExelButton.Location = New System.Drawing.Point(857, 2)
         Me.UpdateFromExelButton.Margin = New System.Windows.Forms.Padding(0)
         Me.UpdateFromExelButton.Name = "UpdateFromExelButton"
@@ -366,21 +366,21 @@ Partial Class frmInventario
         '
         'ExportarCategoriasToolStripMenuItem
         '
-        Me.ExportarCategoriasToolStripMenuItem.Image =  Global.DanashaBasic.My.Resources.Resources.Category_TreeView24
+        Me.ExportarCategoriasToolStripMenuItem.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Category_TreeView24
         Me.ExportarCategoriasToolStripMenuItem.Name = "ExportarCategoriasToolStripMenuItem"
         Me.ExportarCategoriasToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
         Me.ExportarCategoriasToolStripMenuItem.Text = "Exportar categorias"
         '
         'ProductoConCategoriaToolStripMenuItem
         '
-        Me.ProductoConCategoriaToolStripMenuItem.Image =  Global.DanashaBasic.My.Resources.Resources.List_32x32
+        Me.ProductoConCategoriaToolStripMenuItem.Image =  Global.DanashaBasicSignature.My.Resources.Resources.List_32x32
         Me.ProductoConCategoriaToolStripMenuItem.Name = "ProductoConCategoriaToolStripMenuItem"
         Me.ProductoConCategoriaToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
         Me.ProductoConCategoriaToolStripMenuItem.Text = "Producto con categoria"
         '
         'ExportarTodaLaListaDeProductosToolStripMenuItem
         '
-        Me.ExportarTodaLaListaDeProductosToolStripMenuItem.Image =  Global.DanashaBasic.My.Resources.Resources.producto_241
+        Me.ExportarTodaLaListaDeProductosToolStripMenuItem.Image =  Global.DanashaBasicSignature.My.Resources.Resources.producto_241
         Me.ExportarTodaLaListaDeProductosToolStripMenuItem.Name = "ExportarTodaLaListaDeProductosToolStripMenuItem"
         Me.ExportarTodaLaListaDeProductosToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
         Me.ExportarTodaLaListaDeProductosToolStripMenuItem.Text = "Exportar toda la lista de productos"

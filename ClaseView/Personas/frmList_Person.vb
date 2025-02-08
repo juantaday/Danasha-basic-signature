@@ -154,19 +154,19 @@ Public Class frmList_Person
                     PictureBox.SizeMode = PictureBoxSizeMode.StretchImage
                 Else
                     If Boolean.Parse(dtPersonas.Rows(IndexDtPerso)("genero")) Then
-                        PictureBox.Image = Global.DanashaBasic.My.Resources.Person_128png
+                        PictureBox.Image = Global.DanashaBasicSignature.My.Resources.Person_128png
                         PictureBox.SizeMode = PictureBoxSizeMode.StretchImage
                     Else
-                        PictureBox.Image = Global.DanashaBasic.My.Resources.Person_128_Won_png
+                        PictureBox.Image = Global.DanashaBasicSignature.My.Resources.Person_128_Won_png
                         PictureBox.SizeMode = PictureBoxSizeMode.StretchImage
                     End If
                 End If
             Else
                 If Boolean.Parse(dtPersonas.Rows(IndexDtPerso)("genero")) Then
-                    PictureBox.Image = Global.DanashaBasic.My.Resources.Person_128png
+                    PictureBox.Image = Global.DanashaBasicSignature.My.Resources.Person_128png
                     PictureBox.SizeMode = PictureBoxSizeMode.StretchImage
                 Else
-                    PictureBox.Image = Global.DanashaBasic.My.Resources.Person_128_Won_png
+                    PictureBox.Image = Global.DanashaBasicSignature.My.Resources.Person_128_Won_png
                     PictureBox.SizeMode = PictureBoxSizeMode.StretchImage
                 End If
             End If
@@ -176,7 +176,7 @@ Public Class frmList_Person
             Me.PicturImageCard.Location = New System.Drawing.Point(2, 0)
             Me.PicturImageCard.Name = "PicturImageCard"
             Me.PicturImageCard.Size = New System.Drawing.Size(16, 16)
-            Me.PicturImageCard.Image = Global.DanashaBasic.My.Resources.Resources.Card_16x16
+            Me.PicturImageCard.Image = Global.DanashaBasicSignature.My.Resources.Resources.Card_16x16
             Me.PicturImageCard.TabIndex = 0
             Me.PicturImageCard.TabStop = False
             '
@@ -184,7 +184,7 @@ Public Class frmList_Person
             Me.PicturImageTelf.Location = New System.Drawing.Point(0, 50)
             Me.PicturImageTelf.Name = "PicturImageTelf"
             Me.PicturImageTelf.Size = New System.Drawing.Size(16, 16)
-            Me.PicturImageTelf.Image = Global.DanashaBasic.My.Resources.Resources.MobilePhone2_16x16
+            Me.PicturImageTelf.Image = Global.DanashaBasicSignature.My.Resources.Resources.MobilePhone2_16x16
             Me.PicturImageTelf.TabIndex = 2
             Me.PicturImageTelf.TabStop = False
             '

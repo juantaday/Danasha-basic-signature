@@ -104,7 +104,7 @@ Partial Class frmList_clientes
         Me.btnNuevo.Dock = System.Windows.Forms.DockStyle.Top
         Me.btnNuevo.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnNuevo.ForeColor = System.Drawing.Color.Black
-        Me.btnNuevo.Image = Global.DanashaBasic.My.Resources.Resources.add_client_48
+        Me.btnNuevo.Image = Global.DanashaBasicSignature.My.Resources.Resources.add_client_48
         Me.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnNuevo.Location = New System.Drawing.Point(227, 1)
         Me.btnNuevo.Margin = New System.Windows.Forms.Padding(1)
@@ -124,7 +124,7 @@ Partial Class frmList_clientes
         Me.btnEditarCliente.Cursor = System.Windows.Forms.Cursors.Default
         Me.btnEditarCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEditarCliente.ForeColor = System.Drawing.Color.Black
-        Me.btnEditarCliente.Image = Global.DanashaBasic.My.Resources.Resources.Edd_client_48
+        Me.btnEditarCliente.Image = Global.DanashaBasicSignature.My.Resources.Resources.Edd_client_48
         Me.btnEditarCliente.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnEditarCliente.Location = New System.Drawing.Point(295, 1)
         Me.btnEditarCliente.Margin = New System.Windows.Forms.Padding(1)
@@ -143,7 +143,7 @@ Partial Class frmList_clientes
         Me.btnEliminarCliente.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnEliminarCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEliminarCliente.ForeColor = System.Drawing.Color.White
-        Me.btnEliminarCliente.Image = Global.DanashaBasic.My.Resources.Resources.Delete_cliente_48
+        Me.btnEliminarCliente.Image = Global.DanashaBasicSignature.My.Resources.Resources.Delete_cliente_48
         Me.btnEliminarCliente.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnEliminarCliente.Location = New System.Drawing.Point(363, 1)
         Me.btnEliminarCliente.Margin = New System.Windows.Forms.Padding(1)
@@ -162,7 +162,7 @@ Partial Class frmList_clientes
         Me.btnCredit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnCredit.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCredit.ForeColor = System.Drawing.Color.Black
-        Me.btnCredit.Image = Global.DanashaBasic.My.Resources.Resources.Credid_48
+        Me.btnCredit.Image = Global.DanashaBasicSignature.My.Resources.Resources.Credid_48
         Me.btnCredit.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnCredit.Location = New System.Drawing.Point(525, 1)
         Me.btnCredit.Margin = New System.Windows.Forms.Padding(1)
@@ -181,7 +181,7 @@ Partial Class frmList_clientes
         Me.btnCobro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnCobro.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCobro.ForeColor = System.Drawing.Color.Black
-        Me.btnCobro.Image = Global.DanashaBasic.My.Resources.Resources.cobro_48
+        Me.btnCobro.Image = Global.DanashaBasicSignature.My.Resources.Resources.cobro_48
         Me.btnCobro.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnCobro.Location = New System.Drawing.Point(593, 1)
         Me.btnCobro.Margin = New System.Windows.Forms.Padding(1)
@@ -314,7 +314,7 @@ Partial Class frmList_clientes
         Me.btnDetail.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnDetail.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDetail.ForeColor = System.Drawing.Color.Black
-        Me.btnDetail.Image = Global.DanashaBasic.My.Resources.Resources.detail_user_48
+        Me.btnDetail.Image = Global.DanashaBasicSignature.My.Resources.Resources.detail_user_48
         Me.btnDetail.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnDetail.Location = New System.Drawing.Point(457, 1)
         Me.btnDetail.Margin = New System.Windows.Forms.Padding(1)

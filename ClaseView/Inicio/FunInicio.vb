@@ -7,7 +7,7 @@ Imports CADsisVenta
 Imports CADsisVenta.Class
 Imports CADsisVenta.Helpers
 Imports CADsisVenta.Helpers.FInicio
-Imports DanashaBasic.ClassView.Conexion
+Imports DanashaBasicSignature.ClassView.Conexion
 Imports CADsisVenta.Statics
 
 Public Class FunInicio

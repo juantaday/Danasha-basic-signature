@@ -108,7 +108,7 @@ Partial Class SplashScreen1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.MySpliter
+        Me.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.MySpliter
         Me.ClientSize = New System.Drawing.Size(398, 248)
         Me.ControlBox = False
         Me.Controls.Add(Me.Button1)

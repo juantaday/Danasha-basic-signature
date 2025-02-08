@@ -114,7 +114,7 @@ Partial Class frmUltDocument
         'ActualizaButton
         '
         Me.ActualizaButton.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ActualizaButton.Image =  Global.DanashaBasic.My.Resources.Resources.Refresh_icon_48
+        Me.ActualizaButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Refresh_icon_48
         Me.ActualizaButton.Location = New System.Drawing.Point(0, 0)
         Me.ActualizaButton.Margin = New System.Windows.Forms.Padding(0)
         Me.ActualizaButton.Name = "ActualizaButton"
@@ -138,7 +138,7 @@ Partial Class frmUltDocument
         'ViewReportButton
         '
         Me.ViewReportButton.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ViewReportButton.Image =  Global.DanashaBasic.My.Resources.Resources.fin_deudor_32
+        Me.ViewReportButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.fin_deudor_32
         Me.ViewReportButton.Location = New System.Drawing.Point(85, 0)
         Me.ViewReportButton.Margin = New System.Windows.Forms.Padding(0)
         Me.ViewReportButton.Name = "ViewReportButton"
@@ -149,7 +149,7 @@ Partial Class frmUltDocument
         'PrintTicketButton
         '
         Me.PrintTicketButton.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PrintTicketButton.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Printing_Print_32x32
+        Me.PrintTicketButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Printing_Print_32x32
         Me.PrintTicketButton.Location = New System.Drawing.Point(247, 0)
         Me.PrintTicketButton.Margin = New System.Windows.Forms.Padding(0)
         Me.PrintTicketButton.Name = "PrintTicketButton"
@@ -161,7 +161,7 @@ Partial Class frmUltDocument
         'PrintMatricialButton
         '
         Me.PrintMatricialButton.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PrintMatricialButton.Image =  Global.DanashaBasic.My.Resources.Resources.printerMatricial_48
+        Me.PrintMatricialButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.printerMatricial_48
         Me.PrintMatricialButton.Location = New System.Drawing.Point(171, 0)
         Me.PrintMatricialButton.Margin = New System.Windows.Forms.Padding(0)
         Me.PrintMatricialButton.Name = "PrintMatricialButton"

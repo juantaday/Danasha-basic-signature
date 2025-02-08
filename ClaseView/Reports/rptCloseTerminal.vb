@@ -45,7 +45,7 @@ Public Class rptCloseTerminal
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "DanashaBasic.rptCloseTerminal.rpt"
+            Return "DanashaBasicSignature.rptCloseTerminal.rpt"
         End Get
         Set
             'Do nothing

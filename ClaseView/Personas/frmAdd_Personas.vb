@@ -289,7 +289,7 @@ Public Class frmAdd_Personas
         sender.DataSource = Nothing
         sender.Text = ""
         ZonaOKPictureBox.Visible = True
-        ZonaOKPictureBox.Image =  Global.DanashaBasic.My.Resources.Resources.Delete_32
+        ZonaOKPictureBox.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Delete_32
         ToolTip1.SetToolTip(ZonaOKPictureBox, "Ruta no especificada.. no se podrà guardar ")
         zona = False
     End Sub
@@ -361,7 +361,7 @@ Public Class frmAdd_Personas
     Private Sub SectorComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SectorComboBox.SelectedIndexChanged
         If sender.SelectedIndex >= 0 And sender.ValueMember.Length > 0 Then
             If sender.selectedValue > 0 Then
-                ZonaOKPictureBox.Image =  Global.DanashaBasic.My.Resources.Resources.ok_32
+                ZonaOKPictureBox.Image =  Global.DanashaBasicSignature.My.Resources.Resources.ok_32
                 ToolTip1.SetToolTip(ZonaOKPictureBox, "Ruta especificada ")
                 zona = True
                 Return
@@ -369,7 +369,7 @@ Public Class frmAdd_Personas
         End If
         If PaisComboBox.SelectedValue > 0 Then
             ZonaOKPictureBox.Visible = True
-            ZonaOKPictureBox.Image =  Global.DanashaBasic.My.Resources.Resources.Delete_32
+            ZonaOKPictureBox.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Delete_32
             ToolTip1.SetToolTip(ZonaOKPictureBox, "Ruta no especificada.. no se podrà guardar ")
         Else
             ZonaOKPictureBox.Visible = False
@@ -381,7 +381,7 @@ Public Class frmAdd_Personas
         End If
     End Sub
     Private Sub Messaje_NotList()
-        ZonaOKPictureBox.Image =  Global.DanashaBasic.My.Resources.Resources.Delete_32
+        ZonaOKPictureBox.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Delete_32
         ToolTip1.SetToolTip(ZonaOKPictureBox, "Seleccione uno del listado ")
         zona = False
     End Sub
@@ -439,7 +439,7 @@ Public Class frmAdd_Personas
                 End If
             Else
                 FotoEddButton.Enabled = False
-                PersonPictureBox.Image =  Global.DanashaBasic.My.Resources.Resources.user_nothing_72
+                PersonPictureBox.Image =  Global.DanashaBasicSignature.My.Resources.Resources.user_nothing_72
             End If
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")

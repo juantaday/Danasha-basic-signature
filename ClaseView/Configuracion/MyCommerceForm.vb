@@ -219,7 +219,7 @@ Public Class MyCommerceForm
         If TokenListComboBox.DataSource Is Nothing Then
             TokenListComboBox.DataSource = TokensValidos.values().ToList()
             If Not String.IsNullOrEmpty(_signatureOption?.TOKEN) Then
-                Dim token = TokensValidos.obtenerToken(_signatureOption.TOKEN)
+                Dim token = TokensValidos.obtenerToken(_signatureOption.TOKEN, _signatureOption.THUMBPRINT)
                 TokenListComboBox.SelectedItem = token
             End If
         End If

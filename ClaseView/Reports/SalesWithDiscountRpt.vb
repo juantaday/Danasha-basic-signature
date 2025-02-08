@@ -45,7 +45,7 @@ Public Class SalesWithDiscountRpt
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "DanashaBasic.SalesWithDiscountRpt.rpt"
+            Return "DanashaBasicSignature.SalesWithDiscountRpt.rpt"
         End Get
         Set
             'Do nothing

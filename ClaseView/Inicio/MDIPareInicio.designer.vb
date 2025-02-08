@@ -157,7 +157,7 @@ Partial Class MDIPareInicio
         Me.MenuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1244, 75)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1244, 56)
         Me.MenuStrip1.Stretch = False
         Me.MenuStrip1.TabIndex = 10
         Me.MenuStrip1.Text = "Erramientas"
@@ -167,7 +167,7 @@ Partial Class MDIPareInicio
         Me.InicioToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.InicioToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MiNegocioToolStripMenuItem, Me.CambiarDeUsuarioToolStripMenuItem, Me.SalirToolStripMenuItem2})
         Me.InicioToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.InicioToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Power_icon_32
+        Me.InicioToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Power_icon_32
         Me.InicioToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.InicioToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.InicioToolStripMenuItem.Name = "InicioToolStripMenuItem"
@@ -176,21 +176,21 @@ Partial Class MDIPareInicio
         '
         'MiNegocioToolStripMenuItem
         '
-        Me.MiNegocioToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Ecommece32
+        Me.MiNegocioToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.commece_24
         Me.MiNegocioToolStripMenuItem.Name = "MiNegocioToolStripMenuItem"
         Me.MiNegocioToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.MiNegocioToolStripMenuItem.Text = "Mi negocio"
         '
         'CambiarDeUsuarioToolStripMenuItem
         '
-        Me.CambiarDeUsuarioToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.user_bloqueo
+        Me.CambiarDeUsuarioToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.user_bloqueo
         Me.CambiarDeUsuarioToolStripMenuItem.Name = "CambiarDeUsuarioToolStripMenuItem"
         Me.CambiarDeUsuarioToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.CambiarDeUsuarioToolStripMenuItem.Text = "Cambiar de Usuario"
         '
         'SalirToolStripMenuItem2
         '
-        Me.SalirToolStripMenuItem2.Image = Global.DanashaBasic.My.Resources.Resources.Close_32x32
+        Me.SalirToolStripMenuItem2.Image = Global.DanashaBasicSignature.My.Resources.Resources.Close_32x32
         Me.SalirToolStripMenuItem2.Name = "SalirToolStripMenuItem2"
         Me.SalirToolStripMenuItem2.Size = New System.Drawing.Size(203, 22)
         Me.SalirToolStripMenuItem2.Text = "Salir"
@@ -210,7 +210,7 @@ Partial Class MDIPareInicio
         '
         'CuentasPorCobrarToolStripMenuItem
         '
-        Me.CuentasPorCobrarToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.debit_Client_32
+        Me.CuentasPorCobrarToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.debit_Client_32
         Me.CuentasPorCobrarToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.CuentasPorCobrarToolStripMenuItem.Name = "CuentasPorCobrarToolStripMenuItem"
         Me.CuentasPorCobrarToolStripMenuItem.Padding = New System.Windows.Forms.Padding(0)
@@ -219,7 +219,7 @@ Partial Class MDIPareInicio
         '
         'CuentasPoPagarToolStripMenuItem
         '
-        Me.CuentasPoPagarToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.payPal_32
+        Me.CuentasPoPagarToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.payPal_32
         Me.CuentasPoPagarToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.CuentasPoPagarToolStripMenuItem.Name = "CuentasPoPagarToolStripMenuItem"
         Me.CuentasPoPagarToolStripMenuItem.Padding = New System.Windows.Forms.Padding(0)
@@ -234,7 +234,7 @@ Partial Class MDIPareInicio
         'VentasToolStripMenuIte
         '
         Me.VentasToolStripMenuIte.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReporteDeVentasPorCajaToolStripMenuItem, Me.VentasPorOperaciónToolStripMenuItem, Me.ReporteDeVentasPorClienteToolStripMenuItem, Me.ReporteDeVentasPorProdcutoToolStripMenuItem, Me.PorEmpleadoToolStripMenuItem, Me.VerConUtilidadToolStripMenuItem, Me.VentasConDescuentoToolStripMenuItem})
-        Me.VentasToolStripMenuIte.Image = Global.DanashaBasic.My.Resources.Resources.Venta_32_png
+        Me.VentasToolStripMenuIte.Image = Global.DanashaBasicSignature.My.Resources.Resources.Venta_32_png
         Me.VentasToolStripMenuIte.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.VentasToolStripMenuIte.Name = "VentasToolStripMenuIte"
         Me.VentasToolStripMenuIte.Size = New System.Drawing.Size(255, 38)
@@ -290,7 +290,7 @@ Partial Class MDIPareInicio
         'CompasToolStripMenuItem
         '
         Me.CompasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PorProveedorToolStripMenuItem, Me.PorProdcutoToolStripMenuItem, Me.PorDocumentoToolStripMenuItem})
-        Me.CompasToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.SalesMy_32_png
+        Me.CompasToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.SalesMy_32_png
         Me.CompasToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.CompasToolStripMenuItem.Name = "CompasToolStripMenuItem"
         Me.CompasToolStripMenuItem.Size = New System.Drawing.Size(255, 38)
@@ -298,28 +298,28 @@ Partial Class MDIPareInicio
         '
         'PorProveedorToolStripMenuItem
         '
-        Me.PorProveedorToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Proveedor
+        Me.PorProveedorToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Proveedor
         Me.PorProveedorToolStripMenuItem.Name = "PorProveedorToolStripMenuItem"
         Me.PorProveedorToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
         Me.PorProveedorToolStripMenuItem.Text = "Por proveedor"
         '
         'PorProdcutoToolStripMenuItem
         '
-        Me.PorProdcutoToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Product_Icon_64
+        Me.PorProdcutoToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Product_Icon_64
         Me.PorProdcutoToolStripMenuItem.Name = "PorProdcutoToolStripMenuItem"
         Me.PorProdcutoToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
         Me.PorProdcutoToolStripMenuItem.Text = "Por producto"
         '
         'PorDocumentoToolStripMenuItem
         '
-        Me.PorDocumentoToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.invoice_icon_48
+        Me.PorDocumentoToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.invoice_icon_48
         Me.PorDocumentoToolStripMenuItem.Name = "PorDocumentoToolStripMenuItem"
         Me.PorDocumentoToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
         Me.PorDocumentoToolStripMenuItem.Text = "Por documento"
         '
         'StockDeProductosToolStripMenuItem
         '
-        Me.StockDeProductosToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.stock_Bodega_32
+        Me.StockDeProductosToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.stock_Bodega_32
         Me.StockDeProductosToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.StockDeProductosToolStripMenuItem.Name = "StockDeProductosToolStripMenuItem"
         Me.StockDeProductosToolStripMenuItem.Size = New System.Drawing.Size(255, 38)
@@ -327,7 +327,7 @@ Partial Class MDIPareInicio
         '
         'UtilidadesUltimosMesesToolStripMenuItem
         '
-        Me.UtilidadesUltimosMesesToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.rates_20
+        Me.UtilidadesUltimosMesesToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.rates_20
         Me.UtilidadesUltimosMesesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.UtilidadesUltimosMesesToolStripMenuItem.Name = "UtilidadesUltimosMesesToolStripMenuItem"
         Me.UtilidadesUltimosMesesToolStripMenuItem.Size = New System.Drawing.Size(255, 38)
@@ -335,7 +335,7 @@ Partial Class MDIPareInicio
         '
         'VentasGeneralesToolStripMenuItem
         '
-        Me.VentasGeneralesToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.MiniDashaboar
+        Me.VentasGeneralesToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.MiniDashaboar
         Me.VentasGeneralesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.VentasGeneralesToolStripMenuItem.Name = "VentasGeneralesToolStripMenuItem"
         Me.VentasGeneralesToolStripMenuItem.Size = New System.Drawing.Size(255, 38)
@@ -343,7 +343,7 @@ Partial Class MDIPareInicio
         '
         'DocumentosElectrónicosToolStripMenuItem
         '
-        Me.DocumentosElectrónicosToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Sinature_32
+        Me.DocumentosElectrónicosToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Sinature_32
         Me.DocumentosElectrónicosToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.DocumentosElectrónicosToolStripMenuItem.Name = "DocumentosElectrónicosToolStripMenuItem"
         Me.DocumentosElectrónicosToolStripMenuItem.Size = New System.Drawing.Size(255, 38)
@@ -353,7 +353,7 @@ Partial Class MDIPareInicio
         '
         Me.HerramientasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdministrarProductosToolStripMenuItem, Me.RegistrarEsteEquipoToolStripMenuItem, Me.RegistrarEnUnaEstaciónToolStripMenuItem, Me.AdministrarBodegasAlmacenesToolStripMenuItem, Me.AdministrarPrecioProductoToolStripMenuItem, Me.AdministrarCreditoParaClientesToolStripMenuItem, Me.SaldosEnTerminalesToolStripMenuItem})
         Me.HerramientasToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.HerramientasToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Herram_icon_48
+        Me.HerramientasToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Herram_icon_48
         Me.HerramientasToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.HerramientasToolStripMenuItem.Name = "HerramientasToolStripMenuItem"
         Me.HerramientasToolStripMenuItem.Size = New System.Drawing.Size(155, 52)
@@ -361,7 +361,7 @@ Partial Class MDIPareInicio
         '
         'AdministrarProductosToolStripMenuItem
         '
-        Me.AdministrarProductosToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Tools_32
+        Me.AdministrarProductosToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Tools_32
         Me.AdministrarProductosToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.AdministrarProductosToolStripMenuItem.Name = "AdministrarProductosToolStripMenuItem"
         Me.AdministrarProductosToolStripMenuItem.Size = New System.Drawing.Size(371, 54)
@@ -369,7 +369,7 @@ Partial Class MDIPareInicio
         '
         'RegistrarEsteEquipoToolStripMenuItem
         '
-        Me.RegistrarEsteEquipoToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Computer_pngX24
+        Me.RegistrarEsteEquipoToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Computer_pngX24
         Me.RegistrarEsteEquipoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.RegistrarEsteEquipoToolStripMenuItem.Name = "RegistrarEsteEquipoToolStripMenuItem"
         Me.RegistrarEsteEquipoToolStripMenuItem.Size = New System.Drawing.Size(371, 54)
@@ -377,7 +377,7 @@ Partial Class MDIPareInicio
         '
         'RegistrarEnUnaEstaciónToolStripMenuItem
         '
-        Me.RegistrarEnUnaEstaciónToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.google_maps_pin_locate_48
+        Me.RegistrarEnUnaEstaciónToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.google_maps_pin_locate_48
         Me.RegistrarEnUnaEstaciónToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.RegistrarEnUnaEstaciónToolStripMenuItem.Name = "RegistrarEnUnaEstaciónToolStripMenuItem"
         Me.RegistrarEnUnaEstaciónToolStripMenuItem.Size = New System.Drawing.Size(371, 54)
@@ -385,7 +385,7 @@ Partial Class MDIPareInicio
         '
         'AdministrarBodegasAlmacenesToolStripMenuItem
         '
-        Me.AdministrarBodegasAlmacenesToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.whereHouse_48
+        Me.AdministrarBodegasAlmacenesToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.whereHouse_48
         Me.AdministrarBodegasAlmacenesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.AdministrarBodegasAlmacenesToolStripMenuItem.Name = "AdministrarBodegasAlmacenesToolStripMenuItem"
         Me.AdministrarBodegasAlmacenesToolStripMenuItem.Size = New System.Drawing.Size(371, 54)
@@ -393,7 +393,7 @@ Partial Class MDIPareInicio
         '
         'AdministrarPrecioProductoToolStripMenuItem
         '
-        Me.AdministrarPrecioProductoToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Offers_32
+        Me.AdministrarPrecioProductoToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Offers_32
         Me.AdministrarPrecioProductoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.AdministrarPrecioProductoToolStripMenuItem.Name = "AdministrarPrecioProductoToolStripMenuItem"
         Me.AdministrarPrecioProductoToolStripMenuItem.Size = New System.Drawing.Size(371, 54)
@@ -401,7 +401,7 @@ Partial Class MDIPareInicio
         '
         'AdministrarCreditoParaClientesToolStripMenuItem
         '
-        Me.AdministrarCreditoParaClientesToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Credid_48
+        Me.AdministrarCreditoParaClientesToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Credid_48
         Me.AdministrarCreditoParaClientesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.AdministrarCreditoParaClientesToolStripMenuItem.Name = "AdministrarCreditoParaClientesToolStripMenuItem"
         Me.AdministrarCreditoParaClientesToolStripMenuItem.Size = New System.Drawing.Size(371, 54)
@@ -409,7 +409,7 @@ Partial Class MDIPareInicio
         '
         'SaldosEnTerminalesToolStripMenuItem
         '
-        Me.SaldosEnTerminalesToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Caja_regidter
+        Me.SaldosEnTerminalesToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Caja_regidter
         Me.SaldosEnTerminalesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.SaldosEnTerminalesToolStripMenuItem.Name = "SaldosEnTerminalesToolStripMenuItem"
         Me.SaldosEnTerminalesToolStripMenuItem.Size = New System.Drawing.Size(371, 54)
@@ -420,7 +420,7 @@ Partial Class MDIPareInicio
         '
         Me.ListadosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClinetListToolStripMenuItem, Me.ProveedorListToolStripMenuItem, Me.EmpleadoListToolStripMenuItem})
         Me.ListadosToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.ListadosToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.PanelSettingicon_48
+        Me.ListadosToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.PanelSettingicon_48
         Me.ListadosToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ListadosToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ListadosToolStripMenuItem.Name = "ListadosToolStripMenuItem"
@@ -429,7 +429,7 @@ Partial Class MDIPareInicio
         '
         'ClinetListToolStripMenuItem
         '
-        Me.ClinetListToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.clients
+        Me.ClinetListToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.clients
         Me.ClinetListToolStripMenuItem.Name = "ClinetListToolStripMenuItem"
         Me.ClinetListToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.ClinetListToolStripMenuItem.Tag = "5"
@@ -437,14 +437,14 @@ Partial Class MDIPareInicio
         '
         'ProveedorListToolStripMenuItem
         '
-        Me.ProveedorListToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.luggage18
+        Me.ProveedorListToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.luggage18
         Me.ProveedorListToolStripMenuItem.Name = "ProveedorListToolStripMenuItem"
         Me.ProveedorListToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.ProveedorListToolStripMenuItem.Text = "Proveedores"
         '
         'EmpleadoListToolStripMenuItem
         '
-        Me.EmpleadoListToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Empleado_24
+        Me.EmpleadoListToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Empleado_24
         Me.EmpleadoListToolStripMenuItem.Name = "EmpleadoListToolStripMenuItem"
         Me.EmpleadoListToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.EmpleadoListToolStripMenuItem.Tag = "6"
@@ -454,7 +454,7 @@ Partial Class MDIPareInicio
         '
         Me.ProductoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListadoToolStripMenuItem, Me.InventarioToolStripMenuItem})
         Me.ProductoToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.ProductoToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.barcode_48
+        Me.ProductoToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.barcode_48
         Me.ProductoToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ProductoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ProductoToolStripMenuItem.Name = "ProductoToolStripMenuItem"
@@ -463,7 +463,7 @@ Partial Class MDIPareInicio
         '
         'ListadoToolStripMenuItem
         '
-        Me.ListadoToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.List_32x32
+        Me.ListadoToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.List_32x32
         Me.ListadoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ListadoToolStripMenuItem.Name = "ListadoToolStripMenuItem"
         Me.ListadoToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.L), System.Windows.Forms.Keys)
@@ -472,7 +472,7 @@ Partial Class MDIPareInicio
         '
         'InventarioToolStripMenuItem
         '
-        Me.InventarioToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.stock_Bodega_32
+        Me.InventarioToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.stock_Bodega_32
         Me.InventarioToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.InventarioToolStripMenuItem.Name = "InventarioToolStripMenuItem"
         Me.InventarioToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
@@ -484,7 +484,7 @@ Partial Class MDIPareInicio
         Me.FacturacionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OrdenCompraNew, Me.OrdenCompraToolStripMenuItem})
         Me.FacturacionToolStripMenuItem.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FacturacionToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.FacturacionToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.compra_48
+        Me.FacturacionToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.compra_48
         Me.FacturacionToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.FacturacionToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.FacturacionToolStripMenuItem.Name = "FacturacionToolStripMenuItem"
@@ -493,7 +493,7 @@ Partial Class MDIPareInicio
         '
         'OrdenCompraNew
         '
-        Me.OrdenCompraNew.Image = Global.DanashaBasic.My.Resources.Resources.newSales_48
+        Me.OrdenCompraNew.Image = Global.DanashaBasicSignature.My.Resources.Resources.newSales_48
         Me.OrdenCompraNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.OrdenCompraNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.OrdenCompraNew.Name = "OrdenCompraNew"
@@ -503,7 +503,7 @@ Partial Class MDIPareInicio
         '
         'OrdenCompraToolStripMenuItem
         '
-        Me.OrdenCompraToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.ListPedido_48
+        Me.OrdenCompraToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.ListPedido_48
         Me.OrdenCompraToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.OrdenCompraToolStripMenuItem.Name = "OrdenCompraToolStripMenuItem"
         Me.OrdenCompraToolStripMenuItem.Size = New System.Drawing.Size(216, 54)
@@ -514,7 +514,7 @@ Partial Class MDIPareInicio
         '
         Me.VentasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DiariaPorCajaToolStripMenuItem, Me.PreciosDeVentasToolStripMenuItem, Me.FacturasToolStripMenuItem, Me.OrdenDeVentaNoFacturadaToolStripMenuItem, Me.ArqueoDeCajaToolStripMenuItem})
         Me.VentasToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.VentasToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Venta_48
+        Me.VentasToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Venta_48
         Me.VentasToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.VentasToolStripMenuItem.Name = "VentasToolStripMenuItem"
         Me.VentasToolStripMenuItem.Size = New System.Drawing.Size(106, 52)
@@ -522,7 +522,7 @@ Partial Class MDIPareInicio
         '
         'DiariaPorCajaToolStripMenuItem
         '
-        Me.DiariaPorCajaToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.VentasCarro_32
+        Me.DiariaPorCajaToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.VentasCarro_32
         Me.DiariaPorCajaToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.DiariaPorCajaToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.DiariaPorCajaToolStripMenuItem.Name = "DiariaPorCajaToolStripMenuItem"
@@ -532,7 +532,7 @@ Partial Class MDIPareInicio
         '
         'PreciosDeVentasToolStripMenuItem
         '
-        Me.PreciosDeVentasToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.PrecioProduct_32
+        Me.PreciosDeVentasToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.PrecioProduct_32
         Me.PreciosDeVentasToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.PreciosDeVentasToolStripMenuItem.Name = "PreciosDeVentasToolStripMenuItem"
         Me.PreciosDeVentasToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.L), System.Windows.Forms.Keys)
@@ -541,7 +541,7 @@ Partial Class MDIPareInicio
         '
         'FacturasToolStripMenuItem
         '
-        Me.FacturasToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Factur_32
+        Me.FacturasToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Factur_32
         Me.FacturasToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.FacturasToolStripMenuItem.Name = "FacturasToolStripMenuItem"
         Me.FacturasToolStripMenuItem.Size = New System.Drawing.Size(274, 38)
@@ -549,7 +549,7 @@ Partial Class MDIPareInicio
         '
         'OrdenDeVentaNoFacturadaToolStripMenuItem
         '
-        Me.OrdenDeVentaNoFacturadaToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.check_listx32
+        Me.OrdenDeVentaNoFacturadaToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.check_listx32
         Me.OrdenDeVentaNoFacturadaToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.OrdenDeVentaNoFacturadaToolStripMenuItem.Name = "OrdenDeVentaNoFacturadaToolStripMenuItem"
         Me.OrdenDeVentaNoFacturadaToolStripMenuItem.Size = New System.Drawing.Size(274, 38)
@@ -557,7 +557,7 @@ Partial Class MDIPareInicio
         '
         'ArqueoDeCajaToolStripMenuItem
         '
-        Me.ArqueoDeCajaToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Cash_Counter_32
+        Me.ArqueoDeCajaToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Cash_Counter_32
         Me.ArqueoDeCajaToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ArqueoDeCajaToolStripMenuItem.Name = "ArqueoDeCajaToolStripMenuItem"
         Me.ArqueoDeCajaToolStripMenuItem.Size = New System.Drawing.Size(274, 38)
@@ -567,7 +567,7 @@ Partial Class MDIPareInicio
         '
         Me.SeguridadToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UsuariosToolStripMenuItem, Me.PermisosDeUsuarioToolStripMenuItem, Me.RespaldarBaseDeDatosToolStripMenuItem, Me.CambiarDeContraseñaToolStripMenuItem})
         Me.SeguridadToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.SeguridadToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Segurity_48
+        Me.SeguridadToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Segurity_48
         Me.SeguridadToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.SeguridadToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.SeguridadToolStripMenuItem.Name = "SeguridadToolStripMenuItem"
@@ -576,7 +576,7 @@ Partial Class MDIPareInicio
         '
         'UsuariosToolStripMenuItem
         '
-        Me.UsuariosToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.BO_User_32x32
+        Me.UsuariosToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.BO_User_32x32
         Me.UsuariosToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.UsuariosToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.UsuariosToolStripMenuItem.Name = "UsuariosToolStripMenuItem"
@@ -586,7 +586,7 @@ Partial Class MDIPareInicio
         '
         'PermisosDeUsuarioToolStripMenuItem
         '
-        Me.PermisosDeUsuarioToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Action_Security_ChangePassword_32x32
+        Me.PermisosDeUsuarioToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Security_ChangePassword_32x32
         Me.PermisosDeUsuarioToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.PermisosDeUsuarioToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.PermisosDeUsuarioToolStripMenuItem.Name = "PermisosDeUsuarioToolStripMenuItem"
@@ -596,7 +596,7 @@ Partial Class MDIPareInicio
         '
         'RespaldarBaseDeDatosToolStripMenuItem
         '
-        Me.RespaldarBaseDeDatosToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Backup_Blue_32
+        Me.RespaldarBaseDeDatosToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Backup_Blue_32
         Me.RespaldarBaseDeDatosToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.RespaldarBaseDeDatosToolStripMenuItem.Name = "RespaldarBaseDeDatosToolStripMenuItem"
         Me.RespaldarBaseDeDatosToolStripMenuItem.Size = New System.Drawing.Size(269, 54)
@@ -614,7 +614,7 @@ Partial Class MDIPareInicio
         '
         Me.ConfiguracionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AsignacionBodegaToolStripMenuItem, Me.NumeracionDeFacturaToolStripMenuItem, Me.ImpresonaTicketToolStripMenuItem})
         Me.ConfiguracionToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.ConfiguracionToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.configura_icon_48
+        Me.ConfiguracionToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.configura_icon_48
         Me.ConfiguracionToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ConfiguracionToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ConfiguracionToolStripMenuItem.Name = "ConfiguracionToolStripMenuItem"
@@ -623,7 +623,7 @@ Partial Class MDIPareInicio
         '
         'AsignacionBodegaToolStripMenuItem
         '
-        Me.AsignacionBodegaToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.whreHouse_32
+        Me.AsignacionBodegaToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.whreHouse_32
         Me.AsignacionBodegaToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.AsignacionBodegaToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.AsignacionBodegaToolStripMenuItem.Name = "AsignacionBodegaToolStripMenuItem"
@@ -633,7 +633,7 @@ Partial Class MDIPareInicio
         '
         'NumeracionDeFacturaToolStripMenuItem
         '
-        Me.NumeracionDeFacturaToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.numeration_32
+        Me.NumeracionDeFacturaToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.numeration_32
         Me.NumeracionDeFacturaToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.NumeracionDeFacturaToolStripMenuItem.Name = "NumeracionDeFacturaToolStripMenuItem"
         Me.NumeracionDeFacturaToolStripMenuItem.Size = New System.Drawing.Size(267, 38)
@@ -641,7 +641,7 @@ Partial Class MDIPareInicio
         '
         'ImpresonaTicketToolStripMenuItem
         '
-        Me.ImpresonaTicketToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.printMatrix_32
+        Me.ImpresonaTicketToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.printMatrix_32
         Me.ImpresonaTicketToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ImpresonaTicketToolStripMenuItem.Name = "ImpresonaTicketToolStripMenuItem"
         Me.ImpresonaTicketToolStripMenuItem.Size = New System.Drawing.Size(267, 38)
@@ -651,7 +651,7 @@ Partial Class MDIPareInicio
         '
         Me.AcercaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AcercaDeToolStripMenuItem, Me.ContagtoToolStripMenuItem, Me.AjecutarScripToolStripMenuItem})
         Me.AcercaToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.AcercaToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.State_Validation_Information_48x48
+        Me.AcercaToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.State_Validation_Information_48x48
         Me.AcercaToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.AcercaToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.AcercaToolStripMenuItem.Name = "AcercaToolStripMenuItem"
@@ -660,27 +660,27 @@ Partial Class MDIPareInicio
         '
         'AcercaDeToolStripMenuItem
         '
-        Me.AcercaDeToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.PageInfo_32x32
+        Me.AcercaDeToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.PageInfo_32x32
         Me.AcercaDeToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.AcercaDeToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.AcercaDeToolStripMenuItem.Name = "AcercaDeToolStripMenuItem"
-        Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
+        Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(180, 38)
         Me.AcercaDeToolStripMenuItem.Text = "Acerca de"
         Me.AcercaDeToolStripMenuItem.ToolTipText = "Información de esta aplicación"
         '
         'ContagtoToolStripMenuItem
         '
-        Me.ContagtoToolStripMenuItem.Image = Global.DanashaBasic.My.Resources.Resources.Contact_32x32
+        Me.ContagtoToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Contact_32x32
         Me.ContagtoToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ContagtoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ContagtoToolStripMenuItem.Name = "ContagtoToolStripMenuItem"
-        Me.ContagtoToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
+        Me.ContagtoToolStripMenuItem.Size = New System.Drawing.Size(180, 38)
         Me.ContagtoToolStripMenuItem.Text = "Contacto"
         '
         'AjecutarScripToolStripMenuItem
         '
         Me.AjecutarScripToolStripMenuItem.Name = "AjecutarScripToolStripMenuItem"
-        Me.AjecutarScripToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
+        Me.AjecutarScripToolStripMenuItem.Size = New System.Drawing.Size(180, 38)
         Me.AjecutarScripToolStripMenuItem.Text = "Ajecutar scrip"
         '
         'notificacion
@@ -691,9 +691,9 @@ Partial Class MDIPareInicio
         'paneMuestra
         '
         Me.paneMuestra.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.paneMuestra.Location = New System.Drawing.Point(0, 75)
+        Me.paneMuestra.Location = New System.Drawing.Point(0, 56)
         Me.paneMuestra.Name = "paneMuestra"
-        Me.paneMuestra.Size = New System.Drawing.Size(1244, 225)
+        Me.paneMuestra.Size = New System.Drawing.Size(1244, 244)
         Me.paneMuestra.TabIndex = 14
         '
         'MenuStrip
@@ -702,7 +702,7 @@ Partial Class MDIPareInicio
         Me.MenuStrip.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer))
         Me.MenuStrip.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewMenu, Me.WindowsMenu, Me.EditarToolStripMenuItem, Me.ContadorBillteToolStripMenuItem})
-        Me.MenuStrip.Location = New System.Drawing.Point(0, 75)
+        Me.MenuStrip.Location = New System.Drawing.Point(0, 56)
         Me.MenuStrip.MdiWindowListItem = Me.WindowsMenu
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Size = New System.Drawing.Size(1244, 30)
@@ -811,7 +811,7 @@ Partial Class MDIPareInicio
         Me.MenuBarr.AutoSize = False
         Me.MenuBarr.BackColor = System.Drawing.Color.White
         Me.MenuBarr.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.I1ToolStripMenuItem, Me.I2ToolStripMenuItem, Me.I3ToolStripMenuItem, Me.I4ToolStripMenuItem, Me.I5ToolStripMenuItem, Me.I6ToolStripMenuItem, Me.I7ToolStripMenuItem, Me.I8ToolStripMenuItem, Me.I9ToolStripMenuItem, Me.I10ToolStripMenuItem, Me.I11ToolStripMenuItem, Me.I12ToolStripMenuItem, Me.I13ToolStripMenuItem, Me.I14ToolStripMenuItem, Me.I15ToolStripMenuItem, Me.I16ToolStripMenuItem, Me.I17ToolStripMenuItem, Me.I18ToolStripMenuItem, Me.I19ToolStripMenuItem})
-        Me.MenuBarr.Location = New System.Drawing.Point(0, 105)
+        Me.MenuBarr.Location = New System.Drawing.Point(0, 86)
         Me.MenuBarr.Name = "MenuBarr"
         Me.MenuBarr.Size = New System.Drawing.Size(1244, 28)
         Me.MenuBarr.TabIndex = 21

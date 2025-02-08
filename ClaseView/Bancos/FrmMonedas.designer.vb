@@ -86,7 +86,7 @@ Partial Class FrmMonedas
         '
         'FindButton
         '
-        Me.FindButton.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.zoom_icon_24
+        Me.FindButton.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.zoom_icon_24
         Me.FindButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.FindButton.Location = New System.Drawing.Point(559, 6)
         Me.FindButton.Name = "FindButton"
@@ -175,7 +175,7 @@ Partial Class FrmMonedas
         '
         'ConfimButton
         '
-        Me.ConfimButton.Image =  Global.DanashaBasic.My.Resources.Resources.ok_16
+        Me.ConfimButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.ok_16
         Me.ConfimButton.Location = New System.Drawing.Point(201, 20)
         Me.ConfimButton.Name = "ConfimButton"
         Me.ConfimButton.Size = New System.Drawing.Size(28, 24)

@@ -56,7 +56,7 @@ Partial Class frmReportViewUtilidad
         '
         'PictureBox1
         '
-        Me.PictureBox1.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.Product_Icon_64
+        Me.PictureBox1.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.Product_Icon_64
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PictureBox1.Location = New System.Drawing.Point(12, 3)
         Me.PictureBox1.Name = "PictureBox1"
@@ -78,7 +78,7 @@ Partial Class frmReportViewUtilidad
         '
         'FindButton
         '
-        Me.FindButton.Image =  Global.DanashaBasic.My.Resources.Resources.zoom_icon_24
+        Me.FindButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.zoom_icon_24
         Me.FindButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.FindButton.Location = New System.Drawing.Point(271, 22)
         Me.FindButton.Margin = New System.Windows.Forms.Padding(4)

@@ -41,13 +41,13 @@ Public Class MDIcajas
         Dim _control As System.Windows.Forms.Panel = sender.Parent
         Try
             If sender.tag = 0 Then
-                sender.Image = DanashaBasic.My.Resources.Resources.hamburger_22_white
+                sender.Image = DanashaBasicSignature.My.Resources.Resources.hamburger_22_white
                 _control.Height = sender.Height
                 _control.BackColor = Color.DimGray
                 sender.BackColor = Color.DimGray
                 sender.tag = 1
             Else
-                sender.Image = DanashaBasic.My.Resources.Resources.hamburger_22_Down_white
+                sender.Image = DanashaBasicSignature.My.Resources.Resources.hamburger_22_Down_white
                 _control.Height = 140
                 _control.BackColor = PanelMenu.BackColor
                 sender.BackColor = Color.Black

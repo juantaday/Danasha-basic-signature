@@ -110,7 +110,7 @@ Partial Class frmAdd_Usuarios
         'FinPersonButton
         '
         Me.FinPersonButton.Dock = System.Windows.Forms.DockStyle.Right
-        Me.FinPersonButton.Image =  Global.DanashaBasic.My.Resources.Resources.Find_Employee_64
+        Me.FinPersonButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Find_Employee_64
         Me.FinPersonButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.FinPersonButton.Location = New System.Drawing.Point(536, 23)
         Me.FinPersonButton.Name = "FinPersonButton"

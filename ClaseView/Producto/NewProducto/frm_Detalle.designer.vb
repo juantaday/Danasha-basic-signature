@@ -243,7 +243,7 @@ Partial Class frm_detalle
         '
         'DeleteBarCodeButton
         '
-        Me.DeleteBarCodeButton.Image = Global.DanashaBasic.My.Resources.Resources.Action_Delete_16x16
+        Me.DeleteBarCodeButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
         Me.DeleteBarCodeButton.Location = New System.Drawing.Point(424, 190)
         Me.DeleteBarCodeButton.Name = "DeleteBarCodeButton"
         Me.DeleteBarCodeButton.Size = New System.Drawing.Size(41, 27)

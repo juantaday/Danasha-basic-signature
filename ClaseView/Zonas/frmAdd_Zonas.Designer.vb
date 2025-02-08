@@ -541,7 +541,7 @@ Partial Class frmAdd_Zonas
         'Pais_DeleteButton
         '
         Me.Pais_DeleteButton.Enabled = False
-        Me.Pais_DeleteButton.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Delete_16x16
+        Me.Pais_DeleteButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
         Me.Pais_DeleteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Pais_DeleteButton.Location = New System.Drawing.Point(423, 13)
         Me.Pais_DeleteButton.Name = "Pais_DeleteButton"
@@ -554,7 +554,7 @@ Partial Class frmAdd_Zonas
         'Edd_PaisButton
         '
         Me.Edd_PaisButton.Enabled = False
-        Me.Edd_PaisButton.Image =  Global.DanashaBasic.My.Resources.Resources.edir_16
+        Me.Edd_PaisButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.edir_16
         Me.Edd_PaisButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Edd_PaisButton.Location = New System.Drawing.Point(346, 13)
         Me.Edd_PaisButton.Name = "Edd_PaisButton"
@@ -566,7 +566,7 @@ Partial Class frmAdd_Zonas
         '
         'Pais_newButton
         '
-        Me.Pais_newButton.Image =  Global.DanashaBasic.My.Resources.Resources.Action_New
+        Me.Pais_newButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_New
         Me.Pais_newButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Pais_newButton.Location = New System.Drawing.Point(261, 13)
         Me.Pais_newButton.Name = "Pais_newButton"

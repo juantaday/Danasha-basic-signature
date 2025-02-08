@@ -166,16 +166,16 @@ Public Class MoneyDetail
     Public Sub ActivaMenuDelete(state As Boolean)
         Try
             If state Then
-                Me.RealizedMenu.Image =  Global.DanashaBasic.My.Resources.Resources.checkbox_checked_16
+                Me.RealizedMenu.Image =  Global.DanashaBasicSignature.My.Resources.Resources.checkbox_checked_16
                 Me.RealizedMenu.Tag = 0
                 DeleteMenu.Visible = True
             Else
                 If Me.IsCheckenBox() Then
-                    RealizedMenu.Image =  Global.DanashaBasic.My.Resources.Resources.checkbox_checked_16
+                    RealizedMenu.Image =  Global.DanashaBasicSignature.My.Resources.Resources.checkbox_checked_16
                     RealizedMenu.Tag = 0
                     DeleteMenu.Visible = True
                 Else
-                    RealizedMenu.Image =  Global.DanashaBasic.My.Resources.Resources.checkbox_notChecked_16
+                    RealizedMenu.Image =  Global.DanashaBasicSignature.My.Resources.Resources.checkbox_notChecked_16
                     RealizedMenu.Tag = 1
                     DeleteMenu.Visible = False
                 End If

@@ -324,7 +324,7 @@ Partial Class frmAnualconsumo
         '
         'btnNewProveedor
         '
-        Me.btnNewProveedor.BackgroundImage =  Global.DanashaBasic.My.Resources.new_32
+        Me.btnNewProveedor.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.new_32
         Me.btnNewProveedor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnNewProveedor.Location = New System.Drawing.Point(636, 86)
         Me.btnNewProveedor.Name = "btnNewProveedor"
@@ -334,7 +334,7 @@ Partial Class frmAnualconsumo
         '
         'btnListProveedor
         '
-        Me.btnListProveedor.BackgroundImage =  Global.DanashaBasic.My.Resources.list_48
+        Me.btnListProveedor.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.list_48
         Me.btnListProveedor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnListProveedor.Location = New System.Drawing.Point(676, 86)
         Me.btnListProveedor.Name = "btnListProveedor"
@@ -417,7 +417,7 @@ Partial Class frmAnualconsumo
         'btnGuardar
         '
         Me.btnGuardar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnGuardar.BackgroundImage =  Global.DanashaBasic.My.Resources.save_as_64
+        Me.btnGuardar.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.save_as_64
         Me.btnGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnGuardar.Location = New System.Drawing.Point(897, 280)
         Me.btnGuardar.Name = "btnGuardar"

@@ -45,7 +45,7 @@ Public Class rptVentaTipoXMes
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "DanashaBasic.rptVentaTipoXMes.rpt"
+            Return "DanashaBasicSignature.rptVentaTipoXMes.rpt"
         End Get
         Set
             'Do nothing

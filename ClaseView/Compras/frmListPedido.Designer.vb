@@ -119,7 +119,7 @@ Partial Class frmListPedido
         Me.btnEliminar.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnEliminar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEliminar.ForeColor = System.Drawing.Color.White
-        Me.btnEliminar.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Delete_16x16
+        Me.btnEliminar.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
         Me.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnEliminar.Location = New System.Drawing.Point(189, 0)
         Me.btnEliminar.Margin = New System.Windows.Forms.Padding(0)
@@ -134,7 +134,7 @@ Partial Class frmListPedido
         '
         Me.SelectAllButton.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SelectAllButton.ForeColor = System.Drawing.Color.White
-        Me.SelectAllButton.Image =  Global.DanashaBasic.My.Resources.Resources.SelectTable_16x16
+        Me.SelectAllButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.SelectTable_16x16
         Me.SelectAllButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.SelectAllButton.Location = New System.Drawing.Point(100, 0)
         Me.SelectAllButton.Margin = New System.Windows.Forms.Padding(0)

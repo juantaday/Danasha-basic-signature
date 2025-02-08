@@ -151,7 +151,7 @@ Partial Class frmList_Proveedores
         Me.EditButton.BackColor = System.Drawing.Color.Black
         Me.EditButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.EditButton.ForeColor = System.Drawing.Color.White
-        Me.EditButton.Image =  Global.DanashaBasic.My.Resources.Resources.Edd_client_48
+        Me.EditButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Edd_client_48
         Me.EditButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.EditButton.Location = New System.Drawing.Point(98, 1)
         Me.EditButton.Margin = New System.Windows.Forms.Padding(1)
@@ -168,7 +168,7 @@ Partial Class frmList_Proveedores
         Me.NewProveedorButton.BackColor = System.Drawing.Color.Black
         Me.NewProveedorButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.NewProveedorButton.ForeColor = System.Drawing.Color.White
-        Me.NewProveedorButton.Image =  Global.DanashaBasic.My.Resources.Resources.newProvider_48_Gif
+        Me.NewProveedorButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.newProvider_48_Gif
         Me.NewProveedorButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.NewProveedorButton.Location = New System.Drawing.Point(1, 1)
         Me.NewProveedorButton.Margin = New System.Windows.Forms.Padding(1)
@@ -185,7 +185,7 @@ Partial Class frmList_Proveedores
         Me.DetailProviderButton.BackColor = System.Drawing.Color.Black
         Me.DetailProviderButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.DetailProviderButton.ForeColor = System.Drawing.Color.White
-        Me.DetailProviderButton.Image =  Global.DanashaBasic.My.Resources.Resources.Detail_32
+        Me.DetailProviderButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Detail_32
         Me.DetailProviderButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.DetailProviderButton.Location = New System.Drawing.Point(211, 1)
         Me.DetailProviderButton.Margin = New System.Windows.Forms.Padding(1)
@@ -202,7 +202,7 @@ Partial Class frmList_Proveedores
         Me.Button2.BackColor = System.Drawing.Color.Wheat
         Me.Button2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Image =  Global.DanashaBasic.My.Resources.Resources.printer_icon_48
+        Me.Button2.Image =  Global.DanashaBasicSignature.My.Resources.Resources.printer_icon_48
         Me.Button2.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
         Me.Button2.Location = New System.Drawing.Point(3, 149)
         Me.Button2.Name = "Button2"
@@ -218,7 +218,7 @@ Partial Class frmList_Proveedores
         Me.btnExporExcel.BackColor = System.Drawing.Color.Wheat
         Me.btnExporExcel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnExporExcel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnExporExcel.Image =  Global.DanashaBasic.My.Resources.Resources.document_excel_icon_48
+        Me.btnExporExcel.Image =  Global.DanashaBasicSignature.My.Resources.Resources.document_excel_icon_48
         Me.btnExporExcel.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
         Me.btnExporExcel.Location = New System.Drawing.Point(3, 210)
         Me.btnExporExcel.Name = "btnExporExcel"
@@ -235,7 +235,7 @@ Partial Class frmList_Proveedores
         Me.btnVende.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnVende.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnVende.ForeColor = System.Drawing.Color.Black
-        Me.btnVende.Image =  Global.DanashaBasic.My.Resources.Resources.calendar_list_icon_48
+        Me.btnVende.Image =  Global.DanashaBasicSignature.My.Resources.Resources.calendar_list_icon_48
         Me.btnVende.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
         Me.btnVende.Location = New System.Drawing.Point(3, 271)
         Me.btnVende.Name = "btnVende"
@@ -251,7 +251,7 @@ Partial Class frmList_Proveedores
         Me.deleteButton.BackColor = System.Drawing.Color.Black
         Me.deleteButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.deleteButton.ForeColor = System.Drawing.Color.White
-        Me.deleteButton.Image =  Global.DanashaBasic.My.Resources.Resources.Delete_48
+        Me.deleteButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Delete_48
         Me.deleteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.deleteButton.Location = New System.Drawing.Point(318, 1)
         Me.deleteButton.Margin = New System.Windows.Forms.Padding(1)
@@ -312,7 +312,7 @@ Partial Class frmList_Proveedores
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image =  Global.DanashaBasic.My.Resources.Resources.Proveedor
+        Me.PictureBox1.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Proveedor
         Me.PictureBox1.Location = New System.Drawing.Point(3, 3)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(142, 140)
@@ -361,7 +361,7 @@ Partial Class frmList_Proveedores
         Me.bntBuscar.BackColor = System.Drawing.Color.Wheat
         Me.bntBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.bntBuscar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.bntBuscar.Image =  Global.DanashaBasic.My.Resources.Resources.zoom_icon_24
+        Me.bntBuscar.Image =  Global.DanashaBasicSignature.My.Resources.Resources.zoom_icon_24
         Me.bntBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.bntBuscar.Location = New System.Drawing.Point(373, 3)
         Me.bntBuscar.Name = "bntBuscar"

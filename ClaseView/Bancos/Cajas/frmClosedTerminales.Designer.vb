@@ -120,7 +120,7 @@ Partial Class frmClosedTerminales
         '
         'PrintTicketButton
         '
-        Me.PrintTicketButton.Image = Global.DanashaBasic.My.Resources.Resources.Action_Printing_Print_16x16
+        Me.PrintTicketButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Printing_Print_16x16
         Me.PrintTicketButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.PrintTicketButton.Location = New System.Drawing.Point(568, 13)
         Me.PrintTicketButton.Name = "PrintTicketButton"

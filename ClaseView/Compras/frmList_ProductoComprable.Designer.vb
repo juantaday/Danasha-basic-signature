@@ -73,7 +73,7 @@ Partial Class frmList_ProductoComprable
         'FindButton
         '
         Me.FindButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FindButton.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.zoom_green_48icon
+        Me.FindButton.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.zoom_green_48icon
         Me.FindButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.FindButton.Location = New System.Drawing.Point(756, 11)
         Me.FindButton.Name = "FindButton"
@@ -141,7 +141,7 @@ Partial Class frmList_ProductoComprable
         'EditButton
         '
         Me.EditButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.EditButton.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Inline_Edit
+        Me.EditButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
         Me.EditButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.EditButton.Location = New System.Drawing.Point(78, 0)
         Me.EditButton.Name = "EditButton"
@@ -155,7 +155,7 @@ Partial Class frmList_ProductoComprable
         'NewButton
         '
         Me.NewButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.NewButton.Image =  Global.DanashaBasic.My.Resources.Resources.Action_New
+        Me.NewButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_New
         Me.NewButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.NewButton.Location = New System.Drawing.Point(0, 0)
         Me.NewButton.Name = "NewButton"

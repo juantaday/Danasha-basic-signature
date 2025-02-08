@@ -76,7 +76,7 @@ Partial Class FrmVentaXcaja
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image =  Global.DanashaBasic.My.Resources.Resources.Caja_72_png
+        Me.PictureBox1.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Caja_72_png
         Me.PictureBox1.Location = New System.Drawing.Point(2, 2)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(80, 75)
@@ -147,7 +147,7 @@ Partial Class FrmVentaXcaja
         '
         'FindButton
         '
-        Me.FindButton.Image =  Global.DanashaBasic.My.Resources.Resources.zoom_icon_24
+        Me.FindButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.zoom_icon_24
         Me.FindButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.FindButton.Location = New System.Drawing.Point(3, 3)
         Me.FindButton.Name = "FindButton"

@@ -95,19 +95,19 @@ Public Class frmList_Users
                     PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
                 Else
                     If Boolean.Parse(sender.SelectedCells.Item(sender.Columns("genero").Index).Value) Then
-                        PictureBox1.Image =  Global.DanashaBasic.My.Resources.Person_128png
+                        PictureBox1.Image =  Global.DanashaBasicSignature.My.Resources.Person_128png
                         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
                     Else
-                        PictureBox1.Image =  Global.DanashaBasic.My.Resources.Person_128_Won_png
+                        PictureBox1.Image =  Global.DanashaBasicSignature.My.Resources.Person_128_Won_png
                         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
                     End If
                 End If
             Else
                 If Boolean.Parse(sender.SelectedCells.Item(sender.Columns("genero").Index).Value) Then
-                    PictureBox1.Image =  Global.DanashaBasic.My.Resources.Person_128png
+                    PictureBox1.Image =  Global.DanashaBasicSignature.My.Resources.Person_128png
                     PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
                 Else
-                    PictureBox1.Image =  Global.DanashaBasic.My.Resources.Person_128_Won_png
+                    PictureBox1.Image =  Global.DanashaBasicSignature.My.Resources.Person_128_Won_png
                     PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
                 End If
             End If

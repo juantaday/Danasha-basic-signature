@@ -1,6 +1,6 @@
 ﻿Imports CADsisVenta.DataSetMonedasTableAdapters
 Imports CADsisVenta.Helpers.FInicio
-Imports DanashaBasic.ClassView.Conexion
+Imports DanashaBasicSignature.ClassView.Conexion
 
 Public Class frmClosedTerminales
     Private isLoated As Boolean

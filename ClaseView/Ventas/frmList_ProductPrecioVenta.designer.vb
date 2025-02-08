@@ -101,7 +101,7 @@ Partial Class frmList_ProductPrecioVenta
         '
         Me.btnOferta.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnOferta.Enabled = False
-        Me.btnOferta.Image =  Global.DanashaBasic.My.Resources.Resources.PrecioProduct_32
+        Me.btnOferta.Image =  Global.DanashaBasicSignature.My.Resources.Resources.PrecioProduct_32
         Me.btnOferta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnOferta.Location = New System.Drawing.Point(793, 13)
         Me.btnOferta.Name = "btnOferta"
@@ -116,7 +116,7 @@ Partial Class frmList_ProductPrecioVenta
         '
         Me.btnEmpaque.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEmpaque.Enabled = False
-        Me.btnEmpaque.Image =  Global.DanashaBasic.My.Resources.Resources.empaque_48
+        Me.btnEmpaque.Image =  Global.DanashaBasicSignature.My.Resources.Resources.empaque_48
         Me.btnEmpaque.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnEmpaque.Location = New System.Drawing.Point(661, 12)
         Me.btnEmpaque.Name = "btnEmpaque"

@@ -125,7 +125,7 @@ Partial Class FrmVentaXoperation
         'CopyClickBoarButton
         '
         Me.CopyClickBoarButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CopyClickBoarButton.Image = Global.DanashaBasic.My.Resources.Resources.Action_Copy
+        Me.CopyClickBoarButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Copy
         Me.CopyClickBoarButton.Location = New System.Drawing.Point(722, 13)
         Me.CopyClickBoarButton.Name = "CopyClickBoarButton"
         Me.CopyClickBoarButton.Size = New System.Drawing.Size(33, 24)

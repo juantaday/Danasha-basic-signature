@@ -346,7 +346,7 @@ Partial Class frmAdquisicion
         'MoveDowButton
         '
         Me.MoveDowButton.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.MoveDowButton.Image =  Global.DanashaBasic.My.Resources.Resources.MoveDown_32x32
+        Me.MoveDowButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.MoveDown_32x32
         Me.MoveDowButton.Location = New System.Drawing.Point(0, 304)
         Me.MoveDowButton.Margin = New System.Windows.Forms.Padding(0)
         Me.MoveDowButton.Name = "MoveDowButton"
@@ -359,7 +359,7 @@ Partial Class frmAdquisicion
         'MoveUPButton
         '
         Me.MoveUPButton.Dock = System.Windows.Forms.DockStyle.Top
-        Me.MoveUPButton.Image =  Global.DanashaBasic.My.Resources.Resources.MoveUp_32x32
+        Me.MoveUPButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.MoveUp_32x32
         Me.MoveUPButton.Location = New System.Drawing.Point(0, 0)
         Me.MoveUPButton.Margin = New System.Windows.Forms.Padding(0)
         Me.MoveUPButton.Name = "MoveUPButton"
@@ -397,7 +397,7 @@ Partial Class frmAdquisicion
         '
         Me.ActualizarButton.Dock = System.Windows.Forms.DockStyle.Top
         Me.ActualizarButton.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ActualizarButton.Image =  Global.DanashaBasic.My.Resources.Resources.UpdateTable_16x16
+        Me.ActualizarButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.UpdateTable_16x16
         Me.ActualizarButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ActualizarButton.Location = New System.Drawing.Point(0, 172)
         Me.ActualizarButton.Margin = New System.Windows.Forms.Padding(0)
@@ -412,7 +412,7 @@ Partial Class frmAdquisicion
         '
         Me.TotalEdidListButton.Dock = System.Windows.Forms.DockStyle.Top
         Me.TotalEdidListButton.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TotalEdidListButton.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Inline_Edit
+        Me.TotalEdidListButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
         Me.TotalEdidListButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.TotalEdidListButton.Location = New System.Drawing.Point(0, 147)
         Me.TotalEdidListButton.Margin = New System.Windows.Forms.Padding(0)
@@ -427,7 +427,7 @@ Partial Class frmAdquisicion
         '
         Me.PunitarioEddButton.Dock = System.Windows.Forms.DockStyle.Top
         Me.PunitarioEddButton.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PunitarioEddButton.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Inline_Edit
+        Me.PunitarioEddButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
         Me.PunitarioEddButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.PunitarioEddButton.Location = New System.Drawing.Point(0, 122)
         Me.PunitarioEddButton.Margin = New System.Windows.Forms.Padding(0)
@@ -463,7 +463,7 @@ Partial Class frmAdquisicion
         'TotalEditButton
         '
         Me.TotalEditButton.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TotalEditButton.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Inline_Edit
+        Me.TotalEditButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
         Me.TotalEditButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.TotalEditButton.Location = New System.Drawing.Point(95, 64)
         Me.TotalEditButton.Margin = New System.Windows.Forms.Padding(0)
@@ -477,7 +477,7 @@ Partial Class frmAdquisicion
         'DescuenEddButton
         '
         Me.DescuenEddButton.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DescuenEddButton.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Inline_Edit
+        Me.DescuenEddButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
         Me.DescuenEddButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.DescuenEddButton.Location = New System.Drawing.Point(95, 32)
         Me.DescuenEddButton.Margin = New System.Windows.Forms.Padding(0)
@@ -491,7 +491,7 @@ Partial Class frmAdquisicion
         'CantiEddButton
         '
         Me.CantiEddButton.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.CantiEddButton.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Inline_Edit
+        Me.CantiEddButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
         Me.CantiEddButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.CantiEddButton.Location = New System.Drawing.Point(95, 0)
         Me.CantiEddButton.Margin = New System.Windows.Forms.Padding(0)
@@ -507,7 +507,7 @@ Partial Class frmAdquisicion
         Me.SelectAllButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.SelectAllButton.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SelectAllButton.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SelectAllButton.Image =  Global.DanashaBasic.My.Resources.Resources.SelectAll_16x16
+        Me.SelectAllButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.SelectAll_16x16
         Me.SelectAllButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.SelectAllButton.Location = New System.Drawing.Point(0, 0)
         Me.SelectAllButton.Margin = New System.Windows.Forms.Padding(0)
@@ -523,7 +523,7 @@ Partial Class frmAdquisicion
         'DeleteButton
         '
         Me.DeleteButton.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DeleteButton.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Delete_16x16
+        Me.DeleteButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
         Me.DeleteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.DeleteButton.Location = New System.Drawing.Point(0, 64)
         Me.DeleteButton.Margin = New System.Windows.Forms.Padding(0)
@@ -536,7 +536,7 @@ Partial Class frmAdquisicion
         '
         Me.CopyButton.Dock = System.Windows.Forms.DockStyle.Fill
         Me.CopyButton.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CopyButton.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Copy
+        Me.CopyButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Copy
         Me.CopyButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.CopyButton.Location = New System.Drawing.Point(0, 32)
         Me.CopyButton.Margin = New System.Windows.Forms.Padding(0)
@@ -551,7 +551,7 @@ Partial Class frmAdquisicion
         '
         Me.AtrasButton.Dock = System.Windows.Forms.DockStyle.Top
         Me.AtrasButton.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AtrasButton.Image =  Global.DanashaBasic.My.Resources.Resources.MovePrevio_16x16
+        Me.AtrasButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.MovePrevio_16x16
         Me.AtrasButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.AtrasButton.Location = New System.Drawing.Point(0, 0)
         Me.AtrasButton.Margin = New System.Windows.Forms.Padding(0)
@@ -585,7 +585,7 @@ Partial Class frmAdquisicion
         Me.btnAddListaProduc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnAddListaProduc.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnAddListaProduc.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAddListaProduc.Image =  Global.DanashaBasic.My.Resources.Resources.addListNew_48
+        Me.btnAddListaProduc.Image =  Global.DanashaBasicSignature.My.Resources.Resources.addListNew_48
         Me.btnAddListaProduc.Location = New System.Drawing.Point(932, 0)
         Me.btnAddListaProduc.Name = "btnAddListaProduc"
         Me.btnAddListaProduc.Size = New System.Drawing.Size(58, 51)
@@ -630,7 +630,7 @@ Partial Class frmAdquisicion
         'btnVerProducto
         '
         Me.btnVerProducto.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnVerProducto.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.ActionsInDetailView_32x32
+        Me.btnVerProducto.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.ActionsInDetailView_32x32
         Me.btnVerProducto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnVerProducto.Location = New System.Drawing.Point(630, 7)
         Me.btnVerProducto.Name = "btnVerProducto"
@@ -642,7 +642,7 @@ Partial Class frmAdquisicion
         'btnListProducto
         '
         Me.btnListProducto.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnListProducto.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.List_32x32
+        Me.btnListProducto.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.List_32x32
         Me.btnListProducto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnListProducto.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnListProducto.Location = New System.Drawing.Point(590, 7)
@@ -941,7 +941,7 @@ Partial Class frmAdquisicion
         Me.CalculaTotalBtn.BackColor = System.Drawing.Color.Blue
         Me.CalculaTotalBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.CalculaTotalBtn.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CalculaTotalBtn.Image =  Global.DanashaBasic.My.Resources.Resources.CalculateNow_32x32
+        Me.CalculaTotalBtn.Image =  Global.DanashaBasicSignature.My.Resources.Resources.CalculateNow_32x32
         Me.CalculaTotalBtn.Location = New System.Drawing.Point(270, 38)
         Me.CalculaTotalBtn.Margin = New System.Windows.Forms.Padding(0)
         Me.CalculaTotalBtn.Name = "CalculaTotalBtn"
@@ -1052,7 +1052,7 @@ Partial Class frmAdquisicion
         Me.btnGuardaPedido.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnGuardaPedido.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnGuardaPedido.ForeColor = System.Drawing.Color.White
-        Me.btnGuardaPedido.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Save_32x32
+        Me.btnGuardaPedido.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Save_32x32
         Me.btnGuardaPedido.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnGuardaPedido.Location = New System.Drawing.Point(885, 0)
         Me.btnGuardaPedido.Name = "btnGuardaPedido"
@@ -1473,7 +1473,7 @@ Partial Class frmAdquisicion
         '
         Me.btnAcepProveedor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btnAcepProveedor.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnAcepProveedor.Image =  Global.DanashaBasic.My.Resources.Resources.VentasCarro_32
+        Me.btnAcepProveedor.Image =  Global.DanashaBasicSignature.My.Resources.Resources.VentasCarro_32
         Me.btnAcepProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnAcepProveedor.Location = New System.Drawing.Point(696, 3)
         Me.btnAcepProveedor.Name = "btnAcepProveedor"
@@ -1514,7 +1514,7 @@ Partial Class frmAdquisicion
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image =  Global.DanashaBasic.My.Resources.Resources.Proveedor_450x270_Jpg
+        Me.PictureBox1.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Proveedor_450x270_Jpg
         Me.PictureBox1.Location = New System.Drawing.Point(6, 11)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(450, 239)
@@ -1558,7 +1558,7 @@ Partial Class frmAdquisicion
         '
         'btnListProveedor
         '
-        Me.btnListProveedor.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.Group_Black_Folder_icon
+        Me.btnListProveedor.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.Group_Black_Folder_icon
         Me.btnListProveedor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnListProveedor.Location = New System.Drawing.Point(871, 85)
         Me.btnListProveedor.Name = "btnListProveedor"

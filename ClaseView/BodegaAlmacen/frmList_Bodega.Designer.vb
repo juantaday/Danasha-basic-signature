@@ -126,7 +126,7 @@ Partial Class frmList_Bodega
         '
         'NewButton
         '
-        Me.NewButton.Image =  Global.DanashaBasic.My.Resources.Resources.Action_New
+        Me.NewButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_New
         Me.NewButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.NewButton.Location = New System.Drawing.Point(2, 3)
         Me.NewButton.Name = "NewButton"
@@ -138,7 +138,7 @@ Partial Class frmList_Bodega
         '
         'Button2
         '
-        Me.Button2.Image =  Global.DanashaBasic.My.Resources.Resources.edir_16
+        Me.Button2.Image =  Global.DanashaBasicSignature.My.Resources.Resources.edir_16
         Me.Button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button2.Location = New System.Drawing.Point(78, 3)
         Me.Button2.Name = "Button2"
@@ -150,7 +150,7 @@ Partial Class frmList_Bodega
         '
         'Button3
         '
-        Me.Button3.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Delete_16x16
+        Me.Button3.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
         Me.Button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button3.Location = New System.Drawing.Point(156, 3)
         Me.Button3.Name = "Button3"

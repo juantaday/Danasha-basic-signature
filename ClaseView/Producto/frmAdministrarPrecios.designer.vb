@@ -94,7 +94,7 @@ Partial Class frmAdministrarPrecios
         '
         Me.btnOfertas.Dock = System.Windows.Forms.DockStyle.Left
         Me.btnOfertas.Enabled = False
-        Me.btnOfertas.Image =  Global.DanashaBasic.My.Resources.Resources.Offers_32
+        Me.btnOfertas.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Offers_32
         Me.btnOfertas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnOfertas.Location = New System.Drawing.Point(324, 0)
         Me.btnOfertas.Name = "btnOfertas"
@@ -109,7 +109,7 @@ Partial Class frmAdministrarPrecios
         '
         Me.btnEditaCosto.Dock = System.Windows.Forms.DockStyle.Left
         Me.btnEditaCosto.Enabled = False
-        Me.btnEditaCosto.Image =  Global.DanashaBasic.My.Resources.Resources.confirCost_32
+        Me.btnEditaCosto.Image =  Global.DanashaBasicSignature.My.Resources.Resources.confirCost_32
         Me.btnEditaCosto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnEditaCosto.Location = New System.Drawing.Point(194, 0)
         Me.btnEditaCosto.Name = "btnEditaCosto"
@@ -125,7 +125,7 @@ Partial Class frmAdministrarPrecios
         '
         Me.detailButton.Dock = System.Windows.Forms.DockStyle.Left
         Me.detailButton.Enabled = False
-        Me.detailButton.Image =  Global.DanashaBasic.My.Resources.Resources.Detail_32
+        Me.detailButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Detail_32
         Me.detailButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.detailButton.Location = New System.Drawing.Point(98, 0)
         Me.detailButton.Name = "detailButton"
@@ -139,7 +139,7 @@ Partial Class frmAdministrarPrecios
         'newButtonPrice
         '
         Me.newButtonPrice.Dock = System.Windows.Forms.DockStyle.Left
-        Me.newButtonPrice.Image =  Global.DanashaBasic.My.Resources.Resources.new_32
+        Me.newButtonPrice.Image =  Global.DanashaBasicSignature.My.Resources.Resources.new_32
         Me.newButtonPrice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.newButtonPrice.Location = New System.Drawing.Point(0, 0)
         Me.newButtonPrice.Name = "newButtonPrice"
@@ -167,7 +167,7 @@ Partial Class frmAdministrarPrecios
         '
         Me.stockButton.Dock = System.Windows.Forms.DockStyle.Left
         Me.stockButton.Enabled = False
-        Me.stockButton.Image =  Global.DanashaBasic.My.Resources.Resources.stock_Bodega_32
+        Me.stockButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.stock_Bodega_32
         Me.stockButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.stockButton.Location = New System.Drawing.Point(395, 0)
         Me.stockButton.Name = "stockButton"
@@ -182,7 +182,7 @@ Partial Class frmAdministrarPrecios
         '
         Me.btnEliminar.Dock = System.Windows.Forms.DockStyle.Left
         Me.btnEliminar.Enabled = False
-        Me.btnEliminar.Image =  Global.DanashaBasic.My.Resources.Resources.Delete_32
+        Me.btnEliminar.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Delete_32
         Me.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnEliminar.Location = New System.Drawing.Point(297, 0)
         Me.btnEliminar.Name = "btnEliminar"
@@ -197,7 +197,7 @@ Partial Class frmAdministrarPrecios
         '
         Me.btnActiva.Dock = System.Windows.Forms.DockStyle.Left
         Me.btnActiva.Enabled = False
-        Me.btnActiva.Image =  Global.DanashaBasic.My.Resources.Resources.notLike_32
+        Me.btnActiva.Image =  Global.DanashaBasicSignature.My.Resources.Resources.notLike_32
         Me.btnActiva.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnActiva.Location = New System.Drawing.Point(194, 0)
         Me.btnActiva.Name = "btnActiva"
@@ -212,7 +212,7 @@ Partial Class frmAdministrarPrecios
         '
         Me.btnDetalle.Dock = System.Windows.Forms.DockStyle.Left
         Me.btnDetalle.Enabled = False
-        Me.btnDetalle.Image =  Global.DanashaBasic.My.Resources.Resources.Detail_32
+        Me.btnDetalle.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Detail_32
         Me.btnDetalle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnDetalle.Location = New System.Drawing.Point(98, 0)
         Me.btnDetalle.Name = "btnDetalle"
@@ -226,7 +226,7 @@ Partial Class frmAdministrarPrecios
         'newButtonState
         '
         Me.newButtonState.Dock = System.Windows.Forms.DockStyle.Left
-        Me.newButtonState.Image =  Global.DanashaBasic.My.Resources.Resources.new_32
+        Me.newButtonState.Image =  Global.DanashaBasicSignature.My.Resources.Resources.new_32
         Me.newButtonState.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.newButtonState.Location = New System.Drawing.Point(0, 0)
         Me.newButtonState.Name = "newButtonState"

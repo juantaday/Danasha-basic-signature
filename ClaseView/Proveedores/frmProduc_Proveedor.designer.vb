@@ -150,7 +150,7 @@ Partial Class frmProduc_Proveedor
         'btnDeleteComp
         '
         Me.btnDeleteComp.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnDeleteComp.Image =  Global.DanashaBasic.My.Resources.Resources.Delete_Column_icon_48
+        Me.btnDeleteComp.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Delete_Column_icon_48
         Me.btnDeleteComp.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnDeleteComp.Location = New System.Drawing.Point(686, 49)
         Me.btnDeleteComp.Name = "btnDeleteComp"
@@ -163,7 +163,7 @@ Partial Class frmProduc_Proveedor
         'btnQuienVende
         '
         Me.btnQuienVende.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnQuienVende.Image =  Global.DanashaBasic.My.Resources.Resources.Money_Calculator_icon_48
+        Me.btnQuienVende.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Money_Calculator_icon_48
         Me.btnQuienVende.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnQuienVende.Location = New System.Drawing.Point(558, 49)
         Me.btnQuienVende.Name = "btnQuienVende"
@@ -179,7 +179,7 @@ Partial Class frmProduc_Proveedor
         Me.btnRefres.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnRefres.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnRefres.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btnRefres.Image =  Global.DanashaBasic.My.Resources.Resources.Refresh_icon_48
+        Me.btnRefres.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Refresh_icon_48
         Me.btnRefres.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnRefres.Location = New System.Drawing.Point(294, 49)
         Me.btnRefres.Name = "btnRefres"
@@ -194,7 +194,7 @@ Partial Class frmProduc_Proveedor
         Me.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnPrint.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnPrint.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btnPrint.Image =  Global.DanashaBasic.My.Resources.Resources.printer_icon_48
+        Me.btnPrint.Image =  Global.DanashaBasicSignature.My.Resources.Resources.printer_icon_48
         Me.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnPrint.Location = New System.Drawing.Point(153, 49)
         Me.btnPrint.Name = "btnPrint"
@@ -210,7 +210,7 @@ Partial Class frmProduc_Proveedor
         Me.BtnPrintTicket.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.BtnPrintTicket.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnPrintTicket.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.BtnPrintTicket.Image =  Global.DanashaBasic.My.Resources.Resources.Ticket_icon
+        Me.BtnPrintTicket.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Ticket_icon
         Me.BtnPrintTicket.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtnPrintTicket.Location = New System.Drawing.Point(12, 49)
         Me.BtnPrintTicket.Name = "BtnPrintTicket"

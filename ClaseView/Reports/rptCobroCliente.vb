@@ -45,7 +45,7 @@ Public Class rptCobroCliente
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "DanashaBasic.rptCobroCliente.rpt"
+            Return "DanashaBasicSignature.rptCobroCliente.rpt"
         End Get
         Set
             'Do nothing

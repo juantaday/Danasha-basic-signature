@@ -108,7 +108,7 @@ Partial Class frmList_Users
         Me.btnDetalle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnDetalle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDetalle.ForeColor = System.Drawing.Color.Red
-        Me.btnDetalle.Image =  Global.DanashaBasic.My.Resources.Resources.detail_user_48
+        Me.btnDetalle.Image =  Global.DanashaBasicSignature.My.Resources.Resources.detail_user_48
         Me.btnDetalle.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnDetalle.Location = New System.Drawing.Point(33, 189)
         Me.btnDetalle.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
@@ -172,7 +172,7 @@ Partial Class frmList_Users
         '
         Me.btnBuscar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnBuscar.BackColor = System.Drawing.Color.White
-        Me.btnBuscar.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.zoom_Grin_24
+        Me.btnBuscar.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.zoom_Grin_24
         Me.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnBuscar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnBuscar.ForeColor = System.Drawing.Color.White

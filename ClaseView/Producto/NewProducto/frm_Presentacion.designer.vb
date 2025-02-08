@@ -139,7 +139,7 @@ Partial Class frm_Presentacion
         'btnEdit_Present
         '
         Me.btnEdit_Present.BackColor = System.Drawing.SystemColors.Control
-        Me.btnEdit_Present.BackgroundImage = Global.DanashaBasic.My.Resources.Resources.edit_validat
+        Me.btnEdit_Present.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.edit_validat
         Me.btnEdit_Present.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnEdit_Present.Enabled = False
         Me.btnEdit_Present.Location = New System.Drawing.Point(77, 1)
@@ -153,7 +153,7 @@ Partial Class frm_Presentacion
         'btnUpdatePresent
         '
         Me.btnUpdatePresent.BackColor = System.Drawing.SystemColors.Control
-        Me.btnUpdatePresent.BackgroundImage = Global.DanashaBasic.My.Resources.Resources.Action_Save_32x32
+        Me.btnUpdatePresent.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.Action_Save_32x32
         Me.btnUpdatePresent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnUpdatePresent.Enabled = False
         Me.btnUpdatePresent.Location = New System.Drawing.Point(115, 1)
@@ -167,7 +167,7 @@ Partial Class frm_Presentacion
         'btnAdd_Present
         '
         Me.btnAdd_Present.BackColor = System.Drawing.SystemColors.Control
-        Me.btnAdd_Present.BackgroundImage = Global.DanashaBasic.My.Resources.Resources.AddItem_32x32
+        Me.btnAdd_Present.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.AddItem_32x32
         Me.btnAdd_Present.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnAdd_Present.Location = New System.Drawing.Point(153, 1)
         Me.btnAdd_Present.Margin = New System.Windows.Forms.Padding(1)
@@ -180,7 +180,7 @@ Partial Class frm_Presentacion
         'btnCancelPresent
         '
         Me.btnCancelPresent.BackColor = System.Drawing.SystemColors.Control
-        Me.btnCancelPresent.BackgroundImage = Global.DanashaBasic.My.Resources.Resources.Action_Cancel_32x32
+        Me.btnCancelPresent.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.Action_Cancel_32x32
         Me.btnCancelPresent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnCancelPresent.Enabled = False
         Me.btnCancelPresent.Location = New System.Drawing.Point(1, 1)
@@ -194,7 +194,7 @@ Partial Class frm_Presentacion
         'btnDelet_Present
         '
         Me.btnDelet_Present.BackColor = System.Drawing.SystemColors.Control
-        Me.btnDelet_Present.BackgroundImage = Global.DanashaBasic.My.Resources.Resources.Delete_32
+        Me.btnDelet_Present.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.Delete_32
         Me.btnDelet_Present.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnDelet_Present.Enabled = False
         Me.btnDelet_Present.Location = New System.Drawing.Point(39, 1)

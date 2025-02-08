@@ -78,7 +78,7 @@ namespace DomainSQLite.Setting
                         this.UserIdText.Text = this._cnn.UserId;
                         this.PasswordText.Text = this._cnn.Password;
                         if (string.IsNullOrEmpty(this.NameDataBaseText.Text))
-                            this.NameDataBaseText.Text = "JSofwareCommerceDB";
+                            this.NameDataBaseText.Text = "DanashaBasicDB";
 
                         if (string.IsNullOrEmpty(this.UserIdText.Text))
                             this.UserIdText.Text = "JsofUserAdmin";

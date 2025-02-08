@@ -214,7 +214,7 @@ Partial Class frmNewOperationCaja
         'gotoSaldo_Button
         '
         Me.gotoSaldo_Button.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.gotoSaldo_Button.Image =  Global.DanashaBasic.My.Resources.Resources.Moneda_saldo_28
+        Me.gotoSaldo_Button.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Moneda_saldo_28
         Me.gotoSaldo_Button.Location = New System.Drawing.Point(227, 16)
         Me.gotoSaldo_Button.Name = "gotoSaldo_Button"
         Me.gotoSaldo_Button.Size = New System.Drawing.Size(48, 46)
@@ -225,7 +225,7 @@ Partial Class frmNewOperationCaja
         'ImputInicio_Button
         '
         Me.ImputInicio_Button.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ImputInicio_Button.Image =  Global.DanashaBasic.My.Resources.Resources.Villetes_44
+        Me.ImputInicio_Button.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Villetes_44
         Me.ImputInicio_Button.Location = New System.Drawing.Point(175, 16)
         Me.ImputInicio_Button.Name = "ImputInicio_Button"
         Me.ImputInicio_Button.Size = New System.Drawing.Size(51, 46)
@@ -236,7 +236,7 @@ Partial Class frmNewOperationCaja
         'findUser_Button
         '
         Me.findUser_Button.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.findUser_Button.Image =  Global.DanashaBasic.My.Resources.Resources.FindCustomers_16x16
+        Me.findUser_Button.Image =  Global.DanashaBasicSignature.My.Resources.Resources.FindCustomers_16x16
         Me.findUser_Button.Location = New System.Drawing.Point(356, 129)
         Me.findUser_Button.Name = "findUser_Button"
         Me.findUser_Button.Size = New System.Drawing.Size(29, 30)

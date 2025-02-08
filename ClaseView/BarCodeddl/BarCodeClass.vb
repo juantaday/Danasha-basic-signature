@@ -1,9 +1,4 @@
-﻿Imports System.Drawing
-Imports System.Drawing.Image
-Imports System.Drawing.Drawing2D
-Imports iTextSharp.text.pdf
-Imports iTextSharp.text.pdf.BarcodeCodabar
-
+﻿Imports iTextSharp.text.pdf
 
 Public Class BarCodeClass
     Public Shared Function codigo128(ByVal _code As String, Optional ByVal verTexto As Boolean = False, Optional ByVal Heigt As Single = 0)

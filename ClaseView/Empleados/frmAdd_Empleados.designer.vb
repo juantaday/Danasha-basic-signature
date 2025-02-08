@@ -94,7 +94,7 @@ Partial Class frmAdd_Empleados
         '
         'btnRepot
         '
-        Me.btnRepot.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.zoom_Grin_24
+        Me.btnRepot.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.zoom_Grin_24
         Me.btnRepot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnRepot.Location = New System.Drawing.Point(348, 67)
         Me.btnRepot.Name = "btnRepot"
@@ -169,7 +169,7 @@ Partial Class frmAdd_Empleados
         '
         'imgFoto
         '
-        Me.imgFoto.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.user_nothing_72
+        Me.imgFoto.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.user_nothing_72
         Me.imgFoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.imgFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.imgFoto.Location = New System.Drawing.Point(0, 0)
@@ -196,7 +196,7 @@ Partial Class frmAdd_Empleados
         '
         'btnAddcargo
         '
-        Me.btnAddcargo.Image =  Global.DanashaBasic.My.Resources.Resources.Add_Folder_16
+        Me.btnAddcargo.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Add_Folder_16
         Me.btnAddcargo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnAddcargo.Location = New System.Drawing.Point(541, 22)
         Me.btnAddcargo.Name = "btnAddcargo"
@@ -208,7 +208,7 @@ Partial Class frmAdd_Empleados
         'btnEddCargo
         '
         Me.btnEddCargo.Enabled = False
-        Me.btnEddCargo.Image =  Global.DanashaBasic.My.Resources.Resources.Pencil_24
+        Me.btnEddCargo.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Pencil_24
         Me.btnEddCargo.Location = New System.Drawing.Point(565, 22)
         Me.btnEddCargo.Name = "btnEddCargo"
         Me.btnEddCargo.Size = New System.Drawing.Size(22, 28)

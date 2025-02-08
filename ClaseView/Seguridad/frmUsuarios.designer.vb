@@ -64,7 +64,7 @@ Partial Class frmUsuarios
         Me.btnModifUser.BackColor = System.Drawing.Color.SkyBlue
         Me.btnModifUser.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnModifUser.Dock = System.Windows.Forms.DockStyle.Left
-        Me.btnModifUser.Image =  Global.DanashaBasic.My.Resources.Resources.edit_24
+        Me.btnModifUser.Image =  Global.DanashaBasicSignature.My.Resources.Resources.edit_24
         Me.btnModifUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnModifUser.Location = New System.Drawing.Point(182, 0)
         Me.btnModifUser.Name = "btnModifUser"
@@ -79,7 +79,7 @@ Partial Class frmUsuarios
         Me.btnAgreUser.BackColor = System.Drawing.Color.SkyBlue
         Me.btnAgreUser.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAgreUser.Dock = System.Windows.Forms.DockStyle.Left
-        Me.btnAgreUser.Image =  Global.DanashaBasic.My.Resources.Resources.Action_New
+        Me.btnAgreUser.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_New
         Me.btnAgreUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnAgreUser.Location = New System.Drawing.Point(0, 0)
         Me.btnAgreUser.Name = "btnAgreUser"
@@ -93,7 +93,7 @@ Partial Class frmUsuarios
         Me.btnDeletUser.BackColor = System.Drawing.Color.SkyBlue
         Me.btnDeletUser.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnDeletUser.Dock = System.Windows.Forms.DockStyle.Left
-        Me.btnDeletUser.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Delete_16x16
+        Me.btnDeletUser.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
         Me.btnDeletUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnDeletUser.Location = New System.Drawing.Point(100, 0)
         Me.btnDeletUser.Name = "btnDeletUser"
@@ -200,7 +200,7 @@ Partial Class frmUsuarios
         '
         'btnBuscar
         '
-        Me.btnBuscar.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.Zoom
+        Me.btnBuscar.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.Zoom
         Me.btnBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnBuscar.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
         Me.btnBuscar.Location = New System.Drawing.Point(347, 10)
@@ -237,7 +237,7 @@ Partial Class frmUsuarios
         Me.especialPerminButton.BackColor = System.Drawing.Color.SkyBlue
         Me.especialPerminButton.Cursor = System.Windows.Forms.Cursors.Hand
         Me.especialPerminButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.especialPerminButton.Image =  Global.DanashaBasic.My.Resources.Resources.permiso_24
+        Me.especialPerminButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.permiso_24
         Me.especialPerminButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.especialPerminButton.Location = New System.Drawing.Point(266, 0)
         Me.especialPerminButton.Name = "especialPerminButton"
@@ -291,7 +291,7 @@ Partial Class frmUsuarios
         Me.clearPasswordButton.BackColor = System.Drawing.Color.SkyBlue
         Me.clearPasswordButton.Cursor = System.Windows.Forms.Cursors.Hand
         Me.clearPasswordButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.clearPasswordButton.Image =  Global.DanashaBasic.My.Resources.Resources.clearPassword_24
+        Me.clearPasswordButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.clearPassword_24
         Me.clearPasswordButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.clearPasswordButton.Location = New System.Drawing.Point(402, 0)
         Me.clearPasswordButton.Name = "clearPasswordButton"

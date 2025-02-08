@@ -150,7 +150,7 @@ Partial Class frmAdd_Almacen
         'btnCancel
         '
         Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCancel.BackgroundImage = Global.DanashaBasic.My.Resources.Resources.Action_Cancel_32x32
+        Me.btnCancel.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.Action_Cancel_32x32
         Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnCancel.Location = New System.Drawing.Point(430, 437)
         Me.btnCancel.Name = "btnCancel"
@@ -172,7 +172,7 @@ Partial Class frmAdd_Almacen
         'btnAceptar
         '
         Me.btnAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAceptar.BackgroundImage = Global.DanashaBasic.My.Resources.Resources.Save2_icon_48
+        Me.btnAceptar.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.Save2_icon_48
         Me.btnAceptar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnAceptar.Location = New System.Drawing.Point(375, 437)
         Me.btnAceptar.Name = "btnAceptar"
@@ -380,7 +380,7 @@ Partial Class frmAdd_Almacen
         'btnElimina
         '
         Me.btnElimina.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnElimina.BackgroundImage = Global.DanashaBasic.My.Resources.Resources.Action_Delete_16x16
+        Me.btnElimina.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
         Me.btnElimina.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btnElimina.Enabled = False
         Me.btnElimina.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -395,9 +395,9 @@ Partial Class frmAdd_Almacen
         'btnNuevo
         '
         Me.btnNuevo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnNuevo.BackgroundImage = Global.DanashaBasic.My.Resources.Resources.nuevo_16
+        Me.btnNuevo.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.nuevo_16
         Me.btnNuevo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnNuevo.Image = Global.DanashaBasic.My.Resources.Resources.nuevo_16
+        Me.btnNuevo.Image = Global.DanashaBasicSignature.My.Resources.Resources.nuevo_16
         Me.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnNuevo.Location = New System.Drawing.Point(14, 341)
         Me.btnNuevo.Name = "btnNuevo"
@@ -410,10 +410,10 @@ Partial Class frmAdd_Almacen
         'btnModifica
         '
         Me.btnModifica.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnModifica.BackgroundImage = Global.DanashaBasic.My.Resources.Resources.edir_16
+        Me.btnModifica.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.edir_16
         Me.btnModifica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btnModifica.Enabled = False
-        Me.btnModifica.Image = Global.DanashaBasic.My.Resources.Resources.edir_16
+        Me.btnModifica.Image = Global.DanashaBasicSignature.My.Resources.Resources.edir_16
         Me.btnModifica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnModifica.Location = New System.Drawing.Point(88, 341)
         Me.btnModifica.Name = "btnModifica"
@@ -426,7 +426,7 @@ Partial Class frmAdd_Almacen
         'btnCancelar
         '
         Me.btnCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCancelar.BackgroundImage = Global.DanashaBasic.My.Resources.Resources.Exit_icon
+        Me.btnCancelar.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.Exit_icon
         Me.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnCancelar.Location = New System.Drawing.Point(1021, 440)
         Me.btnCancelar.Name = "btnCancelar"

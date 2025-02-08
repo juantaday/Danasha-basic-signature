@@ -1,22 +1,18 @@
 ﻿using CADsisVenta;
-using InterfaceSignatureAndSRI.Data;
+using CADsisVenta.Data;
+using Domain.Models;
+using ec.gob.sri.comprobantes.Enum;
+using ec.gob.sri.comprobantes.Utils;
+using ec.gob.sri.Xml;
+using ec.gob.sri.Xml.modelo_v1_1_0.Factura;
 using InterfaceSignatureAndSRI.Utils;
+using java.math;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using obligadoContabilidad = ec.gob.sri.Xml.modelo_v1_1_0.Factura.obligadoContabilidad;
-using java.math;
-using iTextSharp.text.pdf;
-using System.Collections;
-using System.Data.SqlTypes;
-using CADsisVenta.Data;
-using ec.gob.sri.Xml.modelo_v1_1_0.Factura;
-using Domain.Models;
-using ec.gob.sri.Xml;
-using ec.gob.sri.comprobantes.Enum;
-using ec.gob.sri.comprobantes.Utils;
 
 namespace InterfaceSignatureAndSRI.GeneratedXML
 {
@@ -27,7 +23,7 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
         private static List<FacturaVentaImpuestos> _listImpuestos;
         private static List<CADsisVenta.IMPUESTO_VALOR> _listImpuestosSRI;
         private static SignatureOptions _signatureOptions;
-        private  readonly int _idFactur;
+        private readonly int _idFactur;
         private readonly int _myCommerceId;
         private static int idFactur;
         private static factura _fact;
@@ -35,7 +31,7 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
         private static List<string> _emailSend;
         private static Domain.Models.ItemsVats _ItemsVat;
         private static ItemCommerce _Mycomerce;
-        private static  DataContext db;
+        private static DataContext db;
         private static string claveAcceso;
         private static string num_factura;
         private static string codDdoc;
@@ -67,14 +63,15 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
             try
             {
-                _Mycomerce = db.myCommerce.Select (op=> new ItemCommerce {
+                _Mycomerce = db.myCommerce.Select(op => new ItemCommerce
+                {
                     Id = op.CommerceId,
-                    AdressCompany =op.Domicilio,
+                    AdressCompany = op.Domicilio,
                     CellPhone = op.CellPhone,
                     Phone = op.Phone,
-                    Ruc = op.Ruc ,
+                    Ruc = op.Ruc,
                     NameComercial = op.NameComercial,
-                    RazonSocial =op.RazonSocial,
+                    RazonSocial = op.RazonSocial,
                     NameCompay = op.Company,
                     AgenteRetencion = op.AgenteRetencion,
                     IdTypeRegimen = op.IdTypeRegimen,
@@ -88,17 +85,18 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
                 _listImpuestosSRI = db.IMPUESTO_VALOR.Where(x => x.CODIGO_IMPUESTO == 2 && x.TIPO_IMPUESTO == "I").ToList();
 
-                _listSales = db.FacturaVentaDetail.Include(x=>x.FacturaVentaDiscount)
-                    .Include(x=>x.ProductoPresentacion).ThenInclude (x=>x.Productos)
-                    .Where(x => x.idFacturaVenta == _idFactur).Select (op => new FacturaVentaDetail_x { 
-                        Cantidad = op.Cantidad, 
-                        Prec_Venta = op.Prec_Venta,   
-                        Iva=op.Iva,   
-                        CodProduct =op.ProductoPresentacion.codProducto,
-                        PresentID =op.idPresent,
-                        ProductId =op.ProductoPresentacion.idProducto,
+                _listSales = db.FacturaVentaDetail.Include(x => x.FacturaVentaDiscount)
+                    .Include(x => x.ProductoPresentacion).ThenInclude(x => x.Productos)
+                    .Where(x => x.idFacturaVenta == _idFactur).Select(op => new FacturaVentaDetail_x
+                    {
+                        Cantidad = op.Cantidad,
+                        Prec_Venta = op.Prec_Venta,
+                        Iva = op.Iva,
+                        CodProduct = op.ProductoPresentacion.codProducto,
+                        PresentID = op.idPresent,
+                        ProductId = op.ProductoPresentacion.idProducto,
                         ProductName = op.ProductoPresentacion.Productos.Nom_Comun,
-                        Additional = op.FacturaVentaDiscount ==null ? 0 : op.FacturaVentaDiscount.Additional,
+                        Additional = op.FacturaVentaDiscount == null ? 0 : op.FacturaVentaDiscount.Additional,
                         Discount = op.FacturaVentaDiscount == null ? 0 : op.FacturaVentaDiscount.Discount
                     }).ToList();
 
@@ -118,7 +116,8 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
                              Num_Factu = op.Num_Factu,
                              fechaDesde = op.fechaDesde,
                              BaseIva = op.Base00Iva,
-                             ICE = 0, IRBPNR = 0,
+                             ICE = 0,
+                             IRBPNR = 0,
                              IVA = op.Iva,
                              Total = op.Total,
                              TotalWithOutVat = System.Math.Round(op.Total - op.Iva, 2, MidpointRounding.AwayFromZero)
@@ -147,10 +146,12 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message + "\n"+ ex.StackTrace , ex.InnerException);
+                throw new Exception(ex.Message + "\n" + ex.StackTrace, ex.InnerException);
             }
-            finally {
-                if (db != null) {
+            finally
+            {
+                if (db != null)
+                {
                     if (db.Connection.State == System.Data.ConnectionState.Open)
                         db.Connection.Close();
 
@@ -160,8 +161,8 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
             try
             {
-              
-                if (_Mycomerce == null )
+
+                if (_Mycomerce == null)
                     throw new Exception("No esta configurado el emisor..");
 
                 _fact.infoTributaria = await getInfoTributaria();
@@ -169,7 +170,7 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
                 _fact.detalles = await getFacturaDetalles();
                 _fact.infoAdicional = await getInfoAdicional();
 
-                return  XMLSerializers.Serialize(_fact, "");
+                return XMLSerializers.Serialize(_fact, "");
             }
             catch (Exception ex)
             {
@@ -268,18 +269,19 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
                         }
                     }
 
-             
+
 
                     _qryImpuesto = _listImpuestos.GroupJoin(_listImpuestosSRI,
-                          im => (im.ivaPorcentaje*100),
+                          im => (im.ivaPorcentaje * 100),
                           sr => sr.PORCENTAJE,
                            (f, bs) => new { imp = f, ivSri = bs.FirstOrDefault() })
-                    .Select (op=>new ItemsImpuestValor {
-                        BaseImponible =op.imp.BaseImponible,
-                        CODIGO =op.ivSri.CODIGO_IMPUESTO,
-                        CODIGO_TIPO_IMPUESTO =op.ivSri.CODIGO,
+                    .Select(op => new ItemsImpuestValor
+                    {
+                        BaseImponible = op.imp.BaseImponible,
+                        CODIGO = op.ivSri.CODIGO_IMPUESTO,
+                        CODIGO_TIPO_IMPUESTO = op.ivSri.CODIGO,
                         PORCENTAJE = op.ivSri.PORCENTAJE,
-                        Valor =op.imp.Valor,
+                        Valor = op.imp.Valor,
                         PresentId = op.imp.IdPresent
                     }).ToList();
 
@@ -287,9 +289,9 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
                     var groupedSum = _qryImpuesto.GroupBy(x => x.CODIGO_TIPO_IMPUESTO).Select(x => new
                     {
-                        BaseImponible = x.Sum(s=>s.BaseImponible),
+                        BaseImponible = x.Sum(s => s.BaseImponible),
                         Valor = x.Sum(g => g.Valor),
-                        CODIGO = x.FirstOrDefault ().CODIGO,
+                        CODIGO = x.FirstOrDefault().CODIGO,
                         CODIGO_TIPO_IMPUESTO = x.Key,
                         PORCENTAJE = x.FirstOrDefault().PORCENTAJE
                     }).ToList();
@@ -336,7 +338,7 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
                 List<facturaDetalle> lisDetall = new List<facturaDetalle>();
 
-          
+
                 foreach (var item in _listSales)
                 {
                     BigDecimal bigDecimal = new BigDecimal(1.000000);
@@ -344,7 +346,7 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
                     Decimal.TryParse("0.000000", out result);
                     var pvp = ((item.Prec_Venta - item.Iva) + item.Discount) / item.Cantidad;
                     var sTotal = item.Prec_Venta - item.Iva;
- 
+
                     facturaDetalle facDetail = new facturaDetalle
                     {
 
@@ -474,7 +476,8 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
             return idFactur;
         }
 
-        internal string GetNumDocumet() {
+        internal string GetNumDocumet()
+        {
             return num_factura;
         }
 
@@ -487,24 +490,24 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
             db = null;
             _fact = null;
-             _listSales = null;
+            _listSales = null;
             _listImpuestos = null;
-            _listImpuestosSRI= null;
+            _listImpuestosSRI = null;
             _signatureOptions = null;
             _emailSend = null;
             num_factura = null;
             idFactur = -1;
-    }
-       
+        }
+
 
     }
 
-    public class FacturaVentaDetail_x 
+    public class FacturaVentaDetail_x
     {
         public int PresentID { get; set; }
         public int ProductId { get; set; }
-        public string ProductName  { get; set; }
-        public string  CodProduct { get; set; }
+        public string ProductName { get; set; }
+        public string CodProduct { get; set; }
         public decimal Discount { get; set; }
         public decimal Additional { get; set; }
 

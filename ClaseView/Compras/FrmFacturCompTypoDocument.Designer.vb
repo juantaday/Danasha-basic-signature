@@ -108,7 +108,7 @@ Partial Class FrmFacturCompTypoDocument
         '
         'PictureBox1
         '
-        Me.PictureBox1.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.invoice_icon_125
+        Me.PictureBox1.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.invoice_icon_125
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBox1.Location = New System.Drawing.Point(3, 2)
         Me.PictureBox1.Name = "PictureBox1"
@@ -167,7 +167,7 @@ Partial Class FrmFacturCompTypoDocument
         '
         'FindButton
         '
-        Me.FindButton.Image =  Global.DanashaBasic.My.Resources.Resources.zoom_icon_24
+        Me.FindButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.zoom_icon_24
         Me.FindButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.FindButton.Location = New System.Drawing.Point(4, 4)
         Me.FindButton.Margin = New System.Windows.Forms.Padding(4)

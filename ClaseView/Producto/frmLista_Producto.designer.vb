@@ -182,7 +182,7 @@ Partial Class frmLista_Producto
         '
         'Button1
         '
-        Me.Button1.Image =  Global.DanashaBasic.My.Resources.Resources.edid_pencil_32
+        Me.Button1.Image =  Global.DanashaBasicSignature.My.Resources.Resources.edid_pencil_32
         Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button1.Location = New System.Drawing.Point(173, 6)
         Me.Button1.Name = "Button1"
@@ -194,7 +194,7 @@ Partial Class frmLista_Producto
         '
         'AgregarButton
         '
-        Me.AgregarButton.Image =  Global.DanashaBasic.My.Resources.Resources.New_green_32
+        Me.AgregarButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.New_green_32
         Me.AgregarButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.AgregarButton.Location = New System.Drawing.Point(6, 6)
         Me.AgregarButton.Name = "AgregarButton"
@@ -207,7 +207,7 @@ Partial Class frmLista_Producto
         'edirPreciSalesButton
         '
         Me.edirPreciSalesButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.edirPreciSalesButton.Image =  Global.DanashaBasic.My.Resources.Resources.Villetes_44
+        Me.edirPreciSalesButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Villetes_44
         Me.edirPreciSalesButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.edirPreciSalesButton.Location = New System.Drawing.Point(294, 4)
         Me.edirPreciSalesButton.Name = "edirPreciSalesButton"

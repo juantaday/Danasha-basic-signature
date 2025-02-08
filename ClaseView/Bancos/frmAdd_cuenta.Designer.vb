@@ -162,7 +162,7 @@ Partial Class frmAdd_Cuenta
         '
         'AddBankButton
         '
-        Me.AddBankButton.Image =  Global.DanashaBasic.My.Resources.Resources.Banck_32x32_png
+        Me.AddBankButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Banck_32x32_png
         Me.AddBankButton.Location = New System.Drawing.Point(475, 3)
         Me.AddBankButton.Name = "AddBankButton"
         Me.AddBankButton.Size = New System.Drawing.Size(49, 33)

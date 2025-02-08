@@ -167,7 +167,7 @@ Partial Class MyCommerceForm
         Me.txtClaveInterna.Size = New System.Drawing.Size(245, 31)
         Me.txtClaveInterna.TabIndex = 3
         Me.txtClaveInterna.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtClaveInterna.Texts = ""
+        Me.txtClaveInterna.Text = ""
         Me.txtClaveInterna.TypeData = JMControls.Enums.TypeDataEnum.VarChar
         Me.txtClaveInterna.UnderlinedStyle = False
         '
@@ -192,15 +192,11 @@ Partial Class MyCommerceForm
         Me.txtFindFile.BorderThickness = 1
         Me.txtFindFile.ButtonImage = Nothing
         Me.txtFindFile.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
-        Me.txtFindFile.DockButton = System.Windows.Forms.DockStyle.Right
-        Me.txtFindFile.FillColor = System.Drawing.Color.White
         Me.txtFindFile.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!)
         Me.txtFindFile.Location = New System.Drawing.Point(20, 69)
-        Me.txtFindFile.MaxLenght = 32767
         Me.txtFindFile.Multiline = False
         Me.txtFindFile.Name = "txtFindFile"
         Me.txtFindFile.Padding = New System.Windows.Forms.Padding(5, 3, 5, 3)
-        Me.txtFindFile.PasswordChar = False
         Me.txtFindFile.PlaceHolderColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(200, Byte), Integer))
         Me.txtFindFile.PlaceHolderText = "Busque la ruta del archivo "
         Me.txtFindFile.ReadOnly = False
@@ -210,10 +206,10 @@ Partial Class MyCommerceForm
         Me.txtFindFile.TabStop = False
         Me.txtFindFile.Text = "Busque la ruta del archivo "
         Me.txtFindFile.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtFindFile.Texts = "Busque la ruta del archivo "
+        Me.txtFindFile.Text = "Busque la ruta del archivo "
         Me.txtFindFile.ToolTipButton = ""
         Me.txtFindFile.VisibleButton = True
-        Me.txtFindFile.WidthButton = 32
+
         '
         'label18
         '
@@ -265,7 +261,7 @@ Partial Class MyCommerceForm
         '
         Me.TokenListComboBox.BackColor = System.Drawing.Color.WhiteSmoke
         Me.TokenListComboBox.BorderColor = System.Drawing.Color.MediumSlateBlue
-        Me.TokenListComboBox.BorderSize = 1
+        Me.TokenListComboBox.BorderThickness = 1
         Me.TokenListComboBox.ButtonImage = Nothing
         Me.TokenListComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown
         Me.TokenListComboBox.DroppedDown = False
@@ -324,7 +320,7 @@ Partial Class MyCommerceForm
         '
         Me.txtRimpe.BackColor = System.Drawing.Color.WhiteSmoke
         Me.txtRimpe.BorderColor = System.Drawing.Color.MediumSlateBlue
-        Me.txtRimpe.BorderSize = 1
+        Me.txtRimpe.BorderThickness = 1
         Me.txtRimpe.ButtonImage = Nothing
         Me.txtRimpe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown
         Me.txtRimpe.DroppedDown = False
@@ -563,7 +559,7 @@ Partial Class MyCommerceForm
         '
         Me.tipoAmbienteComboBox.BackColor = System.Drawing.Color.WhiteSmoke
         Me.tipoAmbienteComboBox.BorderColor = System.Drawing.Color.MediumSlateBlue
-        Me.tipoAmbienteComboBox.BorderSize = 1
+        Me.tipoAmbienteComboBox.BorderThickness = 1
         Me.tipoAmbienteComboBox.ButtonImage = Nothing
         Me.tipoAmbienteComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown
         Me.tipoAmbienteComboBox.DroppedDown = False
@@ -685,7 +681,7 @@ Partial Class MyCommerceForm
         Me.txtDirMatriz.Size = New System.Drawing.Size(427, 86)
         Me.txtDirMatriz.TabIndex = 4
         Me.txtDirMatriz.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtDirMatriz.Texts = ""
+        Me.txtDirMatriz.Text = ""
         Me.txtDirMatriz.TypeData = JMControls.Enums.TypeDataEnum.VarChar
         Me.txtDirMatriz.UnderlinedStyle = False
         '
@@ -721,7 +717,7 @@ Partial Class MyCommerceForm
         Me.txtCompany.Size = New System.Drawing.Size(226, 24)
         Me.txtCompany.TabIndex = 3
         Me.txtCompany.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtCompany.Texts = ""
+        Me.txtCompany.Text = ""
         Me.txtCompany.TypeData = JMControls.Enums.TypeDataEnum.VarChar
         Me.txtCompany.UnderlinedStyle = False
         '
@@ -757,7 +753,7 @@ Partial Class MyCommerceForm
         Me.txtNomComercial.Size = New System.Drawing.Size(426, 24)
         Me.txtNomComercial.TabIndex = 2
         Me.txtNomComercial.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtNomComercial.Texts = ""
+        Me.txtNomComercial.Text = ""
         Me.txtNomComercial.TypeData = JMControls.Enums.TypeDataEnum.VarChar
         Me.txtNomComercial.UnderlinedStyle = False
         '
@@ -793,7 +789,7 @@ Partial Class MyCommerceForm
         Me.txtRazonSocial.Size = New System.Drawing.Size(426, 24)
         Me.txtRazonSocial.TabIndex = 1
         Me.txtRazonSocial.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtRazonSocial.Texts = ""
+        Me.txtRazonSocial.Text = ""
         Me.txtRazonSocial.TypeData = JMControls.Enums.TypeDataEnum.VarChar
         Me.txtRazonSocial.UnderlinedStyle = False
         '
@@ -829,7 +825,7 @@ Partial Class MyCommerceForm
         Me.txtRuc.Size = New System.Drawing.Size(223, 24)
         Me.txtRuc.TabIndex = 0
         Me.txtRuc.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.txtRuc.Texts = ""
+        Me.txtRuc.Text = ""
         Me.txtRuc.TypeData = JMControls.Enums.TypeDataEnum.Numeric
         Me.txtRuc.UnderlinedStyle = False
         '

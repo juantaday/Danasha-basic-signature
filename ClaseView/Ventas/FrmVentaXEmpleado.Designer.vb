@@ -81,7 +81,7 @@ Partial Class FrmVentaXEmpleado
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image =  Global.DanashaBasic.My.Resources.Resources.Empleado_72
+        Me.PictureBox1.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Empleado_72
         Me.PictureBox1.Location = New System.Drawing.Point(0, 4)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(100, 101)
@@ -90,7 +90,7 @@ Partial Class FrmVentaXEmpleado
         '
         'FindClienteButton
         '
-        Me.FindClienteButton.BackgroundImage =  Global.DanashaBasic.My.Resources.Resources.Panel_Setting_icon32
+        Me.FindClienteButton.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.Panel_Setting_icon32
         Me.FindClienteButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.FindClienteButton.Location = New System.Drawing.Point(840, 32)
         Me.FindClienteButton.Name = "FindClienteButton"
@@ -148,7 +148,7 @@ Partial Class FrmVentaXEmpleado
         '
         'FindButton
         '
-        Me.FindButton.Image =  Global.DanashaBasic.My.Resources.Resources.zoom_icon_24
+        Me.FindButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.zoom_icon_24
         Me.FindButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.FindButton.Location = New System.Drawing.Point(4, 4)
         Me.FindButton.Margin = New System.Windows.Forms.Padding(4)

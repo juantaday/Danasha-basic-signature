@@ -127,7 +127,7 @@ Partial Class frmList_Facturas
         '
         Me.printTicket.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.printTicket.Dock = System.Windows.Forms.DockStyle.Left
-        Me.printTicket.Image = Global.DanashaBasic.My.Resources.Resources.Action_Printing_Print_32x32
+        Me.printTicket.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Printing_Print_32x32
         Me.printTicket.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.printTicket.Location = New System.Drawing.Point(116, 0)
         Me.printTicket.Name = "printTicket"
@@ -154,7 +154,7 @@ Partial Class frmList_Facturas
         '
         Me.btnSelectAll.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.btnSelectAll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnSelectAll.Image = Global.DanashaBasic.My.Resources.Resources.SelectAll_16x16
+        Me.btnSelectAll.Image = Global.DanashaBasicSignature.My.Resources.Resources.SelectAll_16x16
         Me.btnSelectAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnSelectAll.Location = New System.Drawing.Point(3, 3)
         Me.btnSelectAll.Name = "btnSelectAll"
@@ -189,7 +189,7 @@ Partial Class frmList_Facturas
         'anulaButton
         '
         Me.anulaButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.anulaButton.Image = Global.DanashaBasic.My.Resources.Resources.NullDocument_32
+        Me.anulaButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.NullDocument_32
         Me.anulaButton.Location = New System.Drawing.Point(163, 0)
         Me.anulaButton.Name = "anulaButton"
         Me.anulaButton.Size = New System.Drawing.Size(60, 42)
@@ -200,7 +200,7 @@ Partial Class frmList_Facturas
         'setIsPrinterButton
         '
         Me.setIsPrinterButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.setIsPrinterButton.Image = Global.DanashaBasic.My.Resources.Resources.printMatrix_ok_32
+        Me.setIsPrinterButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.printMatrix_ok_32
         Me.setIsPrinterButton.Location = New System.Drawing.Point(223, 0)
         Me.setIsPrinterButton.Name = "setIsPrinterButton"
         Me.setIsPrinterButton.Size = New System.Drawing.Size(54, 42)
@@ -421,7 +421,7 @@ Partial Class frmList_Facturas
         Me.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClose.Image = Global.DanashaBasic.My.Resources.Resources.Close_32x32
+        Me.btnClose.Image = Global.DanashaBasicSignature.My.Resources.Resources.Close_32x32
         Me.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnClose.Location = New System.Drawing.Point(1133, 0)
         Me.btnClose.Name = "btnClose"
@@ -469,7 +469,7 @@ Partial Class frmList_Facturas
         '
         Me.btnNoselect.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.btnNoselect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnNoselect.Image = Global.DanashaBasic.My.Resources.Resources.SelectTable_16x16
+        Me.btnNoselect.Image = Global.DanashaBasicSignature.My.Resources.Resources.SelectTable_16x16
         Me.btnNoselect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnNoselect.Location = New System.Drawing.Point(123, 3)
         Me.btnNoselect.Name = "btnNoselect"
@@ -481,7 +481,7 @@ Partial Class frmList_Facturas
         '
         'btnCopy
         '
-        Me.btnCopy.Image = Global.DanashaBasic.My.Resources.Resources.Action_Copy
+        Me.btnCopy.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Copy
         Me.btnCopy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCopy.Location = New System.Drawing.Point(272, 3)
         Me.btnCopy.Name = "btnCopy"
@@ -611,7 +611,7 @@ Partial Class frmList_Facturas
         'printMatricialButton
         '
         Me.printMatricialButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.printMatricialButton.Image = Global.DanashaBasic.My.Resources.Resources.printMatrix_32
+        Me.printMatricialButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.printMatrix_32
         Me.printMatricialButton.Location = New System.Drawing.Point(53, 0)
         Me.printMatricialButton.Name = "printMatricialButton"
         Me.printMatricialButton.Size = New System.Drawing.Size(63, 42)
@@ -621,7 +621,7 @@ Partial Class frmList_Facturas
         'viewReportButton
         '
         Me.viewReportButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.viewReportButton.Image = Global.DanashaBasic.My.Resources.Resources.fin_deudor_32
+        Me.viewReportButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.fin_deudor_32
         Me.viewReportButton.Location = New System.Drawing.Point(0, 0)
         Me.viewReportButton.Name = "viewReportButton"
         Me.viewReportButton.Size = New System.Drawing.Size(53, 42)
@@ -688,7 +688,7 @@ Partial Class frmList_Facturas
         'ChangCustomerButton
         '
         Me.ChangCustomerButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.ChangCustomerButton.Image = Global.DanashaBasic.My.Resources.Resources.Users_20
+        Me.ChangCustomerButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Users_20
         Me.ChangCustomerButton.Location = New System.Drawing.Point(277, 0)
         Me.ChangCustomerButton.Name = "ChangCustomerButton"
         Me.ChangCustomerButton.Size = New System.Drawing.Size(54, 42)

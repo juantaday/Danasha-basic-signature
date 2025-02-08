@@ -5,9 +5,9 @@ Imports CrystalDecisions.CrystalReports.Engine
 Imports System.Drawing.Printing
 Imports CADsisVenta
 Imports CADsisVenta.Helpers.FInicio
-Imports DanashaBasic.DebitEmployeeNameSpace
+Imports DanashaBasicSignature.DebitEmployeeNameSpace
 Imports CADsisVenta.Data.Emuns
-Imports DanashaBasic.ClassView.Conexion
+Imports DanashaBasicSignature.ClassView.Conexion
 Imports CADsisVenta.Statics
 Imports CrystalDecisions.[Shared].Json
 

@@ -75,7 +75,7 @@ Partial Class frmConfFactura
         '
         'StarNumberButton
         '
-        Me.StarNumberButton.Image = Global.DanashaBasic.My.Resources.Resources.refresh_16
+        Me.StarNumberButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.refresh_16
         Me.StarNumberButton.Location = New System.Drawing.Point(248, 62)
         Me.StarNumberButton.Name = "StarNumberButton"
         Me.StarNumberButton.Size = New System.Drawing.Size(32, 28)
@@ -86,7 +86,7 @@ Partial Class frmConfFactura
         'saveButton
         '
         Me.saveButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.saveButton.Image = Global.DanashaBasic.My.Resources.Resources.Action_Save_16x16
+        Me.saveButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Save_16x16
         Me.saveButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.saveButton.Location = New System.Drawing.Point(86, 95)
         Me.saveButton.Name = "saveButton"

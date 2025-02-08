@@ -44,7 +44,7 @@ Partial Class frmReportProforma
         'Close_Button
         '
         Me.Close_Button.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Close_Button.Image =  Global.DanashaBasic.My.Resources.Resources.Close_32x32
+        Me.Close_Button.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Close_32x32
         Me.Close_Button.Location = New System.Drawing.Point(571, 0)
         Me.Close_Button.Name = "Close_Button"
         Me.Close_Button.Size = New System.Drawing.Size(64, 41)
@@ -54,7 +54,7 @@ Partial Class frmReportProforma
         'printDefaultButton
         '
         Me.printDefaultButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.printDefaultButton.Image =  Global.DanashaBasic.My.Resources.Resources.printMatrix_32
+        Me.printDefaultButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.printMatrix_32
         Me.printDefaultButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.printDefaultButton.Location = New System.Drawing.Point(0, 0)
         Me.printDefaultButton.Name = "printDefaultButton"

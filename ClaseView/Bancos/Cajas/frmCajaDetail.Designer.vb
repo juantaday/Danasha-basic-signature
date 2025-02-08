@@ -110,7 +110,7 @@ Partial Class frmCajaDetail
         'userManupuleButton
         '
         Me.userManupuleButton.Dock = System.Windows.Forms.DockStyle.Right
-        Me.userManupuleButton.Image =  Global.DanashaBasic.My.Resources.Resources.user_bloqueo
+        Me.userManupuleButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.user_bloqueo
         Me.userManupuleButton.Location = New System.Drawing.Point(611, 0)
         Me.userManupuleButton.Name = "userManupuleButton"
         Me.userManupuleButton.Size = New System.Drawing.Size(51, 42)

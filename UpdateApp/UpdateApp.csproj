@@ -98,11 +98,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\CustomControls\JMTControls\JMTControls.csproj">
+    <ProjectReference Include="..\..\..\Proyect generic\JMTControls\JMTControls\JMTControls.csproj">
       <Project>{f2127f73-480e-4841-944c-d1e9db1ebc25}</Project>
       <Name>JMTControls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Danasha Gold Price\ObjectListView\ObjectListView.csproj">
+    <ProjectReference Include="..\..\..\Proyect generic\ObjectListView\ObjectListView.csproj">
       <Project>{18feda0c-d147-4286-b39a-01204808106a}</Project>
       <Name>ObjectListView</Name>
     </ProjectReference>

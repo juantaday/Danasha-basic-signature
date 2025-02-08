@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.3.0.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.12.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -54,17 +54,6 @@ Namespace My
             End Get
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.110;Initial Catalog=JSofwareCommerceDB;Persist Security Inf"& _ 
-            "o=True;User ID=JsofUserAdmin;Password=1234567890;Connect Timeout=20")>  _
-        Public ReadOnly Property JsofConneccionString() As String
-            Get
-                Return CType(Me("JsofConneccionString"),String)
-            End Get
-        End Property
-        
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("192.168.1.110")>  _
@@ -75,6 +64,17 @@ Namespace My
             Set
                 Me("serv") = value
             End Set
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.110;Initial Catalog=JSofwareCommerceDB;Persist Security Inf"& _ 
+            "o=True;User ID=JsofUserAdmin;Password=1234567890;Connect Timeout=20")>  _
+        Public ReadOnly Property JsofConneccionString() As String
+            Get
+                Return CType(Me("JsofConneccionString"),String)
+            End Get
         End Property
     End Class
 End Namespace
@@ -87,9 +87,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.DanashaBasic.My.MySettings
+        Friend ReadOnly Property Settings() As Global.DanashaBasicSignature.My.MySettings
             Get
-                Return Global.DanashaBasic.My.MySettings.Default
+                Return Global.DanashaBasicSignature.My.MySettings.Default
             End Get
         End Property
     End Module

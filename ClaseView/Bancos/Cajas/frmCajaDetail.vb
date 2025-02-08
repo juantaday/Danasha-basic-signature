@@ -2,7 +2,6 @@
 Imports CADsisVenta.Data.Emuns.EnumSatateModule
 Imports CADsisVenta.DataSetMonedas
 Imports CADsisVenta.DataSetMonedasTableAdapters
-Imports ClaseView.FrmMonedas
 
 Public Class frmCajaDetail
     Protected Friend idCajaStado As Integer

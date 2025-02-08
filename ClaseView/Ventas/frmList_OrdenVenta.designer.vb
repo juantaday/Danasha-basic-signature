@@ -77,7 +77,7 @@ Partial Class frmList_OrdenVenta
         '
         Me.btnSelect.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.btnSelect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnSelect.Image = Global.DanashaBasic.My.Resources.Resources.SelectAll_16x16
+        Me.btnSelect.Image = Global.DanashaBasicSignature.My.Resources.Resources.SelectAll_16x16
         Me.btnSelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnSelect.Location = New System.Drawing.Point(3, 3)
         Me.btnSelect.Name = "btnSelect"
@@ -92,7 +92,7 @@ Partial Class frmList_OrdenVenta
         '
         Me.btnPrint.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnPrint.Image = Global.DanashaBasic.My.Resources.Resources.Action_Printing_Print_32x32
+        Me.btnPrint.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Printing_Print_32x32
         Me.btnPrint.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnPrint.Location = New System.Drawing.Point(3, 3)
         Me.btnPrint.Name = "btnPrint"
@@ -107,7 +107,7 @@ Partial Class frmList_OrdenVenta
         '
         Me.btnDetail.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.btnDetail.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnDetail.Image = Global.DanashaBasic.My.Resources.Resources.check_list_48
+        Me.btnDetail.Image = Global.DanashaBasicSignature.My.Resources.Resources.check_list_48
         Me.btnDetail.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnDetail.Location = New System.Drawing.Point(3, 74)
         Me.btnDetail.Name = "btnDetail"
@@ -138,7 +138,7 @@ Partial Class frmList_OrdenVenta
         '
         Me.btnDelete.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnDelete.Image = Global.DanashaBasic.My.Resources.Resources.Action_Delete_16x16
+        Me.btnDelete.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
         Me.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnDelete.Location = New System.Drawing.Point(338, 3)
         Me.btnDelete.Name = "btnDelete"
@@ -313,7 +313,7 @@ Partial Class frmList_OrdenVenta
         '
         Me.btnNoselect.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.btnNoselect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnNoselect.Image = Global.DanashaBasic.My.Resources.Resources.SelectTable_16x16
+        Me.btnNoselect.Image = Global.DanashaBasicSignature.My.Resources.Resources.SelectTable_16x16
         Me.btnNoselect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnNoselect.Location = New System.Drawing.Point(123, 3)
         Me.btnNoselect.Name = "btnNoselect"
@@ -327,7 +327,7 @@ Partial Class frmList_OrdenVenta
         '
         Me.btnFactura.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.btnFactura.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnFactura.Image = Global.DanashaBasic.My.Resources.Resources.Villetes_44
+        Me.btnFactura.Image = Global.DanashaBasicSignature.My.Resources.Resources.Villetes_44
         Me.btnFactura.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnFactura.Location = New System.Drawing.Point(3, 216)
         Me.btnFactura.Name = "btnFactura"
@@ -376,7 +376,7 @@ Partial Class frmList_OrdenVenta
         '
         'btnCopy
         '
-        Me.btnCopy.Image = Global.DanashaBasic.My.Resources.Resources.Action_Copy
+        Me.btnCopy.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Copy
         Me.btnCopy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCopy.Location = New System.Drawing.Point(272, 3)
         Me.btnCopy.Name = "btnCopy"
@@ -414,7 +414,7 @@ Partial Class frmList_OrdenVenta
         Me.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClose.Image = Global.DanashaBasic.My.Resources.Resources.Close_32x32
+        Me.btnClose.Image = Global.DanashaBasicSignature.My.Resources.Resources.Close_32x32
         Me.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnClose.Location = New System.Drawing.Point(719, 0)
         Me.btnClose.Name = "btnClose"
@@ -469,7 +469,7 @@ Partial Class frmList_OrdenVenta
         '
         Me.Button1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button1.Image = Global.DanashaBasic.My.Resources.Resources.SalesMy_32_png
+        Me.Button1.Image = Global.DanashaBasicSignature.My.Resources.Resources.SalesMy_32_png
         Me.Button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button1.Location = New System.Drawing.Point(3, 291)
         Me.Button1.Name = "Button1"

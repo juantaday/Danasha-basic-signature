@@ -431,7 +431,7 @@ Partial Class MDIcajas
         Me.CollapMycajaButton.FlatAppearance.BorderSize = 0
         Me.CollapMycajaButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CollapMycajaButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CollapMycajaButton.Image =  Global.DanashaBasic.My.Resources.Resources.hamburger_22_Down_white
+        Me.CollapMycajaButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.hamburger_22_Down_white
         Me.CollapMycajaButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.CollapMycajaButton.Location = New System.Drawing.Point(0, 0)
         Me.CollapMycajaButton.Name = "CollapMycajaButton"

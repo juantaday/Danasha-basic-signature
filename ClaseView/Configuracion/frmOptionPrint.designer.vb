@@ -212,7 +212,7 @@ Partial Class frmOptionPrint
         '
         'RefreshListDocumentButton
         '
-        Me.RefreshListDocumentButton.Image =  Global.DanashaBasic.My.Resources.Resources.Refresh_32png
+        Me.RefreshListDocumentButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Refresh_32png
         Me.RefreshListDocumentButton.Location = New System.Drawing.Point(13, 5)
         Me.RefreshListDocumentButton.Name = "RefreshListDocumentButton"
         Me.RefreshListDocumentButton.Size = New System.Drawing.Size(41, 37)

@@ -66,7 +66,7 @@ Partial Class frmbackup_Base
         '
         'FileButton
         '
-        Me.FileButton.Image =  Global.DanashaBasic.My.Resources.Resources.zoom_green_48icon
+        Me.FileButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.zoom_green_48icon
         Me.FileButton.Location = New System.Drawing.Point(560, 38)
         Me.FileButton.Name = "FileButton"
         Me.FileButton.Size = New System.Drawing.Size(62, 54)

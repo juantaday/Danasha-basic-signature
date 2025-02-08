@@ -102,7 +102,7 @@ Partial Class frmDetailOrderVenta
         '
         'btnPrint
         '
-        Me.btnPrint.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Printing_Print_16x16
+        Me.btnPrint.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Printing_Print_16x16
         Me.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnPrint.Location = New System.Drawing.Point(3, 3)
         Me.btnPrint.Name = "btnPrint"
@@ -126,7 +126,7 @@ Partial Class frmDetailOrderVenta
         '
         'btnCopy
         '
-        Me.btnCopy.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Copy
+        Me.btnCopy.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Copy
         Me.btnCopy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnCopy.Location = New System.Drawing.Point(372, 3)
         Me.btnCopy.Name = "btnCopy"
@@ -138,7 +138,7 @@ Partial Class frmDetailOrderVenta
         '
         'btnEddCantidad
         '
-        Me.btnEddCantidad.Image =  Global.DanashaBasic.My.Resources.Resources.Acceso_ok_48
+        Me.btnEddCantidad.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Acceso_ok_48
         Me.btnEddCantidad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnEddCantidad.Location = New System.Drawing.Point(438, 3)
         Me.btnEddCantidad.Name = "btnEddCantidad"
@@ -151,7 +151,7 @@ Partial Class frmDetailOrderVenta
         'btnEliminar
         '
         Me.btnEliminar.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnEliminar.Image =  Global.DanashaBasic.My.Resources.Resources.Action_Delete_16x16
+        Me.btnEliminar.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
         Me.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnEliminar.Location = New System.Drawing.Point(560, 3)
         Me.btnEliminar.Name = "btnEliminar"
@@ -228,7 +228,7 @@ Partial Class frmDetailOrderVenta
         Me.btnClose.DialogResult = DialogResult.Cancel
         Me.btnClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnClose.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnClose.Image =  Global.DanashaBasic.My.Resources.Resources.Close_32x32
+        Me.btnClose.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Close_32x32
         Me.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnClose.Location = New System.Drawing.Point(784, 0)
         Me.btnClose.Name = "btnClose"
