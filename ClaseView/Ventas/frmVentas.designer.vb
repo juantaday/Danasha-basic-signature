@@ -291,7 +291,7 @@ Partial Class frmVentas
         Me.FacturaButton.Name = "FacturaButton"
         Me.FacturaButton.Size = New System.Drawing.Size(77, 58)
         Me.FacturaButton.TabIndex = 30
-        Me.FacturaButton.Tag = "Nota de venta"
+        Me.FacturaButton.Tag = "Factura"
         Me.FacturaButton.Text = "Factura"
         Me.FacturaButton.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.ToolTip1.SetToolTip(Me.FacturaButton, "Documento por emitir")
@@ -309,8 +309,8 @@ Partial Class frmVentas
         Me.ProformaButton.Name = "ProformaButton"
         Me.ProformaButton.Size = New System.Drawing.Size(69, 58)
         Me.ProformaButton.TabIndex = 28
-        Me.ProformaButton.Tag = "ElectronicBill"
-        Me.ProformaButton.Text = "Electronica"
+        Me.ProformaButton.Tag = "Proforma"
+        Me.ProformaButton.Text = "Proforma"
         Me.ProformaButton.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.ToolTip1.SetToolTip(Me.ProformaButton, "Documento por emitir")
         Me.ProformaButton.UseVisualStyleBackColor = True
@@ -688,29 +688,29 @@ Partial Class frmVentas
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuEliminar, Me.ToolStripSeparator1, Me.menuCantidad, Me.menuPTotal})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(190, 76)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(191, 76)
         '
         'menuEliminar
         '
         Me.menuEliminar.Name = "menuEliminar"
-        Me.menuEliminar.Size = New System.Drawing.Size(189, 22)
+        Me.menuEliminar.Size = New System.Drawing.Size(190, 22)
         Me.menuEliminar.Text = "Emilinar"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(186, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(187, 6)
         '
         'menuCantidad
         '
         Me.menuCantidad.Name = "menuCantidad"
-        Me.menuCantidad.Size = New System.Drawing.Size(189, 22)
+        Me.menuCantidad.Size = New System.Drawing.Size(190, 22)
         Me.menuCantidad.Text = "Modificar Cantidad"
         '
         'menuPTotal
         '
         Me.menuPTotal.Name = "menuPTotal"
-        Me.menuPTotal.Size = New System.Drawing.Size(189, 22)
+        Me.menuPTotal.Size = New System.Drawing.Size(190, 22)
         Me.menuPTotal.Text = "Modificar Precio Total"
         '
         'paneDetail
@@ -970,7 +970,7 @@ Partial Class frmVentas
         Me.lblIva12.Name = "lblIva12"
         Me.lblIva12.Size = New System.Drawing.Size(111, 23)
         Me.lblIva12.TabIndex = 2
-        Me.lblIva12.Text = "Base 12%:0"
+        Me.lblIva12.Text = "Base 15%:0"
         '
         'lbltotal
         '

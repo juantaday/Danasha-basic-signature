@@ -2009,6 +2009,10 @@
       <Project>{18feda0c-d147-4286-b39a-01204808106a}</Project>
       <Name>ObjectListView</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Proyect generic\UpdateApp\UpdateApp.csproj">
+      <Project>{874ed24c-1ab0-4c72-be5c-b16e32cbec78}</Project>
+      <Name>UpdateApp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Danasha Gold Price\ec.gob.sri\ec.gob.sri.csproj">
       <Project>{C8243CEF-FFBC-460E-B2D8-C61CCE6CD8FF}</Project>
       <Name>ec.gob.sri</Name>
@@ -2032,10 +2036,6 @@
     <ProjectReference Include="..\InterfaceSignatureAndSRI\InterfaceSignatureAndSRI.csproj">
       <Project>{8a711fd8-a605-4bfc-8b8c-d4c1b6f23c0a}</Project>
       <Name>InterfaceSignatureAndSRI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UpdateApp\UpdateApp.csproj">
-      <Project>{874ed24c-1ab0-4c72-be5c-b16e32cbec78}</Project>
-      <Name>UpdateApp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

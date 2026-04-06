@@ -157,7 +157,7 @@ Partial Class MDIPareInicio
         Me.MenuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1244, 56)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1244, 75)
         Me.MenuStrip1.Stretch = False
         Me.MenuStrip1.TabIndex = 10
         Me.MenuStrip1.Text = "Erramientas"
@@ -466,8 +466,8 @@ Partial Class MDIPareInicio
         Me.ListadoToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.List_32x32
         Me.ListadoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ListadoToolStripMenuItem.Name = "ListadoToolStripMenuItem"
-        Me.ListadoToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.L), System.Windows.Forms.Keys)
-        Me.ListadoToolStripMenuItem.Size = New System.Drawing.Size(199, 38)
+        Me.ListadoToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.L), System.Windows.Forms.Keys)
+        Me.ListadoToolStripMenuItem.Size = New System.Drawing.Size(204, 38)
         Me.ListadoToolStripMenuItem.Text = "Listado"
         '
         'InventarioToolStripMenuItem
@@ -475,8 +475,8 @@ Partial Class MDIPareInicio
         Me.InventarioToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.stock_Bodega_32
         Me.InventarioToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.InventarioToolStripMenuItem.Name = "InventarioToolStripMenuItem"
-        Me.InventarioToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
-        Me.InventarioToolStripMenuItem.Size = New System.Drawing.Size(199, 38)
+        Me.InventarioToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
+        Me.InventarioToolStripMenuItem.Size = New System.Drawing.Size(204, 38)
         Me.InventarioToolStripMenuItem.Text = "Inventario"
         '
         'FacturacionToolStripMenuItem
@@ -527,7 +527,7 @@ Partial Class MDIPareInicio
         Me.DiariaPorCajaToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.DiariaPorCajaToolStripMenuItem.Name = "DiariaPorCajaToolStripMenuItem"
         Me.DiariaPorCajaToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.DiariaPorCajaToolStripMenuItem.Size = New System.Drawing.Size(274, 38)
+        Me.DiariaPorCajaToolStripMenuItem.Size = New System.Drawing.Size(275, 38)
         Me.DiariaPorCajaToolStripMenuItem.Text = "Nueva"
         '
         'PreciosDeVentasToolStripMenuItem
@@ -535,8 +535,8 @@ Partial Class MDIPareInicio
         Me.PreciosDeVentasToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.PrecioProduct_32
         Me.PreciosDeVentasToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.PreciosDeVentasToolStripMenuItem.Name = "PreciosDeVentasToolStripMenuItem"
-        Me.PreciosDeVentasToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.L), System.Windows.Forms.Keys)
-        Me.PreciosDeVentasToolStripMenuItem.Size = New System.Drawing.Size(274, 38)
+        Me.PreciosDeVentasToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
+        Me.PreciosDeVentasToolStripMenuItem.Size = New System.Drawing.Size(275, 38)
         Me.PreciosDeVentasToolStripMenuItem.Text = "Precios de prodcutos"
         '
         'FacturasToolStripMenuItem
@@ -544,7 +544,7 @@ Partial Class MDIPareInicio
         Me.FacturasToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Factur_32
         Me.FacturasToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.FacturasToolStripMenuItem.Name = "FacturasToolStripMenuItem"
-        Me.FacturasToolStripMenuItem.Size = New System.Drawing.Size(274, 38)
+        Me.FacturasToolStripMenuItem.Size = New System.Drawing.Size(275, 38)
         Me.FacturasToolStripMenuItem.Text = "Facturas"
         '
         'OrdenDeVentaNoFacturadaToolStripMenuItem
@@ -552,7 +552,7 @@ Partial Class MDIPareInicio
         Me.OrdenDeVentaNoFacturadaToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.check_listx32
         Me.OrdenDeVentaNoFacturadaToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.OrdenDeVentaNoFacturadaToolStripMenuItem.Name = "OrdenDeVentaNoFacturadaToolStripMenuItem"
-        Me.OrdenDeVentaNoFacturadaToolStripMenuItem.Size = New System.Drawing.Size(274, 38)
+        Me.OrdenDeVentaNoFacturadaToolStripMenuItem.Size = New System.Drawing.Size(275, 38)
         Me.OrdenDeVentaNoFacturadaToolStripMenuItem.Text = "Pedidos"
         '
         'ArqueoDeCajaToolStripMenuItem
@@ -560,7 +560,7 @@ Partial Class MDIPareInicio
         Me.ArqueoDeCajaToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Cash_Counter_32
         Me.ArqueoDeCajaToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ArqueoDeCajaToolStripMenuItem.Name = "ArqueoDeCajaToolStripMenuItem"
-        Me.ArqueoDeCajaToolStripMenuItem.Size = New System.Drawing.Size(274, 38)
+        Me.ArqueoDeCajaToolStripMenuItem.Size = New System.Drawing.Size(275, 38)
         Me.ArqueoDeCajaToolStripMenuItem.Text = "Arqueo de caja"
         '
         'SeguridadToolStripMenuItem
@@ -664,7 +664,7 @@ Partial Class MDIPareInicio
         Me.AcercaDeToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.AcercaDeToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.AcercaDeToolStripMenuItem.Name = "AcercaDeToolStripMenuItem"
-        Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(180, 38)
+        Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
         Me.AcercaDeToolStripMenuItem.Text = "Acerca de"
         Me.AcercaDeToolStripMenuItem.ToolTipText = "Información de esta aplicación"
         '
@@ -674,13 +674,13 @@ Partial Class MDIPareInicio
         Me.ContagtoToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ContagtoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ContagtoToolStripMenuItem.Name = "ContagtoToolStripMenuItem"
-        Me.ContagtoToolStripMenuItem.Size = New System.Drawing.Size(180, 38)
+        Me.ContagtoToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
         Me.ContagtoToolStripMenuItem.Text = "Contacto"
         '
         'AjecutarScripToolStripMenuItem
         '
         Me.AjecutarScripToolStripMenuItem.Name = "AjecutarScripToolStripMenuItem"
-        Me.AjecutarScripToolStripMenuItem.Size = New System.Drawing.Size(180, 38)
+        Me.AjecutarScripToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
         Me.AjecutarScripToolStripMenuItem.Text = "Ajecutar scrip"
         '
         'notificacion
@@ -691,9 +691,9 @@ Partial Class MDIPareInicio
         'paneMuestra
         '
         Me.paneMuestra.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.paneMuestra.Location = New System.Drawing.Point(0, 56)
+        Me.paneMuestra.Location = New System.Drawing.Point(0, 75)
         Me.paneMuestra.Name = "paneMuestra"
-        Me.paneMuestra.Size = New System.Drawing.Size(1244, 244)
+        Me.paneMuestra.Size = New System.Drawing.Size(1244, 225)
         Me.paneMuestra.TabIndex = 14
         '
         'MenuStrip
@@ -702,7 +702,7 @@ Partial Class MDIPareInicio
         Me.MenuStrip.BackColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer))
         Me.MenuStrip.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewMenu, Me.WindowsMenu, Me.EditarToolStripMenuItem, Me.ContadorBillteToolStripMenuItem})
-        Me.MenuStrip.Location = New System.Drawing.Point(0, 56)
+        Me.MenuStrip.Location = New System.Drawing.Point(0, 75)
         Me.MenuStrip.MdiWindowListItem = Me.WindowsMenu
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Size = New System.Drawing.Size(1244, 30)
@@ -811,7 +811,7 @@ Partial Class MDIPareInicio
         Me.MenuBarr.AutoSize = False
         Me.MenuBarr.BackColor = System.Drawing.Color.White
         Me.MenuBarr.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.I1ToolStripMenuItem, Me.I2ToolStripMenuItem, Me.I3ToolStripMenuItem, Me.I4ToolStripMenuItem, Me.I5ToolStripMenuItem, Me.I6ToolStripMenuItem, Me.I7ToolStripMenuItem, Me.I8ToolStripMenuItem, Me.I9ToolStripMenuItem, Me.I10ToolStripMenuItem, Me.I11ToolStripMenuItem, Me.I12ToolStripMenuItem, Me.I13ToolStripMenuItem, Me.I14ToolStripMenuItem, Me.I15ToolStripMenuItem, Me.I16ToolStripMenuItem, Me.I17ToolStripMenuItem, Me.I18ToolStripMenuItem, Me.I19ToolStripMenuItem})
-        Me.MenuBarr.Location = New System.Drawing.Point(0, 86)
+        Me.MenuBarr.Location = New System.Drawing.Point(0, 105)
         Me.MenuBarr.Name = "MenuBarr"
         Me.MenuBarr.Size = New System.Drawing.Size(1244, 28)
         Me.MenuBarr.TabIndex = 21

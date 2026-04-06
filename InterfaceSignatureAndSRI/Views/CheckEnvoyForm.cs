@@ -219,10 +219,12 @@ namespace InterfaceSignatureAndSRI.Views
         {
             string errorMessage = string.Empty;
 
+            DataGridSingned.DataSource = null;
+
             await Task.Run (() => {
                 try
                 {
-                    DataGridSingned.DataSource = null; // Limpia la grilla antes de cargar datos
+                     // Limpia la grilla antes de cargar datos
 
                     using (var db = new DataContextReflex())
                     {

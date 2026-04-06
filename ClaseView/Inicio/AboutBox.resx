@@ -121,11 +121,11 @@
     <value>Sistema diseñado para facturación, gestión de compras, ventas, pedidos, stock, bodegas, empleados, clientes y mucho más...
 
 La información de los Usuarios, Módulos y Permisos del Usuario
-están almacenados en una base de datos de SQL Server 2019 Express.
-Utilizando como id de desarrollo Microsoft Visual Studio 2019
+están almacenados en una base de datos de SQL Server 2022 Express.
+Utilizando como id de desarrollo Microsoft Visual Studio 2026
 
 Para más información puede contactar:
-Email: juantadaymalan3@hotmail.com
+Email: juantadaymalan3@gmail.com
 Teléfono: 0981464575 -  0939531173</value>
   </data>
 </root>

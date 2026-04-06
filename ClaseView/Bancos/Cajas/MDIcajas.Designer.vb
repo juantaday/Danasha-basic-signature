@@ -438,7 +438,7 @@ Partial Class MDIcajas
         Me.CollapMycajaButton.Size = New System.Drawing.Size(184, 28)
         Me.CollapMycajaButton.TabIndex = 1
         Me.CollapMycajaButton.Tag = "1"
-        Me.CollapMycajaButton.Text = "My caja"
+        Me.CollapMycajaButton.Text = "Mi caja"
         Me.CollapMycajaButton.UseVisualStyleBackColor = False
         '
         'Button2

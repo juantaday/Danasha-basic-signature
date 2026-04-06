@@ -444,7 +444,7 @@ PintaRepedidas:
         lblIva.Text = "Iva $ : " & Iva.ToString("N2")
         lbldescuento.Text = "Total descuento $: " & descuento.ToString("N2")
         lblIva0.Text = "Base 0%  : " & base0.ToString("N2")
-        lblIva12.Text = "Base 12%  : " & base12.ToString("N2")
+        lblIva12.Text = "Base 15%  : " & base12.ToString("N2")
         lbltotal.Text = "Total $: " & totalFact.ToString("N2")
     End Sub
     Private Sub PintaRepetido(Filas As Integer, myColor As Color)
@@ -1420,7 +1420,7 @@ viewMesagge:
                 Me.Cursor = Cursors.Default
                 ListView1.Items.Clear()
 
-                If (_nameDocument.Equals("ElectronicBill")) Then
+                If (_nameDocument.Equals("Factura")) Then
                     SingninInvoiceAsync(FacturVenta.idFactur)
                 End If
 
