@@ -101,7 +101,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetMonedas.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DataSetPerson.Designer.cs">
+    <Compile Include="DataSetPerson1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetPerson.xsd</DependentUpon>
@@ -147,6 +147,7 @@
       <DependentUpon>DataSetZonas.xsd</DependentUpon>
     </Compile>
     <Compile Include="Data\DataContext.cs" />
+    <Compile Include="Data\Emuns\CustomerEntityType.cs" />
     <Compile Include="Data\Emuns\EnumSatateModule.cs" />
     <Compile Include="Data\Emuns\PaperSizeWidth.cs" />
     <Compile Include="Data\Entyties\PurchaseSaleMonth.cs" />
@@ -261,7 +262,7 @@
     <None Include="DataSetPerson.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetPerson.Designer.cs</LastGenOutput>
+      <LastGenOutput>DataSetPerson1.Designer.cs</LastGenOutput>
     </None>
     <None Include="DataSetPerson.xss">
       <DependentUpon>DataSetPerson.xsd</DependentUpon>

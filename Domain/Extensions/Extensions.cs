@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 
 namespace Domain.Extensions
 {
-    public static  class Modules
+    public static class Modules
     {
         public static int FindIndex<T>(this T[] array, T item)
         {

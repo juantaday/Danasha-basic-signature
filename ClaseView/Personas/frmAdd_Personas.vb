@@ -1,7 +1,11 @@
 ﻿
-Imports CADsisVenta.DataSetPersonTableAdapters
+Imports System.Runtime.CompilerServices
+Imports System.Runtime.InteropServices
 Imports CADsisVenta
+Imports CADsisVenta.Data.Emuns
 Imports CADsisVenta.Data.Emuns.EnumSatateModule
+Imports CADsisVenta.DataSetPersonTableAdapters
+Imports Domain.Extensions
 
 Public Class frmAdd_Personas
 
@@ -10,6 +14,8 @@ Public Class frmAdd_Personas
     Private zona As Boolean
     Private imagenBase As Byte()
     Private idSector As Integer
+    Private _isLoaded As Boolean
+
     Sub New(state As stateOperation, idPersona As Integer)
 
         ' Esta llamada es exigida por el diseñador.
@@ -22,6 +28,8 @@ Public Class frmAdd_Personas
     Private Sub frmAdd_Clientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Acepte todo en minusculas
         Mays()
+        Carga_TypoPersona()
+
         Select Case state
             Case stateOperation.Insert
             Case stateOperation.Update
@@ -54,19 +62,64 @@ Public Class frmAdd_Personas
         NombreText.CharacterCasing = CharacterCasing.Upper
         ApellidosText.CharacterCasing = CharacterCasing.Upper
     End Sub
+
+    Private Sub Carga_TypoPersona()
+
+        Try
+
+            Dim listaParaDropdown = [Enum].GetValues(GetType(CustomerEntityType)).
+                  Cast(Of CustomerEntityType)().
+                  Select(Function(e) New With {
+                      .Id = CInt(e),
+                      .Valor = e.ToString(),
+                      .NombreMostrar = e.GetDisplayName()
+                  }).ToList()
+
+            cmbTipoCliente.DisplayMember = "NombreMostrar"
+            cmbTipoCliente.ValueMember = "Id"
+            cmbTipoCliente.DataSource = listaParaDropdown
+
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+        Finally
+            _isLoaded = True
+        End Try
+
+    End Sub
+
     Private Sub Carga_DatosPersona()
         Try
+
+            _isLoaded = False
+
             Dim dt As New DataTable
             Dim adt As New PersonasTableAdapter()
             dt = adt.GetDataPerson(idPersona)
             If dt.Rows.Count > 0 Then
-                ApellidosText.Text = Convert.ToString(dt.Rows(0)("Apellidos"))
+                Dim ciRuc = dt.Rows(0).Field(Of String)("Ruc_Ci")
+
+                If (ciRuc.Contains("999999999")) Then
+                    MsgBox("No se puede modificar CONSUMIDOR FINAL", MsgBoxStyle.Critical, "Error")
+                    Me.Close()
+                End If
+
+                ApellidosText.Text = dt.Rows(0).Field(Of String)("Apellidos")
                 NombreText.Text = Convert.ToString(dt.Rows(0)("Nombre"))
-                Ruc_CiText.Text = Convert.ToString(dt.Rows(0)("Ruc_Ci"))
+                Ruc_CiText.Text = ciRuc
                 DireccionText.Text = Convert.ToString(dt.Rows(0)("Direccion"))
                 TelefonoText.Text = Convert.ToString(dt.Rows(0)("Telefono"))
                 EmailTextBox.Text = Convert.ToString(dt.Rows(0)("mail"))
                 SendEmailCheck.Checked = dt.Rows(0).Field(Of Boolean)("SendMail")
+
+                Dim personTypeId = dt.Rows(0).Field(Of Int32)("PersonTypeId")
+
+                If cmbTipoCliente.DataSource IsNot Nothing Then
+                    _isLoaded = True
+                    cmbTipoCliente.SelectedValue = CInt(personTypeId)
+                    _isLoaded = False
+                End If
+
 
                 Invisible_FechaNaci()
                 If IsDate(dt.Rows(0)("fech_Naci")) Then
@@ -104,7 +157,10 @@ Public Class frmAdd_Personas
             End If
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+        Finally
+            _isLoaded = True
         End Try
+
     End Sub
     Private Sub Carga_DatosPersonaZona(idpersona As Integer)
         Try
@@ -171,38 +227,79 @@ Public Class frmAdd_Personas
     Private Sub Ruc_CiText_Leave(sender As Object, e As EventArgs) Handles Ruc_CiText.Leave
         sender.Text = Trim(sender.Text)
     End Sub
+
     Private Function Valida_Datos() As Boolean
         Try
+            ' Limpiar espacios
+            ApellidosText.Text = ApellidosText.Text.Trim()
+            NombreText.Text = NombreText.Text.Trim()
+            Ruc_CiText.Text = Ruc_CiText.Text.Trim()
+            EmailTextBox.Text = EmailTextBox.Text.Trim()
+
+
+            If (cmbTipoCliente.SelectedValue = -1) Then
+                ErrorProvider1.SetError(cmbTipoCliente, "Seleccione uno de la lista")
+                Return False
+            End If
+
             If String.IsNullOrEmpty(ApellidosText.Text) Then
                 ErrorProvider1.SetError(ApellidosText, "Datos obligatorios")
                 Return False
             End If
-            If String.IsNullOrEmpty(NombreText.Text) Then
-                ErrorProvider1.SetError(NombreText, "Datos obligatorios")
-                Return False
+
+            Dim personType As CustomerEntityType = CType(cmbTipoCliente.SelectedValue, CustomerEntityType)
+
+            cmbTipoCliente.Text = personType.GetDisplayName()
+
+            If (personType = CustomerEntityType.PersonaNatural) Then
+                ' nombre
+                If String.IsNullOrEmpty(NombreText.Text) Then
+                    ErrorProvider1.SetError(NombreText, "Datos obligatorios")
+                    Return False
+                End If
+
+                ' genero 
+                If Not (SexoComboBox.SelectedIndex > 0) Then
+                    ErrorProvider1.SetError(SexoComboBox, "Seleccione una opción")
+                    Return False
+                End If
+            Else
+                NombreText.Text = String.Empty
+                NombreText.Enabled = False
+
+                SexoComboBox.Visible = False
             End If
+
+
             If String.IsNullOrEmpty(Ruc_CiText.Text) Then
                 ErrorProvider1.SetError(Ruc_CiText, "Datos obligatorios")
                 Return False
             End If
-            If Not (SexoComboBox.SelectedIndex > 0) Then
-                ErrorProvider1.SetError(SexoComboBox, "Seleccione una opción")
+
+            ' Validar longitud de cédula o RUC
+            If Not (Ruc_CiText.Text.Length = 10 OrElse Ruc_CiText.Text.Length = 13) Then
+                ErrorProvider1.SetError(Ruc_CiText, "Debe tener 10 (cédula) o 13 (RUC) dígitos")
                 Return False
             End If
+
 
             If (SendEmailCheck.Checked AndAlso String.IsNullOrEmpty(EmailTextBox.Text)) Then
-                ErrorProvider1.SetError(EmailTextBox, "No esta configurado ningun correo para enviar..")
+                ErrorProvider1.SetError(EmailTextBox, "No está configurado ningún correo para enviar")
                 Return False
             End If
 
+            If Not IsNumeric(Ruc_CiText.Text) Then
+                ErrorProvider1.SetError(Ruc_CiText, "Solo se permiten números")
+                Return False
+            End If
 
             Return True
+
         Catch ex As Exception
             MsgBox(ex.Message, "Error")
             Return False
         End Try
     End Function
-
     Private Sub LocatedButton_Click(sender As Object, e As EventArgs) Handles LocatedButton.Click
         Try
             Using formew As New frmAdd_Zonas()
@@ -475,6 +572,7 @@ Public Class frmAdd_Personas
             Dim foto() As Byte
             Dim fecha_naci As Nullable(Of Date) = Nothing
             Dim genero As Boolean
+            Dim personType = CInt(cmbTipoCliente.SelectedValue)
 
             'si determinamos la fecha de nacimiento
             If Fech_NaciCheckBox.Checked Then
@@ -503,13 +601,15 @@ Public Class frmAdd_Personas
                                                            TelefonoText.Text,
                                                            EmailTextBox.Text, fecha_naci, genero,
                                                            NotaTextBox.Text, foto, telf_casaTextBox.Text,
-                                                           telf_oficTextBox.Text, SendEmailCheck.Checked)
+                                                           telf_oficTextBox.Text, SendEmailCheck.Checked,
+                                                           personType)
                     End If
                 Case stateOperation.Update
                     If ClsPerson.UpdatePerson(idPersona, ApellidosText.Text, NombreText.Text,
-                                              Ruc_CiText.Text, DireccionText.Text, TelefonoText.Text,
+                         Ruc_CiText.Text, DireccionText.Text, TelefonoText.Text,
                          EmailTextBox.Text, fecha_naci, genero, NotaTextBox.Text,
-                         foto, telf_casaTextBox.Text, telf_oficTextBox.Text, SendEmailCheck.Checked) Then
+                         foto, telf_casaTextBox.Text, telf_oficTextBox.Text,
+                         SendEmailCheck.Checked, personType) Then
 
                     End If
                 Case stateOperation.View
@@ -698,4 +798,31 @@ Public Class frmAdd_Personas
 
     End Sub
 
+    Private Sub cmbTipoCliente_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbTipoCliente.SelectedIndexChanged
+        If Not _isLoaded Then
+            Return
+        End If
+
+        If (cmbTipoCliente.SelectedIndex = -1) Then
+            ApellidosText.Enabled = False
+            NombreText.Enabled = False
+            Ruc_CiText.Enabled = False
+        End If
+
+        If (Not cmbTipoCliente.SelectedIndex = 0) Then
+            lblApellido.Text = "Razon Social"
+            NombreText.Text = String.Empty
+            NombreText.Enabled = False
+            SexoComboBox.Visible = False
+            Label11.Visible = False
+        End If
+
+        If (cmbTipoCliente.SelectedIndex = 0) Then
+            lblApellido.Text = "Apellidos"
+            NombreText.Enabled = True
+            SexoComboBox.Visible = True
+            Label11.Visible = True
+        End If
+
+    End Sub
 End Class

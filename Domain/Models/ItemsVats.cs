@@ -49,7 +49,9 @@ namespace Domain.Models
 
         public string Moneda { get; set; }
         public string  Phone { get; set; }
-        public string CellPhone { get; set; }
+        public string CellPhone { get; set; }  
+        public string RegimenMicroempresas { get; set; } 
+        public string ContribuyenteRimpe { get; set; }  
 
     }
 

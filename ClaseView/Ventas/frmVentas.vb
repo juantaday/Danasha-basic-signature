@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Threading
 Imports CADsisVenta
+Imports CADsisVenta.[Class]
 Imports CADsisVenta.Data.Emuns.EnumSatateModule
 Imports CADsisVenta.DataSetClientesTableAdapters
 Imports CADsisVenta.DataSetComprasTableAdapters
@@ -1456,61 +1457,42 @@ viewMesagge:
 
     Private Sub FindClienteButton_Click(sender As Object, e As EventArgs) Handles FindClienteButton.Click
         Try
-            Dim st1 As String = String.Empty
-            Dim st2 As String = String.Empty
-            Dim st3 As String = String.Empty
-            Dim isInsert As Boolean = False
-            Dim isEmpy As Boolean = False
-            Dim count As Integer = 0
-            For Each texto In CedulaTextBox.Text
-                If Not String.IsNullOrWhiteSpace(texto) Then
-                    If isInsert And isEmpy Then
-                        count += 1
-                    End If
+            If (CedulaTextBox.Text.Trim().Length < 4) Then
+                Return
+            End If
 
-                    If count > 2 Then count = 2
-                    isInsert = False
-                    isEmpy = False
-                    Select Case count
-                        Case 0
-                            st1 = st1 & texto
-                            isInsert = True
-                        Case 1
-                            st2 = st2 & texto
-                            isInsert = True
-                        Case 2
-                            st3 = st3 & texto
-                            isInsert = True
-                    End Select
-                Else
-                    isEmpy = True
+            Dim response = GeneratedSplit.GenerateSpliter(CedulaTextBox.Text.Trim())
+            If Not response.IsSucces Then
+                MsgBox("No se pudo analizar los datos a consultar..")
+                Return
+            Else
+
+                Dim dt As DataTable = ClsPerson.getDataLikePerson(response.Spliter(0), response.Spliter(1), response.Spliter(2))
+                If Not IsNothing(dt) Then
+                    If dt.Rows.Count = 1 Then
+                        idPersona = dt.Rows(0)("idPersona")
+                        idcliente = ClsClientes.isClinteBypersonAdmin(idPersona)
+                        Carga_Cliente(idcliente)
+                        txtExploret.Focus()
+                        Return
+                    End If
+                    Using ListClient As New frmList_Person(stateLoad.Dialogo)
+                        With ListClient
+                            .dtPersonas = dt
+                            .FindTextBox.Text = CedulaTextBox.Text
+                            .StartPosition = FormStartPosition.CenterScreen
+                            .ShowDialog()
+                            If .DialogResult = DialogResult.OK Then
+                                idPersona = .PersonClickNamaLabel.Tag
+                                idcliente = ClsClientes.isClinteBypersonAdmin(idPersona)
+                                CedulaTextBox.Text = .PersonVisibleNemuClicLabel.Tag
+                                NomClienteText.Text = .PersonVisibleNemuClicLabel.Text
+                                txtExploret.Focus()
+                            End If
+                            CedulaTextBox.Focus()
+                        End With
+                    End Using
                 End If
-            Next
-            Dim dt As DataTable = ClsPerson.getDataLikePerson(st1, st2, st3)
-            If Not IsNothing(dt) Then
-                If dt.Rows.Count = 1 Then
-                    idPersona = dt.Rows(0)("idPersona")
-                    idcliente = ClsClientes.isClinteBypersonAdmin(idPersona)
-                    Carga_Cliente(idcliente)
-                    txtExploret.Focus()
-                    Return
-                End If
-                Using ListClient As New frmList_Person(stateLoad.Dialogo)
-                    With ListClient
-                        .dtPersonas = dt
-                        .FindTextBox.Text = CedulaTextBox.Text
-                        .StartPosition = FormStartPosition.CenterScreen
-                        .ShowDialog()
-                        If .DialogResult = DialogResult.OK Then
-                            idPersona = .PersonClickNamaLabel.Tag
-                            idcliente = ClsClientes.isClinteBypersonAdmin(idPersona)
-                            CedulaTextBox.Text = .PersonVisibleNemuClicLabel.Tag
-                            NomClienteText.Text = .PersonVisibleNemuClicLabel.Text
-                            txtExploret.Focus()
-                        End If
-                        CedulaTextBox.Focus()
-                    End With
-                End Using
             End If
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")

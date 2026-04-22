@@ -263,7 +263,7 @@ Public Class frmList_Person
             End If
 
             Me.dtPersonas = ClsPerson.getDataLikePerson(response.Spliter(0),
-                                                        response.Spliter(1), response.Spliter(0))
+                                                        response.Spliter(1), response.Spliter(2))
             If Not IsNothing(dtPersonas) Then
                 InitializaView(Me.dtPersonas)
             End If

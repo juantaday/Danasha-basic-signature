@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports System.Threading
 Imports CADsisVenta
 Imports Domain.Data.Enums
@@ -37,7 +38,6 @@ Public Class MyCommerceForm
 
     Private Sub MyCommerceForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         jmTabControl1.TabIndex = 0
-        rjRadioButton1.Checked = True
 
         If Not backgroundWorker1.IsBusy Then
             Me.circularProgressBar1.Visible = True
@@ -165,7 +165,8 @@ Public Class MyCommerceForm
             txtNumResolucion.Text = _currentCommerce.SpecialTaxNumber
             txtAgentRetenNum.Text = _currentCommerce.AgenteRetencion
             ContabiliteChecBox.Checked = _currentCommerce.KeepAccounting
-
+            txtRegimenRIMPE.Text = _currentCommerce.ContribuyenteRimpe
+            txtRegimenMicro.Text = _currentCommerce.RegimenMicroempresas
 
             If _signatureOption IsNot Nothing Then
                 GetDataSourceComboBox()
@@ -486,7 +487,7 @@ Public Class MyCommerceForm
         _currentCommerce.note = Nothing
         _currentCommerce.SpecialTaxNumber = If(String.IsNullOrWhiteSpace(txtNumResolucion.Text.Trim()), Nothing, txtNumResolucion.Text.Trim())
         _currentCommerce.RegimenMicroempresas = txtRegimenMicro.Text
-        _currentCommerce.ContribuyenteRimpe = cmbTypeBusiness.SelectedItem.ToString().Trim()
+        _currentCommerce.ContribuyenteRimpe = txtRegimenRIMPE.Text
         _currentCommerce.RazonSocial = txtRazonSocial.Text.Trim()
         _currentCommerce.Ruc = txtRuc.Text
         _currentCommerce.NameComercial = txtNomComercial.Text.Trim()
@@ -511,6 +512,13 @@ Public Class MyCommerceForm
         _signatureOption.THUMBPRINT = If(txtHuella.Text.Trim().Equals(txtHuella.PlaceHolderText.Trim()), Nothing, txtHuella.Text.Trim())
 
         _signatureOption.TIEMPO_ESPERA = CByte(altoNumericUpDown1.Value)
+
+        If (Me.rjRadioButton1.Checked) Then
+            _signatureOption.RUTA_ARCHIVO = ""
+        ElseIf (Me.rjRadioButton2.Checked) Then
+            _signatureOption.RUTA_ARCHIVO = If(txtHuella.Text.Trim().Equals(txtHuella.PlaceHolderText.Trim()), Nothing, txtHuella.Text.Trim())
+        End If
+
 
 
         'logo pdf

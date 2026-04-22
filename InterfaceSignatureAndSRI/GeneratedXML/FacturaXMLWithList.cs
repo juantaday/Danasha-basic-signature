@@ -147,10 +147,10 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
                 if (!string.IsNullOrEmpty(_myCommerce.AgenteRetencion))
                     trib.agenteRetencion = _myCommerce.AgenteRetencion;
 
-                if (_myCommerce.IdTypeRegimen == TypeECommerceEnum.Microenterprise) // contribuyente espacial
-                    trib.regimenMicroempresas = "CONTRIBUYENTE RÉGIMEN MICROEMPRESAS";
+                if (_myCommerce.IdTypeRegimen == TypeECommerceEnum.Microenterprise) 
+                    trib.regimenMicroempresas = _myCommerce.RegimenMicroempresas;
                 else if (_myCommerce.IdTypeRegimen == TypeECommerceEnum.RIMPE_Taxpayer)
-                    trib.contribuyenteRimpe = "CONTRIBUYENTE RÉGIMEN RIMPE";
+                    trib.contribuyenteRimpe = _myCommerce.ContribuyenteRimpe;
 
 
 

@@ -38,9 +38,8 @@ Public Class frmList_clientes
             If Not response.IsSucces Then
                 MsgBox("No se pudo analizar los datos a consultar..")
                 Return
-            ElseIf (response.IsNumeric) Then
-                CargaListClientes($"Where p.Ruc_Ci like '{response.Spliter(0)}%' ")
             Else
+
                 Me.Cursor = Cursors.WaitCursor
 
                 Dim data = ClsPerson.getDataLikePerson(response.Spliter(0), response.Spliter(1), response.Spliter(2))
@@ -59,7 +58,8 @@ Public Class frmList_clientes
 
                     For Each row As DataRow In data.Rows
                         info.Add(New CheckClinetWithItemSend With {
-                                 .idPersona = row.Field(Of Integer)("idPersona")})
+                                 .idPersona = row.Field(Of Integer)("idPersona")
+                                 })
                     Next
 
                     GetClientWithList(info)
@@ -77,7 +77,7 @@ Public Class frmList_clientes
 
     Private Sub CargaListClientes(ByVal FilterString As String)
 
-        sql = "Select top(50) c.idCliente, p.Ruc_Ci, p.Apellidos + ' ' + p.Nombre AS [Cliente], "
+        sql = "Select top(50) c.idCliente, p.Ruc_Ci, p.Apellidos + ' ' + ISNULL(p.Nombre, '') AS [Cliente], "
         sql = sql & "p.telefono,p.Apellidos,p.Nombre,p.Direccion, p.idPersona, cast(c.credito as bit) as Credito, c.monto_Max "
         sql = sql & "FROM  dbo.Clientes as c INNER JOIN dbo.Personas as p ON c.idPersona = p.idPersona  "
 
@@ -151,9 +151,20 @@ Public Class frmList_clientes
                         .Columns(9).Visible = False  'monto maximo deuda
                     End If
 
+                    ' columna de monto de credito
                     clm = .Columns("monto_Max")
-                    clm.HeaderText = "Monto máximo"
-                    clm.DefaultCellStyle = myStileMoney
+                    If (Not clm Is Nothing) Then
+                        clm.HeaderText = "Monto máximo"
+                        clm.DefaultCellStyle = myStileMoney
+                    End If
+
+                    ' columna de tipo de persona
+                    clm = .Columns("PersonTypeId")
+                    If (Not clm Is Nothing) Then
+                        clm.HeaderText = "Tipo Persona"
+                        clm.Visible = False
+                    End If
+
 
                     lblTotal.Text = "Total de registro: " & dt.Rows.Count
                     lblnoExiste.Visible = False
@@ -255,8 +266,20 @@ Public Class frmList_clientes
         Try
             If Me.idPersona > 0 Then
                 sql = DataGridView1.SelectedRows(0).Cells(2).Value
+
+                Dim ruc As String = DataGridView1.SelectedRows(0).Cells(1).Value
+
+                If (ruc.Contains("9999999999")) Then
+                    MsgBox("No se puede eliminar al consumidor final", MsgBoxStyle.Exclamation, "Aviso")
+                    Return
+                End If
+
+
+
                 If MsgBox("Esta sueguro de eliminar al cliente " + sql, MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Responda.") = MsgBoxResult.Yes Then
-                    If Eliminar_clinete(Me.idPersona) Then
+                    sql = "Delete Clientes from Clientes where idPersona = @idPersona"
+
+                    If Eliminar_clinete(Me.idPersona, sql) Then
                         Me.NotifyIcon1.BalloonTipText = "Cliente eliminado"
                         Me.NotifyIcon1.ShowBalloonTip(2000)
                         DataGridView1.Rows.Remove(DataGridView1.SelectedRows(0))
@@ -271,18 +294,19 @@ Public Class frmList_clientes
             Cursor = Cursors.Default
         End Try
     End Sub
-    Private Function Eliminar_clinete(idPersona As Integer) As Boolean
-        sql = "Delete Clientes from Clientes where idPersona=" & idPersona & ""
-
+    Private Function Eliminar_clinete(idPersona As Integer, query As String) As Boolean
 
         Try
             Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
                 cnn.Open()
 
-                Using cmd As New SqlCommand(sql)
+                Using cmd As New SqlCommand(query)
                     cmd.CommandType = CommandType.Text
                     cmd.Connection = cnn
-                    If cmd.ExecuteNonQuery() Then
+
+                    cmd.Parameters.Add("@idPersona", SqlDbType.Int).Value = idPersona
+
+                    If cmd.ExecuteNonQuery() > 0 Then
                         Return True
                     Else
                         Return False
@@ -354,18 +378,26 @@ Public Class frmList_clientes
         Try
             If DataGridView1.SelectedRows.Count = 1 Then
                 Me.idCliente = DataGridView1.SelectedRows(0).Cells(DataGridView1.Columns("idCliente").Index).Value
+
                 If Not (stateClient = stateClient.Admin) Then
                     MsgBox("No tiene permiso para esta opción.", MsgBoxStyle.Exclamation, "Aviso")
                     Return
                 End If
+
                 Using frmdata As New frmImputData
                     With frmdata
-                        .txtNumber.Value = DataGridView1.SelectedCells.Item(9).Value
+                        .txtNumber.Value = DataGridView1.SelectedRows(0).Cells("monto_Max").Value
                         .Text = "Determine el monto máximo de crédito."
                         .ShowDialog()
+
                         If .DialogResult = DialogResult.OK Then
-                            If Otorga_Credito(Me.idCliente, .txtNumber.Value) Then
-                                btnBuscar.PerformClick()
+                            Dim nuevoMonto As Decimal = Convert.ToDecimal(.txtNumber.Value)
+
+                            If Otorga_Credito(Me.idCliente, nuevoMonto) Then
+                                ' ✅ Actualizar solo la fila seleccionada
+                                Dim row As DataGridViewRow = DataGridView1.SelectedRows(0)
+                                row.Cells("monto_Max").Value = nuevoMonto
+                                row.Cells("Credito").Value = (nuevoMonto > 0)  ' true si monto > 0
                             End If
                         End If
                     End With
@@ -468,5 +500,39 @@ Public Class frmList_clientes
             Cursor = Cursors.Default
         End Try
 
+    End Sub
+
+    Private Sub EliminarDeFormaPermanenteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EliminarDeFormaPermanenteToolStripMenuItem.Click
+        Try
+            If Me.idPersona > 0 Then
+                sql = DataGridView1.SelectedRows(0).Cells(2).Value
+                Dim ruc As String = DataGridView1.SelectedRows(0).Cells(1).Value 'ruc
+
+                If (ruc.Contains("9999999999")) Then
+                    MsgBox("No se puede eliminar al consumidor final", MsgBoxStyle.Exclamation, "Aviso")
+                    Return
+                End If
+
+                If MsgBox("Esta sueguro de eliminar al cliente:" + vbCrLf + sql + vbCrLf + "De forma permanente?", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Responda.") = MsgBoxResult.Yes Then
+                        sql = "Delete Clientes where idPersona = @idPersona"
+                        If Eliminar_clinete(Me.idPersona, sql) Then
+
+                            sql = "Delete Personas  where idPersona = @idPersona"
+                            If Eliminar_clinete(Me.idPersona, sql) Then
+                                Me.NotifyIcon1.BalloonTipText = "Cliente eliminado"
+                                Me.NotifyIcon1.ShowBalloonTip(2000)
+                                DataGridView1.Rows.Remove(DataGridView1.SelectedRows(0))
+                            End If
+
+                        End If
+                    End If
+                End If
+
+        Catch ex As Exception
+            Cursor = Cursors.Default
+            MsgBox(ex.Message & vbNewLine & ex.StackTrace, MsgBoxStyle.Critical, "Error")
+        Finally
+            Cursor = Cursors.Default
+        End Try
     End Sub
 End Class

@@ -1,5 +1,6 @@
 ﻿using CADsisVenta;
 using CADsisVenta.Data;
+using Domain.Data.Enums;
 using Domain.Models;
 using ec.gob.sri.comprobantes.Enum;
 using ec.gob.sri.comprobantes.Utils;
@@ -78,6 +79,8 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
                     SpecialTaxNumber = op.SpecialTaxNumber,
                     KeepAccounting = op.KeepAccounting,
                     Moneda = op.TypoMonedaDecrip,
+                    RegimenMicroempresas = op.RegimenMicroempresas,
+                    ContribuyenteRimpe = op.ContribuyenteRimpe    
                 }).FirstOrDefault();
 
 
@@ -206,9 +209,9 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
                     trib.agenteRetencion = _Mycomerce.AgenteRetencion;
 
                 if (_Mycomerce.IdTypeRegimen == 2) // contribuyente espacial
-                    trib.regimenMicroempresas = "CONTRIBUYENTE RÉGIMEN MICROEMPRESAS";
-                else if (_Mycomerce.IdTypeRegimen == 3)
-                    trib.contribuyenteRimpe = "CONTRIBUYENTE RÉGIMEN RIMPE";
+                    trib.regimenMicroempresas = _Mycomerce.RegimenMicroempresas;
+                else if (_Mycomerce.IdTypeRegimen == 3) // contribuyente rimpe (negocio popular, rimpe emprendedor)
+                    trib.contribuyenteRimpe = _Mycomerce.ContribuyenteRimpe;    
 
                 trib.claveAcceso = ClaveAcceso.generarClaveAcceso(
                                _ItemsVat.fechaDesde,

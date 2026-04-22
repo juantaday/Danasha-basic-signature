@@ -24,15 +24,17 @@ Partial Class frmAdd_Personas
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.DatosGroupBox = New System.Windows.Forms.GroupBox()
+        Me.lblCuntRuc = New System.Windows.Forms.Label()
         Me.Ruc_CiText = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.SexoComboBox = New System.Windows.Forms.ComboBox()
         Me.NombreText = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lblNombre = New System.Windows.Forms.Label()
         Me.ApellidosText = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblApellido = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.OptionalGroupBox = New System.Windows.Forms.GroupBox()
+        Me.SendEmailCheck = New JMControls.Controls.CheckBoxColor()
         Me.Mas_Informa_Button = New System.Windows.Forms.Button()
         Me.NotaTextBox = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -85,8 +87,8 @@ Partial Class frmAdd_Personas
         Me.Ok_Button = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.SendEmailCheck = New JMControls.Controls.CheckBoxColor()
-        Me.lblCuntRuc = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.cmbTipoCliente = New System.Windows.Forms.ComboBox()
         Me.DatosGroupBox.SuspendLayout()
         Me.OptionalGroupBox.SuspendLayout()
         Me.FotoPanel.SuspendLayout()
@@ -105,27 +107,38 @@ Partial Class frmAdd_Personas
         '
         'DatosGroupBox
         '
+        Me.DatosGroupBox.Controls.Add(Me.cmbTipoCliente)
+        Me.DatosGroupBox.Controls.Add(Me.Label17)
         Me.DatosGroupBox.Controls.Add(Me.lblCuntRuc)
         Me.DatosGroupBox.Controls.Add(Me.Ruc_CiText)
         Me.DatosGroupBox.Controls.Add(Me.Label3)
         Me.DatosGroupBox.Controls.Add(Me.SexoComboBox)
         Me.DatosGroupBox.Controls.Add(Me.NombreText)
-        Me.DatosGroupBox.Controls.Add(Me.Label2)
+        Me.DatosGroupBox.Controls.Add(Me.lblNombre)
         Me.DatosGroupBox.Controls.Add(Me.ApellidosText)
-        Me.DatosGroupBox.Controls.Add(Me.Label1)
+        Me.DatosGroupBox.Controls.Add(Me.lblApellido)
         Me.DatosGroupBox.Controls.Add(Me.Label11)
         Me.DatosGroupBox.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DatosGroupBox.ForeColor = System.Drawing.Color.Navy
         Me.DatosGroupBox.Location = New System.Drawing.Point(12, 12)
         Me.DatosGroupBox.Name = "DatosGroupBox"
-        Me.DatosGroupBox.Size = New System.Drawing.Size(474, 148)
+        Me.DatosGroupBox.Size = New System.Drawing.Size(474, 216)
         Me.DatosGroupBox.TabIndex = 9
         Me.DatosGroupBox.TabStop = False
         Me.DatosGroupBox.Text = "Datos Obligatorios"
         '
+        'lblCuntRuc
+        '
+        Me.lblCuntRuc.AutoSize = True
+        Me.lblCuntRuc.ForeColor = System.Drawing.Color.FromArgb(CType(CType(160, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.lblCuntRuc.Location = New System.Drawing.Point(268, 166)
+        Me.lblCuntRuc.Name = "lblCuntRuc"
+        Me.lblCuntRuc.Size = New System.Drawing.Size(0, 19)
+        Me.lblCuntRuc.TabIndex = 12
+        '
         'Ruc_CiText
         '
-        Me.Ruc_CiText.Location = New System.Drawing.Point(86, 94)
+        Me.Ruc_CiText.Location = New System.Drawing.Point(86, 161)
         Me.Ruc_CiText.MaxLength = 13
         Me.Ruc_CiText.Name = "Ruc_CiText"
         Me.Ruc_CiText.Size = New System.Drawing.Size(177, 27)
@@ -134,7 +147,7 @@ Partial Class frmAdd_Personas
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(6, 94)
+        Me.Label3.Location = New System.Drawing.Point(6, 165)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(74, 19)
         Me.Label3.TabIndex = 0
@@ -144,7 +157,7 @@ Partial Class frmAdd_Personas
         '
         Me.SexoComboBox.FormattingEnabled = True
         Me.SexoComboBox.Items.AddRange(New Object() {"Seleccione...", "Masculino", "Femenino"})
-        Me.SexoComboBox.Location = New System.Drawing.Point(313, 110)
+        Me.SexoComboBox.Location = New System.Drawing.Point(313, 177)
         Me.SexoComboBox.Name = "SexoComboBox"
         Me.SexoComboBox.Size = New System.Drawing.Size(150, 27)
         Me.SexoComboBox.TabIndex = 11
@@ -152,43 +165,43 @@ Partial Class frmAdd_Personas
         '
         'NombreText
         '
-        Me.NombreText.Location = New System.Drawing.Point(86, 56)
+        Me.NombreText.Location = New System.Drawing.Point(86, 120)
         Me.NombreText.MaxLength = 50
         Me.NombreText.Name = "NombreText"
         Me.NombreText.Size = New System.Drawing.Size(379, 27)
         Me.NombreText.TabIndex = 2
         '
-        'Label2
+        'lblNombre
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(6, 56)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(72, 19)
-        Me.Label2.TabIndex = 0
-        Me.Label2.Text = "Nombre:"
+        Me.lblNombre.AutoSize = True
+        Me.lblNombre.Location = New System.Drawing.Point(6, 124)
+        Me.lblNombre.Name = "lblNombre"
+        Me.lblNombre.Size = New System.Drawing.Size(72, 19)
+        Me.lblNombre.TabIndex = 0
+        Me.lblNombre.Text = "Nombre:"
         '
         'ApellidosText
         '
-        Me.ApellidosText.Location = New System.Drawing.Point(86, 23)
+        Me.ApellidosText.Location = New System.Drawing.Point(86, 84)
         Me.ApellidosText.MaxLength = 50
         Me.ApellidosText.Name = "ApellidosText"
         Me.ApellidosText.Size = New System.Drawing.Size(379, 27)
         Me.ApellidosText.TabIndex = 1
         '
-        'Label1
+        'lblApellido
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 23)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(74, 19)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Apellidos"
+        Me.lblApellido.AutoSize = True
+        Me.lblApellido.Location = New System.Drawing.Point(6, 88)
+        Me.lblApellido.Name = "lblApellido"
+        Me.lblApellido.Size = New System.Drawing.Size(80, 19)
+        Me.lblApellido.TabIndex = 0
+        Me.lblApellido.Text = "Apellidos:"
         '
         'Label11
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(313, 89)
+        Me.Label11.Location = New System.Drawing.Point(313, 156)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(57, 17)
         Me.Label11.TabIndex = 0
@@ -209,12 +222,27 @@ Partial Class frmAdd_Personas
         Me.OptionalGroupBox.Controls.Add(Me.FotoPanel)
         Me.OptionalGroupBox.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.OptionalGroupBox.ForeColor = System.Drawing.Color.Navy
-        Me.OptionalGroupBox.Location = New System.Drawing.Point(12, 167)
+        Me.OptionalGroupBox.Location = New System.Drawing.Point(12, 242)
         Me.OptionalGroupBox.Name = "OptionalGroupBox"
-        Me.OptionalGroupBox.Size = New System.Drawing.Size(474, 335)
+        Me.OptionalGroupBox.Size = New System.Drawing.Size(474, 339)
         Me.OptionalGroupBox.TabIndex = 10
         Me.OptionalGroupBox.TabStop = False
         Me.OptionalGroupBox.Text = "Datos Opcionales"
+        '
+        'SendEmailCheck
+        '
+        Me.SendEmailCheck.Appearance = System.Windows.Forms.Appearance.Button
+        Me.SendEmailCheck.AutoSize = True
+        Me.SendEmailCheck.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.SendEmailCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.SendEmailCheck.Location = New System.Drawing.Point(76, 88)
+        Me.SendEmailCheck.Name = "SendEmailCheck"
+        Me.SendEmailCheck.ReadOnly = False
+        Me.SendEmailCheck.Size = New System.Drawing.Size(198, 27)
+        Me.SendEmailCheck.TabIndex = 24
+        Me.SendEmailCheck.Text = "Enviar documentos al correo "
+        Me.SendEmailCheck.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.SendEmailCheck.UseVisualStyleBackColor = True
         '
         'Mas_Informa_Button
         '
@@ -355,7 +383,7 @@ Partial Class frmAdd_Personas
         Me.PaneMasDatos.Controls.Add(Me.PanelBancos)
         Me.PaneMasDatos.Location = New System.Drawing.Point(494, 12)
         Me.PaneMasDatos.Name = "PaneMasDatos"
-        Me.PaneMasDatos.Size = New System.Drawing.Size(865, 490)
+        Me.PaneMasDatos.Size = New System.Drawing.Size(865, 569)
         Me.PaneMasDatos.TabIndex = 11
         '
         'PanelLocaliza
@@ -374,7 +402,7 @@ Partial Class frmAdd_Personas
         Me.PanelLocaliza.ForeColor = System.Drawing.Color.Navy
         Me.PanelLocaliza.Location = New System.Drawing.Point(11, 3)
         Me.PanelLocaliza.Name = "PanelLocaliza"
-        Me.PanelLocaliza.Size = New System.Drawing.Size(420, 471)
+        Me.PanelLocaliza.Size = New System.Drawing.Size(420, 552)
         Me.PanelLocaliza.TabIndex = 11
         Me.PanelLocaliza.TabStop = False
         Me.PanelLocaliza.Text = "Mas infomación Pocional"
@@ -382,7 +410,7 @@ Partial Class frmAdd_Personas
         'gotoBancoButton
         '
         Me.gotoBancoButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Arrow_Forward_48
-        Me.gotoBancoButton.Location = New System.Drawing.Point(345, 422)
+        Me.gotoBancoButton.Location = New System.Drawing.Point(345, 503)
         Me.gotoBancoButton.Name = "gotoBancoButton"
         Me.gotoBancoButton.Size = New System.Drawing.Size(69, 39)
         Me.gotoBancoButton.TabIndex = 21
@@ -392,7 +420,7 @@ Partial Class frmAdd_Personas
         'returnLocalizaButton
         '
         Me.returnLocalizaButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Arrow_Back_48
-        Me.returnLocalizaButton.Location = New System.Drawing.Point(8, 422)
+        Me.returnLocalizaButton.Location = New System.Drawing.Point(8, 503)
         Me.returnLocalizaButton.Name = "returnLocalizaButton"
         Me.returnLocalizaButton.Size = New System.Drawing.Size(69, 39)
         Me.returnLocalizaButton.TabIndex = 20
@@ -607,7 +635,7 @@ Partial Class frmAdd_Personas
         Me.PanelBancos.ForeColor = System.Drawing.Color.Navy
         Me.PanelBancos.Location = New System.Drawing.Point(438, 3)
         Me.PanelBancos.Name = "PanelBancos"
-        Me.PanelBancos.Size = New System.Drawing.Size(420, 471)
+        Me.PanelBancos.Size = New System.Drawing.Size(420, 552)
         Me.PanelBancos.TabIndex = 17
         Me.PanelBancos.TabStop = False
         Me.PanelBancos.Text = "Cuentas Bancaria."
@@ -677,7 +705,7 @@ Partial Class frmAdd_Personas
         'returnBancosButton
         '
         Me.returnBancosButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Arrow_Back_48
-        Me.returnBancosButton.Location = New System.Drawing.Point(18, 422)
+        Me.returnBancosButton.Location = New System.Drawing.Point(18, 503)
         Me.returnBancosButton.Name = "returnBancosButton"
         Me.returnBancosButton.Size = New System.Drawing.Size(69, 39)
         Me.returnBancosButton.TabIndex = 19
@@ -692,7 +720,7 @@ Partial Class frmAdd_Personas
         Me.dtGBancos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtGBancos.Location = New System.Drawing.Point(10, 67)
         Me.dtGBancos.Name = "dtGBancos"
-        Me.dtGBancos.Size = New System.Drawing.Size(404, 398)
+        Me.dtGBancos.Size = New System.Drawing.Size(404, 479)
         Me.dtGBancos.TabIndex = 17
         '
         'TableLayoutPanel1
@@ -708,20 +736,20 @@ Partial Class frmAdd_Personas
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.TableLayoutPanel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TableLayoutPanel1.ForeColor = System.Drawing.SystemColors.ControlLight
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 523)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 599)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1354, 38)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1371, 38)
         Me.TableLayoutPanel1.TabIndex = 12
         '
         'CloseButton
         '
         Me.CloseButton.BackColor = System.Drawing.Color.Black
         Me.CloseButton.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.CloseButton.Location = New System.Drawing.Point(1254, 3)
+        Me.CloseButton.Location = New System.Drawing.Point(1271, 3)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(97, 32)
         Me.CloseButton.TabIndex = 0
@@ -732,7 +760,7 @@ Partial Class frmAdd_Personas
         '
         Me.Ok_Button.BackColor = System.Drawing.Color.Black
         Me.Ok_Button.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Ok_Button.Location = New System.Drawing.Point(1153, 3)
+        Me.Ok_Button.Location = New System.Drawing.Point(1170, 3)
         Me.Ok_Button.Name = "Ok_Button"
         Me.Ok_Button.Size = New System.Drawing.Size(95, 32)
         Me.Ok_Button.TabIndex = 1
@@ -743,36 +771,29 @@ Partial Class frmAdd_Personas
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'SendEmailCheck
+        'Label17
         '
-        Me.SendEmailCheck.Appearance = System.Windows.Forms.Appearance.Button
-        Me.SendEmailCheck.AutoSize = True
-        Me.SendEmailCheck.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.SendEmailCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.SendEmailCheck.Location = New System.Drawing.Point(76, 88)
-        Me.SendEmailCheck.Name = "SendEmailCheck"
-        Me.SendEmailCheck.ReadOnly = False
-        Me.SendEmailCheck.Size = New System.Drawing.Size(198, 27)
-        Me.SendEmailCheck.TabIndex = 24
-        Me.SendEmailCheck.Text = "Enviar documentos al correo "
-        Me.SendEmailCheck.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.SendEmailCheck.UseVisualStyleBackColor = True
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(6, 35)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(47, 19)
+        Me.Label17.TabIndex = 13
+        Me.Label17.Text = "Tipo:"
         '
-        'lblCuntRuc
+        'cmbTipoCliente
         '
-        Me.lblCuntRuc.AutoSize = True
-        Me.lblCuntRuc.ForeColor = System.Drawing.Color.FromArgb(CType(CType(160, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(160, Byte), Integer))
-        Me.lblCuntRuc.Location = New System.Drawing.Point(268, 99)
-        Me.lblCuntRuc.Name = "lblCuntRuc"
-        Me.lblCuntRuc.Size = New System.Drawing.Size(0, 19)
-        Me.lblCuntRuc.TabIndex = 12
+        Me.cmbTipoCliente.FormattingEnabled = True
+        Me.cmbTipoCliente.Location = New System.Drawing.Point(59, 31)
+        Me.cmbTipoCliente.Name = "cmbTipoCliente"
+        Me.cmbTipoCliente.Size = New System.Drawing.Size(404, 27)
+        Me.cmbTipoCliente.TabIndex = 14
         '
         'frmAdd_Personas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1354, 561)
+        Me.ClientSize = New System.Drawing.Size(1371, 637)
         Me.Controls.Add(Me.PaneMasDatos)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.OptionalGroupBox)
@@ -806,9 +827,9 @@ Partial Class frmAdd_Personas
     Friend WithEvents Ruc_CiText As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents NombreText As System.Windows.Forms.TextBox
-    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents lblNombre As System.Windows.Forms.Label
     Friend WithEvents ApellidosText As System.Windows.Forms.TextBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents lblApellido As System.Windows.Forms.Label
     Friend WithEvents OptionalGroupBox As System.Windows.Forms.GroupBox
     Friend WithEvents FotoEddButton As System.Windows.Forms.Button
     Friend WithEvents PersonPictureBox As System.Windows.Forms.PictureBox
@@ -866,4 +887,6 @@ Partial Class frmAdd_Personas
     Friend WithEvents BorrarCuentaToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SendEmailCheck As JMControls.Controls.CheckBoxColor
     Friend WithEvents lblCuntRuc As Label
+    Friend WithEvents cmbTipoCliente As ComboBox
+    Friend WithEvents Label17 As Label
 End Class

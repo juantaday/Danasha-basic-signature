@@ -18,7 +18,7 @@ namespace CADsisVenta
             string Direccion, string telefono, string mail,
             global::System.Nullable<global::System.DateTime> fech_Naci,
             bool genero, string nota, byte[] foto, string telef_casa,
-            string telef_ofic, bool SendMail)
+            string telef_ofic, bool SendMail, int personTypeId)
         {
 
 
@@ -104,8 +104,13 @@ namespace CADsisVenta
                              ParameterName ="@sendEmail",
                              SqlDbType = System.Data.SqlDbType.Bit ,
                              Value =  SendMail
+                        },
+                         new System.Data.SqlClient.SqlParameter {
+                             ParameterName ="@personTypeId",
+                             SqlDbType = System.Data.SqlDbType.Int ,
+                             Value =  personTypeId
                         }
-                        };
+                     };
 
 
                 var dt = cmd.RetornaTabla("[dbo].[InsertPerson]");
@@ -126,14 +131,14 @@ namespace CADsisVenta
         public static int UpdatePerson(int idPerson_Original, string apellidos, string nombre, 
             string Ruc_Ci, string Direccion, string telefono, string mail, 
             global::System.Nullable<global::System.DateTime> fech_Naci, bool genero,
-            string nota, byte[] foto, string telef_casa, string telef_ofic, bool senMail)
+            string nota, byte[] foto, string telef_casa, string telef_ofic, bool senMail, int personTypeId)
         {
             Person_TableAdapter.Connection = new System.Data.SqlClient.SqlConnection(Configuration.ConectionString);
 
 
            var result = Person_TableAdapter.UpdatePerson(apellidos, nombre, Ruc_Ci, Direccion, telefono, 
                 mail, fech_Naci, genero, nota, foto, telef_casa, telef_ofic,
-                idPerson_Original,senMail);
+                idPerson_Original,senMail, personTypeId);
 
             return (int)result;
 
