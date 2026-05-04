@@ -199,7 +199,7 @@ Partial Class frmList_ProductPrecioVenta
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmList_ProductPrecioVenta"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Listado de prodcutos Vendibles"
+        Me.Text = "Listado de productos vendibles"
         CType(Me.datalistado, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

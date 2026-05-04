@@ -199,19 +199,19 @@ Partial Class frmAdquisicion
         'menuCantidad
         '
         Me.menuCantidad.Name = "menuCantidad"
-        Me.menuCantidad.Size = New System.Drawing.Size(135, 22)
+        Me.menuCantidad.Size = New System.Drawing.Size(136, 22)
         Me.menuCantidad.Text = "Cantidad"
         '
         'menuDescuento
         '
         Me.menuDescuento.Name = "menuDescuento"
-        Me.menuDescuento.Size = New System.Drawing.Size(135, 22)
+        Me.menuDescuento.Size = New System.Drawing.Size(136, 22)
         Me.menuDescuento.Text = "Descuento"
         '
         'menuPtotal
         '
         Me.menuPtotal.Name = "menuPtotal"
-        Me.menuPtotal.Size = New System.Drawing.Size(135, 22)
+        Me.menuPtotal.Size = New System.Drawing.Size(136, 22)
         Me.menuPtotal.Text = "Precio Total"
         '
         'txtFalg
@@ -346,7 +346,7 @@ Partial Class frmAdquisicion
         'MoveDowButton
         '
         Me.MoveDowButton.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.MoveDowButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.MoveDown_32x32
+        Me.MoveDowButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.MoveDown_32x32
         Me.MoveDowButton.Location = New System.Drawing.Point(0, 304)
         Me.MoveDowButton.Margin = New System.Windows.Forms.Padding(0)
         Me.MoveDowButton.Name = "MoveDowButton"
@@ -359,7 +359,7 @@ Partial Class frmAdquisicion
         'MoveUPButton
         '
         Me.MoveUPButton.Dock = System.Windows.Forms.DockStyle.Top
-        Me.MoveUPButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.MoveUp_32x32
+        Me.MoveUPButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.MoveUp_32x32
         Me.MoveUPButton.Location = New System.Drawing.Point(0, 0)
         Me.MoveUPButton.Margin = New System.Windows.Forms.Padding(0)
         Me.MoveUPButton.Name = "MoveUPButton"
@@ -397,7 +397,7 @@ Partial Class frmAdquisicion
         '
         Me.ActualizarButton.Dock = System.Windows.Forms.DockStyle.Top
         Me.ActualizarButton.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ActualizarButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.UpdateTable_16x16
+        Me.ActualizarButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.UpdateTable_16x16
         Me.ActualizarButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ActualizarButton.Location = New System.Drawing.Point(0, 172)
         Me.ActualizarButton.Margin = New System.Windows.Forms.Padding(0)
@@ -412,7 +412,7 @@ Partial Class frmAdquisicion
         '
         Me.TotalEdidListButton.Dock = System.Windows.Forms.DockStyle.Top
         Me.TotalEdidListButton.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TotalEdidListButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
+        Me.TotalEdidListButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
         Me.TotalEdidListButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.TotalEdidListButton.Location = New System.Drawing.Point(0, 147)
         Me.TotalEdidListButton.Margin = New System.Windows.Forms.Padding(0)
@@ -427,7 +427,7 @@ Partial Class frmAdquisicion
         '
         Me.PunitarioEddButton.Dock = System.Windows.Forms.DockStyle.Top
         Me.PunitarioEddButton.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PunitarioEddButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
+        Me.PunitarioEddButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
         Me.PunitarioEddButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.PunitarioEddButton.Location = New System.Drawing.Point(0, 122)
         Me.PunitarioEddButton.Margin = New System.Windows.Forms.Padding(0)
@@ -463,7 +463,7 @@ Partial Class frmAdquisicion
         'TotalEditButton
         '
         Me.TotalEditButton.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TotalEditButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
+        Me.TotalEditButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
         Me.TotalEditButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.TotalEditButton.Location = New System.Drawing.Point(95, 64)
         Me.TotalEditButton.Margin = New System.Windows.Forms.Padding(0)
@@ -477,7 +477,7 @@ Partial Class frmAdquisicion
         'DescuenEddButton
         '
         Me.DescuenEddButton.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DescuenEddButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
+        Me.DescuenEddButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
         Me.DescuenEddButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.DescuenEddButton.Location = New System.Drawing.Point(95, 32)
         Me.DescuenEddButton.Margin = New System.Windows.Forms.Padding(0)
@@ -491,7 +491,7 @@ Partial Class frmAdquisicion
         'CantiEddButton
         '
         Me.CantiEddButton.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.CantiEddButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
+        Me.CantiEddButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
         Me.CantiEddButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.CantiEddButton.Location = New System.Drawing.Point(95, 0)
         Me.CantiEddButton.Margin = New System.Windows.Forms.Padding(0)
@@ -507,7 +507,7 @@ Partial Class frmAdquisicion
         Me.SelectAllButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.SelectAllButton.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SelectAllButton.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SelectAllButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.SelectAll_16x16
+        Me.SelectAllButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.SelectAll_16x16
         Me.SelectAllButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.SelectAllButton.Location = New System.Drawing.Point(0, 0)
         Me.SelectAllButton.Margin = New System.Windows.Forms.Padding(0)
@@ -523,7 +523,7 @@ Partial Class frmAdquisicion
         'DeleteButton
         '
         Me.DeleteButton.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DeleteButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
+        Me.DeleteButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
         Me.DeleteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.DeleteButton.Location = New System.Drawing.Point(0, 64)
         Me.DeleteButton.Margin = New System.Windows.Forms.Padding(0)
@@ -536,7 +536,7 @@ Partial Class frmAdquisicion
         '
         Me.CopyButton.Dock = System.Windows.Forms.DockStyle.Fill
         Me.CopyButton.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CopyButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Copy
+        Me.CopyButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Copy
         Me.CopyButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.CopyButton.Location = New System.Drawing.Point(0, 32)
         Me.CopyButton.Margin = New System.Windows.Forms.Padding(0)
@@ -551,7 +551,7 @@ Partial Class frmAdquisicion
         '
         Me.AtrasButton.Dock = System.Windows.Forms.DockStyle.Top
         Me.AtrasButton.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AtrasButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.MovePrevio_16x16
+        Me.AtrasButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.MovePrevio_16x16
         Me.AtrasButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.AtrasButton.Location = New System.Drawing.Point(0, 0)
         Me.AtrasButton.Margin = New System.Windows.Forms.Padding(0)
@@ -585,7 +585,7 @@ Partial Class frmAdquisicion
         Me.btnAddListaProduc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnAddListaProduc.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnAddListaProduc.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAddListaProduc.Image =  Global.DanashaBasicSignature.My.Resources.Resources.addListNew_48
+        Me.btnAddListaProduc.Image = Global.DanashaBasicSignature.My.Resources.Resources.addListNew_48
         Me.btnAddListaProduc.Location = New System.Drawing.Point(932, 0)
         Me.btnAddListaProduc.Name = "btnAddListaProduc"
         Me.btnAddListaProduc.Size = New System.Drawing.Size(58, 51)
@@ -630,7 +630,7 @@ Partial Class frmAdquisicion
         'btnVerProducto
         '
         Me.btnVerProducto.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnVerProducto.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.ActionsInDetailView_32x32
+        Me.btnVerProducto.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.ActionsInDetailView_32x32
         Me.btnVerProducto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnVerProducto.Location = New System.Drawing.Point(630, 7)
         Me.btnVerProducto.Name = "btnVerProducto"
@@ -642,7 +642,7 @@ Partial Class frmAdquisicion
         'btnListProducto
         '
         Me.btnListProducto.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnListProducto.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.List_32x32
+        Me.btnListProducto.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.List_32x32
         Me.btnListProducto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnListProducto.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnListProducto.Location = New System.Drawing.Point(590, 7)
@@ -684,7 +684,7 @@ Partial Class frmAdquisicion
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.41176!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.58823!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33.0!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 131.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.DescBase0Text, 1, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.TotalBasText, 3, 2)
         Me.TableLayoutPanel2.Controls.Add(Me.Label26, 2, 2)
@@ -711,12 +711,12 @@ Partial Class frmAdquisicion
         '
         Me.DescBase0Text.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DescBase0Text.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DescBase0Text.Location = New System.Drawing.Point(57, 1)
+        Me.DescBase0Text.Location = New System.Drawing.Point(56, 1)
         Me.DescBase0Text.Margin = New System.Windows.Forms.Padding(0)
         Me.DescBase0Text.Multiline = True
         Me.DescBase0Text.Name = "DescBase0Text"
         Me.DescBase0Text.ReadOnly = True
-        Me.DescBase0Text.Size = New System.Drawing.Size(132, 31)
+        Me.DescBase0Text.Size = New System.Drawing.Size(131, 31)
         Me.DescBase0Text.TabIndex = 14
         Me.DescBase0Text.Text = "0"
         Me.DescBase0Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -727,12 +727,12 @@ Partial Class frmAdquisicion
         Me.TotalBasText.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TotalBasText.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TotalBasText.ForeColor = System.Drawing.Color.Navy
-        Me.TotalBasText.Location = New System.Drawing.Point(224, 65)
+        Me.TotalBasText.Location = New System.Drawing.Point(222, 65)
         Me.TotalBasText.Margin = New System.Windows.Forms.Padding(0)
         Me.TotalBasText.Multiline = True
         Me.TotalBasText.Name = "TotalBasText"
         Me.TotalBasText.ReadOnly = True
-        Me.TotalBasText.Size = New System.Drawing.Size(130, 32)
+        Me.TotalBasText.Size = New System.Drawing.Size(132, 32)
         Me.TotalBasText.TabIndex = 7
         Me.TotalBasText.Text = "0"
         Me.TotalBasText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -743,7 +743,7 @@ Partial Class frmAdquisicion
         Me.Label26.AutoSize = True
         Me.Label26.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label26.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.Location = New System.Drawing.Point(193, 65)
+        Me.Label26.Location = New System.Drawing.Point(191, 65)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(27, 32)
         Me.Label26.TabIndex = 6
@@ -757,7 +757,7 @@ Partial Class frmAdquisicion
         Me.Label16.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.Location = New System.Drawing.Point(4, 65)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(49, 32)
+        Me.Label16.Size = New System.Drawing.Size(48, 32)
         Me.Label16.TabIndex = 4
         Me.Label16.Text = "Total"
         Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -766,12 +766,12 @@ Partial Class frmAdquisicion
         '
         Me.DescBase12Text.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DescBase12Text.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DescBase12Text.Location = New System.Drawing.Point(57, 33)
+        Me.DescBase12Text.Location = New System.Drawing.Point(56, 33)
         Me.DescBase12Text.Margin = New System.Windows.Forms.Padding(0)
         Me.DescBase12Text.Multiline = True
         Me.DescBase12Text.Name = "DescBase12Text"
         Me.DescBase12Text.ReadOnly = True
-        Me.DescBase12Text.Size = New System.Drawing.Size(132, 31)
+        Me.DescBase12Text.Size = New System.Drawing.Size(131, 31)
         Me.DescBase12Text.TabIndex = 3
         Me.DescBase12Text.Text = "0"
         Me.DescBase12Text.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -782,7 +782,7 @@ Partial Class frmAdquisicion
         Me.Label11.AutoSize = True
         Me.Label11.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label11.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(193, 33)
+        Me.Label11.Location = New System.Drawing.Point(191, 33)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(27, 31)
         Me.Label11.TabIndex = 2
@@ -796,7 +796,7 @@ Partial Class frmAdquisicion
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(4, 1)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(49, 31)
+        Me.Label4.Size = New System.Drawing.Size(48, 31)
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "Base0%"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -808,7 +808,7 @@ Partial Class frmAdquisicion
         Me.Label6.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(4, 33)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(49, 31)
+        Me.Label6.Size = New System.Drawing.Size(48, 31)
         Me.Label6.TabIndex = 0
         Me.Label6.Text = "Base12%"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -817,12 +817,12 @@ Partial Class frmAdquisicion
         '
         Me.Bas12text.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Bas12text.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Bas12text.Location = New System.Drawing.Point(224, 33)
+        Me.Bas12text.Location = New System.Drawing.Point(222, 33)
         Me.Bas12text.Margin = New System.Windows.Forms.Padding(0)
         Me.Bas12text.Multiline = True
         Me.Bas12text.Name = "Bas12text"
         Me.Bas12text.ReadOnly = True
-        Me.Bas12text.Size = New System.Drawing.Size(130, 31)
+        Me.Bas12text.Size = New System.Drawing.Size(132, 31)
         Me.Bas12text.TabIndex = 1
         Me.Bas12text.Text = "0"
         Me.Bas12text.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -832,12 +832,12 @@ Partial Class frmAdquisicion
         '
         Me.Bas0text.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Bas0text.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Bas0text.Location = New System.Drawing.Point(224, 1)
+        Me.Bas0text.Location = New System.Drawing.Point(222, 1)
         Me.Bas0text.Margin = New System.Windows.Forms.Padding(0)
         Me.Bas0text.Multiline = True
         Me.Bas0text.Name = "Bas0text"
         Me.Bas0text.ReadOnly = True
-        Me.Bas0text.Size = New System.Drawing.Size(130, 31)
+        Me.Bas0text.Size = New System.Drawing.Size(132, 31)
         Me.Bas0text.TabIndex = 1
         Me.Bas0text.Text = "0"
         Me.Bas0text.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -848,7 +848,7 @@ Partial Class frmAdquisicion
         Me.Label5.AutoSize = True
         Me.Label5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label5.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(193, 1)
+        Me.Label5.Location = New System.Drawing.Point(191, 1)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(27, 31)
         Me.Label5.TabIndex = 0
@@ -860,12 +860,12 @@ Partial Class frmAdquisicion
         Me.TotalBase.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TotalBase.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TotalBase.ForeColor = System.Drawing.Color.Navy
-        Me.TotalBase.Location = New System.Drawing.Point(57, 65)
+        Me.TotalBase.Location = New System.Drawing.Point(56, 65)
         Me.TotalBase.Margin = New System.Windows.Forms.Padding(0)
         Me.TotalBase.Multiline = True
         Me.TotalBase.Name = "TotalBase"
         Me.TotalBase.ReadOnly = True
-        Me.TotalBase.Size = New System.Drawing.Size(132, 32)
+        Me.TotalBase.Size = New System.Drawing.Size(131, 32)
         Me.TotalBase.TabIndex = 5
         Me.TotalBase.Text = "0"
         Me.TotalBase.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -941,7 +941,7 @@ Partial Class frmAdquisicion
         Me.CalculaTotalBtn.BackColor = System.Drawing.Color.Blue
         Me.CalculaTotalBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.CalculaTotalBtn.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CalculaTotalBtn.Image =  Global.DanashaBasicSignature.My.Resources.Resources.CalculateNow_32x32
+        Me.CalculaTotalBtn.Image = Global.DanashaBasicSignature.My.Resources.Resources.CalculateNow_32x32
         Me.CalculaTotalBtn.Location = New System.Drawing.Point(270, 38)
         Me.CalculaTotalBtn.Margin = New System.Windows.Forms.Padding(0)
         Me.CalculaTotalBtn.Name = "CalculaTotalBtn"
@@ -1052,7 +1052,7 @@ Partial Class frmAdquisicion
         Me.btnGuardaPedido.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnGuardaPedido.Dock = System.Windows.Forms.DockStyle.Right
         Me.btnGuardaPedido.ForeColor = System.Drawing.Color.White
-        Me.btnGuardaPedido.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Save_32x32
+        Me.btnGuardaPedido.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Save_32x32
         Me.btnGuardaPedido.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnGuardaPedido.Location = New System.Drawing.Point(885, 0)
         Me.btnGuardaPedido.Name = "btnGuardaPedido"
@@ -1109,7 +1109,7 @@ Partial Class frmAdquisicion
         Me.Label17.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label17.Location = New System.Drawing.Point(3, 0)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(66, 16)
+        Me.Label17.Size = New System.Drawing.Size(65, 16)
         Me.Label17.TabIndex = 18
         Me.Label17.Text = "Orden N°:"
         '
@@ -1118,7 +1118,7 @@ Partial Class frmAdquisicion
         Me.txtOrden.Cursor = System.Windows.Forms.Cursors.Default
         Me.txtOrden.Enabled = False
         Me.txtOrden.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtOrden.Location = New System.Drawing.Point(75, 3)
+        Me.txtOrden.Location = New System.Drawing.Point(74, 3)
         Me.txtOrden.Name = "txtOrden"
         Me.txtOrden.ReadOnly = True
         Me.txtOrden.Size = New System.Drawing.Size(107, 23)
@@ -1130,7 +1130,7 @@ Partial Class frmAdquisicion
         Me.Label21.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label21.Location = New System.Drawing.Point(3, 29)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(107, 16)
+        Me.Label21.Size = New System.Drawing.Size(106, 16)
         Me.Label21.TabIndex = 10
         Me.Label21.Text = "Fecha de pedido:"
         '
@@ -1139,7 +1139,7 @@ Partial Class frmAdquisicion
         Me.dtFechaPedido.Enabled = False
         Me.dtFechaPedido.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtFechaPedido.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtFechaPedido.Location = New System.Drawing.Point(116, 32)
+        Me.dtFechaPedido.Location = New System.Drawing.Point(115, 32)
         Me.dtFechaPedido.Name = "dtFechaPedido"
         Me.dtFechaPedido.Size = New System.Drawing.Size(103, 23)
         Me.dtFechaPedido.TabIndex = 11
@@ -1236,7 +1236,7 @@ Partial Class frmAdquisicion
         Me.Label23.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.Location = New System.Drawing.Point(3, 267)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(124, 16)
+        Me.Label23.Size = New System.Drawing.Size(123, 16)
         Me.Label23.TabIndex = 23
         Me.Label23.Text = "TIPO DE CONSUMO:"
         '
@@ -1301,7 +1301,7 @@ Partial Class frmAdquisicion
         Me.TableLayoutPanel1.ColumnCount = 3
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.68162!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.31839!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.btnCancelCompra, 2, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.btnGuardarCompra, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Label12, 0, 0)
@@ -1331,7 +1331,7 @@ Partial Class frmAdquisicion
         Me.btnGuardarCompra.ForeColor = System.Drawing.Color.White
         Me.btnGuardarCompra.Location = New System.Drawing.Point(673, 4)
         Me.btnGuardarCompra.Name = "btnGuardarCompra"
-        Me.btnGuardarCompra.Size = New System.Drawing.Size(198, 35)
+        Me.btnGuardarCompra.Size = New System.Drawing.Size(197, 35)
         Me.btnGuardarCompra.TabIndex = 13
         Me.btnGuardarCompra.Text = "Cuardar Compa  [F12]"
         Me.btnGuardarCompra.UseVisualStyleBackColor = False
@@ -1436,7 +1436,7 @@ Partial Class frmAdquisicion
         Me.TableLayoutPanel3.ColumnCount = 3
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.20454!))
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.79545!))
-        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110.0!))
         Me.TableLayoutPanel3.Controls.Add(Me.Button1, 2, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.Label13, 0, 0)
         Me.TableLayoutPanel3.Controls.Add(Me.btnAcepProveedor, 1, 0)
@@ -1451,9 +1451,9 @@ Partial Class frmAdquisicion
         'Button1
         '
         Me.Button1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Button1.Location = New System.Drawing.Point(877, 3)
+        Me.Button1.Location = New System.Drawing.Point(876, 3)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(104, 43)
+        Me.Button1.Size = New System.Drawing.Size(105, 43)
         Me.Button1.TabIndex = 13
         Me.Button1.Text = "Cancelar"
         Me.Button1.UseVisualStyleBackColor = True
@@ -1473,9 +1473,9 @@ Partial Class frmAdquisicion
         '
         Me.btnAcepProveedor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btnAcepProveedor.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.btnAcepProveedor.Image =  Global.DanashaBasicSignature.My.Resources.Resources.VentasCarro_32
+        Me.btnAcepProveedor.Image = Global.DanashaBasicSignature.My.Resources.Resources.VentasCarro_32
         Me.btnAcepProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnAcepProveedor.Location = New System.Drawing.Point(696, 3)
+        Me.btnAcepProveedor.Location = New System.Drawing.Point(695, 3)
         Me.btnAcepProveedor.Name = "btnAcepProveedor"
         Me.btnAcepProveedor.Size = New System.Drawing.Size(175, 43)
         Me.btnAcepProveedor.TabIndex = 11
@@ -1514,7 +1514,7 @@ Partial Class frmAdquisicion
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Proveedor_450x270_Jpg
+        Me.PictureBox1.Image = Global.DanashaBasicSignature.My.Resources.Resources.Proveedor_450x270_Jpg
         Me.PictureBox1.Location = New System.Drawing.Point(6, 11)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(450, 239)
@@ -1558,7 +1558,7 @@ Partial Class frmAdquisicion
         '
         'btnListProveedor
         '
-        Me.btnListProveedor.BackgroundImage =  Global.DanashaBasicSignature.My.Resources.Resources.Group_Black_Folder_icon
+        Me.btnListProveedor.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.Group_Black_Folder_icon
         Me.btnListProveedor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnListProveedor.Location = New System.Drawing.Point(871, 85)
         Me.btnListProveedor.Name = "btnListProveedor"

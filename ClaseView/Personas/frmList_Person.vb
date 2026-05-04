@@ -392,6 +392,10 @@ Public Class frmList_Person
         End Try
     End Sub
 
+    Private Sub frmList_Person_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        FindTextBox.Focus()
+    End Sub
+
     Private Sub ViewButton_Click(sender As Object, e As EventArgs) Handles DetailsButton.Click
         Using EddPerson As New frmAdd_Personas(stateOperation.View, PersonClickNamaLabel.Tag)
             With EddPerson

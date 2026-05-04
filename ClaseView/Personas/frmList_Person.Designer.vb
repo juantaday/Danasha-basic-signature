@@ -76,7 +76,7 @@ Partial Class frmList_Person
         Me.DeleteButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.DeleteButton.Dock = System.Windows.Forms.DockStyle.Left
         Me.DeleteButton.ForeColor = System.Drawing.Color.White
-        Me.DeleteButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
+        Me.DeleteButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
         Me.DeleteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.DeleteButton.Location = New System.Drawing.Point(606, 0)
         Me.DeleteButton.Name = "DeleteButton"
@@ -91,7 +91,7 @@ Partial Class frmList_Person
         Me.DetailsButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.DetailsButton.Dock = System.Windows.Forms.DockStyle.Left
         Me.DetailsButton.ForeColor = System.Drawing.Color.Black
-        Me.DetailsButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
+        Me.DetailsButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
         Me.DetailsButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.DetailsButton.Location = New System.Drawing.Point(526, 0)
         Me.DetailsButton.Name = "DetailsButton"
@@ -105,7 +105,7 @@ Partial Class frmList_Person
         '
         Me.EditButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.EditButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.EditButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.edit_24
+        Me.EditButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.edit_24
         Me.EditButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.EditButton.Location = New System.Drawing.Point(445, 0)
         Me.EditButton.Name = "EditButton"
@@ -119,7 +119,7 @@ Partial Class frmList_Person
         '
         Me.AddNewButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.AddNewButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.AddNewButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_New
+        Me.AddNewButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_New
         Me.AddNewButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.AddNewButton.Location = New System.Drawing.Point(354, 0)
         Me.AddNewButton.Name = "AddNewButton"
@@ -160,7 +160,7 @@ Partial Class frmList_Person
         '
         'FindButton
         '
-        Me.FindButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.FindCustomers_32x32
+        Me.FindButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.FindCustomers_32x32
         Me.FindButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.FindButton.Location = New System.Drawing.Point(363, 4)
         Me.FindButton.Name = "FindButton"
@@ -280,7 +280,7 @@ Partial Class frmList_Person
         Me.Controls.Add(Me.PanelMenu)
         Me.Controls.Add(Me.Panelpie)
         Me.Name = "frmList_Person"
-        Me.Text = "frmList_Person"
+        Me.Text = "Lista clientes"
         Me.PanelMenu.ResumeLayout(False)
         Me.PanelBusqueda.ResumeLayout(False)
         Me.PanelBusqueda.PerformLayout()

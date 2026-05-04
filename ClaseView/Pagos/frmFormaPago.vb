@@ -58,6 +58,7 @@ Public Class frmFormaPago
                     'Return ValidaClientes(MenuActiva)
                 Case "Compras"
                     Return ValidaCompras(MenuActiva)
+
             End Select
             Return False
         Catch ex As Exception
@@ -139,7 +140,7 @@ Public Class frmFormaPago
             Decimal.TryParse(txtCreditoActual.Text, CurrentCredit)
 
 
-            If Me.MontoAutorizado < (Me.TotalDeuda + CurrentCredit) Then
+            If Me.flag.Equals("Clientes") And Me.MontoAutorizado < (Me.TotalDeuda + CurrentCredit) Then
                 MsgBox("Con la deuda actual supera el monto autorizados.", MsgBoxStyle.Exclamation, "Alerta.!")
                 Return False
             End If

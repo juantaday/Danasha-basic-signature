@@ -922,9 +922,11 @@ viewMesagge:
 
     Private Sub frmVentas_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.F1 Then
-            FindClienteButton.PerformClick()
+            ListPersonButton.PerformClick()
         ElseIf e.KeyCode = Keys.Escape Then
             txtExploret.Focus()
+        ElseIf e.KeyCode = Keys.F1 Then
+            ListPersonButton.PerformClick()
         ElseIf e.KeyCode = Keys.F2 Then
             Call CargaConsumidFinal()
         ElseIf e.KeyCode = Keys.F4 Then
@@ -943,6 +945,7 @@ viewMesagge:
             FacturaButton.PerformClick()
         End If
     End Sub
+
     Private Sub txtExploret_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtExploret.KeyPress
         If Asc(e.KeyChar) = 42 Then 'solo cuando ingresa * para cambiar cantidad
             Try
