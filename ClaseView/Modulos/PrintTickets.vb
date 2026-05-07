@@ -150,6 +150,95 @@ Salida:
         End Try
     End Function
 #End Region
+#Region "PrintGuiaRemision"
+    Public Function ImprimirGuiaRemision(ByVal idTransf As Integer,
+                                         ByVal numTransf As String,
+                                         ByVal nomOrigen As String,
+                                         ByVal nomDestino As String,
+                                         Optional ByVal nameDocument As String = "Guia de remision") As Boolean
+        Try
+            Dim i As Integer = 0
+cargaNuevo:
+            If Not LoadOptionsPrint(0, NameDocument:=nameDocument) Then
+                MsgBox("No se encuentra la impresora configurada", MsgBoxStyle.Information, "Aviso")
+                Using form As New frmOptionPrint
+                    With form
+                        .ShowDialog()
+                        If .DialogResult = DialogResult.OK Then
+                            If i = 0 Then
+                                i = 1
+                                GoTo cargaNuevo
+                            Else
+                                Return False
+                            End If
+                        End If
+                    End With
+                End Using
+                Return False
+            End If
+
+            Dim Ticket1 As New CreaTicket(myOptnsPrint.NamePrint,
+                                          PaperSizeWidth.GetCharLenght(Printer.myOptnsPrint.PaperSizeWidth))
+
+            Ticket1.isAvanzaLinea = True
+            Ticket1.FontZiseText(FontZise.l8cpp)
+            Ticket1.TextoIzquierda(SettingObject.EcommerceActive.RazonSocial, False)
+
+            Ticket1.FontZiseText(FontZise.l4cpp)
+            Ticket1.TextoIzquierda("GUIA DE REMISION INTERNA", False)
+            Ticket1.TextoIzquierda("Nro: " & numTransf, False)
+            Ticket1.TextoIzquierda("Fecha: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm"), False)
+            Ticket1.LineasGuion()
+
+            Ticket1.TextoIzquierda("ORIGEN : " & nomOrigen, False)
+            Ticket1.TextoIzquierda("DESTINO: " & nomDestino, False)
+            Ticket1.LineasGuion()
+
+            Ticket1.FontZiseText(FontZise.l2cpp)
+            Ticket1.TextoIzquierda(TextoDiseñado("PRODUCTO", Alinea.Izquierda, 22) &
+                                    TextoDiseñado("CANT", Alinea.Derecha, 8) &
+                                    TextoDiseñado("UND", Alinea.Derecha, 6), False)
+            Ticket1.LineasGuion()
+
+            Dim sql As String =
+                "SELECT p.Nombre_Producto, d.CantidadEnviada, d.Unidad " &
+                "FROM TransferenciaDetalle d " &
+                "INNER JOIN Productos p ON d.idProducto = p.idProducto " &
+                "WHERE d.idTransferencia = " & idTransf
+
+            Using cmd As New CADsisVenta.Funtions.SqlComandExec
+                Using dt = cmd.RetornaTabla(sql)
+                    For Each row As DataRow In dt.Rows
+                        Dim nombre As String = row("Nombre_Producto").ToString()
+                        If nombre.Length > 22 Then nombre = nombre.Substring(0, 22)
+                        Dim cant As String = CDec(row("CantidadEnviada")).ToString("N2")
+                        Dim unidad As String = If(IsDBNull(row("Unidad")), String.Empty, row("Unidad").ToString())
+                        Ticket1.TextoIzquierda(
+                            TextoDiseñado(nombre, Alinea.Izquierda, 22) &
+                            TextoDiseñado(cant, Alinea.Derecha, 8) &
+                            TextoDiseñado(unidad, Alinea.Derecha, 6), False)
+                    Next
+                End Using
+            End Using
+
+            Ticket1.LineasIgual()
+            Ticket1.TextoIzquierda("Emitido por: " & UsuarioActivo.Nombre, False)
+            Ticket1.TextoIzquierda("Terminal: " & Dominio._HotName, False)
+            Ticket1.AvanzaLinea(1)
+            Ticket1.TextoIzquierda("RECIBIDO POR: ___________________", False)
+            Ticket1.TextoIzquierda("FIRMA: ___________________", False)
+            Ticket1.AvanzaLinea(4)
+            Ticket1.CortaTicket()
+            Ticket1.PrintContain(myOptnsPrint.PrintLogo)
+            Ticket1 = Nothing
+            Return True
+
+        Catch ex As Exception
+            MsgBox("Error al imprimir guía: " & ex.Message, MsgBoxStyle.Critical, "Error")
+            Return False
+        End Try
+    End Function
+#End Region
 #Region "printArqueoTerminal"
     Public Function PrintArqueoTerminal(ByVal idCajaStado As Integer, ByVal opcionPrint As optPrintFac) As Boolean
         Select Case opcionPrint.typePrint
@@ -1368,4 +1457,78 @@ cargaNuevo:
             Return False
         End Try
     End Function
+
+#Region "PrintGuiaRemision"
+
+    Public Function ImprimirGuiaRemision(ByVal idTransf As Integer,
+                                         ByVal numTransf As String,
+                                         ByVal nomOrigen As String,
+                                         ByVal nomDestino As String) As Boolean
+
+        If (myOptnsPrint.NamePrint Is Nothing) Then
+            Throw New Exception("No esta configurado la impresora")
+        End If
+        Try
+            Dim Ticket1 As New CreaTicket(myOptnsPrint.NamePrint,
+                                          PaperSizeWidth.GetCharLenght(Printer.myOptnsPrint.PaperSizeWidth))
+
+            Ticket1.isAvanzaLinea = True
+            Ticket1.FontZiseText(FontZise.l8cpp)
+            Ticket1.TextoIzquierda(SettingObject.EcommerceActive.RazonSocial, False)
+
+            Ticket1.FontZiseText(FontZise.l4cpp)
+            Ticket1.TextoIzquierda("GUIA DE REMISION INTERNA", False)
+            Ticket1.TextoIzquierda("Nro: " & numTransf, False)
+            Ticket1.TextoIzquierda("Fecha: " & DateTime.Now.ToString("dd/MM/yyyy HH:mm"), False)
+            Ticket1.Separador("-")
+
+            Ticket1.TextoIzquierda("ORIGEN : " & nomOrigen, False)
+            Ticket1.TextoIzquierda("DESTINO: " & nomDestino, False)
+            Ticket1.Separador("-")
+
+            Ticket1.FontZiseText(FontZise.l2cpp)
+            Ticket1.TextoIzquierda(TextoDiseñado("PRODUCTO", Alinea.Izquierda, 22) &
+                                    TextoDiseñado("CANT", Alinea.Derecha, 8) &
+                                    TextoDiseñado("UND", Alinea.Derecha, 6), False)
+            Ticket1.Separador("-")
+
+            Dim sql As String =
+                "SELECT p.Nombre_Producto, d.CantidadEnviada, d.Unidad " &
+                "FROM TransferenciaDetalle d " &
+                "INNER JOIN Productos p ON d.idProducto = p.idProducto " &
+                "WHERE d.idTransferencia = " & idTransf
+
+            Using cmd As New CADsisVenta.Funtions.SqlComandExec
+                Using dt = cmd.RetornaTabla(sql)
+                    For Each row As DataRow In dt.Rows
+                        Dim nombre As String = row("Nombre_Producto").ToString()
+                        If nombre.Length > 22 Then nombre = nombre.Substring(0, 22)
+                        Dim cant As String = CDec(row("CantidadEnviada")).ToString("N2")
+                        Dim unidad As String = If(row("Unidad") IsNot Nothing, row("Unidad").ToString(), String.Empty)
+                        Ticket1.TextoIzquierda(
+                            TextoDiseñado(nombre, Alinea.Izquierda, 22) &
+                            TextoDiseñado(cant, Alinea.Derecha, 8) &
+                            TextoDiseñado(unidad, Alinea.Derecha, 6), False)
+                    Next
+                End Using
+            End Using
+
+            Ticket1.Separador("=")
+            Ticket1.TextoIzquierda("Emitido por: " & UsuarioActivo.Nombre, False)
+            Ticket1.TextoIzquierda("Terminal: " & Dominio._HotName, False)
+            Ticket1.Separador(" ")
+            Ticket1.TextoIzquierda("RECIBIDO POR: ___________________", False)
+            Ticket1.TextoIzquierda("FIRMA: ___________________", False)
+            Ticket1.AvanzaLinea(4)
+            Ticket1.CortaTicket()
+            Ticket1.PrintContain(myOptnsPrint.PrintLogo)
+            Return True
+
+        Catch ex As Exception
+            MsgBox("Error al imprimir guía: " & ex.Message, MsgBoxStyle.Critical, "Error")
+            Return False
+        End Try
+    End Function
+
+#End Region
 End Module

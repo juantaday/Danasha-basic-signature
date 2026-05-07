@@ -1,5 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Threading
+Imports System.Linq
 Imports CADsisVenta
 Imports CADsisVenta.[Class]
 Imports CADsisVenta.Data.Emuns.EnumSatateModule
@@ -67,6 +68,40 @@ Public Class frmVentas
             MsgBox(ex.Message + " en el frmDiario_Load del " + Name, MsgBoxStyle.Critical, "Error")
         End Try
     End Sub
+
+    Private Sub pedidoButton_Click(sender As Object, e As EventArgs) Handles pedidoButton.Click
+        Try
+            If ListView1.Items.Count = 0 Then
+                MsgBox("Agregue productos antes de crear una transferencia.", MsgBoxStyle.Exclamation, "Sin productos")
+                Exit Sub
+            End If
+
+            Using frm As New frmTransferencia(BuildDetalleTransferencia())
+                frm.ShowDialog(Me)
+            End Using
+        Catch ex As Exception
+            MsgBox(ex.Message & " en pedidoButton_Click", MsgBoxStyle.Critical, "Error")
+        End Try
+    End Sub
+
+    Private Function BuildDetalleTransferencia() As List(Of DetalleTransferenciaItem)
+        Dim lista As New List(Of DetalleTransferenciaItem)
+        For Each item As ListViewItem In ListView1.Items
+            Dim idProducto As Integer
+            Integer.TryParse(item.SubItems(idProductoClm.Index).Text, idProducto)
+
+            Dim cantidad As Decimal
+            Decimal.TryParse(item.SubItems(CantidadClm.Index).Text, cantidad)
+
+            lista.Add(New DetalleTransferenciaItem With {
+                .idProducto = idProducto,
+                .NombreProducto = item.SubItems(productoClm.Index).Text,
+                .Cantidad = cantidad,
+                .Unidad = item.SubItems(EmpClm.Index).Text
+            })
+        Next
+        Return lista
+    End Function
 
     Private Sub Carga_Bodega()
         Try

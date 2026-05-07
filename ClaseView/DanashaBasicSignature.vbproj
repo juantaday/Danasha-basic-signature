@@ -86,6 +86,9 @@
       <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="SpreadsheetLight, Version=3.4.11.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
@@ -405,6 +408,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Models\DebitEmployee.vb" />
+    <Compile Include="Models\DetalleTransferenciaItem.vb" />
     <Compile Include="Models\ItemUtilities.vb" />
     <Compile Include="Models\ItemVentaXmes.vb" />
     <Compile Include="Modulos\Funciones.vb" />
@@ -771,6 +775,15 @@
       <DependentUpon>frmUsuarios.vb</DependentUpon>
     </Compile>
     <Compile Include="Seguridad\frmUsuarios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transferencia\frmListadoGuiasRemision.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transferencia\frmRecibirTransferencia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transferencia\frmTransferencia.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Ventas\frmDetailOrderVenta.designer.vb">
@@ -1225,7 +1238,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="docs\00_INICIO_AQUI.md" />
+    <None Include="docs\ESTADO_IMPLEMENTACION.md" />
     <None Include="docs\GUIA_IMPLEMENTACION_TRANSFERENCIA_STOCK.md" />
+    <None Include="docs\PLAN_ACCION_INMEDIATO.md" />
+    <None Include="docs\README_RESUMEN_EJECUTIVO.md" />
+    <None Include="docs\VERIFICACION_ESTADO.md" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -1891,6 +1909,7 @@
     <Content Include="Conexion\RutaConexion.txt" />
     <Content Include="danasha amd bodega.ico" />
     <Content Include="dansha basic.ico" />
+    <Content Include="docs\01_SCRIPTS_BASE_DATOS.sql" />
     <Content Include="JsofWareIcon.ico" />
     <None Include="Resources\commece_24.png" />
     <None Include="Resources\clear-filter.png" />
@@ -2053,6 +2072,10 @@
     <ProjectReference Include="..\InterfaceSignatureAndSRI\InterfaceSignatureAndSRI.csproj">
       <Project>{8a711fd8-a605-4bfc-8b8c-d4c1b6f23c0a}</Project>
       <Name>InterfaceSignatureAndSRI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SupabaseDataAccess\SupabaseDataAccess.csproj">
+      <Project>{e6b5e6b9-3e1a-4c6c-8e0f-97fd0e08b7c4}</Project>
+      <Name>SupabaseDataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

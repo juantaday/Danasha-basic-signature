@@ -33,6 +33,7 @@ Partial Class frmList_Facturas
         Me.selectAllCheckBox = New System.Windows.Forms.CheckBox()
         Me.anulaButton = New System.Windows.Forms.Button()
         Me.setIsPrinterButton = New System.Windows.Forms.Button()
+        Me.ChangCustomerButton = New System.Windows.Forms.Button()
         Me.ListViewCabecera = New System.Windows.Forms.ListView()
         Me.IdFactureColum = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.FacturColum = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -86,7 +87,6 @@ Partial Class frmList_Facturas
         Me.lblTituloDetalle = New System.Windows.Forms.Label()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.PaneDetalle = New System.Windows.Forms.Panel()
-        Me.ChangCustomerButton = New System.Windows.Forms.Button()
         Me.paneTitulo.SuspendLayout()
         Me.PanePie.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
@@ -207,6 +207,17 @@ Partial Class frmList_Facturas
         Me.setIsPrinterButton.TabIndex = 27
         Me.ToolTip1.SetToolTip(Me.setIsPrinterButton, "Establecer como documentos ya impresos.")
         Me.setIsPrinterButton.UseVisualStyleBackColor = True
+        '
+        'ChangCustomerButton
+        '
+        Me.ChangCustomerButton.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ChangCustomerButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Users_20
+        Me.ChangCustomerButton.Location = New System.Drawing.Point(277, 0)
+        Me.ChangCustomerButton.Name = "ChangCustomerButton"
+        Me.ChangCustomerButton.Size = New System.Drawing.Size(54, 42)
+        Me.ChangCustomerButton.TabIndex = 28
+        Me.ToolTip1.SetToolTip(Me.ChangCustomerButton, "Establecer como documentos ya impresos.")
+        Me.ChangCustomerButton.UseVisualStyleBackColor = True
         '
         'ListViewCabecera
         '
@@ -684,17 +695,6 @@ Partial Class frmList_Facturas
         Me.PaneDetalle.Name = "PaneDetalle"
         Me.PaneDetalle.Size = New System.Drawing.Size(321, 460)
         Me.PaneDetalle.TabIndex = 0
-        '
-        'ChangCustomerButton
-        '
-        Me.ChangCustomerButton.Dock = System.Windows.Forms.DockStyle.Left
-        Me.ChangCustomerButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Users_20
-        Me.ChangCustomerButton.Location = New System.Drawing.Point(277, 0)
-        Me.ChangCustomerButton.Name = "ChangCustomerButton"
-        Me.ChangCustomerButton.Size = New System.Drawing.Size(54, 42)
-        Me.ChangCustomerButton.TabIndex = 28
-        Me.ToolTip1.SetToolTip(Me.ChangCustomerButton, "Establecer como documentos ya impresos.")
-        Me.ChangCustomerButton.UseVisualStyleBackColor = True
         '
         'frmList_Facturas
         '

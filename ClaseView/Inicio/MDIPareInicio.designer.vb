@@ -78,6 +78,8 @@ Partial Class MDIPareInicio
         Me.FacturasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OrdenDeVentaNoFacturadaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ArqueoDeCajaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuRecibirTransferencia = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuListadoGuiasRemision = New System.Windows.Forms.ToolStripMenuItem()
         Me.SeguridadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsuariosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PermisosDeUsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -512,7 +514,7 @@ Partial Class MDIPareInicio
         '
         'VentasToolStripMenuItem
         '
-        Me.VentasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DiariaPorCajaToolStripMenuItem, Me.PreciosDeVentasToolStripMenuItem, Me.FacturasToolStripMenuItem, Me.OrdenDeVentaNoFacturadaToolStripMenuItem, Me.ArqueoDeCajaToolStripMenuItem})
+        Me.VentasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DiariaPorCajaToolStripMenuItem, Me.PreciosDeVentasToolStripMenuItem, Me.FacturasToolStripMenuItem, Me.OrdenDeVentaNoFacturadaToolStripMenuItem, Me.ArqueoDeCajaToolStripMenuItem, Me.mnuRecibirTransferencia, Me.mnuListadoGuiasRemision})
         Me.VentasToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.VentasToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Venta_48
         Me.VentasToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
@@ -562,6 +564,18 @@ Partial Class MDIPareInicio
         Me.ArqueoDeCajaToolStripMenuItem.Name = "ArqueoDeCajaToolStripMenuItem"
         Me.ArqueoDeCajaToolStripMenuItem.Size = New System.Drawing.Size(275, 38)
         Me.ArqueoDeCajaToolStripMenuItem.Text = "Arqueo de caja"
+        '
+        'mnuRecibirTransferencia
+        '
+        Me.mnuRecibirTransferencia.Name = "mnuRecibirTransferencia"
+        Me.mnuRecibirTransferencia.Size = New System.Drawing.Size(275, 38)
+        Me.mnuRecibirTransferencia.Text = "Recibir transferencias"
+        '
+        'mnuListadoGuiasRemision
+        '
+        Me.mnuListadoGuiasRemision.Name = "mnuListadoGuiasRemision"
+        Me.mnuListadoGuiasRemision.Size = New System.Drawing.Size(275, 38)
+        Me.mnuListadoGuiasRemision.Text = "Listado de guías de remisión"
         '
         'SeguridadToolStripMenuItem
         '
@@ -1063,4 +1077,6 @@ Partial Class MDIPareInicio
     Friend WithEvents VentasPorOperaciónToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DocumentosElectrónicosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AjecutarScripToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents mnuRecibirTransferencia As ToolStripMenuItem
+    Friend WithEvents mnuListadoGuiasRemision As ToolStripMenuItem
 End Class

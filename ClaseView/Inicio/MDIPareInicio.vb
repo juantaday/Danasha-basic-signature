@@ -85,6 +85,26 @@ Public Class MDIPareInicio
         End Try
     End Sub
 
+    Private Sub mnuRecibirTransferencia_Click(sender As Object, e As EventArgs) Handles mnuRecibirTransferencia.Click
+        Try
+            Dim frm As New frmRecibirTransferencia()
+            frm.MdiParent = Me
+            frm.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+        End Try
+    End Sub
+
+    Private Sub mnuListadoGuiasRemision_Click(sender As Object, e As EventArgs) Handles mnuListadoGuiasRemision.Click
+        Try
+            Dim frm As New frmListadoGuiasRemision()
+            frm.MdiParent = Me
+            frm.Show()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+        End Try
+    End Sub
+
     Private Sub MDIPareInicio_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
 
     End Sub

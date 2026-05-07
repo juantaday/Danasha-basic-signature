@@ -557,15 +557,15 @@ Partial Class frmVentas
         Me.pedidoButton.Cursor = System.Windows.Forms.Cursors.Hand
         Me.pedidoButton.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pedidoButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.pedidoButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.TextBox_32x32
+        Me.pedidoButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.stock_Bodega_32
         Me.pedidoButton.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.pedidoButton.Location = New System.Drawing.Point(229, 0)
         Me.pedidoButton.Margin = New System.Windows.Forms.Padding(0)
         Me.pedidoButton.Name = "pedidoButton"
         Me.pedidoButton.Size = New System.Drawing.Size(60, 58)
         Me.pedidoButton.TabIndex = 31
-        Me.pedidoButton.Tag = "Pedido"
-        Me.pedidoButton.Text = "Pedido"
+        Me.pedidoButton.Tag = "Transferencia"
+        Me.pedidoButton.Text = "Transferir"
         Me.pedidoButton.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.ToolTip1.SetToolTip(Me.pedidoButton, "Documento por emitir")
         Me.pedidoButton.UseVisualStyleBackColor = True

@@ -6,6 +6,8 @@ Public Class frmAdd_Almacen
     Private estaCargado As Boolean
     Protected Friend idBodega As Integer
     Private idResponsable1, idResponsable2, idResponsable3 As Integer
+    Private esSucursalRemota As Boolean
+    Private ciudadSucursal As String
     Sub New()
 
         ' Esta llamada es exigida por el diseñador.
@@ -19,7 +21,7 @@ Public Class frmAdd_Almacen
     End Sub
     Private Sub Carga_Bodegas()
         estaCargado = False
-        sql = "SELECT TOP (1) b.idBodega, b.Nom_Bodega AS [Bodega o local], b.Telef1_Bodega AS Telf_Bodega,  "
+        sql = "SELECT TOP (5) b.idBodega, b.Nom_Bodega AS [Bodega o local], b.Telef1_Bodega AS Telf_Bodega,  "
         sql = sql & "p.Apellidos + ' ' + p.Nombre AS Responable, b.Des_Bodega, b.Direc_Bodega, b.Resp1_idEmpleado, "
         sql = sql & "b.Fecha_Apertura, p.Ruc_Ci, Resp2_idEmpleado, "
         sql = sql & "(select top(1) per2.Ruc_Ci + ' ' +per2.Apellidos + ' ' + per2.Nombre from Empleados as em2  "
@@ -80,12 +82,12 @@ Public Class frmAdd_Almacen
     End Sub
 
     Private Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
-
         If Not ValidaDatos() Then Exit Sub
-
         Dim Exito As Boolean = False
         Try
             Me.Cursor = Cursors.WaitCursor
+            esSucursalRemota = chkEsSucursalRemota.Checked
+            ciudadSucursal = txtCiudadSucursal.Text.Trim()
             If idBodega = -1 Then
                 If Agregar_Bodega() Then
                     Exito = True
@@ -95,7 +97,6 @@ Public Class frmAdd_Almacen
                     Exito = True
                 End If
             End If
-
             If Exito Then
                 LimpiaContenido()
                 BloqueaControles(False)
@@ -106,13 +107,11 @@ Public Class frmAdd_Almacen
                 Me.NotifyIcon1.Visible = True
                 Me.NotifyIcon1.ShowBalloonTip(2000, "Alerta", "La oreracion no fue realizada", ToolTipIcon.Error)
             End If
-
             Me.Cursor = Cursors.Default
         Catch ex As Exception
             Me.Cursor = Cursors.Default
             MsgBox(ex.Message + " en el btnAceptar_Click del " + Me.Name, MsgBoxStyle.Critical, "Error")
         End Try
-
     End Sub
 
     Private Sub BloqueaControles(ByVal Estado As Boolean)
@@ -129,15 +128,10 @@ Public Class frmAdd_Almacen
             Dim resp1 As Nullable(Of Integer) = Nothing
             Dim resp2 As Nullable(Of Integer) = Nothing
             Dim resp3 As Nullable(Of Integer) = Nothing
-            If idResponsable1 > 0 Then
-                resp1 = idResponsable1
-            End If
-            If idResponsable2 > 0 Then
-                resp2 = idResponsable2
-            End If
-            If idResponsable3 > 0 Then
-                resp3 = idResponsable3
-            End If
+            If idResponsable1 > 0 Then resp1 = idResponsable1
+            If idResponsable2 > 0 Then resp2 = idResponsable2
+            If idResponsable3 > 0 Then resp3 = idResponsable3
+            ' --- NUEVO: Agregar campos EsSucursalRemota y CiudadSucursal ---
             If datp.InsertBodegas(NomBodegaText.Text,
                                DescripcionBodegaText.Text,
                                DireccionText.Text,
@@ -149,7 +143,9 @@ Public Class frmAdd_Almacen
                                resp3,
                                txtFecha_Apert.Value,
                                TypoBodegaComboBox.SelectedValue,
-                               txtCodigoEstab.Text) > 0 Then
+                               txtCodigoEstab.Text,
+                               esSucursalRemota,
+                               ciudadSucursal) > 0 Then
                 Return True
             Else
                 Return False
@@ -188,15 +184,10 @@ Public Class frmAdd_Almacen
             Dim resp1 As Nullable(Of Integer) = Nothing
             Dim resp2 As Nullable(Of Integer) = Nothing
             Dim resp3 As Nullable(Of Integer) = Nothing
-            If idResponsable1 > 0 Then
-                resp1 = idResponsable1
-            End If
-            If idResponsable2 > 0 Then
-                resp2 = idResponsable2
-            End If
-            If idResponsable3 > 0 Then
-                resp3 = idResponsable3
-            End If
+            If idResponsable1 > 0 Then resp1 = idResponsable1
+            If idResponsable2 > 0 Then resp2 = idResponsable2
+            If idResponsable3 > 0 Then resp3 = idResponsable3
+            ' --- NUEVO: Agregar campos EsSucursalRemota y CiudadSucursal ---
             If datp.UpdateBodega(NomBodegaText.Text,
                                DescripcionBodegaText.Text,
                                DireccionText.Text,
@@ -209,6 +200,8 @@ Public Class frmAdd_Almacen
                                txtFecha_Apert.Value,
                                TypoBodegaComboBox.SelectedValue,
                                txtCodigoEstab.Text,
+                               esSucursalRemota,
+                               ciudadSucursal,
                                idBodega) > 0 Then
                 Return True
             Else
@@ -274,10 +267,6 @@ Public Class frmAdd_Almacen
 
     Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
         LimpiaContenido()
-
-        MsgBox("No disponible en esta versión", MsgBoxStyle.Information, "Alert..")
-        Return
-
         BloqueaControles(True)
     End Sub
     Private Sub LimpiaContenido()
@@ -292,6 +281,8 @@ Public Class frmAdd_Almacen
         idResponsable2 = 0
         idResponsable3 = 0
         txtCheque.Text = ""
+        chkEsSucursalRemota.Checked = False
+        txtCiudadSucursal.Text = ""
     End Sub
 
     Private Sub btnElimina_Click(sender As Object, e As EventArgs) Handles btnElimina.Click
@@ -346,13 +337,19 @@ Public Class frmAdd_Almacen
             Me.txtFecha_Apert.Text = Me.datalistado.SelectedCells.Item(7).Value
             Me.TypoBodegaComboBox.SelectedValue = datalistado.SelectedCells.Item(12).Value
             Me.txtCodigoEstab.Text = datalistado.SelectedCells.Item(13).Value
-
             If IsNumeric(datalistado.SelectedCells.Item(9).Value) Then
                 idResponsable2 = datalistado.SelectedCells.Item(9).Value
                 Me.txtCheque.Text = Convert.ToString(datalistado.SelectedCells.Item(10).Value)
             Else
                 idResponsable2 = 0
                 Me.txtCheque.Text = ""
+            End If
+            ' --- NUEVO: Cargar campos EsSucursalRemota y CiudadSucursal ---
+            If datalistado.Columns.Contains("EsSucursalRemota") Then
+                chkEsSucursalRemota.Checked = CBool(Me.datalistado.SelectedCells.Item("EsSucursalRemota").Value)
+            End If
+            If datalistado.Columns.Contains("CiudadSucursal") Then
+                txtCiudadSucursal.Text = Me.datalistado.SelectedCells.Item("CiudadSucursal").Value.ToString()
             End If
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")

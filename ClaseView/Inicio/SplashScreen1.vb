@@ -1,19 +1,13 @@
-﻿Imports System.Runtime.InteropServices
-Imports System
+﻿Imports System.ComponentModel
+Imports System.Runtime.InteropServices
 Imports System.Text
-Imports CADsisVenta.Funtions
-Imports CADsisVenta.Data.Models
 Imports System.Threading
-Imports System.ComponentModel
-Imports CADsisVenta.Data.Entyties
-Imports CADsisVenta.Helpers.FInicio
-Imports CADsisVenta
-Imports Domain.Logica
-Imports DomainSQLite.Setting
-Imports DomainSQLite
-Imports DomainSQLite.Models
-Imports DomainSQLite.Funtions
+Imports CADsisVenta.Data.Models
 Imports CADsisVenta.Statics
+Imports DomainSQLite
+Imports DomainSQLite.Funtions
+Imports DomainSQLite.Models
+Imports DomainSQLite.Setting
 
 Public NotInheritable Class SplashScreen1
 
@@ -45,6 +39,7 @@ Public NotInheritable Class SplashScreen1
 
     End Sub
     Private Sub SplashScreen1_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
         'Título de la aplicación
         Me.ViewLoadingLabel.Text = String.Empty
         Me.progressBar1.Value = 0
