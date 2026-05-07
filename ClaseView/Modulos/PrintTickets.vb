@@ -10,6 +10,7 @@ Imports CADsisVenta.Data.Emuns
 Imports DanashaBasicSignature.ClassView.Conexion
 Imports CADsisVenta.Statics
 Imports CrystalDecisions.[Shared].Json
+Imports Domain.Logica
 
 Module PrintTickets
 #Region "printReciboTerminal"
@@ -155,11 +156,11 @@ Salida:
                                          ByVal numTransf As String,
                                          ByVal nomOrigen As String,
                                          ByVal nomDestino As String,
-                                         Optional ByVal nameDocument As String = "Guia de remision") As Boolean
+                                         Optional ByVal TipoDocumento As TipoDocumento = TipoDocumento.GuiaDeRemision) As Boolean
         Try
             Dim i As Integer = 0
 cargaNuevo:
-            If Not LoadOptionsPrint(0, NameDocument:=nameDocument) Then
+            If Not LoadOptionsPrint(TipoDocumento) Then
                 MsgBox("No se encuentra la impresora configurada", MsgBoxStyle.Information, "Aviso")
                 Using form As New frmOptionPrint
                     With form
@@ -648,7 +649,7 @@ Salida:
 
 #End Region
 #Region "printProforma"
-    Public Function PrintTicket_Proforma(idProforma As Integer, nameDocument As String) As Boolean
+    Public Function PrintTicket_Proforma(idProforma As Integer, tipoDocumento As TipoDocumento) As Boolean
         Try
             Dim PagTotal, PagActual, VueltaItem, i As Integer
             Dim pvpPage, TotalGeneral As Double
@@ -658,7 +659,7 @@ Salida:
 
             'carga nombre de la impresora configurada si no esta  va ha panel de opciones
 cargaNuevo:
-            If Not LoadOptionsPrint(idProforma, NameDocument:=nameDocument) Then
+            If Not LoadOptionsPrint(tipoDocumento) Then
                 MsgBox("No se encuentra la impresora configurada", MsgBoxStyle.Information, "Aviso")
                 Using form As New frmOptionPrint()
                     With form
@@ -710,9 +711,6 @@ cargaNuevo:
             If (Not String.IsNullOrEmpty(SettingObject.EcommerceActive.lema)) Then
                 Ticket1.TextoIzquierda(SettingObject.EcommerceActive.lema)
             End If
-
-
-
 
 
             Dim dt As New DataTable()
@@ -1307,7 +1305,7 @@ Salida_Next:
             Dim i As Integer = 0
 cargaNuevo:
             If IsNothing(myOptnsPrint.NamePrint) Then
-                If Not LoadOptionsPrint(myOptnsPrint.idPrint) Then
+                If Not LoadOptionsPrint(myOptnsPrint.idTipoDocumento) Then
                     MsgBox("No se encuentra la impresora configurada", MsgBoxStyle.Information, "Aviso")
                     Using form As New frmOptionPrint
                         With form

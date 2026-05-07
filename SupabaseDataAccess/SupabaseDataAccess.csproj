@@ -51,7 +51,6 @@
     <Compile Include="Repositories\ProductoSyncRepository.cs" />
     <Compile Include="Repositories\TransferenciaRepository.cs" />
     <Compile Include="SupabasePgConnection.cs" />
-    <Compile Include="TransferenciaRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

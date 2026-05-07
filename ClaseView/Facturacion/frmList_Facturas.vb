@@ -8,6 +8,7 @@ Imports CADsisVenta.Helpers.FInicio
 Imports CADsisVenta.Data.Emuns
 Imports CADsisVenta.DataSetEmployeeTableAdapters
 Imports CADsisVenta
+Imports Domain.Logica
 
 Public Class frmList_Facturas
     Dim Num_Factura, Cliente, TipoVent, Cajero, Fechades, FechaHast, Direccion, Telefono, fechaReal, Ruc As String
@@ -904,7 +905,7 @@ Public Class frmList_Facturas
             'carga nombre de la impresora configurada si no esta  va ha panel de opciones
 cargaNuevo:
             If IsNothing(myOptnsPrint.NamePrint) Then
-                If Not LoadOptionsPrint(1) Then
+                If Not LoadOptionsPrint(TipoDocumento.Factura) Then
                     MsgBox("No se encuentra la impresora configurada", MsgBoxStyle.Information, "Aviso")
                     Using form As New frmOptionPrint
                         With form

@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using System.Text.RegularExpressions;
 
 namespace Domain.Helpers
 {
-    public static  class Utilities
+    public static class Utilities
     {
         public static bool IsValidEmail(string email)
         {
@@ -21,6 +21,14 @@ namespace Domain.Helpers
         {
             return Regex.Match(text, @"[!\""·$%&/()=¿¡?'_:;,|@#€*+.]").Success;
         }
+
+        public static string GetDisplayName(this Enum value)
+        {
+            var field = value.GetType().GetField(value.ToString());
+            var attr = field.GetCustomAttribute<DisplayAttribute>();
+            return attr?.Name ?? value.ToString();
+        }
+
 
     }
 }

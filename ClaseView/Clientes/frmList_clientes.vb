@@ -4,6 +4,7 @@ Imports CADsisVenta.Class
 Imports CADsisVenta.Data.Emuns.EnumSatateModule
 Imports CADsisVenta.Data.ModelsSend
 Imports CADsisVenta.Funtions
+Imports Domain.Logica
 
 Public Class frmList_clientes
     Protected Friend txtFlag As String
@@ -192,7 +193,7 @@ Public Class frmList_clientes
         End If
     End Sub
     Private Sub Factura_AlCliente()
-        If LoadOptionsPrint(1) Then
+        If LoadOptionsPrint(TipoDocumento.Factura) Then
             If Me.txtFlag = "Lote" Then
                 If MsgBox("Esta seguro de facturar a nombre de " & Me.DataGridView1.SelectedCells(2).Value, MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Responda..") = MsgBoxResult.Yes Then
                     FacturVenta.idCliente = Me.DataGridView1.SelectedCells(0).Value
@@ -514,19 +515,19 @@ Public Class frmList_clientes
                 End If
 
                 If MsgBox("Esta sueguro de eliminar al cliente:" + vbCrLf + sql + vbCrLf + "De forma permanente?", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Responda.") = MsgBoxResult.Yes Then
-                        sql = "Delete Clientes where idPersona = @idPersona"
+                    sql = "Delete Clientes where idPersona = @idPersona"
+                    If Eliminar_clinete(Me.idPersona, sql) Then
+
+                        sql = "Delete Personas  where idPersona = @idPersona"
                         If Eliminar_clinete(Me.idPersona, sql) Then
-
-                            sql = "Delete Personas  where idPersona = @idPersona"
-                            If Eliminar_clinete(Me.idPersona, sql) Then
-                                Me.NotifyIcon1.BalloonTipText = "Cliente eliminado"
-                                Me.NotifyIcon1.ShowBalloonTip(2000)
-                                DataGridView1.Rows.Remove(DataGridView1.SelectedRows(0))
-                            End If
-
+                            Me.NotifyIcon1.BalloonTipText = "Cliente eliminado"
+                            Me.NotifyIcon1.ShowBalloonTip(2000)
+                            DataGridView1.Rows.Remove(DataGridView1.SelectedRows(0))
                         End If
+
                     End If
                 End If
+            End If
 
         Catch ex As Exception
             Cursor = Cursors.Default

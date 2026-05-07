@@ -1,4 +1,6 @@
-﻿Module Estructuras
+﻿Imports Domain.Logica
+
+Module Estructuras
     Public Structure Compra
         Public idBodega As Integer
         Public idPedido As Integer
@@ -41,7 +43,7 @@ Module Estrucrura2
 End Module
 Module Printer
     Public Structure optPrintFac
-        Public idPrint As Integer    '_idde row
+        Public idTipoDocumento As TipoDocumento    '_idde row
         Public NamePrint As String   'Nombre de la impresona
         Public Color As String       'color de tinta
         Public items As Integer      'Items de prodcuto por página

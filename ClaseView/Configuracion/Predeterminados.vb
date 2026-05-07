@@ -3,6 +3,7 @@ Imports System.Drawing.Printing
 Imports System.Net
 Imports CADsisVenta.DataSetSystemTableAdapters
 Imports CADsisVenta.Helpers.FInicio
+Imports Domain.Logica
 Public Enum Alinea
     Derecha = 0
     Centro = 1
@@ -318,14 +319,17 @@ Module Predeterminados
 
 
     End Function
-    Public Function LoadOptionsPrint(idTypeDocument As Integer,
+
+    Public Function LoadOptionsPrint(tipoDocumento As TipoDocumento,
                                      Optional messagueView As Boolean = False) As Boolean
         Try
+            Dim idTypeDocument As Integer = CInt(tipoDocumento)
+
             Using cmd As New TerminalConfiTableAdapter
                 Dim dt As DataTable = cmd.GetDataByIdTerminalIdDocument(TerminalActivo.idTerminal, idTypeDocument)
                 If dt.Rows.Count > 0 Then
                     With myOptnsPrint
-                        .idPrint = dt.Rows(0)("idTerminalConfi")
+                        .idTipoDocumento = dt.Rows(0)("idTerminalConfi")
                         .NamePrint = Convert.ToString(dt.Rows(0)("NameImpreTicket"))
                         .Color = Convert.ToString(dt.Rows(0)("ColorTicket"))
                         .items = Convert.ToString(dt.Rows(0)("itemsPrintTicket"))
@@ -346,36 +350,6 @@ Module Predeterminados
             Return False
         End Try
     End Function
-    Public Function LoadOptionsPrint(idTypeDocument As Integer, NameDocument As String) As Boolean
-        Try
-            Using cmd As New TerminalConfiTableAdapter
-                Dim dt As DataTable = Nothing
-                If Not String.IsNullOrEmpty(NameDocument) Then
-                    dt = cmd.GetDataIdTerminalAndNomDocument(TerminalActivo.idTerminal, NameDocument)
-                Else
-                    dt = cmd.GetDataByIdTerminalIdDocument(TerminalActivo.idTerminal, idTypeDocument)
-                End If
-                If dt IsNot Nothing AndAlso dt.Rows.Count > 0 Then
-                    With myOptnsPrint
-                        .idPrint = dt.Rows(0)("idTerminalConfi")
-                        .NamePrint = Convert.ToString(dt.Rows(0)("NameImpreTicket"))
-                        .Color = Convert.ToString(dt.Rows(0)("ColorTicket"))
-                        .items = Convert.ToString(dt.Rows(0)("itemsPrintTicket"))
-                        .typePrint = Convert.ToString(dt.Rows(0)("typePrint"))
-                        .isDefaultConfig = Boolean.Parse(dt.Rows(0)("isDefault"))
-                        .PaperSizeWidth = 1
-                    End With
-                    Return PrinterNametInstol(myOptnsPrint.NamePrint)
-                End If
-                MsgBox(String.Format("Para el documento {0} no  se ha configurado.", NameDocument), MsgBoxStyle.Exclamation, "Aviso")
-                Return False
-            End Using
-        Catch ex As Exception
-            MsgBox(ex.Message & vbLf & ex.StackTrace, MsgBoxStyle.Critical, "Error")
-            Return False
-        End Try
-    End Function
-
 
     Public Function PrinterNametInstol(NamePrint As String) As Boolean  'ES para saber si la impresora esta instalada
         Try
@@ -398,7 +372,7 @@ Module Predeterminados
                 Dim dt As DataTable = cmd.GetDataIdTerminalAndNomDocument(TerminalActivo.idTerminal, NameDocument)
                 If dt.Rows.Count > 0 Then
                     With myOptnsPrint
-                        .idPrint = dt.Rows(0)("idTerminalConfi")
+                        .idTipoDocumento = dt.Rows(0)("idTerminalConfi")
                         .NamePrint = Convert.ToString(dt.Rows(0)("NameImpreTicket"))
                         .Color = Convert.ToString(dt.Rows(0)("ColorTicket"))
                         .items = Convert.ToString(dt.Rows(0)("itemsPrintTicket"))

@@ -25,7 +25,7 @@ namespace TestProject
             try
             {
                 
-                    using (var conn = SupabasePgConnection.OpenPoolConnection())
+                    using (var conn = SupabasePgConnection.OpenPool-Connection())
                     {
                         MessageBox.Show(conn.State == ConnectionState.Open 
                             ? "✅ Conexión exitosa" 

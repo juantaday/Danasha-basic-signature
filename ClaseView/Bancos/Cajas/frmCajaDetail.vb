@@ -2,6 +2,7 @@
 Imports CADsisVenta.Data.Emuns.EnumSatateModule
 Imports CADsisVenta.DataSetMonedas
 Imports CADsisVenta.DataSetMonedasTableAdapters
+Imports Domain.Logica
 
 Public Class frmCajaDetail
     Protected Friend idCajaStado As Integer
@@ -33,7 +34,7 @@ Public Class frmCajaDetail
                     If (.DialogResult = DialogResult.OK) Then
                         If closeTerminal(.UsernameTextBox.Text) Then
                             MsgBox("Cierre de caja efectuado correctament", MsgBoxStyle.Information, "Aviso")
-                            If LoadOptionsPrint(0, "Reporte de cierre de caja") Then
+                            If LoadOptionsPrint(TipoDocumento.ReporteCierreCaja) Then
                                 sql = "Desea imprimir el Reporte de cierre de caja" & vbNewLine
                                 sql = sql & "En impresora " & myOptnsPrint.typePrint & " " & myOptnsPrint.NamePrint
                                 If (MsgBox(sql, MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2, "Responda")) = MsgBoxResult.Yes Then
