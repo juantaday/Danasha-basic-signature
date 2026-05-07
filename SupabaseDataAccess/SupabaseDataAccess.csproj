@@ -45,6 +45,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\RunMigrations.cs" />
+    <Compile Include="Models\ProductoSync.cs" />
+    <Compile Include="Models\Transferencia.cs" />
+    <Compile Include="Repositories\ProductoSyncRepository.cs" />
+    <Compile Include="Repositories\TransferenciaRepository.cs" />
     <Compile Include="SupabasePgConnection.cs" />
     <Compile Include="TransferenciaRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -52,5 +57,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

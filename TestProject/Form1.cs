@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using SupabaseDataAccess;
+using SupabaseDataAccess.Migrations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,19 +24,32 @@ namespace TestProject
         {
             try
             {
-
-                using (var conn = SupabasePgConnection.OpenPoolConnection())
-                {
-                    MessageBox.Show(conn.State == ConnectionState.Open
-                        ? "✅ Conexión exitosa"
-                        : "❌ Fallo al conectar");
-                }
+                
+                    using (var conn = SupabasePgConnection.OpenPoolConnection())
+                    {
+                        MessageBox.Show(conn.State == ConnectionState.Open 
+                            ? "✅ Conexión exitosa" 
+                            : "❌ Fallo al conectar");
+                    }
             }
             catch (Exception ex)
             {
                 Interaction.MsgBox(ex.Message); 
             }
              
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                SupabaseMigrations.RunMigrations();
+            }
+            catch (Exception ex)
+            {
+                Interaction.MsgBox(ex.Message);
+            }
         }
     }
 }
