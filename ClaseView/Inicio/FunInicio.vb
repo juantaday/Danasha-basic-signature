@@ -1,14 +1,13 @@
 ﻿Imports System.Data.SqlClient
-Imports System.Net
 Imports System.IO
-Imports CADsisVenta.DataSetSystemTableAdapters
-Imports CADsisVenta.ClsSystem
+Imports System.Net
 Imports CADsisVenta
 Imports CADsisVenta.Class
+Imports CADsisVenta.ClsSystem
+Imports CADsisVenta.DataSetSystemTableAdapters
 Imports CADsisVenta.Helpers
 Imports CADsisVenta.Helpers.FInicio
 Imports DanashaBasicSignature.ClassView.Conexion
-Imports CADsisVenta.Statics
 
 Public Class FunInicio
     Implements IDisposable
@@ -216,6 +215,7 @@ Public Class FunInicio
                         .idTerminal = dt(0)("idTerminal")
                         .idBodega = dt(0)("idBodega")
                         .CodPntoEmision = dt(0)("CodPntoEmision")
+                        .nombreBodega = dt(0)("Nom_Bodega")
                     End With
                     Return True
                 End If

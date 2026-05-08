@@ -98,6 +98,7 @@ Public Class MDIPareInicio
     Private Sub mnuListadoGuiasRemision_Click(sender As Object, e As EventArgs) Handles mnuListadoGuiasRemision.Click
         Try
             Dim frm As New frmListadoGuiasRemision()
+            frm.WindowState = FormWindowState.Maximized
             frm.MdiParent = Me
             frm.Show()
         Catch ex As Exception

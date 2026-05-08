@@ -445,6 +445,7 @@
     </Compile>
     <Compile Include="Models\DebitEmployee.vb" />
     <Compile Include="Models\DetalleTransferenciaItem.vb" />
+    <Compile Include="Models\DetalleTransfItem.vb" />
     <Compile Include="Models\ItemUtilities.vb" />
     <Compile Include="Models\ItemVentaXmes.vb" />
     <Compile Include="Modulos\Funciones.vb" />
@@ -1232,6 +1233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Seguridad\frmUsuarios.resx">
       <DependentUpon>frmUsuarios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transferencia\frmListadoGuiasRemision.resx">
+      <DependentUpon>frmListadoGuiasRemision.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transferencia\frmRecibirTransferencia.resx">
       <DependentUpon>frmRecibirTransferencia.vb</DependentUpon>

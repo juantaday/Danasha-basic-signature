@@ -12,8 +12,9 @@ Partial Class frmListadoGuiasRemision
     End Sub
 
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.pnlHeader = New System.Windows.Forms.Panel()
         Me.lblTitulo = New System.Windows.Forms.Label()
         Me.lblSubtitulo = New System.Windows.Forms.Label()
@@ -23,220 +24,235 @@ Partial Class frmListadoGuiasRemision
         Me.lblTotal = New System.Windows.Forms.Label()
         Me.pnlGrid = New System.Windows.Forms.Panel()
         Me.DgvGuias = New System.Windows.Forms.DataGridView()
-        Me.ColId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ColNum = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ColFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ColOrigen = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ColDestino = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ColEstado = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ColNovedad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.pnlFooter = New System.Windows.Forms.Panel()
         Me.btnActualizar = New System.Windows.Forms.Button()
         Me.btnReimprimir = New System.Windows.Forms.Button()
         Me.btnCerrar = New System.Windows.Forms.Button()
-
         Me.pnlHeader.SuspendLayout()
         Me.pnlFiltros.SuspendLayout()
         Me.pnlGrid.SuspendLayout()
         CType(Me.DgvGuias, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlFooter.SuspendLayout()
         Me.SuspendLayout()
-
-        ' ── Form ──────────────────────────────────────────────────────────────
-        Me.Text = "Listado de Guías de Remisión"
-        Me.Size = New System.Drawing.Size(920, 580)
-        Me.MinimumSize = New System.Drawing.Size(920, 580)
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.MaximizeBox = False
-        Me.BackColor = System.Drawing.Color.FromArgb(18, 22, 30)
-        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-
-        ' ── pnlHeader ─────────────────────────────────────────────────────────
-        Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pnlHeader.Height = 72
-        Me.pnlHeader.BackColor = System.Drawing.Color.FromArgb(24, 30, 42)
-
-        Me.lblTitulo.Text = "GUÍAS DE REMISIÓN"
-        Me.lblTitulo.Font = New System.Drawing.Font("Segoe UI Semibold", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(120, 160, 255)
-        Me.lblTitulo.AutoSize = True
-        Me.lblTitulo.Location = New System.Drawing.Point(20, 14)
-
-        Me.lblSubtitulo.Text = "Historial de transferencias enviadas y recibidas"
-        Me.lblSubtitulo.Font = New System.Drawing.Font("Segoe UI", 8.5!)
-        Me.lblSubtitulo.ForeColor = System.Drawing.Color.FromArgb(110, 130, 160)
-        Me.lblSubtitulo.AutoSize = True
-        Me.lblSubtitulo.Location = New System.Drawing.Point(22, 42)
-
+        '
+        'pnlHeader
+        '
+        Me.pnlHeader.BackColor = System.Drawing.Color.White
         Me.pnlHeader.Controls.Add(Me.lblTitulo)
         Me.pnlHeader.Controls.Add(Me.lblSubtitulo)
-
-        ' ── pnlFiltros ────────────────────────────────────────────────────────
-        Me.pnlFiltros.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pnlFiltros.Height = 48
-        Me.pnlFiltros.BackColor = System.Drawing.Color.FromArgb(22, 28, 40)
-        Me.pnlFiltros.Padding = New System.Windows.Forms.Padding(20, 8, 20, 8)
-
-        Me.lblFiltro.Text = "ESTADO:"
-        Me.lblFiltro.Font = New System.Drawing.Font("Segoe UI", 7.5!, System.Drawing.FontStyle.Bold)
-        Me.lblFiltro.ForeColor = System.Drawing.Color.FromArgb(100, 120, 150)
-        Me.lblFiltro.AutoSize = True
-        Me.lblFiltro.Location = New System.Drawing.Point(20, 16)
-
-        Me.cboFiltroEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboFiltroEstado.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cboFiltroEstado.BackColor = System.Drawing.Color.FromArgb(32, 40, 58)
-        Me.cboFiltroEstado.ForeColor = System.Drawing.Color.FromArgb(210, 220, 240)
-        Me.cboFiltroEstado.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.cboFiltroEstado.Location = New System.Drawing.Point(76, 12)
-        Me.cboFiltroEstado.Width = 160
-        Me.cboFiltroEstado.Items.AddRange(New Object() {"Todos", "PENDIENTE", "ENVIADO", "RECIBIDO", "CON_NOVEDAD"})
-        Me.cboFiltroEstado.SelectedIndex = 0
-
-        Me.lblTotal.Text = ""
-        Me.lblTotal.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
-        Me.lblTotal.ForeColor = System.Drawing.Color.FromArgb(120, 160, 255)
-        Me.lblTotal.AutoSize = True
-        Me.lblTotal.Location = New System.Drawing.Point(260, 16)
-
+        Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
+        Me.pnlHeader.Name = "pnlHeader"
+        Me.pnlHeader.Size = New System.Drawing.Size(904, 72)
+        Me.pnlHeader.TabIndex = 2
+        '
+        'lblTitulo
+        '
+        Me.lblTitulo.AutoSize = True
+        Me.lblTitulo.Font = New System.Drawing.Font("Segoe UI Semibold", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(115, Byte), Integer))
+        Me.lblTitulo.Location = New System.Drawing.Point(20, 14)
+        Me.lblTitulo.Name = "lblTitulo"
+        Me.lblTitulo.Size = New System.Drawing.Size(192, 25)
+        Me.lblTitulo.TabIndex = 0
+        Me.lblTitulo.Text = "GUÍAS DE REMISIÓN"
+        '
+        'lblSubtitulo
+        '
+        Me.lblSubtitulo.AutoSize = True
+        Me.lblSubtitulo.Font = New System.Drawing.Font("Segoe UI", 8.5!)
+        Me.lblSubtitulo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(120, Byte), Integer), CType(CType(135, Byte), Integer), CType(CType(150, Byte), Integer))
+        Me.lblSubtitulo.Location = New System.Drawing.Point(22, 42)
+        Me.lblSubtitulo.Name = "lblSubtitulo"
+        Me.lblSubtitulo.Size = New System.Drawing.Size(251, 15)
+        Me.lblSubtitulo.TabIndex = 1
+        Me.lblSubtitulo.Text = "Historial de transferencias enviadas y recibidas"
+        '
+        'pnlFiltros
+        '
+        Me.pnlFiltros.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.pnlFiltros.Controls.Add(Me.lblFiltro)
         Me.pnlFiltros.Controls.Add(Me.cboFiltroEstado)
         Me.pnlFiltros.Controls.Add(Me.lblTotal)
-
-        ' ── pnlGrid ───────────────────────────────────────────────────────────
+        Me.pnlFiltros.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlFiltros.Location = New System.Drawing.Point(0, 72)
+        Me.pnlFiltros.Name = "pnlFiltros"
+        Me.pnlFiltros.Padding = New System.Windows.Forms.Padding(20, 8, 20, 8)
+        Me.pnlFiltros.Size = New System.Drawing.Size(904, 48)
+        Me.pnlFiltros.TabIndex = 1
+        '
+        'lblFiltro
+        '
+        Me.lblFiltro.AutoSize = True
+        Me.lblFiltro.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.lblFiltro.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(130, Byte), Integer))
+        Me.lblFiltro.Location = New System.Drawing.Point(20, 16)
+        Me.lblFiltro.Name = "lblFiltro"
+        Me.lblFiltro.Size = New System.Drawing.Size(66, 19)
+        Me.lblFiltro.TabIndex = 0
+        Me.lblFiltro.Text = "ESTADO:"
+        '
+        'cboFiltroEstado
+        '
+        Me.cboFiltroEstado.BackColor = System.Drawing.Color.FromArgb(CType(CType(225, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(242, Byte), Integer))
+        Me.cboFiltroEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboFiltroEstado.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cboFiltroEstado.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cboFiltroEstado.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.cboFiltroEstado.Items.AddRange(New Object() {"Todos", "PENDIENTE", "ENVIADO", "RECIBIDO", "CON_NOVEDAD"})
+        Me.cboFiltroEstado.Location = New System.Drawing.Point(93, 12)
+        Me.cboFiltroEstado.Name = "cboFiltroEstado"
+        Me.cboFiltroEstado.Size = New System.Drawing.Size(197, 25)
+        Me.cboFiltroEstado.TabIndex = 1
+        '
+        'lblTotal
+        '
+        Me.lblTotal.AutoSize = True
+        Me.lblTotal.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.lblTotal.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(115, Byte), Integer))
+        Me.lblTotal.Location = New System.Drawing.Point(315, 16)
+        Me.lblTotal.Name = "lblTotal"
+        Me.lblTotal.Size = New System.Drawing.Size(0, 15)
+        Me.lblTotal.TabIndex = 2
+        '
+        'pnlGrid
+        '
+        Me.pnlGrid.BackColor = System.Drawing.Color.White
+        Me.pnlGrid.Controls.Add(Me.DgvGuias)
         Me.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlGrid.BackColor = System.Drawing.Color.FromArgb(18, 22, 30)
+        Me.pnlGrid.Location = New System.Drawing.Point(0, 120)
+        Me.pnlGrid.Name = "pnlGrid"
         Me.pnlGrid.Padding = New System.Windows.Forms.Padding(20, 12, 20, 0)
-
-        ' DgvGuias
-        Me.DgvGuias.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DgvGuias.ReadOnly = True
+        Me.pnlGrid.Size = New System.Drawing.Size(904, 357)
+        Me.pnlGrid.TabIndex = 0
+        '
+        'DgvGuias
+        '
         Me.DgvGuias.AllowUserToAddRows = False
         Me.DgvGuias.AllowUserToDeleteRows = False
         Me.DgvGuias.AllowUserToResizeRows = False
-        Me.DgvGuias.AutoGenerateColumns = False
-        Me.DgvGuias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DgvGuias.MultiSelect = False
-        Me.DgvGuias.RowHeadersVisible = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.DgvGuias.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.DgvGuias.BackgroundColor = System.Drawing.Color.White
         Me.DgvGuias.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.DgvGuias.BackgroundColor = System.Drawing.Color.FromArgb(22, 28, 40)
-        Me.DgvGuias.GridColor = System.Drawing.Color.FromArgb(35, 44, 62)
         Me.DgvGuias.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.DgvGuias.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        Me.DgvGuias.EnableHeadersVisualStyles = False
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(125, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DgvGuias.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DgvGuias.ColumnHeadersHeight = 36
-        Me.DgvGuias.RowTemplate.Height = 34
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(70, Byte), Integer))
+        DataGridViewCellStyle3.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(230, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(65, Byte), Integer))
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DgvGuias.DefaultCellStyle = DataGridViewCellStyle3
+        Me.DgvGuias.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DgvGuias.EnableHeadersVisualStyles = False
         Me.DgvGuias.Font = New System.Drawing.Font("Segoe UI", 9.5!)
-
-        Me.DgvGuias.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(30, 38, 55)
-        Me.DgvGuias.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(120, 160, 255)
-        Me.DgvGuias.ColumnHeadersDefaultCellStyle.Font = New System.Drawing.Font("Segoe UI", 8.5!, System.Drawing.FontStyle.Bold)
-        Me.DgvGuias.ColumnHeadersDefaultCellStyle.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-
-        Me.DgvGuias.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(22, 28, 40)
-        Me.DgvGuias.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(210, 220, 240)
-        Me.DgvGuias.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(60, 90, 200)
-        Me.DgvGuias.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White
-        Me.DgvGuias.DefaultCellStyle.Padding = New System.Windows.Forms.Padding(10, 0, 0, 0)
-        Me.DgvGuias.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(26, 33, 48)
-
-        ' Columns
-        Me.ColId.Name = "ColId"
-        Me.ColId.DataPropertyName = "idTransferencia"
-        Me.ColId.Visible = False
-
-        Me.ColNum.Name = "ColNum"
-        Me.ColNum.HeaderText = "N° GUÍA"
-        Me.ColNum.DataPropertyName = "NumTransferencia"
-        Me.ColNum.Width = 160
-
-        Me.ColFecha.Name = "ColFecha"
-        Me.ColFecha.HeaderText = "FECHA"
-        Me.ColFecha.DataPropertyName = "FechaEmision"
-        Me.ColFecha.Width = 130
-        Me.ColFecha.DefaultCellStyle.Format = "dd/MM/yyyy HH:mm"
-
-        Me.ColOrigen.Name = "ColOrigen"
-        Me.ColOrigen.HeaderText = "ORIGEN"
-        Me.ColOrigen.DataPropertyName = "Origen"
-        Me.ColOrigen.Width = 180
-
-        Me.ColDestino.Name = "ColDestino"
-        Me.ColDestino.HeaderText = "DESTINO"
-        Me.ColDestino.DataPropertyName = "Destino"
-        Me.ColDestino.Width = 180
-
-        Me.ColEstado.Name = "ColEstado"
-        Me.ColEstado.HeaderText = "ESTADO"
-        Me.ColEstado.DataPropertyName = "EstadoEnvio"
-        Me.ColEstado.Width = 110
-
-        Me.ColNovedad.Name = "ColNovedad"
-        Me.ColNovedad.HeaderText = "NOVEDAD"
-        Me.ColNovedad.DataPropertyName = "Novedad"
-        Me.ColNovedad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.ColNovedad.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(255, 140, 60)
-
-        Me.DgvGuias.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {
-            Me.ColId, Me.ColNum, Me.ColFecha, Me.ColOrigen,
-            Me.ColDestino, Me.ColEstado, Me.ColNovedad})
-
-        Me.pnlGrid.Controls.Add(Me.DgvGuias)
-
-        ' ── pnlFooter ─────────────────────────────────────────────────────────
-        Me.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.pnlFooter.Height = 64
-        Me.pnlFooter.BackColor = System.Drawing.Color.FromArgb(24, 30, 42)
-        Me.pnlFooter.Padding = New System.Windows.Forms.Padding(20, 12, 20, 12)
-
-        Me.btnActualizar.Text = "↻  Actualizar"
-        Me.btnActualizar.Size = New System.Drawing.Size(120, 38)
-        Me.btnActualizar.Location = New System.Drawing.Point(20, 13)
-        Me.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnActualizar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(60, 90, 140)
-        Me.btnActualizar.BackColor = System.Drawing.Color.FromArgb(30, 44, 80)
-        Me.btnActualizar.ForeColor = System.Drawing.Color.FromArgb(120, 160, 255)
-        Me.btnActualizar.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnActualizar.Cursor = System.Windows.Forms.Cursors.Hand
-
-        Me.btnReimprimir.Text = "🖨  Reimprimir"
-        Me.btnReimprimir.Size = New System.Drawing.Size(140, 38)
-        Me.btnReimprimir.Location = New System.Drawing.Point(152, 13)
-        Me.btnReimprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnReimprimir.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(60, 90, 140)
-        Me.btnReimprimir.BackColor = System.Drawing.Color.FromArgb(30, 44, 80)
-        Me.btnReimprimir.ForeColor = System.Drawing.Color.FromArgb(120, 160, 255)
-        Me.btnReimprimir.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnReimprimir.Cursor = System.Windows.Forms.Cursors.Hand
-
-        Me.btnCerrar.Text = "Cerrar"
-        Me.btnCerrar.Size = New System.Drawing.Size(110, 38)
-        Me.btnCerrar.Anchor = System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right
-        Me.btnCerrar.Location = New System.Drawing.Point(786, 13)
-        Me.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCerrar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(60, 75, 100)
-        Me.btnCerrar.BackColor = System.Drawing.Color.FromArgb(35, 44, 62)
-        Me.btnCerrar.ForeColor = System.Drawing.Color.FromArgb(160, 175, 200)
-        Me.btnCerrar.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand
-
+        Me.DgvGuias.GridColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(235, Byte), Integer))
+        Me.DgvGuias.Location = New System.Drawing.Point(20, 12)
+        Me.DgvGuias.MultiSelect = False
+        Me.DgvGuias.Name = "DgvGuias"
+        Me.DgvGuias.ReadOnly = True
+        Me.DgvGuias.RowHeadersVisible = False
+        Me.DgvGuias.RowTemplate.Height = 34
+        Me.DgvGuias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvGuias.Size = New System.Drawing.Size(864, 345)
+        Me.DgvGuias.TabIndex = 0
+        '
+        'pnlFooter
+        '
+        Me.pnlFooter.BackColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(245, Byte), Integer))
         Me.pnlFooter.Controls.Add(Me.btnActualizar)
         Me.pnlFooter.Controls.Add(Me.btnReimprimir)
         Me.pnlFooter.Controls.Add(Me.btnCerrar)
-
-        ' ── Form Controls ─────────────────────────────────────────────────────
+        Me.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.pnlFooter.Location = New System.Drawing.Point(0, 477)
+        Me.pnlFooter.Name = "pnlFooter"
+        Me.pnlFooter.Padding = New System.Windows.Forms.Padding(20, 12, 20, 12)
+        Me.pnlFooter.Size = New System.Drawing.Size(904, 64)
+        Me.pnlFooter.TabIndex = 3
+        '
+        'btnActualizar
+        '
+        Me.btnActualizar.BackColor = System.Drawing.Color.FromArgb(CType(CType(225, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(242, Byte), Integer))
+        Me.btnActualizar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnActualizar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(130, Byte), Integer))
+        Me.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnActualizar.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.btnActualizar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(100, Byte), Integer))
+        Me.btnActualizar.Location = New System.Drawing.Point(20, 13)
+        Me.btnActualizar.Name = "btnActualizar"
+        Me.btnActualizar.Size = New System.Drawing.Size(120, 38)
+        Me.btnActualizar.TabIndex = 0
+        Me.btnActualizar.Text = "↻  Actualizar"
+        Me.btnActualizar.UseVisualStyleBackColor = False
+        '
+        'btnReimprimir
+        '
+        Me.btnReimprimir.BackColor = System.Drawing.Color.FromArgb(CType(CType(225, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(242, Byte), Integer))
+        Me.btnReimprimir.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnReimprimir.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(130, Byte), Integer))
+        Me.btnReimprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnReimprimir.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.btnReimprimir.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(100, Byte), Integer))
+        Me.btnReimprimir.Location = New System.Drawing.Point(152, 13)
+        Me.btnReimprimir.Name = "btnReimprimir"
+        Me.btnReimprimir.Size = New System.Drawing.Size(140, 38)
+        Me.btnReimprimir.TabIndex = 1
+        Me.btnReimprimir.Text = "🖨  Reimprimir"
+        Me.btnReimprimir.UseVisualStyleBackColor = False
+        '
+        'btnCerrar
+        '
+        Me.btnCerrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCerrar.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(232, Byte), Integer))
+        Me.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnCerrar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(190, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(215, Byte), Integer))
+        Me.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCerrar.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnCerrar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(115, Byte), Integer))
+        Me.btnCerrar.Location = New System.Drawing.Point(1490, 13)
+        Me.btnCerrar.Name = "btnCerrar"
+        Me.btnCerrar.Size = New System.Drawing.Size(110, 38)
+        Me.btnCerrar.TabIndex = 2
+        Me.btnCerrar.Text = "Cerrar"
+        Me.btnCerrar.UseVisualStyleBackColor = False
+        '
+        'frmListadoGuiasRemision
+        '
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.ClientSize = New System.Drawing.Size(904, 541)
         Me.Controls.Add(Me.pnlGrid)
         Me.Controls.Add(Me.pnlFiltros)
         Me.Controls.Add(Me.pnlHeader)
         Me.Controls.Add(Me.pnlFooter)
-
+        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
+        Me.MinimumSize = New System.Drawing.Size(920, 580)
+        Me.Name = "frmListadoGuiasRemision"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.Text = "Listado de Guías de Remisión"
         Me.pnlHeader.ResumeLayout(False)
+        Me.pnlHeader.PerformLayout()
         Me.pnlFiltros.ResumeLayout(False)
+        Me.pnlFiltros.PerformLayout()
         Me.pnlGrid.ResumeLayout(False)
         CType(Me.DgvGuias, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlFooter.ResumeLayout(False)
         Me.ResumeLayout(False)
+
     End Sub
 
     Friend WithEvents pnlHeader As System.Windows.Forms.Panel

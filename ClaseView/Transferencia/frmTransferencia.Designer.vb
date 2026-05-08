@@ -1,5 +1,4 @@
-﻿
-<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmTransferencia
     Inherits System.Windows.Forms.Form
 
@@ -13,9 +12,9 @@ Partial Class frmTransferencia
     End Sub
 
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.pnlHeader = New System.Windows.Forms.Panel()
         Me.lblTitulo = New System.Windows.Forms.Label()
         Me.lblSubtitulo = New System.Windows.Forms.Label()
@@ -48,7 +47,7 @@ Partial Class frmTransferencia
         '
         'pnlHeader
         '
-        Me.pnlHeader.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.pnlHeader.BackColor = System.Drawing.Color.White
         Me.pnlHeader.Controls.Add(Me.lblTitulo)
         Me.pnlHeader.Controls.Add(Me.lblSubtitulo)
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
@@ -62,7 +61,7 @@ Partial Class frmTransferencia
         '
         Me.lblTitulo.AutoSize = True
         Me.lblTitulo.Font = New System.Drawing.Font("Segoe UI Semibold", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(115, Byte), Integer))
         Me.lblTitulo.Location = New System.Drawing.Point(20, 8)
         Me.lblTitulo.Name = "lblTitulo"
         Me.lblTitulo.Size = New System.Drawing.Size(303, 25)
@@ -73,7 +72,7 @@ Partial Class frmTransferencia
         '
         Me.lblSubtitulo.AutoSize = True
         Me.lblSubtitulo.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.lblSubtitulo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(110, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.lblSubtitulo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(120, Byte), Integer), CType(CType(135, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.lblSubtitulo.Location = New System.Drawing.Point(22, 42)
         Me.lblSubtitulo.Name = "lblSubtitulo"
         Me.lblSubtitulo.Size = New System.Drawing.Size(285, 19)
@@ -82,7 +81,7 @@ Partial Class frmTransferencia
         '
         'pnlBody
         '
-        Me.pnlBody.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.pnlBody.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.pnlBody.Controls.Add(Me.pnlGridOuter)
         Me.pnlBody.Controls.Add(Me.pnlRuta)
         Me.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill
@@ -94,7 +93,7 @@ Partial Class frmTransferencia
         '
         'pnlGridOuter
         '
-        Me.pnlGridOuter.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.pnlGridOuter.BackColor = System.Drawing.Color.White
         Me.pnlGridOuter.Controls.Add(Me.DgvDetalle)
         Me.pnlGridOuter.Controls.Add(Me.lblConteo)
         Me.pnlGridOuter.Controls.Add(Me.lblGridTitle)
@@ -110,35 +109,35 @@ Partial Class frmTransferencia
         Me.DgvDetalle.AllowUserToAddRows = False
         Me.DgvDetalle.AllowUserToDeleteRows = False
         Me.DgvDetalle.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(33, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.DgvDetalle.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.DgvDetalle.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.DgvDetalle.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        Me.DgvDetalle.BackgroundColor = System.Drawing.Color.White
         Me.DgvDetalle.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DgvDetalle.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.DgvDetalle.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(38, Byte), Integer), CType(CType(55, Byte), Integer))
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI", 9.5!)
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
-        DataGridViewCellStyle2.Padding = New System.Windows.Forms.Padding(12, 0, 0, 0)
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DgvDetalle.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(125, Byte), Integer))
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle5.Padding = New System.Windows.Forms.Padding(12, 0, 0, 0)
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DgvDetalle.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.DgvDetalle.ColumnHeadersHeight = 38
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(40, Byte), Integer))
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 9.5!)
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(210, Byte), Integer), CType(CType(220, Byte), Integer), CType(CType(240, Byte), Integer))
-        DataGridViewCellStyle3.Padding = New System.Windows.Forms.Padding(12, 0, 0, 0)
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(120, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DgvDetalle.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(70, Byte), Integer))
+        DataGridViewCellStyle6.Padding = New System.Windows.Forms.Padding(12, 0, 0, 0)
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(237, Byte), Integer), CType(CType(230, Byte), Integer))
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(80, Byte), Integer), CType(CType(65, Byte), Integer))
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DgvDetalle.DefaultCellStyle = DataGridViewCellStyle6
         Me.DgvDetalle.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DgvDetalle.EnableHeadersVisualStyles = False
         Me.DgvDetalle.Font = New System.Drawing.Font("Segoe UI", 9.5!)
-        Me.DgvDetalle.GridColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(44, Byte), Integer), CType(CType(62, Byte), Integer))
+        Me.DgvDetalle.GridColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(235, Byte), Integer))
         Me.DgvDetalle.Location = New System.Drawing.Point(0, 37)
         Me.DgvDetalle.MultiSelect = False
         Me.DgvDetalle.Name = "DgvDetalle"
@@ -154,7 +153,7 @@ Partial Class frmTransferencia
         Me.lblConteo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblConteo.AutoSize = True
         Me.lblConteo.Font = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.lblConteo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.lblConteo.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(115, Byte), Integer))
         Me.lblConteo.Location = New System.Drawing.Point(791, 8)
         Me.lblConteo.Name = "lblConteo"
         Me.lblConteo.Size = New System.Drawing.Size(69, 13)
@@ -166,7 +165,7 @@ Partial Class frmTransferencia
         Me.lblGridTitle.AutoSize = True
         Me.lblGridTitle.Dock = System.Windows.Forms.DockStyle.Top
         Me.lblGridTitle.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.lblGridTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(150, Byte), Integer))
+        Me.lblGridTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(120, Byte), Integer))
         Me.lblGridTitle.Location = New System.Drawing.Point(0, 12)
         Me.lblGridTitle.Name = "lblGridTitle"
         Me.lblGridTitle.Padding = New System.Windows.Forms.Padding(0, 0, 0, 6)
@@ -176,7 +175,7 @@ Partial Class frmTransferencia
         '
         'pnlRuta
         '
-        Me.pnlRuta.BackColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(32, Byte), Integer), CType(CType(46, Byte), Integer))
+        Me.pnlRuta.BackColor = System.Drawing.Color.White
         Me.pnlRuta.Controls.Add(Me.lblDesde)
         Me.pnlRuta.Controls.Add(Me.cboOrigen)
         Me.pnlRuta.Controls.Add(Me.lblFlecha)
@@ -194,7 +193,7 @@ Partial Class frmTransferencia
         '
         Me.lblDesde.AutoSize = True
         Me.lblDesde.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.lblDesde.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(150, Byte), Integer))
+        Me.lblDesde.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(130, Byte), Integer))
         Me.lblDesde.Location = New System.Drawing.Point(16, 10)
         Me.lblDesde.Name = "lblDesde"
         Me.lblDesde.Size = New System.Drawing.Size(44, 15)
@@ -203,11 +202,11 @@ Partial Class frmTransferencia
         '
         'cboOrigen
         '
-        Me.cboOrigen.BackColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(58, Byte), Integer))
+        Me.cboOrigen.BackColor = System.Drawing.Color.FromArgb(CType(CType(225, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(242, Byte), Integer))
         Me.cboOrigen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboOrigen.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboOrigen.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.cboOrigen.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.cboOrigen.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(70, Byte), Integer))
         Me.cboOrigen.Location = New System.Drawing.Point(16, 37)
         Me.cboOrigen.Name = "cboOrigen"
         Me.cboOrigen.Size = New System.Drawing.Size(280, 25)
@@ -217,7 +216,7 @@ Partial Class frmTransferencia
         '
         Me.lblFlecha.AutoSize = True
         Me.lblFlecha.Font = New System.Drawing.Font("Segoe UI", 18.0!)
-        Me.lblFlecha.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(160, Byte), Integer))
+        Me.lblFlecha.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(130, Byte), Integer))
         Me.lblFlecha.Location = New System.Drawing.Point(331, 31)
         Me.lblFlecha.Name = "lblFlecha"
         Me.lblFlecha.Size = New System.Drawing.Size(38, 32)
@@ -228,7 +227,7 @@ Partial Class frmTransferencia
         '
         Me.lblHacia.AutoSize = True
         Me.lblHacia.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.lblHacia.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(150, Byte), Integer))
+        Me.lblHacia.ForeColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(115, Byte), Integer), CType(CType(130, Byte), Integer))
         Me.lblHacia.Location = New System.Drawing.Point(417, 10)
         Me.lblHacia.Name = "lblHacia"
         Me.lblHacia.Size = New System.Drawing.Size(43, 15)
@@ -237,11 +236,11 @@ Partial Class frmTransferencia
         '
         'cboDestino
         '
-        Me.cboDestino.BackColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(58, Byte), Integer))
+        Me.cboDestino.BackColor = System.Drawing.Color.FromArgb(CType(CType(225, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(242, Byte), Integer))
         Me.cboDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboDestino.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cboDestino.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.cboDestino.ForeColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.cboDestino.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(70, Byte), Integer))
         Me.cboDestino.Location = New System.Drawing.Point(417, 37)
         Me.cboDestino.Name = "cboDestino"
         Me.cboDestino.Size = New System.Drawing.Size(376, 25)
@@ -249,7 +248,7 @@ Partial Class frmTransferencia
         '
         'pnlFooter
         '
-        Me.pnlFooter.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.pnlFooter.BackColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(245, Byte), Integer))
         Me.pnlFooter.Controls.Add(Me.btnCancelar)
         Me.pnlFooter.Controls.Add(Me.btnGuias)
         Me.pnlFooter.Controls.Add(Me.btnConfirmar)
@@ -264,12 +263,12 @@ Partial Class frmTransferencia
         'btnCancelar
         '
         Me.btnCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCancelar.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(44, Byte), Integer), CType(CType(62, Byte), Integer))
+        Me.btnCancelar.BackColor = System.Drawing.Color.FromArgb(CType(CType(220, Byte), Integer), CType(CType(225, Byte), Integer), CType(CType(232, Byte), Integer))
         Me.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(100, Byte), Integer))
+        Me.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(190, Byte), Integer), CType(CType(200, Byte), Integer), CType(CType(215, Byte), Integer))
         Me.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancelar.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(160, Byte), Integer), CType(CType(175, Byte), Integer), CType(CType(200, Byte), Integer))
+        Me.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(80, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(115, Byte), Integer))
         Me.btnCancelar.Location = New System.Drawing.Point(503, 14)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(110, 38)
@@ -280,12 +279,12 @@ Partial Class frmTransferencia
         'btnGuias
         '
         Me.btnGuias.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnGuias.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(50, Byte), Integer))
+        Me.btnGuias.BackColor = System.Drawing.Color.FromArgb(CType(CType(225, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(242, Byte), Integer))
         Me.btnGuias.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnGuias.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(120, Byte), Integer))
+        Me.btnGuias.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(130, Byte), Integer))
         Me.btnGuias.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnGuias.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.btnGuias.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(210, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.btnGuias.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(100, Byte), Integer))
         Me.btnGuias.Location = New System.Drawing.Point(625, 14)
         Me.btnGuias.Name = "btnGuias"
         Me.btnGuias.Size = New System.Drawing.Size(172, 38)
@@ -296,7 +295,7 @@ Partial Class frmTransferencia
         'btnConfirmar
         '
         Me.btnConfirmar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(140, Byte), Integer))
+        Me.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(130, Byte), Integer))
         Me.btnConfirmar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnConfirmar.FlatAppearance.BorderSize = 0
         Me.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -311,7 +310,7 @@ Partial Class frmTransferencia
         '
         'pnlLoading
         '
-        Me.pnlLoading.BackColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(10, Byte), Integer), CType(CType(14, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.pnlLoading.BackColor = System.Drawing.Color.FromArgb(CType(CType(210, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(248, Byte), Integer))
         Me.pnlLoading.Controls.Add(Me.lblLoadingMsg)
         Me.pnlLoading.Controls.Add(Me.progressBar)
         Me.pnlLoading.Location = New System.Drawing.Point(0, 0)
@@ -323,7 +322,7 @@ Partial Class frmTransferencia
         'lblLoadingMsg
         '
         Me.lblLoadingMsg.Font = New System.Drawing.Font("Segoe UI", 13.0!, System.Drawing.FontStyle.Bold)
-        Me.lblLoadingMsg.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(210, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.lblLoadingMsg.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(105, Byte), Integer))
         Me.lblLoadingMsg.Location = New System.Drawing.Point(210, 270)
         Me.lblLoadingMsg.Name = "lblLoadingMsg"
         Me.lblLoadingMsg.Size = New System.Drawing.Size(400, 34)
@@ -342,7 +341,7 @@ Partial Class frmTransferencia
         '
         'frmTransferencia
         '
-        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(22, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1031, 632)
         Me.Controls.Add(Me.pnlBody)
         Me.Controls.Add(Me.pnlHeader)

@@ -7,7 +7,7 @@ Public Class frmListadoGuiasRemision
     End Sub
 
 
-    Private Sub frmListadoGuiasRemision_Load(sender As Object, e As EventArgs)
+    Private Sub frmListadoGuiasRemision_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargarGuias()
     End Sub
 
@@ -28,6 +28,13 @@ Public Class frmListadoGuiasRemision
             Using cmd As New CADsisVenta.Funtions.SqlComandExec
                 Dim dt As DataTable = cmd.RetornaTabla(sql)
                 DgvGuias.DataSource = dt
+
+                ' ── Ancho automático por contenido ──────────────────────────
+                DgvGuias.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+
+                ' Opcional: que la última columna ocupe el espacio restante
+                DgvGuias.Columns(DgvGuias.Columns.Count - 1).AutoSizeMode =
+                DataGridViewAutoSizeColumnMode.Fill
             End Using
         Catch ex As Exception
             MsgBox("Error al cargar guías: " & ex.Message, MsgBoxStyle.Critical, "Error")
@@ -49,4 +56,6 @@ Public Class frmListadoGuiasRemision
 
         ImprimirGuiaRemision(idTransf, numTransf, nomOrigen, nomDestino)
     End Sub
+
+
 End Class

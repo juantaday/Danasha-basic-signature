@@ -37,6 +37,7 @@
             public int idBodega;
             public string codTerminal;
             public string Dominio;
+            public string nombreBodega;
             public int idCajaStado;
             public string CodPntoEmision;
         }

@@ -68,6 +68,7 @@ Public Class frmTransferencia
 
         ' Manejar el resultado en el hilo UI
         If result.Exito Then
+
             ' Verificar impresión de guía (igual que el código original)
             If myOptnsPrint.idTipoDocumento <> TipoDocumento.GuiaDeRemision Then
                 myOptnsPrint.NamePrint = String.Empty
@@ -76,15 +77,16 @@ Public Class frmTransferencia
 
             If (String.IsNullOrEmpty(myOptnsPrint.NamePrint)) Then
                 Interaction.MsgBox("La impresora no esta configurado..", MsgBoxStyle.Exclamation, "Alerta")
-                Return
+            Else
+                ImprimirGuiaRemision(result.IdTransferencia, result.NumeroTransferencia, nomOrigen, nomDestino)
             End If
-
-            ImprimirGuiaRemision(result.IdTransferencia, result.NumeroTransferencia, nomOrigen, nomDestino)
 
             MsgBox("✔ Transferencia registrada." & vbNewLine & "Número: " & result.NumeroTransferencia,
                    MsgBoxStyle.Information, "Éxito")
+
             DialogResult = DialogResult.OK
             Close()
+
         Else
             MsgBox("Error al procesar: " & result.MensajeError, MsgBoxStyle.Critical, "Error")
         End If
