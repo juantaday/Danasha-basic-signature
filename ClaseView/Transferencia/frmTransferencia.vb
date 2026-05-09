@@ -1,15 +1,13 @@
 Imports CADsisVenta.DataSetComprasTableAdapters
 Imports CADsisVenta.Helpers
-Imports SupabaseDataAccess.Repositories
 Imports CADsisVenta.Helpers.FInicio
 Imports Domain.Logica
-Imports Domain.Helpers.Utilities
-Imports System.Threading.Tasks
-Imports System.Runtime.Remoting.Messaging
+Imports SupabaseDataAccess.Repositories
 
 Public Class frmTransferencia
 
     Private ReadOnly _detalle As List(Of DetalleTransferenciaItem)
+    Private _lineaProducto As Integer
 
     Public Sub New(detalle As List(Of DetalleTransferenciaItem))
         InitializeComponent()
@@ -57,11 +55,11 @@ Public Class frmTransferencia
 
         ' Capturar datos necesarios antes del hilo secundario
         Dim detalleCopy As List(Of DetalleTransferenciaItem) = _detalle.ToList()
-        Dim idUsuario As Integer = UsuarioActivo.IdUsuario
+        Dim codUser As String = UsuarioActivo.codUser
 
         ' Ejecutar la lógica pesada en segundo plano
         Dim result As TransferResult = Await Task.Run(Function() ProcesarTransferenciaEnSegundoPlano(
-            idOrigen, idDestino, nomOrigen, nomDestino, detalleCopy, idUsuario))
+            idOrigen, idDestino, nomOrigen, nomDestino, detalleCopy, codUser))
 
         ' Ocultar overlay siempre, incluso en error
         OcultarLoading()
@@ -88,7 +86,16 @@ Public Class frmTransferencia
             Close()
 
         Else
-            MsgBox("Error al procesar: " & result.MensajeError, MsgBoxStyle.Critical, "Error")
+            Dim productoSinStock = detalleCopy.Where(Function(x) x.idProducto = _lineaProducto).FirstOrDefault()
+
+
+            If (result.MensajeError.Contains("Stock insuficiente:")) Then
+                Interaction.MsgBox($"No tiene suficiente stock del producto: {productoSinStock.NombreProducto}", MsgBoxStyle.Exclamation, "Falta Stock")
+            Else
+                MsgBox("Error al procesar: " & result.MensajeError, MsgBoxStyle.Critical, "Error")
+            End If
+
+
         End If
     End Sub
 
@@ -98,7 +105,7 @@ Public Class frmTransferencia
     Private Function ProcesarTransferenciaEnSegundoPlano(idOrigen As Integer, idDestino As Integer,
                                                          nomOrigen As String, nomDestino As String,
                                                          detalle As List(Of DetalleTransferenciaItem),
-                                                         idUsuario As Integer) As TransferResult
+                                                         codUser As String) As TransferResult
         Try
             ' 1. Obtener si destino es remoto (consulta rápida)
             Dim tap As New BodegasTableAdapter
@@ -107,7 +114,7 @@ Public Class frmTransferencia
 
             ' 2. Generar número y crear encabezado
             Dim numTransf As String = GenerarNumTransferencia()
-            Dim idTransf As Integer = InsertarEncabezado(numTransf, idOrigen, idDestino, idUsuario)
+            Dim idTransf As Integer = InsertarEncabezado(numTransf, idOrigen, idDestino, codUser)
 
             ' 3. Insertar detalle
             InsertarDetalle(idTransf, detalle)
@@ -179,6 +186,13 @@ Public Class frmTransferencia
 
     Private Sub MostrarDetalle()
         DgvDetalle.DataSource = _detalle
+
+        Dim col = DgvDetalle.Columns("NombreProducto")
+        If Not (col Is Nothing) Then
+            col.Width = 350
+        End If
+
+
         lblConteo.Text = _detalle.Count & " producto(s)"
     End Sub
 
@@ -206,28 +220,40 @@ Public Class frmTransferencia
         End Using
     End Function
 
-    Private Function InsertarEncabezado(num As String, origen As Integer, destino As Integer, idUsuario As Integer) As Integer
+    Private Function InsertarEncabezado(num As String, origen As Integer, destino As Integer, codUser As String) As Integer
         Dim sql As String =
             "INSERT INTO TransferenciaEncabezado " &
-            "(NumTransferencia,idBodegaOrigen,idBodegaDestino,idUsuario,EstadoEnvio) " &
+            "(NumTransferencia,idBodegaOrigen,idBodegaDestino,codUser,EstadoEnvio) " &
             "VALUES (@num,@origen,@destino,@usr,'PENDIENTE'); SELECT SCOPE_IDENTITY();"
         Using cmd As New CADsisVenta.Funtions.SqlComandExec
             Return CInt(cmd.RetornaEscalarConParams(sql,
                 {"@num", "@origen", "@destino", "@usr"},
-                {num, origen, destino, idUsuario}))
+                {num, origen, destino, codUser}))
         End Using
     End Function
 
     Private Sub InsertarDetalle(idTransf As Integer, detalle As List(Of DetalleTransferenciaItem))
         For Each item In detalle
+
+            ' captura de Id para log de error
+            _lineaProducto = item.idProducto
+
             Dim sql As String =
-                "INSERT INTO TransferenciaDetalle " &
-                "(idTransferencia,idProducto,CantidadEnviada,Unidad) " &
-                "VALUES (@idT,@idP,@cant,@unidad)"
+                $"If Exists(select  1
+                     From ProductosStock
+                     Where idProducto = @idP And stock >= @cant) begin 
+                         INSERT INTO TransferenciaDetalle 
+                        (idTransferencia,idProducto,CantidadEnviada,Unidad) 
+                        VALUES(@idT,@idP,@cant,@unidad);
+                End
+                Else begin 
+                     Declare @err_message nvarchar(max) = 'Stock insuficiente: ProductoId: ' + cast(@idP as varchar(255))
+                     RAISERROR (@err_message, 11,1)
+                End"
             Using cmd As New CADsisVenta.Funtions.SqlComandExec
                 cmd.EjecutarConParams(sql,
                     {"@idT", "@idP", "@cant", "@unidad"},
-                    {idTransf, item.idProducto, item.Cantidad, item.Unidad})
+                    {idTransf, _lineaProducto, item.Cantidad, item.Unidad})
             End Using
         Next
     End Sub
@@ -240,7 +266,7 @@ Public Class frmTransferencia
 
     Private Sub ActualizarSupabaseId(idTransf As Integer, supabaseId As String)
         Dim sql As String =
-            "UPDATE TransferenciaEncabezado SET SupabaseId=@sid,EstadoEnvio='ENVIADO' " &
+            "UPDATE TransferenciaEncabezado Set SupabaseId=@sid,EstadoEnvio='ENVIADO' " &
             "WHERE idTransferencia=@id"
         Using cmd As New CADsisVenta.Funtions.SqlComandExec
             cmd.EjecutarConParams(sql, {"@sid", "@id"}, {supabaseId, idTransf})
@@ -260,6 +286,7 @@ Public Class frmTransferencia
         Public Property Exito As Boolean
         Public Property IdTransferencia As Integer
         Public Property NumeroTransferencia As String
+        Public Property LineaProducto As Integer
         Public Property MensajeError As String
     End Class
 

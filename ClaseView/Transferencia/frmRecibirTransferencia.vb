@@ -2,6 +2,7 @@ Imports BrightIdeasSoftware
 Imports CADsisVenta.Helpers.FInicio
 Imports SupabaseDataAccess.Models
 Imports SupabaseDataAccess.Repositories
+Imports Microsoft.VisualBasic
 
 
 Public Class frmRecibirTransferencia
@@ -10,11 +11,13 @@ Public Class frmRecibirTransferencia
     Private _transferencias As List(Of Transferencia)
     Private _transferenciaSeleccionada As Transferencia
     Private _productosNuevosCount As Integer = 0
+    Private _listCabecera As List(Of TransferenciaItem) = New List(Of TransferenciaItem)
     Private _items As List(Of DetalleTransfItem)
     Private _colorEstato As Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(115, Byte), Integer))
 
     ' Transferencias que quedaron en estado GENERADO (Supabase caído)
     Private _pendientesEnvio As New List(Of PendienteEnvio)
+    Private _listMotivos As List(Of MotivoItem)
 
     Public Sub New()
         InitializeComponent()
@@ -30,6 +33,7 @@ Public Class frmRecibirTransferencia
     End Class
 
     Private Class TransferenciaItem
+        Public Property Id As Guid
         Public Property Accion As String
         Public Property Numero As String
         Public Property Origen As String
@@ -47,7 +51,6 @@ Public Class frmRecibirTransferencia
         Me.colAccion.Renderer = renderButton
         ' Checkbox vinculado a la propiedad Seleccionado
         OlvDetalle.CheckedAspectName = "Seleccionado"
-        OlvDetalle.CheckBoxes = True
 
         ' Permitir edición inline en ColRecibido con Enter/doble clic
         OlvDetalle.CellEditActivation = ObjectListView.CellEditActivateMode.DoubleClick
@@ -72,11 +75,12 @@ Public Class frmRecibirTransferencia
 
         AddHandler Me.OlvDetalle.HeaderCheckBoxChanging,
             Sub(sender As Object, e As HeaderCheckBoxChangingEventArgs)
-                If _items Is Nothing OrElse _actualizandoHeader OrElse (e.NewCheckState = CheckState.Unchecked) Then Return
+                If _items Is Nothing OrElse _actualizandoHeader Then Return
 
                 _actualizandoHeader = True
                 Try
-                    _items.ForEach(Sub(i) i.Seleccionado = (e.NewCheckState = CheckState.Checked))
+                    Dim isChecked = (e.NewCheckState = CheckState.Checked)
+                    _items.ForEach(Sub(i) i.Seleccionado = isChecked)
                     OlvDetalle.SetObjects(_items)
                 Finally
                     _actualizandoHeader = False
@@ -102,14 +106,31 @@ Public Class frmRecibirTransferencia
                         OlvDetalle.RefreshObject(item)
 
                     Else
-
+                        Dim oldVal = item.CantRecibida
                         item.CantRecibida = decVal
+
+                        '  si las cantidades son concordantes, no se requiere motivo ni estado
+                        If (item.CantRecibida = item.CantEnviada) Then
+                            item.IdMotivo = Nothing
+                            item.EstadoItem = Nothing
+                            Return
+                        End If
+
+                        Using motivoForm As New frmMotivo(_listMotivos)
+                            motivoForm.Configurar(item.Producto, item.CantEnviada, item.CantRecibida, False)
+                            If motivoForm.ShowDialog() = DialogResult.OK Then
+                                item.IdMotivo = motivoForm.MotivoSeleccionadoId
+                                item.EstadoItem = If(item.CantRecibida < item.CantEnviada, "PARCIAL", "RECIBIDO")
+                            Else
+                                ' Si el usuario cancela el motivo, revertir al valor anterior
+                                item.CantRecibida = oldVal
+                                OlvDetalle.RefreshObject(item)
+                            End If
+                        End Using
 
                     End If
 
                 End Sub
-
-
     End Sub
 
     ' ── Load ────────────────────────────────────────────────────────────────────
@@ -118,7 +139,7 @@ Public Class frmRecibirTransferencia
                          "   |   Bodega ID: " & TerminalActivo.idBodega &
                          "   |   Nombre: " & TerminalActivo.nombreBodega
         CargarTransferenciasPendientes()
-        ActualizarBotonEnviar()
+        'ActualizarBotonEnviar()
     End Sub
 
     ' ── Botones básicos ──────────────────────────────────────────────────────────
@@ -138,10 +159,17 @@ Public Class frmRecibirTransferencia
             ' Ejecutar la lógica pesada en segundo plano
             _transferencias = Await Task.Run(Function() TransferenciaRepository.ObtenerPendientesComoObjetos(TerminalActivo.idBodega))
 
-            Dim lista As New List(Of TransferenciaItem)
+            If (_listCabecera Is Nothing) Then
+                _listCabecera = New List(Of TransferenciaItem)
+            Else
+                _listCabecera.Clear()
+            End If
+
+
             For Each t As Transferencia In _transferencias
                 Dim fecha As String = CDate(t.FechaEmision.ToString()).ToString("dd/MM/yyyy HH:mm")
-                lista.Add(New TransferenciaItem With {
+                _listCabecera.Add(New TransferenciaItem With {
+                    .Id = t.Id,
                     .Accion = "⋯",
                     .Numero = t.NumTransferencia,
                     .Origen = t.BodegaOrigenNom,
@@ -150,8 +178,8 @@ Public Class frmRecibirTransferencia
                 })
             Next
 
-            OlvTransferencias.SetObjects(lista)
-            lblEstado.Text = _transferencias.Count & " transferencia(s) pendiente(s)"
+            OlvTransferencias.SetObjects(_listCabecera)
+            lblEstado.Text = _listCabecera.Count & " transferencia(s) pendiente(s)"
 
         Catch ex As Exception
             lblEstado.Text = "⚠  Sin conexión a Supabase"
@@ -205,7 +233,7 @@ Public Class frmRecibirTransferencia
             If esNuevo Then _productosNuevosCount += 1
 
             _items.Add(New DetalleTransfItem With {
-                .Seleccionado = False,
+                .Seleccionado = True,
                 .IdProducto = idProd,
                 .Producto = item.Nombre,
                 .CantEnviada = item.CantidadEnviada,
@@ -244,27 +272,95 @@ Public Class frmRecibirTransferencia
             Exit Sub
         End If
 
-        Dim motivo As String = Interaction.InputBox(
-            "Ingrese el motivo del rechazo:",
-            "Rechazar transferencia")
-
-        If String.IsNullOrWhiteSpace(motivo) Then Exit Sub
-
-        Dim supabaseId As String = _transferenciaSeleccionada.Id.ToString()
-        Dim estado As String = "CON_NOVEDAD"
-        Dim novedad As String = "RECHAZADO: " & motivo.Trim()
-
-        '  Actualizar en supabase 
-        Dim result As Boolean = Await Task.Run(Function() TransferenciaRepository.ActualizarEstado(supabaseId, estado, novedad))
-        If Not result Then
-            MsgBox("No se pudo enviar el rechazo a Supabase.",
-                   MsgBoxStyle.Exclamation, "Sin conexión")
+        If String.IsNullOrWhiteSpace(txtNovedad.Text) Then
+            MsgBox("Debe ingresar una descripción general del rechazo.",
+                   MsgBoxStyle.Exclamation, "Observación requerida")
+            txtNovedad.Focus()
             Exit Sub
         End If
 
-        RegistrarRecepcionLocal(supabaseId, estado, novedad)
-        MsgBox("Transferencia rechazada y notificada.", MsgBoxStyle.Information, "Listo")
-        CargarTransferenciasPendientes()
+        Dim motivo As String = txtNovedad.Text.Trim()
+
+        If String.IsNullOrWhiteSpace(motivo) Then Exit Sub
+
+        If _items Is Nothing OrElse _items.Count = 0 Then
+            MsgBox("No hay detalles para registrar el rechazo.", MsgBoxStyle.Exclamation, "Sin datos")
+            Exit Sub
+        End If
+
+        Dim supabaseId As String = _transferenciaSeleccionada.Id.ToString()
+        Dim estado As String = "RECHAZADO"
+        Dim novedad As String = "RECHAZADO: " & txtNovedad.Text.Trim()
+
+
+        MostrarLoading("Registrando rechazo...")
+
+
+
+        Try
+            Dim resultDbLocal As Boolean = Await Task.Run(Function()
+                                                              Using conn As New SqlClient.SqlConnection(
+                                    DomainSQLite.Setting.Configuration.ConectionString)
+                                                                  conn.Open()
+                                                                  Using tran As SqlClient.SqlTransaction = conn.BeginTransaction()
+                                                                      Try
+                                                                          Dim idTransfLocal As Integer =
+                                               InsertarEncabezadoTran(conn, tran, _transferenciaSeleccionada, novedad, estado)
+
+                                                                          For Each item As DetalleTransfItem In _items
+                                                                              Dim itemDb As New DetalleTransfItem With {
+                                                   .IdProducto = item.IdProducto,
+                                                   .Producto = item.Producto,
+                                                   .Unidad = item.Unidad,
+                                                   .CantEnviada = item.CantEnviada,
+                                                   .CantRecibida = 0D,
+                                                   .Seleccionado = False,
+                                                   .EsNuevo = item.EsNuevo
+                                               }
+                                                                              InsertarDetalleTran(conn, tran, idTransfLocal, itemDb, "RECHAZADO")
+                                                                          Next
+
+                                                                          ActualizarEncabezadoTran(conn, tran, idTransfLocal, estado, novedad)
+                                                                          tran.Commit()
+                                                                          Return True
+                                                                      Catch
+                                                                          tran.Rollback()
+                                                                          Throw
+                                                                      End Try
+                                                                  End Using
+                                                              End Using
+                                                          End Function)
+
+            If (resultDbLocal) Then
+                _listCabecera.RemoveAll(Function(x) x.Id = _transferenciaSeleccionada.Id)
+                OlvTransferencias.SetObjects(_listCabecera)
+                lblEstado.Text = _listCabecera.Count & " transferencia(s) pendiente(s)"
+                txtNovedad.Clear()
+            End If
+
+
+            MostrarLoading("Notificando a Supabase...")
+
+            Dim result As Boolean = Await Task.Run(Function()
+                                                       Return TransferenciaRepository.ActualizarEstado(supabaseId, estado, novedad)
+                                                   End Function)
+            If Not result Then
+                MsgBox("No se pudo enviar el rechazo a Supabase.",
+                       MsgBoxStyle.Exclamation, "Sin conexión")
+                Exit Sub
+            End If
+
+            MsgBox("Transferencia rechazada y registrada.", MsgBoxStyle.Information, "Listo")
+
+
+        Catch ex As Exception
+            MsgBox("Error al registrar el rechazo." & vbNewLine & ex.Message,
+                   MsgBoxStyle.Critical, "Error")
+        Finally
+            CargarTransferenciasPendientes()
+            OcultarLoading()
+        End Try
+
     End Sub
 
 
@@ -364,108 +460,128 @@ Public Class frmRecibirTransferencia
 
     ' ── ACEPTAR recepción ────────────────────────────────────────────────────────
     Private Async Sub btnAceptar_Click(sender As Object, e As EventArgs) Handles btnAceptar.Click
+
         If _transferenciaSeleccionada Is Nothing Then
             MsgBox("Seleccione una transferencia.", MsgBoxStyle.Exclamation, "Requerido")
             Exit Sub
         End If
 
-        Dim avisoNuevos As String = ""
-        If _productosNuevosCount > 0 Then
-            avisoNuevos = vbNewLine & vbNewLine &
-                          "✦ Se registrarán " & _productosNuevosCount &
-                          " producto(s) nuevo(s) en la base de datos local."
+        ' ── Validar observación general si hay discrepancias ─────────────────────
+        Dim hayDiscrepancia = _items IsNot Nothing AndAlso
+                          _items.Any(Function(i)
+                                         Return (Not i.Seleccionado) OrElse
+                                     (i.Seleccionado AndAlso i.CantRecibida < i.CantEnviada)
+                                     End Function)
+
+        If hayDiscrepancia AndAlso String.IsNullOrWhiteSpace(txtNovedad.Text) Then
+            MsgBox("Hay discrepancias en la recepción." & vbNewLine &
+               "Debe ingresar una observación general.",
+               MsgBoxStyle.Exclamation, "Observación requerida")
+            txtNovedad.Focus()
+            Return
         End If
 
-        Dim confirm As MsgBoxResult = MsgBox(
-            "¿Confirma la recepción de los productos marcados?" & vbNewLine &
-            "Los NO marcados no se acreditarán al inventario." & avisoNuevos,
-            MsgBoxStyle.YesNo Or MsgBoxStyle.Question, "Confirmar recepción")
+        Dim confirm = MsgBox(
+        "¿Confirma la recepción?" & vbNewLine &
+        "Los ítems desmarcados no se acreditarán al inventario.",
+        MsgBoxStyle.YesNo Or MsgBoxStyle.Question, "Confirmar")
         If confirm <> MsgBoxResult.Yes Then Exit Sub
 
         MostrarLoading("Procesando recepción...")
 
+        Dim supabaseId As String = _transferenciaSeleccionada.Id.ToString()
+        Dim novedad As String = txtNovedad.Text.Trim()
+        Dim nuevosReg As Integer = 0
+        Dim estado As String = ""
+
         Try
-            Dim supabaseId As String = _transferenciaSeleccionada.Id.ToString()
-            Dim novedad As String = txtNovedad.Text.Trim()
-            Dim hayNovedad As Boolean = False
-            Dim nuevosRegistrados As Integer = 0
+            Await Task.Run(Sub()
 
-            For Each item As DetalleTransfItem In _items
-                If Not item.Seleccionado Then Continue For
+                               Using conn As New SqlClient.SqlConnection(
+                    DomainSQLite.Setting.Configuration.ConectionString)
+                                   conn.Open()
+                                   Using tran As SqlClient.SqlTransaction = conn.BeginTransaction()
+                                       Try
+                                           ' 1. Encabezado
+                                           Dim idTransfLocal As Integer =
+                            InsertarEncabezadoTran(conn, tran,
+                                _transferenciaSeleccionada, novedad, "RECIBIDO")
 
-                If item.CantRecibida <> item.CantEnviada Then hayNovedad = True
+                                           ' 2. Detalle + stock
+                                           For Each item As DetalleTransfItem In _items
 
-                MostrarLoading("Verificando producto ID " & item.IdProducto & "...")
+                                               Dim esRecibido = item.Seleccionado AndAlso item.CantRecibida = item.CantEnviada
+                                               Dim esParcial = item.Seleccionado AndAlso item.CantRecibida < item.CantEnviada
+                                               Dim esRechazado = Not item.Seleccionado
+                                               Dim estadoItem = If(esRecibido, "RECIBIDO",
+                                               If(esParcial, "PARCIAL",
+                                               If(esRechazado, "RECHAZADO", "PENDIENTE")))
 
-                If item.EsNuevo Then
-                    Await Task.Run(Sub() RegistrarProductoNuevo(item.IdProducto, item.Producto, item.Unidad))
-                    nuevosRegistrados += 1
-                End If
+                                               InsertarDetalleTran(conn, tran, idTransfLocal, item, estadoItem)
 
-                If item.CantRecibida > 0 Then
-                    Await Task.Run(Sub() AcreditarStockLocal(item.IdProducto, item.CantRecibida))
-                End If
-            Next
+                                               If Not item.Seleccionado Then Continue For
 
-            Dim estado As String = If(hayNovedad OrElse Not String.IsNullOrEmpty(novedad),
-                                      "CON_NOVEDAD", "RECIBIDO")
+                                               If item.EsNuevo Then
+                                                   RegistrarProductoNuevo(conn, tran, item.IdProducto, item.Unidad)
+                                                   nuevosReg += 1
+                                               End If
 
-            ' ── Intentar enviar a Supabase ────────────────────────────────────
-            MostrarLoading("Enviando a Supabase...")
-            Dim enviado As Boolean = Await Task.Run(Function() TransferenciaRepository.ActualizarEstado(supabaseId, estado, novedad))
+                                               If item.CantRecibida > 0 Then
+                                                   AcreditarStockTran(conn, tran,
+                                    item.IdProducto, item.CantRecibida)
+                                               End If
+                                           Next
+
+                                           ' 3. Estado encabezado
+                                           estado = If(hayDiscrepancia OrElse Not String.IsNullOrEmpty(novedad),
+                                    "CON_NOVEDAD", "RECIBIDO")
+
+                                           ActualizarEncabezadoTran(conn, tran, idTransfLocal, estado, novedad)
+
+                                           tran.Commit()
+
+                                       Catch
+                                           tran.Rollback()
+                                           Throw
+                                       End Try
+                                   End Using
+                               End Using
+                           End Sub)
+
+            ' ── Supabase ─────────────────────────────────────────────────────────
+            MostrarLoading("Notificando a Supabase...")
+            Dim enviado As Boolean = Await Task.Run(Function()
+                                                        Return TransferenciaRepository.ActualizarEstado(supabaseId, estado, novedad)
+                                                    End Function)
 
             If Not enviado Then
-                ' Supabase caído → guardar como GENERADO y encolar para reintento
-                estado = "GENERADO"
                 _pendientesEnvio.Add(New PendienteEnvio With {
                     .SupabaseId = supabaseId,
-                    .Estado = If(hayNovedad OrElse Not String.IsNullOrEmpty(novedad),
-                                 "CON_NOVEDAD", "RECIBIDO"),
+                    .Estado = estado,
                     .Novedad = novedad
                 })
-                ActualizarBotonEnviar()
             End If
-
-            ' Registro local para trazabilidad
-            RegistrarRecepcionLocal(supabaseId, estado, novedad)
 
             OcultarLoading()
 
-            Dim msgFinal As String = "✔  Recepción confirmada localmente." & vbNewLine &
-                                     "Estado: " & estado
+            Dim msg = "✔  Recepción guardada localmente.  Estado: " & estado
             If Not enviado Then
-                msgFinal &= vbNewLine & vbNewLine &
-                            "⚠  Supabase no disponible." & vbNewLine &
-                            "La transferencia quedó como GENERADO." & vbNewLine &
-                            "Use '↑ Enviar Pendientes' cuando haya conexión."
+                msg &= vbNewLine & "⚠  Supabase no disponible. Quedó en cola."
             End If
-            If nuevosRegistrados > 0 Then
-                msgFinal &= vbNewLine & "✦  " & nuevosRegistrados &
-                            " producto(s) nuevo(s) registrados en la BD local."
+            If nuevosReg > 0 Then
+                msg &= vbNewLine & "✦  " & nuevosReg & " producto(s) nuevo(s) registrados."
             End If
-
-            MsgBox(msgFinal, MsgBoxStyle.Information, "Recepción completada")
+            MsgBox(msg, MsgBoxStyle.Information, "Listo")
             txtNovedad.Clear()
             CargarTransferenciasPendientes()
 
         Catch ex As Exception
             OcultarLoading()
-            MsgBox("Error al procesar: " & ex.Message, MsgBoxStyle.Critical, "Error")
+            MsgBox("Error — ningún cambio fue aplicado." & vbNewLine & ex.Message,
+               MsgBoxStyle.Critical, "Error")
         End Try
     End Sub
 
-
-
-
-
-    ''' <summary>Muestra u oculta el botón de reenvío según la cola pendiente.</summary>
-    Private Sub ActualizarBotonEnviar()
-        'dim hay = _pendientesenvio.count > 0
-        'btnenviarpendientes.visible = hay
-        'if hay then
-        '    btnenviarpendientes.text = $"↑ enviar pendientes ({_pendientesenvio.count})"
-        'end if
-    End Sub
 
     ' ── Helpers BD local ─────────────────────────────────────────────────────────
     Private Function ProductoExisteLocal(idProducto As Integer) As Boolean
@@ -475,12 +591,112 @@ Public Class frmRecibirTransferencia
         End Using
     End Function
 
-    Private Sub RegistrarProductoNuevo(idProducto As Integer,
-                                       nombreProducto As String,
-                                       unidad As String)
+    Private Function InsertarEncabezadoTran(conn As SqlClient.SqlConnection,
+                                         tran As SqlClient.SqlTransaction,
+                                         t As Transferencia,
+                                         novedad As String,
+                                         estado As String) As Integer
+        Dim sql =
+        "INSERT INTO TransferenciaEncabezado " &
+        "  (NumTransferencia, idBodegaOrigen, idBodegaDestino, " &
+        "   BodegaOrigenNom, BodegaDestinoNom, FechaEmision, " &
+        "   CodUser, EstadoEnvio, Novedad, TipoMovimiento, SupabaseId) " &
+        "VALUES (@num,@orig,@dest,@origNom,@destNom,@fec,@usr,@est,@nov,'R',@sid); " &
+        "SELECT SCOPE_IDENTITY();"
 
-        Dim nomComercial As String = If(String.IsNullOrEmpty(nombreProducto),
-                                        "Producto " & idProducto, nombreProducto)
+        Using cmd As New SqlClient.SqlCommand(sql, conn, tran)
+            cmd.Parameters.AddWithValue("@num", t.NumTransferencia)
+            cmd.Parameters.AddWithValue("@orig", t.BodegaOrigenId)
+            cmd.Parameters.AddWithValue("@dest", t.BodegaDestinoId)
+            cmd.Parameters.AddWithValue("@origNom", t.BodegaOrigenNom)
+            cmd.Parameters.AddWithValue("@destNom", t.BodegaDestinoNom)
+            cmd.Parameters.AddWithValue("@fec", t.FechaEmision)
+            cmd.Parameters.AddWithValue("@usr", UsuarioActivo.codUser)
+            cmd.Parameters.AddWithValue("@est", estado)
+            cmd.Parameters.AddWithValue("@nov", If(String.IsNullOrEmpty(novedad),
+                                                   CObj(DBNull.Value), CObj(novedad)))
+            cmd.Parameters.AddWithValue("@sid", t.Id.ToString())
+            Return CInt(cmd.ExecuteScalar())
+        End Using
+    End Function
+
+    Private Sub InsertarDetalleTran(conn As SqlClient.SqlConnection,
+                                 tran As SqlClient.SqlTransaction,
+                                 idTransfLocal As Integer,
+                                 item As DetalleTransfItem,
+                                 estadoItem As String)
+        Dim sql =
+        "INSERT INTO TransferenciaDetalle " &
+        "  (idTransferencia, idProducto, NombreProducto, Unidad, " &
+        "   CantidadEnviada, CantidadRecibida, EstadoItem, " &
+        "   idMotivoDiscrepancia, EsNuevo, Seleccionado) " &
+        "VALUES (@idT,@idP,@nom,@und,@env,@rec,@est,@mot,@nuevo,@sel)"
+
+        Using cmd As New SqlClient.SqlCommand(sql, conn, tran)
+            cmd.Parameters.AddWithValue("@idT", idTransfLocal)
+            cmd.Parameters.AddWithValue("@idP", item.IdProducto)
+            cmd.Parameters.AddWithValue("@nom", item.Producto)
+            cmd.Parameters.AddWithValue("@und", If(String.IsNullOrEmpty(item.Unidad),
+                                               CObj(DBNull.Value), CObj(item.Unidad)))
+            cmd.Parameters.AddWithValue("@env", item.CantEnviada)
+            cmd.Parameters.AddWithValue("@rec", If(item.Seleccionado,
+                                               CObj(item.CantRecibida), CObj(DBNull.Value)))
+            cmd.Parameters.AddWithValue("@est", estadoItem)
+            cmd.Parameters.AddWithValue("@mot", If(item.IdMotivo.HasValue,
+                                               CObj(item.IdMotivo.Value), CObj(DBNull.Value)))
+            cmd.Parameters.AddWithValue("@nuevo", If(item.EsNuevo, 1, 0))
+            cmd.Parameters.AddWithValue("@sel", If(item.Seleccionado, 1, 0))
+            cmd.ExecuteNonQuery()
+        End Using
+    End Sub
+
+    Private Sub ActualizarEncabezadoTran(conn As SqlClient.SqlConnection,
+                                      tran As SqlClient.SqlTransaction,
+                                      idTransfLocal As Integer,
+                                      estado As String,
+                                      novedad As String)
+        Dim sql =
+        "UPDATE TransferenciaEncabezado " &
+        "SET EstadoEnvio=@est, Novedad=@nov, FechaRecepcion=GETDATE() " &
+        "WHERE idTransferencia=@id"
+
+        Using cmd As New SqlClient.SqlCommand(sql, conn, tran)
+            cmd.Parameters.AddWithValue("@est", estado)
+            cmd.Parameters.AddWithValue("@nov", If(String.IsNullOrEmpty(novedad),
+                                               CObj(DBNull.Value), CObj(novedad)))
+            cmd.Parameters.AddWithValue("@id", idTransfLocal)
+            cmd.ExecuteNonQuery()
+        End Using
+    End Sub
+
+    Private Sub AcreditarStockTran(conn As SqlClient.SqlConnection,
+                                tran As SqlClient.SqlTransaction,
+                                idProducto As Integer,
+                                cantidad As Decimal)
+        Dim sql =
+        "IF EXISTS (SELECT 1 FROM ProductosStock WHERE idProducto=@p AND idBodega=@b) " &
+        "    UPDATE ProductosStock SET stock = stock + @c " &
+        "    WHERE idProducto=@p AND idBodega=@b " &
+        "ELSE " &
+        "    INSERT INTO ProductosStock (idProducto,idBodega,stock,pvpUND,Und,idProUndMed) " &
+        "    VALUES (@p,@b,@c,0,'UN',1)"
+
+        Using cmd As New SqlClient.SqlCommand(sql, conn, tran)
+            cmd.Parameters.AddWithValue("@p", idProducto)
+            cmd.Parameters.AddWithValue("@b", TerminalActivo.idBodega)
+            cmd.Parameters.AddWithValue("@c", cantidad)
+            cmd.ExecuteNonQuery()
+        End Using
+    End Sub
+
+    Private Sub RegistrarProductoNuevo(
+                                   cnn As SqlClient.SqlConnection,
+                                   tran As SqlClient.SqlTransaction,
+                                   idProducto As Integer,
+                                   unidad As String)
+
+        Dim nomComercial As String = "Producto " & idProducto.ToString()
+        Dim NomComun As String = nomComercial.Substring(0, Math.Min(20, nomComercial.Length))
         Dim codProducto As String = "SN" & idProducto.ToString("D5")
         Dim unidadPres As String = If(String.IsNullOrEmpty(unidad), "UN", unidad)
         Dim idUnidad As Integer = 1
@@ -492,7 +708,8 @@ Public Class frmRecibirTransferencia
         Try
             Dim ps = SupabaseDataAccess.Repositories.ProductoSyncRepository.ObtenerPorIdOrigen(idProducto)
             If ps IsNot Nothing Then
-                nomComercial = If(String.IsNullOrEmpty(ps.NomComercial), nomComercial, ps.NomComercial)
+                nomComercial = ps.NomComercial
+                NomComun = ps.NomComun  ' ← bug corregido (antes asignaba a nomComercial)
                 codProducto = If(String.IsNullOrEmpty(ps.CodProducto), codProducto, ps.CodProducto)
                 unidadPres = If(String.IsNullOrEmpty(ps.UnidadPresent), unidadPres, ps.UnidadPresent)
                 idUnidad = ps.IdUnidad
@@ -505,36 +722,37 @@ Public Class frmRecibirTransferencia
         Catch
         End Try
 
-        Using cmd As New CADsisVenta.Funtions.SqlComandExec
+        Using cmd As New CADsisVenta.Funtions.SqlComandExec(cnn, tran)
             cmd.EjecutarConParams(
-                "SET IDENTITY_INSERT Productos ON; " &
-                "INSERT INTO Productos (idProducto,Nom_Comercial,Nom_Comun,Cant_minima," &
-                "  idUnidad,IdSubCategoria,ivaPorcentaje,Facturable,Activo) " &
-                "VALUES (@id,@nom,@nom,1,@und,@sub,@iva,1,1); " &
-                "SET IDENTITY_INSERT Productos OFF;",
-                {"@id", "@nom", "@und", "@sub", "@iva"},
-                {idProducto, nomComercial, idUnidad, idSubcat, iva})
+            "SET IDENTITY_INSERT Productos ON; " &
+            "INSERT INTO Productos (idProducto,Nom_Comercial,Nom_Comun,Cant_minima," &
+            "  idUnidad,IdSubCategoria,ivaPorcentaje,Facturable,Activo) " &
+            "VALUES (@id,@nom,@nomC,1,@und,@sub,@iva,1,1); " &
+            "SET IDENTITY_INSERT Productos OFF;",
+            {"@id", "@nom", "@nomC", "@und", "@sub", "@iva"},
+            {idProducto, nomComercial, NomComun, idUnidad, idSubcat, iva})
         End Using
 
-        Using cmd As New CADsisVenta.Funtions.SqlComandExec
+        Using cmd As New CADsisVenta.Funtions.SqlComandExec(cnn, tran)
             cmd.EjecutarConParams(
-                "INSERT INTO ProductoPresentacion " &
-                "(codProducto,idProducto,idProUndMed,idProUndReferen,Cant_Present," &
-                " precioCompra,precioVenta,Empaquetado,Presentacion,PresentacionPrint,isPresentFactory) " &
-                "VALUES (@cod,@idP,@und,@und,1,@pc,@pv,1,@pres,@presp,1)",
-                {"@cod", "@idP", "@und", "@pc", "@pv", "@pres", "@presp"},
-                {codProducto, idProducto, idUnidad, precioC, precioV,
-                 unidadPres, "[" & unidadPres & "]"})
+            "INSERT INTO ProductoPresentacion " &
+            "(codProducto,idProducto,idProUndMed,idProUndReferen,Cant_Present," &
+            " precioCompra,precioVenta,Empaquetado,Presentacion,PresentacionPrint,isPresentFactory) " &
+            "VALUES (@cod,@idP,@und,@und,1,@pc,@pv,1,@pres,@presp,1)",
+            {"@cod", "@idP", "@und", "@pc", "@pv", "@pres", "@presp"},
+            {codProducto, idProducto, idUnidad, precioC, precioV,
+             unidadPres, "[" & unidadPres & "]"})
         End Using
 
-        Using cmd As New CADsisVenta.Funtions.SqlComandExec
+        Using cmd As New CADsisVenta.Funtions.SqlComandExec(cnn, tran)
             cmd.EjecutarConParams(
-                "INSERT INTO ProdcutStock (idProducto,idBodega,stock,pvpUND,Und,idProUndMed) " &
-                "VALUES (@idP,@idB,0,@pvp,@und,@undM)",
-                {"@idP", "@idB", "@pvp", "@und", "@undM"},
-                {idProducto, TerminalActivo.idBodega, precioV, unidadPres, idUnidad})
+            "INSERT INTO ProdcutStock (idProducto,idBodega,stock,pvpUND,Und,idProUndMed) " &
+            "VALUES (@idP,@idB,0,@pvp,@und,@undM)",
+            {"@idP", "@idB", "@pvp", "@und", "@undM"},
+            {idProducto, TerminalActivo.idBodega, precioV, unidadPres, idUnidad})
         End Using
     End Sub
+
 
     Private Sub AcreditarStockLocal(idProducto As Integer, cantidad As Decimal)
         Using cmd As New CADsisVenta.Funtions.SqlComandExec

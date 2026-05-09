@@ -23,12 +23,23 @@ Partial Class frmRecibirTransferencia
         Me.lblEstado = New System.Windows.Forms.Label()
         Me.btnActualizar = New System.Windows.Forms.Button()
         Me.pnlLista = New System.Windows.Forms.Panel()
+        Me.OlvTransferencias = New BrightIdeasSoftware.ObjectListView()
+        Me.colAccion = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.colNumero = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.colOrigen = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.colFecha = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.lblListaTitle = New System.Windows.Forms.Label()
         Me.mnuTransferencias = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.mnuImprimirDetalle = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuRechazar = New System.Windows.Forms.ToolStripMenuItem()
         Me.splitter = New System.Windows.Forms.Panel()
         Me.pnlDetalle = New System.Windows.Forms.Panel()
+        Me.OlvDetalle = New BrightIdeasSoftware.ObjectListView()
+        Me.colProducto = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.colEnviado = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.colRecibido = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.colUnidad = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
+        Me.colEstado = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.lblDetalleTitle = New System.Windows.Forms.Label()
         Me.pnlNovedad = New System.Windows.Forms.Panel()
         Me.lblNovedad = New System.Windows.Forms.Label()
@@ -40,27 +51,16 @@ Partial Class frmRecibirTransferencia
         Me.pnlLoading = New System.Windows.Forms.Panel()
         Me.lblLoadingMsg = New System.Windows.Forms.Label()
         Me.progressBar = New System.Windows.Forms.ProgressBar()
-        Me.OlvDetalle = New BrightIdeasSoftware.ObjectListView()
-        Me.colProducto = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.colEnviado = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.colRecibido = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.colUnidad = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.colEstado = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.OlvTransferencias = New BrightIdeasSoftware.ObjectListView()
-        Me.colAccion = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.colNumero = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.colOrigen = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.colFecha = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.pnlHeader.SuspendLayout()
         Me.pnlInfo.SuspendLayout()
         Me.pnlLista.SuspendLayout()
+        CType(Me.OlvTransferencias, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.mnuTransferencias.SuspendLayout()
         Me.pnlDetalle.SuspendLayout()
+        CType(Me.OlvDetalle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlNovedad.SuspendLayout()
         Me.pnlFooter.SuspendLayout()
         Me.pnlLoading.SuspendLayout()
-        CType(Me.OlvDetalle, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.OlvTransferencias, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnlHeader
@@ -158,6 +158,54 @@ Partial Class frmRecibirTransferencia
         Me.pnlLista.Size = New System.Drawing.Size(944, 157)
         Me.pnlLista.TabIndex = 2
         '
+        'OlvTransferencias
+        '
+        Me.OlvTransferencias.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(253, Byte), Integer))
+        Me.OlvTransferencias.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(253, Byte), Integer))
+        Me.OlvTransferencias.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.OlvTransferencias.CellEditUseWholeCell = False
+        Me.OlvTransferencias.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colAccion, Me.colNumero, Me.colOrigen, Me.colFecha})
+        Me.OlvTransferencias.Cursor = System.Windows.Forms.Cursors.Default
+        Me.OlvTransferencias.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.OlvTransferencias.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.OlvTransferencias.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.OlvTransferencias.FullRowSelect = True
+        Me.OlvTransferencias.GridLines = True
+        Me.OlvTransferencias.HeaderMinimumHeight = 30
+        Me.OlvTransferencias.HideSelection = False
+        Me.OlvTransferencias.Location = New System.Drawing.Point(20, 33)
+        Me.OlvTransferencias.Name = "OlvTransferencias"
+        Me.OlvTransferencias.RowHeight = 32
+        Me.OlvTransferencias.ShowGroups = False
+        Me.OlvTransferencias.Size = New System.Drawing.Size(904, 124)
+        Me.OlvTransferencias.TabIndex = 0
+        Me.OlvTransferencias.UseCompatibleStateImageBehavior = False
+        Me.OlvTransferencias.View = System.Windows.Forms.View.Details
+        '
+        'colAccion
+        '
+        Me.colAccion.AspectName = "Accion"
+        Me.colAccion.Text = ""
+        Me.colAccion.Width = 40
+        '
+        'colNumero
+        '
+        Me.colNumero.AspectName = "Numero"
+        Me.colNumero.Text = "NÚMERO"
+        Me.colNumero.Width = 150
+        '
+        'colOrigen
+        '
+        Me.colOrigen.AspectName = "Origen"
+        Me.colOrigen.Text = "ORIGEN"
+        Me.colOrigen.Width = 260
+        '
+        'colFecha
+        '
+        Me.colFecha.AspectName = "Fecha"
+        Me.colFecha.Text = "FECHA"
+        Me.colFecha.Width = 160
+        '
         'lblListaTitle
         '
         Me.lblListaTitle.AutoSize = True
@@ -175,18 +223,22 @@ Partial Class frmRecibirTransferencia
         '
         Me.mnuTransferencias.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuImprimirDetalle, Me.mnuRechazar})
         Me.mnuTransferencias.Name = "mnuTransferencias"
-        Me.mnuTransferencias.Size = New System.Drawing.Size(208, 48)
+        Me.mnuTransferencias.Size = New System.Drawing.Size(224, 102)
         '
         'mnuImprimirDetalle
         '
+        Me.mnuImprimirDetalle.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Printing_Print_32x32
+        Me.mnuImprimirDetalle.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.mnuImprimirDetalle.Name = "mnuImprimirDetalle"
-        Me.mnuImprimirDetalle.Size = New System.Drawing.Size(207, 22)
+        Me.mnuImprimirDetalle.Size = New System.Drawing.Size(223, 38)
         Me.mnuImprimirDetalle.Text = "Imprimir detalle"
         '
         'mnuRechazar
         '
+        Me.mnuRechazar.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Cancel_32x32
+        Me.mnuRechazar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.mnuRechazar.Name = "mnuRechazar"
-        Me.mnuRechazar.Size = New System.Drawing.Size(207, 22)
+        Me.mnuRechazar.Size = New System.Drawing.Size(223, 38)
         Me.mnuRechazar.Text = "Rechazar todo lo enviado"
         '
         'splitter
@@ -209,6 +261,66 @@ Partial Class frmRecibirTransferencia
         Me.pnlDetalle.Padding = New System.Windows.Forms.Padding(20, 10, 20, 0)
         Me.pnlDetalle.Size = New System.Drawing.Size(944, 314)
         Me.pnlDetalle.TabIndex = 0
+        '
+        'OlvDetalle
+        '
+        Me.OlvDetalle.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.OlvDetalle.BackColor = System.Drawing.Color.White
+        Me.OlvDetalle.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick
+        Me.OlvDetalle.CellEditUseWholeCell = False
+        Me.OlvDetalle.CheckBoxes = True
+        Me.OlvDetalle.CheckedAspectName = "Seleccionado"
+        Me.OlvDetalle.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colProducto, Me.colEnviado, Me.colRecibido, Me.colUnidad, Me.colEstado})
+        Me.OlvDetalle.Cursor = System.Windows.Forms.Cursors.Default
+        Me.OlvDetalle.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.OlvDetalle.Font = New System.Drawing.Font("Segoe UI", 12.0!)
+        Me.OlvDetalle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.OlvDetalle.FullRowSelect = True
+        Me.OlvDetalle.GridLines = True
+        Me.OlvDetalle.HideSelection = False
+        Me.OlvDetalle.Location = New System.Drawing.Point(20, 35)
+        Me.OlvDetalle.Name = "OlvDetalle"
+        Me.OlvDetalle.RowHeight = 32
+        Me.OlvDetalle.ShowGroups = False
+        Me.OlvDetalle.Size = New System.Drawing.Size(904, 279)
+        Me.OlvDetalle.TabIndex = 0
+        Me.OlvDetalle.UseAlternatingBackColors = True
+        Me.OlvDetalle.UseCompatibleStateImageBehavior = False
+        Me.OlvDetalle.View = System.Windows.Forms.View.Details
+        '
+        'colProducto
+        '
+        Me.colProducto.AspectName = "Producto"
+        Me.colProducto.HeaderCheckBox = True
+        Me.colProducto.MinimumWidth = 250
+        Me.colProducto.Text = "PRODUCTO"
+        Me.colProducto.Width = 300
+        '
+        'colEnviado
+        '
+        Me.colEnviado.AspectName = "CantEnviada"
+        Me.colEnviado.Text = "ENVIADO"
+        Me.colEnviado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.colEnviado.Width = 90
+        '
+        'colRecibido
+        '
+        Me.colRecibido.AspectName = "CantRecibida"
+        Me.colRecibido.Text = "RECIBIDO"
+        Me.colRecibido.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.colRecibido.Width = 90
+        '
+        'colUnidad
+        '
+        Me.colUnidad.AspectName = "Unidad"
+        Me.colUnidad.Text = "UNIDAD"
+        Me.colUnidad.Width = 80
+        '
+        'colEstado
+        '
+        Me.colEstado.AspectName = "EstadoItem"
+        Me.colEstado.Text = "ESTADO"
+        Me.colEstado.Width = 100
         '
         'lblDetalleTitle
         '
@@ -345,114 +457,6 @@ Partial Class frmRecibirTransferencia
         Me.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee
         Me.progressBar.TabIndex = 1
         '
-        'OlvDetalle
-        '
-        Me.OlvDetalle.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(245, Byte), Integer))
-        Me.OlvDetalle.BackColor = System.Drawing.Color.White
-        Me.OlvDetalle.CellEditActivation = BrightIdeasSoftware.ObjectListView.CellEditActivateMode.DoubleClick
-        Me.OlvDetalle.CellEditUseWholeCell = False
-        Me.OlvDetalle.CheckBoxes = True
-        Me.OlvDetalle.CheckedAspectName = "Seleccionado"
-        Me.OlvDetalle.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colProducto, Me.colEnviado, Me.colRecibido, Me.colUnidad, Me.colEstado})
-        Me.OlvDetalle.Cursor = System.Windows.Forms.Cursors.Default
-        Me.OlvDetalle.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.OlvDetalle.Font = New System.Drawing.Font("Segoe UI", 12.0!)
-        Me.OlvDetalle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.OlvDetalle.FullRowSelect = True
-        Me.OlvDetalle.GridLines = True
-        Me.OlvDetalle.HideSelection = False
-        Me.OlvDetalle.Location = New System.Drawing.Point(20, 35)
-        Me.OlvDetalle.Name = "OlvDetalle"
-        Me.OlvDetalle.RowHeight = 32
-        Me.OlvDetalle.ShowGroups = False
-        Me.OlvDetalle.Size = New System.Drawing.Size(904, 279)
-        Me.OlvDetalle.TabIndex = 0
-        Me.OlvDetalle.UseAlternatingBackColors = True
-        Me.OlvDetalle.UseCompatibleStateImageBehavior = False
-        Me.OlvDetalle.View = System.Windows.Forms.View.Details
-        '
-        'colProducto
-        '
-        Me.colProducto.AspectName = "Producto"
-        Me.colProducto.HeaderCheckBox = True
-        Me.colProducto.MinimumWidth = 180
-        Me.colProducto.Text = "PRODUCTO"
-        Me.colProducto.Width = 180
-        '
-        'colEnviado
-        '
-        Me.colEnviado.AspectName = "CantEnviada"
-        Me.colEnviado.Text = "ENVIADO"
-        Me.colEnviado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.colEnviado.Width = 90
-        '
-        'colRecibido
-        '
-        Me.colRecibido.AspectName = "CantRecibida"
-        Me.colRecibido.Text = "RECIBIDO"
-        Me.colRecibido.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.colRecibido.Width = 90
-        '
-        'colUnidad
-        '
-        Me.colUnidad.AspectName = "Unidad"
-        Me.colUnidad.Text = "UNIDAD"
-        Me.colUnidad.Width = 80
-        '
-        'colEstado
-        '
-        Me.colEstado.AspectName = "EstadoItem"
-        Me.colEstado.Text = "ESTADO"
-        Me.colEstado.Width = 100
-        '
-        'OlvTransferencias
-        '
-        Me.OlvTransferencias.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(253, Byte), Integer))
-        Me.OlvTransferencias.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(253, Byte), Integer))
-        Me.OlvTransferencias.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.OlvTransferencias.CellEditUseWholeCell = False
-        Me.OlvTransferencias.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colAccion, Me.colNumero, Me.colOrigen, Me.colFecha})
-        Me.OlvTransferencias.Cursor = System.Windows.Forms.Cursors.Default
-        Me.OlvTransferencias.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.OlvTransferencias.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.OlvTransferencias.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.OlvTransferencias.FullRowSelect = True
-        Me.OlvTransferencias.GridLines = True
-        Me.OlvTransferencias.HeaderMinimumHeight = 30
-        Me.OlvTransferencias.HideSelection = False
-        Me.OlvTransferencias.Location = New System.Drawing.Point(20, 33)
-        Me.OlvTransferencias.Name = "OlvTransferencias"
-        Me.OlvTransferencias.RowHeight = 32
-        Me.OlvTransferencias.ShowGroups = False
-        Me.OlvTransferencias.Size = New System.Drawing.Size(904, 124)
-        Me.OlvTransferencias.TabIndex = 0
-        Me.OlvTransferencias.UseCompatibleStateImageBehavior = False
-        Me.OlvTransferencias.View = System.Windows.Forms.View.Details
-        '
-        'colAccion
-        '
-        Me.colAccion.AspectName = "Accion"
-        Me.colAccion.Text = ""
-        Me.colAccion.Width = 40
-        '
-        'colNumero
-        '
-        Me.colNumero.AspectName = "Numero"
-        Me.colNumero.Text = "NÚMERO"
-        Me.colNumero.Width = 150
-        '
-        'colOrigen
-        '
-        Me.colOrigen.AspectName = "Origen"
-        Me.colOrigen.Text = "ORIGEN"
-        Me.colOrigen.Width = 260
-        '
-        'colFecha
-        '
-        Me.colFecha.AspectName = "Fecha"
-        Me.colFecha.Text = "FECHA"
-        Me.colFecha.Width = 160
-        '
         'frmRecibirTransferencia
         '
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(250, Byte), Integer))
@@ -478,16 +482,16 @@ Partial Class frmRecibirTransferencia
         Me.pnlInfo.PerformLayout()
         Me.pnlLista.ResumeLayout(False)
         Me.pnlLista.PerformLayout()
+        CType(Me.OlvTransferencias, System.ComponentModel.ISupportInitialize).EndInit()
         Me.mnuTransferencias.ResumeLayout(False)
         Me.pnlDetalle.ResumeLayout(False)
         Me.pnlDetalle.PerformLayout()
+        CType(Me.OlvDetalle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlNovedad.ResumeLayout(False)
         Me.pnlNovedad.PerformLayout()
         Me.pnlFooter.ResumeLayout(False)
         Me.pnlFooter.PerformLayout()
         Me.pnlLoading.ResumeLayout(False)
-        CType(Me.OlvDetalle, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.OlvTransferencias, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

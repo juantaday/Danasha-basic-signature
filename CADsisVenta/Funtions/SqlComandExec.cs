@@ -17,12 +17,29 @@ namespace CADsisVenta.Funtions
         private SqlTransaction transaction;
         private CommandType commandType;
 
-        public SqlComandExec(SqlConnection conec = null)
+        public SqlComandExec()
+        {
+            cnn = new SqlConnection(Configuration.ConectionString);
+            _parameterCollection = new SqlParameter[] { };
+            this.CommandType = CommandType.Text;
+        }
+
+
+        public SqlComandExec(SqlConnection conec)
         {
             if (conec == null)
                 cnn = new SqlConnection(Configuration.ConectionString);
             else
                 cnn = conec;
+
+            _parameterCollection = new SqlParameter[] { };
+            this.CommandType = CommandType.Text;
+        }
+
+        public SqlComandExec(SqlConnection conec , SqlTransaction trans)
+        {
+            cnn = conec;
+            transaction = trans;    
 
             _parameterCollection = new SqlParameter[] { };
             this.CommandType = CommandType.Text;

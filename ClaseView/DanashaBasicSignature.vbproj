@@ -443,6 +443,7 @@
     <Compile Include="Inicio\AboutBox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\MotivoItem.vb" />
     <Compile Include="Models\DebitEmployee.vb" />
     <Compile Include="Models\DetalleTransferenciaItem.vb" />
     <Compile Include="Models\DetalleTransfItem.vb" />
@@ -818,6 +819,12 @@
       <DependentUpon>frmListadoGuiasRemision.vb</DependentUpon>
     </Compile>
     <Compile Include="Transferencia\frmListadoGuiasRemision.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transferencia\frmMotivo.Designer.vb">
+      <DependentUpon>frmMotivo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Transferencia\frmMotivo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Transferencia\frmRecibirTransferencia.Designer.vb">
@@ -1236,6 +1243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transferencia\frmListadoGuiasRemision.resx">
       <DependentUpon>frmListadoGuiasRemision.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transferencia\frmMotivo.resx">
+      <DependentUpon>frmMotivo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transferencia\frmRecibirTransferencia.resx">
       <DependentUpon>frmRecibirTransferencia.vb</DependentUpon>
