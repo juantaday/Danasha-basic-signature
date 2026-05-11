@@ -74,6 +74,7 @@ namespace SupabaseDataAccess.Repositories
             using (var conn = SupabasePgConnection.OpenPoolConnection())
             using (var cmd = new NpgsqlCommand(sql, conn))
             {
+                cmd.CommandTimeout = 10;
                 cmd.Parameters.AddWithValue("dest", idBodegaDestino);
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -102,20 +103,21 @@ namespace SupabaseDataAccess.Repositories
 
         // ── 4. Actualizar estado ─────────────────────────────────────────────
         public static bool ActualizarEstado(
-            string supabaseId, string estado,
-            string novedad = null, object detalleActualizado = null)
+          string supabaseId, string estado,
+          string novedad = null, object detalleActualizado = null)
         {
             const string sql = @"
-                UPDATE transferencias
-                SET    estado          = @estado,
-                       novedad         = @novedad,
-                       fecha_recepcion = NOW(),
-                       detalle         = COALESCE(@detalle::jsonb, detalle)
-                WHERE  id = @id::uuid;";
+        UPDATE transferencias
+        SET    estado          = @estado,
+               novedad         = @novedad,
+               fecha_recepcion = NOW(),
+               detalle         = COALESCE(@detalle::jsonb, detalle)
+        WHERE  id = @id::uuid;";
 
             using (var conn = SupabasePgConnection.OpenPoolConnection())
             using (var cmd = new NpgsqlCommand(sql, conn))
             {
+                cmd.CommandTimeout = 10;
                 cmd.Parameters.AddWithValue("@id", supabaseId);
                 cmd.Parameters.AddWithValue("@estado", estado);
                 cmd.Parameters.AddWithValue("@novedad",
@@ -127,6 +129,7 @@ namespace SupabaseDataAccess.Repositories
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
+
 
         // ── 5. Historial ─────────────────────────────────────────────────────
         public static DataTable ObtenerHistorial(int ultimosDias = 30)

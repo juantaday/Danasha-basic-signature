@@ -18,6 +18,7 @@ Public Class frmTransferencia
         CargarOrigen()
         CargarDestinos()
         MostrarDetalle()
+        cboDestino.SelectedIndex = -1
     End Sub
 
     Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
@@ -102,6 +103,8 @@ Public Class frmTransferencia
     ''' <summary>
     ''' Lógica completa de transferencia (se ejecuta en hilo de background)
     ''' </summary>
+    ''' <idOrigen>id Bodega origen</idOrigen>
+    ''' <idDestino>id Bodega destino</idDestino>
     Private Function ProcesarTransferenciaEnSegundoPlano(idOrigen As Integer, idDestino As Integer,
                                                          nomOrigen As String, nomDestino As String,
                                                          detalle As List(Of DetalleTransferenciaItem),
@@ -124,22 +127,9 @@ Public Class frmTransferencia
 
             ' 5. Si es remota, enviar a Supabase; si no, acreditar localmente
             If esRemota Then
-                Dim payload = New With {
-                    .num_transferencia = numTransf,
-                    .bodega_origen_id = idOrigen,
-                    .bodega_origen_nom = nomOrigen,
-                    .bodega_destino_id = idDestino,
-                    .bodega_destino_nom = nomDestino,
-                    .detalle = detalle.Select(Function(d) New With {
-                        .idProducto = d.idProducto,
-                        .nombre = d.NombreProducto,
-                        .cantidadEnviada = d.Cantidad,
-                        .cantidadRecibida = CType(Nothing, Object),
-                        .unidad = d.Unidad
-                    }).ToList()
-                }
                 Dim supabaseId As String = TransferenciaRepository.SubirTransferencia(
-                    numTransf, idOrigen, nomOrigen, idDestino, nomDestino, payload.detalle)
+                        numTransf, idOrigen, nomOrigen, idDestino, nomDestino, detalle)
+
                 ActualizarSupabaseId(idTransf, supabaseId)
             Else
                 EjecutarSP("sp_TransferenciaAcreditarStockLocal", idTransf)
@@ -187,9 +177,15 @@ Public Class frmTransferencia
     Private Sub MostrarDetalle()
         DgvDetalle.DataSource = _detalle
 
-        Dim col = DgvDetalle.Columns("NombreProducto")
-        If Not (col Is Nothing) Then
-            col.Width = 350
+        Dim visibles As String() = {"idProducto", "codProducto", "NombreProducto", "Cantidad", "PrecioTotal"}
+
+        For Each col As DataGridViewColumn In DgvDetalle.Columns
+            col.Visible = visibles.Contains(col.Name)
+        Next
+
+        Dim colWith = DgvDetalle.Columns("NombreProducto")
+        If Not (colWith Is Nothing) Then
+            colWith.Width = 350
         End If
 
 
@@ -253,7 +249,7 @@ Public Class frmTransferencia
             Using cmd As New CADsisVenta.Funtions.SqlComandExec
                 cmd.EjecutarConParams(sql,
                     {"@idT", "@idP", "@cant", "@unidad"},
-                    {idTransf, _lineaProducto, item.Cantidad, item.Unidad})
+                    {idTransf, _lineaProducto, item.CantidadEnviada, item.Unidad})
             End Using
         Next
     End Sub

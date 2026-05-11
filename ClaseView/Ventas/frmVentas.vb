@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Threading
-Imports System.Linq
+Imports System.Windows
 Imports CADsisVenta
 Imports CADsisVenta.[Class]
 Imports CADsisVenta.Data.Emuns.EnumSatateModule
@@ -10,10 +10,8 @@ Imports CADsisVenta.DataSetSystemTableAdapters
 Imports CADsisVenta.Funtions
 Imports CADsisVenta.Helpers.FInicio
 Imports CADsisVenta.Statics
-Imports Domain.Data.Entities
 Imports ec.gob.sri.comprobantes.Enum
 Imports InterfaceSignatureAndSRI.Processes
-Imports iTextSharp.text.pdf
 
 Public Class frmVentas
     'Para sumar totales
@@ -69,39 +67,97 @@ Public Class frmVentas
         End Try
     End Sub
 
-    Private Sub pedidoButton_Click(sender As Object, e As EventArgs) Handles pedidoButton.Click
+    Private Async Sub pedidoButton_Click(sender As Object, e As EventArgs) Handles pedidoButton.Click
         Try
+            pedidoButton.Enabled = False
+            Me.Cursor = Cursors.WaitCursor
+
             If ListView1.Items.Count = 0 Then
                 MsgBox("Agregue productos antes de crear una transferencia.", MsgBoxStyle.Exclamation, "Sin productos")
                 Exit Sub
             End If
 
-            Using frm As New frmTransferencia(BuildDetalleTransferencia())
-                frm.ShowDialog(Me)
+            Using frm As New frmTransferencia(Await BuildDetalleTransferencia())
+                If (frm.ShowDialog(Me) = DialogResult.OK) Then
+                    ListView1.Items.Clear()
+                End If
             End Using
         Catch ex As Exception
             MsgBox(ex.Message & " en pedidoButton_Click", MsgBoxStyle.Critical, "Error")
+        Finally
+            pedidoButton.Enabled = True
+            Me.Cursor = Cursors.Default
         End Try
     End Sub
 
-    Private Function BuildDetalleTransferencia() As List(Of DetalleTransferenciaItem)
-        Dim lista As New List(Of DetalleTransferenciaItem)
+
+    Private Async Function BuildDetalleTransferencia() As Task(Of List(Of DetalleTransferenciaItem))
+        ' Paso 1: extraer solo id y cantidad del ListView
+        Dim seleccion As New List(Of (idProducto As Integer, cantidad As Decimal, precioTotal As Decimal))
+
         For Each item As ListViewItem In ListView1.Items
             Dim idProducto As Integer
-            Integer.TryParse(item.SubItems(idProductoClm.Index).Text, idProducto)
-
             Dim cantidad As Decimal
+            Dim precioTotal As Decimal
+            Integer.TryParse(item.SubItems(idProductoClm.Index).Text, idProducto)
             Decimal.TryParse(item.SubItems(CantidadClm.Index).Text, cantidad)
-
-            lista.Add(New DetalleTransferenciaItem With {
-                .idProducto = idProducto,
-                .NombreProducto = item.SubItems(productoClm.Index).Text,
-                .Cantidad = cantidad,
-                .Unidad = item.SubItems(EmpClm.Index).Text
-            })
+            Decimal.TryParse(item.SubItems(PTotalClm.Index).Text, precioTotal)
+            seleccion.Add((idProducto, cantidad, precioTotal))
         Next
+
+        ' Paso 2: consultar BD local con todos los IDs de una sola vez
+        Dim ids As String = String.Join(",", seleccion.Select(Function(x) x.idProducto))
+        Dim sql As String =
+        "SELECT p.idProducto, p.Nom_Comercial, p.Nom_Comun, " &
+        "       p.idUnidad, u.Nom_Unidad, " &
+        "       p.IdSubCategoria, s.Nom_SubCategoria, " &
+        "       p.ivaPorcentaje, p.Facturable, " &
+        "       pp.codProducto, pp.precioCompra, pp.precioVenta, " &
+        "       pp.Presentacion AS unidadPresent, pp.Cant_Present " &
+        "FROM   Productos p " &
+        "JOIN   ProductoPresentacion pp ON pp.idProducto = p.idProducto " &
+        "                              AND pp.isPresentFactory = 1 " &
+        "JOIN   ProductoUndMin       u  ON u.idUnidad = p.idUnidad " &
+        "JOIN   ProductoSubCategoria s  ON s.idSubCategoria = p.IdSubCategoria " &
+        "WHERE  p.idProducto IN (" & ids & ")"
+
+        ' Paso 3: cargar en Dictionary para cruce eficiente
+        Dim mapa As New Dictionary(Of Integer, DetalleTransferenciaItem)
+        Using cmd As New CADsisVenta.Funtions.SqlComandExec
+            Dim dt As DataTable = Await cmd.RetornaTablaAsync(sql)
+            For Each row As DataRow In dt.Rows
+                Dim idP As Integer = CInt(row("idProducto"))
+                mapa(idP) = New DetalleTransferenciaItem With {
+                .idProducto = idP,
+                .NombreProducto = row("Nom_Comercial").ToString(),
+                .NomComun = row("Nom_Comun").ToString(),
+                .codProducto = row("codProducto").ToString(),
+                .idUnidad = CInt(row("idUnidad")),
+                .idSubCategoria = CInt(row("IdSubCategoria")),
+                .ivaPorcentaje = CDec(row("ivaPorcentaje")),
+                .Facturable = CBool(row("Facturable")),
+                .PrecioCompra = CDec(row("precioCompra")),
+                .PrecioVenta = CDec(row("precioVenta")),
+                .Unidad = row("unidadPresent").ToString(),
+                .CantPresent = CDec(row("Cant_Present"))
+            }
+            Next
+        End Using
+
+        ' Paso 4: cruzar con cantidad y precioTotal del ListView
+        Dim lista As New List(Of DetalleTransferenciaItem)
+        For Each sel In seleccion
+            If mapa.ContainsKey(sel.idProducto) Then
+                Dim d = mapa(sel.idProducto)
+                d.CantidadEnviada = sel.cantidad
+                d.PrecioTotal = sel.precioTotal
+                lista.Add(d)
+            End If
+        Next
+
         Return lista
     End Function
+
 
     Private Sub Carga_Bodega()
         Try
@@ -572,7 +628,7 @@ Aplicando:
     Private Sub LostDefaulBnt(ByVal myDefaultBtn As Button)
         Me.AcceptButton = Nothing
     End Sub
-    Private Sub btnAddFactura_Click(sender As System.Object, e As System.EventArgs) Handles FacturaButton.Click, ProformaButton.Click, NotaVentaButton.Click, pedidoButton.Click
+    Private Sub btnAddFactura_Click(sender As System.Object, e As System.EventArgs) Handles FacturaButton.Click, ProformaButton.Click, NotaVentaButton.Click
         Color_Control()
 
         Dim nameDocument As String = If(Not IsNothing(sender.tag), sender.tag, String.Empty)

@@ -223,7 +223,7 @@ Partial Class frmRecibirTransferencia
         '
         Me.mnuTransferencias.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuImprimirDetalle, Me.mnuRechazar})
         Me.mnuTransferencias.Name = "mnuTransferencias"
-        Me.mnuTransferencias.Size = New System.Drawing.Size(224, 102)
+        Me.mnuTransferencias.Size = New System.Drawing.Size(224, 80)
         '
         'mnuImprimirDetalle
         '

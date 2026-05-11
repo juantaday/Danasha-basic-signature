@@ -1976,6 +1976,7 @@
     <Content Include="dansha basic.ico" />
     <Content Include="docs\01_SCRIPTS_BASE_DATOS.sql" />
     <Content Include="JsofWareIcon.ico" />
+    <None Include="Resources\dowloadData.png" />
     <None Include="Resources\commece_24.png" />
     <None Include="Resources\clear-filter.png" />
     <None Include="Resources\Logo_Delivery_QR_25.png" />

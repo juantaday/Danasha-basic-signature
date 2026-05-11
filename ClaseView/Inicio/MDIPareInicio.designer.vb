@@ -69,6 +69,8 @@ Partial Class MDIPareInicio
         Me.ProductoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.InventarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RecibirTransferenciasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ListadoDeGuíasDeRemisiónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FacturacionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OrdenCompraNew = New System.Windows.Forms.ToolStripMenuItem()
         Me.OrdenCompraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -78,8 +80,6 @@ Partial Class MDIPareInicio
         Me.FacturasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OrdenDeVentaNoFacturadaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ArqueoDeCajaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuRecibirTransferencia = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuListadoGuiasRemision = New System.Windows.Forms.ToolStripMenuItem()
         Me.SeguridadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsuariosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PermisosDeUsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -454,7 +454,7 @@ Partial Class MDIPareInicio
         '
         'ProductoToolStripMenuItem
         '
-        Me.ProductoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListadoToolStripMenuItem, Me.InventarioToolStripMenuItem})
+        Me.ProductoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListadoToolStripMenuItem, Me.InventarioToolStripMenuItem, Me.RecibirTransferenciasToolStripMenuItem, Me.ListadoDeGuíasDeRemisiónToolStripMenuItem})
         Me.ProductoToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ProductoToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.barcode_48
         Me.ProductoToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -469,7 +469,7 @@ Partial Class MDIPareInicio
         Me.ListadoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ListadoToolStripMenuItem.Name = "ListadoToolStripMenuItem"
         Me.ListadoToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.L), System.Windows.Forms.Keys)
-        Me.ListadoToolStripMenuItem.Size = New System.Drawing.Size(204, 38)
+        Me.ListadoToolStripMenuItem.Size = New System.Drawing.Size(275, 38)
         Me.ListadoToolStripMenuItem.Text = "Listado"
         '
         'InventarioToolStripMenuItem
@@ -478,8 +478,24 @@ Partial Class MDIPareInicio
         Me.InventarioToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.InventarioToolStripMenuItem.Name = "InventarioToolStripMenuItem"
         Me.InventarioToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.I), System.Windows.Forms.Keys)
-        Me.InventarioToolStripMenuItem.Size = New System.Drawing.Size(204, 38)
+        Me.InventarioToolStripMenuItem.Size = New System.Drawing.Size(275, 38)
         Me.InventarioToolStripMenuItem.Text = "Inventario"
+        '
+        'RecibirTransferenciasToolStripMenuItem
+        '
+        Me.RecibirTransferenciasToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Down_32x32
+        Me.RecibirTransferenciasToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.RecibirTransferenciasToolStripMenuItem.Name = "RecibirTransferenciasToolStripMenuItem"
+        Me.RecibirTransferenciasToolStripMenuItem.Size = New System.Drawing.Size(275, 38)
+        Me.RecibirTransferenciasToolStripMenuItem.Text = "Recibir transferencias"
+        '
+        'ListadoDeGuíasDeRemisiónToolStripMenuItem
+        '
+        Me.ListadoDeGuíasDeRemisiónToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.check_listx32
+        Me.ListadoDeGuíasDeRemisiónToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ListadoDeGuíasDeRemisiónToolStripMenuItem.Name = "ListadoDeGuíasDeRemisiónToolStripMenuItem"
+        Me.ListadoDeGuíasDeRemisiónToolStripMenuItem.Size = New System.Drawing.Size(275, 38)
+        Me.ListadoDeGuíasDeRemisiónToolStripMenuItem.Text = "Listado de guías de remisión"
         '
         'FacturacionToolStripMenuItem
         '
@@ -514,7 +530,7 @@ Partial Class MDIPareInicio
         '
         'VentasToolStripMenuItem
         '
-        Me.VentasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DiariaPorCajaToolStripMenuItem, Me.PreciosDeVentasToolStripMenuItem, Me.FacturasToolStripMenuItem, Me.OrdenDeVentaNoFacturadaToolStripMenuItem, Me.ArqueoDeCajaToolStripMenuItem, Me.mnuRecibirTransferencia, Me.mnuListadoGuiasRemision})
+        Me.VentasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DiariaPorCajaToolStripMenuItem, Me.PreciosDeVentasToolStripMenuItem, Me.FacturasToolStripMenuItem, Me.OrdenDeVentaNoFacturadaToolStripMenuItem, Me.ArqueoDeCajaToolStripMenuItem})
         Me.VentasToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.VentasToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Venta_48
         Me.VentasToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
@@ -564,18 +580,6 @@ Partial Class MDIPareInicio
         Me.ArqueoDeCajaToolStripMenuItem.Name = "ArqueoDeCajaToolStripMenuItem"
         Me.ArqueoDeCajaToolStripMenuItem.Size = New System.Drawing.Size(275, 38)
         Me.ArqueoDeCajaToolStripMenuItem.Text = "Arqueo de caja"
-        '
-        'mnuRecibirTransferencia
-        '
-        Me.mnuRecibirTransferencia.Name = "mnuRecibirTransferencia"
-        Me.mnuRecibirTransferencia.Size = New System.Drawing.Size(275, 38)
-        Me.mnuRecibirTransferencia.Text = "Recibir transferencias"
-        '
-        'mnuListadoGuiasRemision
-        '
-        Me.mnuListadoGuiasRemision.Name = "mnuListadoGuiasRemision"
-        Me.mnuListadoGuiasRemision.Size = New System.Drawing.Size(275, 38)
-        Me.mnuListadoGuiasRemision.Text = "Listado de guías de remisión"
         '
         'SeguridadToolStripMenuItem
         '
@@ -678,7 +682,7 @@ Partial Class MDIPareInicio
         Me.AcercaDeToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.AcercaDeToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.AcercaDeToolStripMenuItem.Name = "AcercaDeToolStripMenuItem"
-        Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
+        Me.AcercaDeToolStripMenuItem.Size = New System.Drawing.Size(180, 38)
         Me.AcercaDeToolStripMenuItem.Text = "Acerca de"
         Me.AcercaDeToolStripMenuItem.ToolTipText = "Información de esta aplicación"
         '
@@ -688,13 +692,13 @@ Partial Class MDIPareInicio
         Me.ContagtoToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.ContagtoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ContagtoToolStripMenuItem.Name = "ContagtoToolStripMenuItem"
-        Me.ContagtoToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
+        Me.ContagtoToolStripMenuItem.Size = New System.Drawing.Size(180, 38)
         Me.ContagtoToolStripMenuItem.Text = "Contacto"
         '
         'AjecutarScripToolStripMenuItem
         '
         Me.AjecutarScripToolStripMenuItem.Name = "AjecutarScripToolStripMenuItem"
-        Me.AjecutarScripToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
+        Me.AjecutarScripToolStripMenuItem.Size = New System.Drawing.Size(180, 38)
         Me.AjecutarScripToolStripMenuItem.Text = "Ajecutar scrip"
         '
         'notificacion
@@ -1077,6 +1081,6 @@ Partial Class MDIPareInicio
     Friend WithEvents VentasPorOperaciónToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DocumentosElectrónicosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AjecutarScripToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents mnuRecibirTransferencia As ToolStripMenuItem
-    Friend WithEvents mnuListadoGuiasRemision As ToolStripMenuItem
+    Friend WithEvents RecibirTransferenciasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ListadoDeGuíasDeRemisiónToolStripMenuItem As ToolStripMenuItem
 End Class

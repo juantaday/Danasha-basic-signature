@@ -1,6 +1,8 @@
 ﻿using Npgsql;
 using SupabaseDataAccess.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SupabaseDataAccess.Repositories
 {
@@ -53,6 +55,62 @@ namespace SupabaseDataAccess.Repositories
             }
         }
 
+        /// <summary>
+        /// Obtiene los datos de sincronización de varios productos desde Supabase.
+        /// </summary>
+        public static List<ProductoSync> ObtenerPorIdsOrigen(IEnumerable<int> idsProductoOrig)
+        {
+            if (idsProductoOrig == null)
+                return new List<ProductoSync>();
+
+            var ids = idsProductoOrig.Distinct().ToArray();
+            if (ids.Length == 0)
+                return new List<ProductoSync>();
+
+            const string sql = @"
+                SELECT id, id_producto_orig, nom_comercial, nom_comun, descripcion,
+                       cant_minima, id_unidad, id_subcategoria, iva_porcentaje,
+                       facturable, cod_producto, cant_present, precio_compra,
+                       precio_venta, unidad_present, estado_sync, fecha_creacion
+                FROM   productos_sync
+                WHERE  id_producto_orig = ANY(@ids) AND estado_sync = 'PENDIENTE';";
+
+            var lista = new List<ProductoSync>();
+            using (var conn = SupabasePgConnection.OpenPoolConnection())
+            using (var cmd = new NpgsqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("ids", ids);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        lista.Add(new ProductoSync
+                        {
+                            Id = reader.GetGuid(0),
+                            IdProductoOrig = reader.GetInt32(1),
+                            NomComercial = reader.GetString(2),
+                            NomComun = reader.IsDBNull(3) ? null : reader.GetString(3),
+                            Descripcion = reader.IsDBNull(4) ? null : reader.GetString(4),
+                            CantMinima = reader.IsDBNull(5) ? 1m : reader.GetDecimal(5),
+                            IdUnidad = reader.IsDBNull(6) ? 1 : reader.GetInt32(6),
+                            IdSubcategoria = reader.IsDBNull(7) ? (int?)null : reader.GetInt32(7),
+                            IvaPorcentaje = reader.IsDBNull(8) ? 0m : reader.GetDecimal(8),
+                            Facturable = !reader.IsDBNull(9) && reader.GetBoolean(9),
+                            CodProducto = reader.IsDBNull(10) ? null : reader.GetString(10),
+                            CantPresent = reader.IsDBNull(11) ? 1m : reader.GetDecimal(11),
+                            PrecioCompra = reader.IsDBNull(12) ? 0m : reader.GetDecimal(12),
+                            PrecioVenta = reader.IsDBNull(13) ? 0m : reader.GetDecimal(13),
+                            UnidadPresent = reader.IsDBNull(14) ? "UN" : reader.GetString(14),
+                            EstadoSync = reader.GetString(15),
+                            FechaCreacion = reader.GetDateTime(16)
+                        });
+                    }
+                }
+            }
+
+            return lista;
+        }
+ 
         /// <summary>
         /// Marca el producto como APLICADO para no re-sincronizarlo.
         /// </summary>

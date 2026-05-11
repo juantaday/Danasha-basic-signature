@@ -85,9 +85,10 @@ Public Class MDIPareInicio
         End Try
     End Sub
 
-    Private Sub mnuRecibirTransferencia_Click(sender As Object, e As EventArgs) Handles mnuRecibirTransferencia.Click
+    Private Sub mnuRecibirTransferencia_Click(sender As Object, e As EventArgs) Handles RecibirTransferenciasToolStripMenuItem.Click
         Try
             Dim frm As New frmRecibirTransferencia()
+            frm.WindowState = FormWindowState.Maximized
             frm.MdiParent = Me
             frm.Show()
         Catch ex As Exception
@@ -95,7 +96,7 @@ Public Class MDIPareInicio
         End Try
     End Sub
 
-    Private Sub mnuListadoGuiasRemision_Click(sender As Object, e As EventArgs) Handles mnuListadoGuiasRemision.Click
+    Private Sub mnuListadoGuiasRemision_Click(sender As Object, e As EventArgs) Handles ListadoDeGuíasDeRemisiónToolStripMenuItem.Click
         Try
             Dim frm As New frmListadoGuiasRemision()
             frm.WindowState = FormWindowState.Maximized
@@ -677,6 +678,7 @@ Public Class MDIPareInicio
             If Not (e.ClickedItem.Tag Is Nothing) Then
                 Dim index As Integer = e.ClickedItem.Tag
                 Me.MdiChildren(index).Select()
+                Me.MdiChildren(index).WindowState = FormWindowState.Maximized
             End If
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
