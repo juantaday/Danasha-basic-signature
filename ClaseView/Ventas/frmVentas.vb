@@ -10,8 +10,11 @@ Imports CADsisVenta.DataSetSystemTableAdapters
 Imports CADsisVenta.Funtions
 Imports CADsisVenta.Helpers.FInicio
 Imports CADsisVenta.Statics
+Imports Domain.Logica
 Imports ec.gob.sri.comprobantes.Enum
 Imports InterfaceSignatureAndSRI.Processes
+Imports Domain.Helpers.EnumExtensions
+Imports NpgsqlTypes
 
 Public Class frmVentas
     'Para sumar totales
@@ -113,12 +116,13 @@ Public Class frmVentas
         "       p.IdSubCategoria, s.Nom_SubCategoria, " &
         "       p.ivaPorcentaje, p.Facturable, " &
         "       pp.codProducto, pp.precioCompra, pp.precioVenta, " &
-        "       pp.Presentacion AS unidadPresent, pp.Cant_Present " &
-        "FROM   Productos p " &
-        "JOIN   ProductoPresentacion pp ON pp.idProducto = p.idProducto " &
+        "       pp.Presentacion AS unidadPresent, " &
+        "       p.Deft_idPresenVenta, p.Deft_idPresenCompra, pp.Cant_Present" &
+        " FROM   Productos p " &
+        " JOIN   ProductoPresentacion pp ON pp.idProducto = p.idProducto " &
         "                              AND pp.isPresentFactory = 1 " &
-        "JOIN   ProductoUndMin       u  ON u.idUnidad = p.idUnidad " &
-        "JOIN   ProductoSubCategoria s  ON s.idSubCategoria = p.IdSubCategoria " &
+        " JOIN   ProductoUndMin       u  ON u.idUnidad = p.idUnidad " &
+        " JOIN   ProductoSubCategoria s  ON s.idSubCategoria = p.IdSubCategoria " &
         "WHERE  p.idProducto IN (" & ids & ")"
 
         ' Paso 3: cargar en Dictionary para cruce eficiente
@@ -134,6 +138,8 @@ Public Class frmVentas
                 .codProducto = row("codProducto").ToString(),
                 .idUnidad = CInt(row("idUnidad")),
                 .idSubCategoria = CInt(row("IdSubCategoria")),
+                .Deft_idPresenCompra = CInt(row("Deft_idPresenCompra")),
+                .Deft_idPresenVenta = CInt(row("Deft_idPresenVenta")),
                 .ivaPorcentaje = CDec(row("ivaPorcentaje")),
                 .Facturable = CBool(row("Facturable")),
                 .PrecioCompra = CDec(row("precioCompra")),
@@ -143,6 +149,7 @@ Public Class frmVentas
             }
             Next
         End Using
+
 
         ' Paso 4: cruzar con cantidad y precioTotal del ListView
         Dim lista As New List(Of DetalleTransferenciaItem)
@@ -736,17 +743,31 @@ viewMesagge:
         End Try
     End Sub
     Private Function Procesa_Datos(documento As String) As Boolean
-        FacturVenta.nameDocunt = String.Empty
-        If Determina_formaPago(documento) Then
-            If PreviewFactura() Then
-                FacturVenta.nameDocunt = documento
-                If itemsXFactur(nameDocument:=documento) Then
-                    txtNumFactur.Text = sql
-                End If
-                Return True
+        Try
+            Dim tipoDocumento = FromDisplayName(Of TipoDocumento)(documento)
+
+            If Not tipoDocumento.HasValue Then
+                MessageBox.Show("Configuracion de documento no encontrado")
+                Return False
             End If
-        End If
-        Return False
+
+            FacturVenta.nameDocunt = String.Empty
+            If Determina_formaPago(documento) Then
+                If PreviewFactura() Then
+                    FacturVenta.nameDocunt = documento
+                    If itemsXFactur(tipoDocumento.Value) Then
+                        txtNumFactur.Text = sql
+                    End If
+                    Return True
+                End If
+            End If
+            Return False
+        Catch ex As Exception
+            MsgBox(ex.Message & vbLf & ex.StackTrace, MsgBoxStyle.Critical, "Error")
+            Return False    
+        End Try
+
+
     End Function
 
     Private Sub menuEliminar_Click(sender As Object, e As System.EventArgs) Handles menuEliminar.Click
@@ -1774,6 +1795,12 @@ viewMesagge:
     Private Sub NomClienteText_TextChanged(sender As Object, e As EventArgs) Handles NomClienteText.TextChanged
         Me.Text = String.Format("VENTAS: {0}", NomClienteText.Text)
     End Sub
+
+    Private Sub frmVentas_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        txtExploret.Focus()
+    End Sub
+
+
     Private Sub ToolStripMenuItemUnDolar_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemUnDolar.Click
         OtroValorSelect(DirectCast(sender, ToolStripMenuItem).Text)
     End Sub

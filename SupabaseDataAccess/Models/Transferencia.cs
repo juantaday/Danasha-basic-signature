@@ -40,6 +40,11 @@ namespace SupabaseDataAccess.Models
         public bool Facturable { get; set; }
         public decimal PrecioVenta { get; set; }
         public decimal CantPresent { get; set; }
+        public int? IdMotivo { get; set; }          // null = sin discrepancia
 
+        public string DescMotivo { get; set; }      // "Robo en tránsito", etc.
+
+        public string Estado { get; set; }          // RECIBIDO | PARCIAL | RECHAZADO
+   
     }
 }

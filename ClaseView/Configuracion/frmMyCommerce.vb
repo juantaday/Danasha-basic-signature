@@ -1,6 +1,4 @@
 ﻿Imports System.Data.SqlClient
-Imports System.Windows.Forms
-Imports CADsisVenta.Helpers.FInicio
 Imports CADsisVenta.Statics
 
 Public Class frmMyCommerce
@@ -304,6 +302,17 @@ Public Class frmMyCommerce
             MsgBox(ex.Message & vbLf & ex.StackTrace, MsgBoxStyle.Critical, "Error")
         Finally
             Cursor = Cursors.Default
+        End Try
+    End Sub
+
+    Private Sub btnConnectionRemote_Click(sender As Object, e As EventArgs) Handles btnConnectionRemote.Click
+        Try
+            Using setting As New frmConnectionRemoteProfile()
+                setting.StartPosition = FormStartPosition.CenterScreen
+                setting.ShowDialog()
+            End Using
+        Catch ex As Exception
+            Interaction.MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
     End Sub
 

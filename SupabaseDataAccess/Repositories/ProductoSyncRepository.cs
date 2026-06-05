@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using SupabaseDataAccess.Models;
+using SupabaseDataAccess.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;

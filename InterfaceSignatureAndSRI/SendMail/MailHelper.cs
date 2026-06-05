@@ -61,10 +61,7 @@ namespace InterfaceSignatureAndSRI.SendMail
             }
             catch (Exception ex)
             {
-                string[] _files = Funciones.GetPersonalfolder();
-                Log log = new Log(_files[(int)EnumStateInvoice.Path]);
-                log.Add(ex.Message);
-                log.Add(ex.StackTrace);
+               Log.Error("MailHelper.SendMail", "Error al enviar el correo", ex);   
             }
 
         }

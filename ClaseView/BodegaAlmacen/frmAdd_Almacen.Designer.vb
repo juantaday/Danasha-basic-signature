@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmAdd_Almacen
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,12 +20,10 @@ Partial Class frmAdd_Almacen
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.pnlEntrada = New System.Windows.Forms.Panel()
         Me.chkEsSucursalRemota = New System.Windows.Forms.CheckBox()
         Me.txtCiudadSucursal = New System.Windows.Forms.TextBox()
@@ -38,9 +36,7 @@ Partial Class frmAdd_Almacen
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.txtCheque = New System.Windows.Forms.TextBox()
-        Me.btnCancel = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.btnAceptar = New System.Windows.Forms.Button()
         Me.txtFecha_Apert = New System.Windows.Forms.DateTimePicker()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.telefono3TextBox = New System.Windows.Forms.TextBox()
@@ -61,11 +57,13 @@ Partial Class frmAdd_Almacen
         Me.datalistado = New System.Windows.Forms.DataGridView()
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.PnlListado = New System.Windows.Forms.Panel()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.btnCancelar = New System.Windows.Forms.Button()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.btnAceptar = New System.Windows.Forms.Button()
         Me.btnElimina = New System.Windows.Forms.Button()
         Me.btnNuevo = New System.Windows.Forms.Button()
         Me.btnModifica = New System.Windows.Forms.Button()
-        Me.btnCancelar = New System.Windows.Forms.Button()
-        Me.Label9 = New System.Windows.Forms.Label()
         Me.pnlEntrada.SuspendLayout()
         CType(Me.ErrorIcono, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.datalistado, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -229,17 +227,6 @@ Partial Class frmAdd_Almacen
         Me.ToolTip1.SetToolTip(Me.txtCheque, "Al momento de adquirir productos será la persona autorizado a emitir queches al p" &
         "roveedor")
         '
-        'btnCancel
-        '
-        Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCancel.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.Action_Cancel_32x32
-        Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnCancel.Location = New System.Drawing.Point(430, 502)
-        Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(50, 50)
-        Me.btnCancel.TabIndex = 16
-        Me.btnCancel.UseVisualStyleBackColor = False
-        '
         'Label6
         '
         Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -250,18 +237,6 @@ Partial Class frmAdd_Almacen
         Me.Label6.Size = New System.Drawing.Size(110, 15)
         Me.Label6.TabIndex = 15
         Me.Label6.Text = "Fecha de apertura:"
-        '
-        'btnAceptar
-        '
-        Me.btnAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAceptar.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.Save2_icon_48
-        Me.btnAceptar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnAceptar.Location = New System.Drawing.Point(375, 502)
-        Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(50, 50)
-        Me.btnAceptar.TabIndex = 2
-        Me.ToolTip1.SetToolTip(Me.btnAceptar, "Guardar informacion")
-        Me.btnAceptar.UseVisualStyleBackColor = False
         '
         'txtFecha_Apert
         '
@@ -416,28 +391,12 @@ Partial Class frmAdd_Almacen
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.datalistado.BackgroundColor = System.Drawing.Color.White
         Me.datalistado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.datalistado.DefaultCellStyle = DataGridViewCellStyle2
         Me.datalistado.Location = New System.Drawing.Point(3, 12)
         Me.datalistado.MultiSelect = False
         Me.datalistado.Name = "datalistado"
         Me.datalistado.ReadOnly = True
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.datalistado.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.datalistado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datalistado.Size = New System.Drawing.Size(537, 357)
+        Me.datalistado.Size = New System.Drawing.Size(714, 338)
         Me.datalistado.TabIndex = 9
         '
         'NotifyIcon1
@@ -454,66 +413,11 @@ Partial Class frmAdd_Almacen
         Me.PnlListado.Controls.Add(Me.datalistado)
         Me.PnlListado.Controls.Add(Me.btnNuevo)
         Me.PnlListado.Controls.Add(Me.btnModifica)
+        Me.PnlListado.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PnlListado.Location = New System.Drawing.Point(539, 59)
         Me.PnlListado.Name = "PnlListado"
-        Me.PnlListado.Size = New System.Drawing.Size(547, 407)
+        Me.PnlListado.Size = New System.Drawing.Size(724, 407)
         Me.PnlListado.TabIndex = 17
-        '
-        'btnElimina
-        '
-        Me.btnElimina.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnElimina.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
-        Me.btnElimina.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnElimina.Enabled = False
-        Me.btnElimina.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnElimina.Location = New System.Drawing.Point(162, 375)
-        Me.btnElimina.Name = "btnElimina"
-        Me.btnElimina.Size = New System.Drawing.Size(68, 28)
-        Me.btnElimina.TabIndex = 16
-        Me.btnElimina.Text = "Eliminar"
-        Me.btnElimina.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnElimina.UseVisualStyleBackColor = True
-        '
-        'btnNuevo
-        '
-        Me.btnNuevo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnNuevo.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.nuevo_16
-        Me.btnNuevo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnNuevo.Image = Global.DanashaBasicSignature.My.Resources.Resources.nuevo_16
-        Me.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnNuevo.Location = New System.Drawing.Point(14, 375)
-        Me.btnNuevo.Name = "btnNuevo"
-        Me.btnNuevo.Size = New System.Drawing.Size(68, 28)
-        Me.btnNuevo.TabIndex = 15
-        Me.btnNuevo.Text = "Nuevo"
-        Me.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnNuevo.UseVisualStyleBackColor = True
-        '
-        'btnModifica
-        '
-        Me.btnModifica.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnModifica.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.edir_16
-        Me.btnModifica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnModifica.Enabled = False
-        Me.btnModifica.Image = Global.DanashaBasicSignature.My.Resources.Resources.edir_16
-        Me.btnModifica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnModifica.Location = New System.Drawing.Point(88, 375)
-        Me.btnModifica.Name = "btnModifica"
-        Me.btnModifica.Size = New System.Drawing.Size(70, 28)
-        Me.btnModifica.TabIndex = 14
-        Me.btnModifica.Text = "Modificar"
-        Me.btnModifica.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnModifica.UseVisualStyleBackColor = True
-        '
-        'btnCancelar
-        '
-        Me.btnCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnCancelar.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.Exit_icon
-        Me.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btnCancelar.Location = New System.Drawing.Point(1021, 474)
-        Me.btnCancelar.Name = "btnCancelar"
-        Me.btnCancelar.Size = New System.Drawing.Size(65, 65)
-        Me.btnCancelar.TabIndex = 1
         '
         'Label9
         '
@@ -525,12 +429,92 @@ Partial Class frmAdd_Almacen
         Me.Label9.TabIndex = 18
         Me.Label9.Text = "Listado de bodegas registradas"
         '
+        'btnCancelar
+        '
+        Me.btnCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancelar.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.Exit_icon
+        Me.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnCancelar.Location = New System.Drawing.Point(1198, 474)
+        Me.btnCancelar.Name = "btnCancelar"
+        Me.btnCancelar.Size = New System.Drawing.Size(65, 65)
+        Me.btnCancelar.TabIndex = 1
+        '
+        'btnCancel
+        '
+        Me.btnCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnCancel.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.Action_Cancel_32x32
+        Me.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnCancel.Location = New System.Drawing.Point(430, 502)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(50, 50)
+        Me.btnCancel.TabIndex = 16
+        Me.btnCancel.UseVisualStyleBackColor = False
+        '
+        'btnAceptar
+        '
+        Me.btnAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAceptar.BackgroundImage = Global.DanashaBasicSignature.My.Resources.Resources.Save2_icon_48
+        Me.btnAceptar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnAceptar.Location = New System.Drawing.Point(375, 502)
+        Me.btnAceptar.Name = "btnAceptar"
+        Me.btnAceptar.Size = New System.Drawing.Size(50, 50)
+        Me.btnAceptar.TabIndex = 2
+        Me.ToolTip1.SetToolTip(Me.btnAceptar, "Guardar informacion")
+        Me.btnAceptar.UseVisualStyleBackColor = False
+        '
+        'btnElimina
+        '
+        Me.btnElimina.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnElimina.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnElimina.Enabled = False
+        Me.btnElimina.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnElimina.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Delete_16x16
+        Me.btnElimina.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnElimina.Location = New System.Drawing.Point(211, 368)
+        Me.btnElimina.Name = "btnElimina"
+        Me.btnElimina.Size = New System.Drawing.Size(89, 35)
+        Me.btnElimina.TabIndex = 16
+        Me.btnElimina.Text = "Eliminar"
+        Me.btnElimina.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnElimina.UseVisualStyleBackColor = True
+        '
+        'btnNuevo
+        '
+        Me.btnNuevo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnNuevo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnNuevo.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNuevo.Image = Global.DanashaBasicSignature.My.Resources.Resources.nuevo_16
+        Me.btnNuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnNuevo.Location = New System.Drawing.Point(14, 368)
+        Me.btnNuevo.Name = "btnNuevo"
+        Me.btnNuevo.Size = New System.Drawing.Size(86, 35)
+        Me.btnNuevo.TabIndex = 15
+        Me.btnNuevo.Text = "Nuevo"
+        Me.btnNuevo.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnNuevo.UseVisualStyleBackColor = True
+        '
+        'btnModifica
+        '
+        Me.btnModifica.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnModifica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnModifica.Enabled = False
+        Me.btnModifica.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnModifica.Image = Global.DanashaBasicSignature.My.Resources.Resources.edir_16
+        Me.btnModifica.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnModifica.Location = New System.Drawing.Point(106, 368)
+        Me.btnModifica.Name = "btnModifica"
+        Me.btnModifica.Size = New System.Drawing.Size(93, 35)
+        Me.btnModifica.TabIndex = 14
+        Me.btnModifica.Text = "Modificar"
+        Me.btnModifica.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnModifica.UseVisualStyleBackColor = True
+        '
         'frmAdd_Almacen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1097, 594)
+        Me.ClientSize = New System.Drawing.Size(1274, 594)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.pnlEntrada)

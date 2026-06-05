@@ -2,20 +2,10 @@
 using Domain.Data.Entities;
 using Domain.Data.Enums;
 using Domain.Helpers;
-using Domain.Logica;
-using Domain.Models;
-using Domain.Setting;
-using DomainSQLite.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime;
-using System.Runtime.InteropServices.ComTypes;
-using System.Security.Cryptography.Xml;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Funtions
@@ -24,12 +14,13 @@ namespace Domain.Funtions
     {
 
         private static string keyHas = "de12↓}Ä7`U7♦1↓asdr34523";
-        public static List<Product >  GetListProductsAll()
+        public static List<Product> GetListProductsAll()
         {
-            using (var db = new DomainDataContext( new DbContextOptions<DataContext> ())) { 
-                return db.Products.Include(x=>x.PRODUCTO_IMPUESTO)
-                    .Include (x=>x.INFO_ADICIONALS)
-                    .Take (500).ToList ();
+            using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
+            {
+                return db.Products.Include(x => x.PRODUCTO_IMPUESTO)
+                    .Include(x => x.INFO_ADICIONALS)
+                    .Take(500).ToList();
             }
         }
 
@@ -38,7 +29,7 @@ namespace Domain.Funtions
         {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
-                return db.Clientes.Include (x=>x.TypeIdentification).Take(500).ToList();
+                return db.Clientes.Include(x => x.TypeIdentification).Take(500).ToList();
             }
         }
 
@@ -62,8 +53,8 @@ namespace Domain.Funtions
         {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
-                var typeVat = new string[] {"I","B"};
-                return db.IMPUESTO_VALOR.Where (t => typeVat.Contains(t.TIPO_IMPUESTO)).ToList();
+                var typeVat = new string[] { "I", "B" };
+                return db.IMPUESTO_VALOR.Where(t => typeVat.Contains(t.TIPO_IMPUESTO)).ToList();
             }
         }
 
@@ -71,7 +62,7 @@ namespace Domain.Funtions
         {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
-                return db.IMPUESTO_VALOR.Where(t =>t.CODIGO_IMPUESTO == 2 && t.TIPO_IMPUESTO =="I").ToList();
+                return db.IMPUESTO_VALOR.Where(t => t.CODIGO_IMPUESTO == 2 && t.TIPO_IMPUESTO == "I").ToList();
             }
         }
 
@@ -99,13 +90,13 @@ namespace Domain.Funtions
             }
         }
 
-        public static async  Task<Tuple <bool, Product>> SaveProductAsync(Product currentProduct)
+        public static async Task<Tuple<bool, Product>> SaveProductAsync(Product currentProduct)
         {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
-                db.Products .Add (currentProduct);
+                db.Products.Add(currentProduct);
                 await db.SaveChangesAsync();
-                return Tuple.Create (true, currentProduct);     
+                return Tuple.Create(true, currentProduct);
             }
 
         }
@@ -114,11 +105,11 @@ namespace Domain.Funtions
         {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
-                using (var transaction = db.Database.BeginTransaction()) 
+                using (var transaction = db.Database.BeginTransaction())
                 {
                     try
                     {
-                 
+
                         db.Entry(currentProduct).State = EntityState.Modified;
 
                         await db.SaveChangesAsync();
@@ -127,7 +118,7 @@ namespace Domain.Funtions
                         {
                             if (item.Id > 0 && item.TIPO_IMPUESTO != 2 && item.CODIGO_IMPUESTO == "0")
                                 db.Entry(item).State = EntityState.Deleted;
-                            else 
+                            else
                                 db.Entry(item).State = item.Id == 0 ?
                                          EntityState.Added :
                                          EntityState.Modified;
@@ -135,7 +126,8 @@ namespace Domain.Funtions
 
                         await db.SaveChangesAsync();
 
-                        if (currentProduct.INFO_ADICIONALS != null) {
+                        if (currentProduct.INFO_ADICIONALS != null)
+                        {
                             foreach (INFO_ADICIONAL item in currentProduct.INFO_ADICIONALS)
                             {
                                 if (item.Id > 0 && string.IsNullOrWhiteSpace(item.ValueAtribute))
@@ -148,10 +140,10 @@ namespace Domain.Funtions
 
                             await db.SaveChangesAsync();
                         }
-                
 
 
-               
+
+
                         transaction.Commit();
 
                         return Tuple.Create(true, currentProduct);
@@ -160,11 +152,11 @@ namespace Domain.Funtions
                     {
                         transaction.Rollback();
 
-                        throw new Exception (ex.Message , ex.InnerException ) ;
+                        throw new Exception(ex.Message, ex.InnerException);
                     }
 
                 }
-               
+
             }
         }
 
@@ -172,7 +164,7 @@ namespace Domain.Funtions
         {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
-                return db.SignatureOptions.Where (x=>x.MyCommerceId == myCommerceId).FirstOrDefault();
+                return db.SignatureOptions.Where(x => x.MyCommerceId == myCommerceId).FirstOrDefault();
             }
         }
 
@@ -192,15 +184,16 @@ namespace Domain.Funtions
                 {
                     try
                     {
-             
+
                         db.Entry(currentCommerce).State = currentCommerce.Id == 0 ?
                                EntityState.Added :
                                EntityState.Modified;
 
-             
+
                         await db.SaveChangesAsync();
 
-                        if (currentCommerce.SignatureOptions != null) {
+                        if (currentCommerce.SignatureOptions != null)
+                        {
                             foreach (SignatureOption item in currentCommerce.SignatureOptions)
                             {
                                 db.Entry(item).State = item.Id == 0 ?
@@ -210,7 +203,7 @@ namespace Domain.Funtions
 
                             await db.SaveChangesAsync();
                         }
-                     
+
                         transaction.Commit();
 
                         return Tuple.Create(true, currentCommerce);
@@ -228,13 +221,13 @@ namespace Domain.Funtions
 
         }
 
-        public async  static  Task< bool> SaveListTypeDocumentAsync(List<TypeDocument> listTypeDocuments)
+        public async static Task<bool> SaveListTypeDocumentAsync(List<TypeDocument> listTypeDocuments)
         {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
                 foreach (var item in listTypeDocuments)
                 {
-                    db.Entry(item) .State = EntityState.Modified;
+                    db.Entry(item).State = EntityState.Modified;
                 }
                 await db.SaveChangesAsync();
                 return true;
@@ -251,14 +244,15 @@ namespace Domain.Funtions
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
                 if (response.IsNumeric)
-                    return db.Products.Include (i=>i.INFO_ADICIONALS).Include (x=>x.PRODUCTO_IMPUESTO )
-                        .ThenInclude (z=>z.IMPUESTO_VALOR )
+                    return db.Products.Include(i => i.INFO_ADICIONALS).Include(x => x.PRODUCTO_IMPUESTO)
+                        .ThenInclude(z => z.IMPUESTO_VALOR)
                         .Where(x => x.BarCode.Trim() == response.Spliter[0]).ToList();
                 else if (response.IsCode)
                     return db.Products.Include(i => i.INFO_ADICIONALS).Include(x => x.PRODUCTO_IMPUESTO)
                         .ThenInclude(z => z.IMPUESTO_VALOR)
                         .Where(x => x.Cod_Secondary.Trim() == response.Spliter[0]).ToList();
-                else {
+                else
+                {
                     if (response.Spliter[2].Length > 0)
                     {
                         var qry = db.Products.Include(i => i.INFO_ADICIONALS).Include(x => x.PRODUCTO_IMPUESTO)
@@ -276,14 +270,15 @@ namespace Domain.Funtions
 
                         return qry.Where(x => x.Name_Producto.Contains(response.Spliter[1])).ToList();
                     }
-                    else {
-                        return db.Products.Include(i => i.INFO_ADICIONALS).Include (x=>x.PRODUCTO_IMPUESTO)
-                            .ThenInclude (x=>x.IMPUESTO_VALOR)
+                    else
+                    {
+                        return db.Products.Include(i => i.INFO_ADICIONALS).Include(x => x.PRODUCTO_IMPUESTO)
+                            .ThenInclude(x => x.IMPUESTO_VALOR)
                             .Where(x => x.Name_Producto.Contains(response.Spliter[0])).ToList();
                     }
-                    
+
                 }
-              
+
             }
 
         }
@@ -325,7 +320,7 @@ namespace Domain.Funtions
                 {
                     if (response.Spliter[2].Length > 0)
                     {
-                        var qry = db.Clientes.Include (x=>x.TypeIdentification).Where(x => x.Nombre.Contains(response.Spliter[0]));
+                        var qry = db.Clientes.Include(x => x.TypeIdentification).Where(x => x.Nombre.Contains(response.Spliter[0]));
                         var qry1 = qry.Where(x => x.Nombre.Contains(response.Spliter[1]));
                         return qry.Where(x => x.Nombre.Contains(response.Spliter[2])).ToList(); ;
                     }
@@ -344,7 +339,7 @@ namespace Domain.Funtions
             }
         }
 
-        public  static FORMAS_PAGO GetDefaultFormasPago()
+        public static FORMAS_PAGO GetDefaultFormasPago()
         {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
@@ -356,7 +351,7 @@ namespace Domain.Funtions
         {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
-                return db.Clientes.Include (x=>x.TypeIdentification).Where(x => x.Num_Identity == "9999999999999").FirstOrDefault();
+                return db.Clientes.Include(x => x.TypeIdentification).Where(x => x.Num_Identity == "9999999999999").FirstOrDefault();
             }
         }
 
@@ -367,34 +362,34 @@ namespace Domain.Funtions
         /// <returns>string: numero de factura </returns>
         /// <returns>string: ambiente </returns>
         /// <exception cref="KeyNotFoundException"></exception>
-        public static Tuple <int , string , string >   GetNumberInvoice()
+        public static Tuple<int, string, string> GetNumberInvoice()
         {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
                 //1 = Factura
-                var doc =  db.TypeDocuments.Where(x => x.Id == 1).FirstOrDefault();
+                var doc = db.TypeDocuments.Where(x => x.Id == 1).FirstOrDefault();
                 if (doc == null)
                     throw new KeyNotFoundException(nameof(TypeDocument) + "ID = 1");
 
-                var emisor = db.MyCommerce.Include (x=>x.SignatureOptions).FirstOrDefault();
+                var emisor = db.MyCommerce.Include(x => x.SignatureOptions).FirstOrDefault();
                 if (emisor == null)
                     throw new KeyNotFoundException("Debe configurar primero el emisor para determinar el numero de factura..");
 
-                if (emisor.SignatureOptions ==null || emisor.SignatureOptions.Count==0 )
+                if (emisor.SignatureOptions == null || emisor.SignatureOptions.Count == 0)
                     throw new KeyNotFoundException("Debe configurar las opciones de fima, token");
 
 
-                string numFac= emisor.CodEstablec + "-" + emisor.CodPntoEmision + "-" 
-                    + new string ('0',7- (doc.Numeration).ToString().Length)
+                string numFac = emisor.CodEstablec + "-" + emisor.CodPntoEmision + "-"
+                    + new string('0', 7 - (doc.Numeration).ToString().Length)
                     + (doc.Numeration).ToString();
 
-               var ambiente  = (ushort)emisor.SignatureOptions.FirstOrDefault().TIPO_AMBIENTE;
+                var ambiente = (ushort)emisor.SignatureOptions.FirstOrDefault().TIPO_AMBIENTE;
 
-                return Tuple.Create(doc.Numeration + 1, numFac, ambiente.ToString ());
+                return Tuple.Create(doc.Numeration + 1, numFac, ambiente.ToString());
             }
         }
 
-        
+
 
         public static byte[] GetLogoPDFByte()
         {
@@ -426,12 +421,12 @@ namespace Domain.Funtions
         {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
-                return  db.MySettings.Where(x => x.MyCommerceId == myCommerceId).FirstOrDefault();
+                return db.MySettings.Where(x => x.MyCommerceId == myCommerceId).FirstOrDefault();
 
             }
         }
 
-        public  async static Task<Tuple<bool, int>> SaveAndUpdateMySettingAync(MySetting currentMySetting)
+        public async static Task<Tuple<bool, int>> SaveAndUpdateMySettingAync(MySetting currentMySetting)
         {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
@@ -452,15 +447,15 @@ namespace Domain.Funtions
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
 
-                var client  = db.Clientes.Where(x => x.Num_Identity.Trim() == ruc).FirstOrDefault();
-                if (client == null ||  string.IsNullOrEmpty ( client.MainEmail))
+                var client = db.Clientes.Where(x => x.Num_Identity.Trim() == ruc).FirstOrDefault();
+                if (client == null || string.IsNullOrEmpty(client.MainEmail))
                     return null;
 
 
                 List<string> lis = new List<string>();
                 lis.Add(client.MainEmail);
 
-                if ( !string.IsNullOrEmpty ( client.AlternativeEmail))
+                if (!string.IsNullOrEmpty(client.AlternativeEmail))
                     lis.Add(client.AlternativeEmail);
 
                 return lis;
@@ -469,13 +464,14 @@ namespace Domain.Funtions
 
         }
 
-        public async  static Task<bool> UpdatePriceProduc(int productId, decimal newPrice) {
+        public async static Task<bool> UpdatePriceProduc(int productId, decimal newPrice)
+        {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
 
                 var product = db.Products.Where(x => x.Id == productId).FirstOrDefault();
                 if (product == null)
-                    throw new  KeyNotFoundException(nameof (Product) + "ID: "  + productId.ToString ());
+                    throw new KeyNotFoundException(nameof(Product) + "ID: " + productId.ToString());
 
                 product.UnitPrice = newPrice;
 
@@ -485,7 +481,7 @@ namespace Domain.Funtions
             }
         }
 
-       
+
     }
 
 }

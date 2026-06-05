@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using SupabaseDataAccess.Settings;
 using System.Collections.Generic;
 
 namespace SupabaseDataAccess.Migrations

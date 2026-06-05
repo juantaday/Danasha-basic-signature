@@ -42,4 +42,8 @@ Public Class DetalleTransfItem
         End Get
     End Property
 
+    Public Property Deft_idPresenCompra As Integer = 1
+
+    Public Property Deft_idPresenVenta As Integer = 1
+
 End Class

@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Net
+Imports System.Drawing.Drawing2D
 Imports CADsisVenta.Class
 Imports CADsisVenta.Data.Emuns.EnumSatateModule
 Imports CADsisVenta.Data.Models
@@ -7,8 +8,11 @@ Imports CADsisVenta.Funtions
 Imports CADsisVenta.Helpers
 Imports CADsisVenta.Helpers.FInicio
 Imports InterfaceSignatureAndSRI.Views
+Imports Domain.Extensions
 
 Public Class MDIPareInicio
+
+    Private _mdiClient As MdiClient
 
     Public Sub New()
 
@@ -41,9 +45,7 @@ Public Class MDIPareInicio
     Private Sub CloseAllToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CloseAllToolStripMenuItem.Click
         ' Cierre todos los formularios secundarios del principal.
         For Each ChildForm As form_Code In Me.MdiChildren
-            If Not ChildForm.Name.Equals("frmPanel") Then
-                ChildForm.Close()
-            End If
+            ChildForm.Close()
         Next
     End Sub
 
@@ -52,21 +54,13 @@ Public Class MDIPareInicio
         Try
             System.Windows.Forms.Application.EnableVisualStyles()
             DatosUsuario()
-            Hide_PagesOpenView()
-
-            Me.paneMuestra.Visible = False
-            Dim located As Point
-            located.Y = 0
-            located.X = 0
-            Dim formnew As New frmPanel()
-
-            With formnew
-                .MdiParent = Me
-                .Width = Me.paneMuestra.Width
-                .Height = Me.paneMuestra.Height
-                .Location = located
-                .Show()
-            End With
+            AplicarFondoMdi()
+            ConfigurarMenuBarr()
+            paneMuestra.Visible = False
+            paneMuestra.Dock = DockStyle.None
+            paneMuestra.Size = Size.Empty
+            MenuBarr.Visible = True
+            MenuBarr.BringToFront()
 
 
             If FInicio.TerminalActivo.idTerminal = 0 Then
@@ -83,6 +77,53 @@ Public Class MDIPareInicio
             MsgBox(ex.Message & vbLf & ex.StackTrace, MsgBoxStyle.Critical, "Error")
             Me.Close()
         End Try
+    End Sub
+
+    Private Sub AplicarFondoMdi()
+        _mdiClient = Nothing
+
+        For Each ctl As Control In Controls
+            Dim client = TryCast(ctl, MdiClient)
+            If client IsNot Nothing Then
+                _mdiClient = client
+                Exit For
+            End If
+        Next
+
+        If _mdiClient Is Nothing Then
+            Return
+        End If
+
+        AddHandler _mdiClient.Paint, AddressOf MdiClient_Paint
+        AddHandler _mdiClient.Resize, AddressOf MdiClient_Resize
+        _mdiClient.Invalidate()
+    End Sub
+
+    Private Sub MdiClient_Paint(sender As Object, e As PaintEventArgs)
+        Dim client = TryCast(sender, MdiClient)
+        If client Is Nothing Then
+            Return
+        End If
+
+        Dim rect As Rectangle = client.ClientRectangle
+        If rect.Width = 0 OrElse rect.Height = 0 Then
+            Return
+        End If
+
+        Using brush As New LinearGradientBrush(rect, Color.FromArgb(240, 240, 240), Color.FromArgb(251, 251, 251), LinearGradientMode.Vertical)
+            e.Graphics.FillRectangle(brush, rect)
+        End Using
+    End Sub
+
+    Private Sub MdiClient_Resize(sender As Object, e As EventArgs)
+        Dim client = TryCast(sender, MdiClient)
+        If client IsNot Nothing Then
+            client.Invalidate()
+        End If
+    End Sub
+
+    Private Sub MDIPareInicio_MdiChildActivate(sender As Object, e As EventArgs) Handles MyBase.MdiChildActivate
+        ActualizarMenuBarr()
     End Sub
 
     Private Sub mnuRecibirTransferencia_Click(sender As Object, e As EventArgs) Handles RecibirTransferenciasToolStripMenuItem.Click
@@ -159,9 +200,7 @@ Public Class MDIPareInicio
             Forms = Me.MdiChildren
 
             For Each form As form_Code In Forms
-                If Not form.Name.ToString.Equals("frmPanel") Then
-                    form.Close()
-                End If
+                form.Close()
             Next
         Catch ex As Exception
         End Try
@@ -605,85 +644,54 @@ Public Class MDIPareInicio
             Me.Cursor = Cursors.Default
         End Try
     End Sub
-    Private Sub SelectToolStripMenuItem_Click(e As ToolStripDropDownItem)
-        Try
-            Hide_PagesOpenView()
-            Dim i As Integer = 0
-            Dim index As Integer = 1
-            Dim ActiveIndex As Integer = 1
-            For Each desactive In Me.MdiChildren
-                desactive.Tag = Nothing
-            Next
+    Private Sub ConfigurarMenuBarr()
+        MenuBarr.Items.Clear()
+        MenuBarr.BackColor = Color.FromArgb(52, 62, 72)
+        MenuBarr.RenderMode = ToolStripRenderMode.System
+        MenuBarr.Visible = True
+        MenuBarr.BringToFront()
+    End Sub
 
-            If Me.MdiChildren.Count > 0 Then
-                Dim j As Integer = 0
-                Me.ActiveMdiChild.Tag = 1
+    Private Sub ActualizarMenuBarr()
+        If MenuBarr Is Nothing Then
+            Return
+        End If
 
-                For Each ActivateIndex In Me.MdiChildren
-                    If Not (ActivateIndex.Tag Is Nothing) Then
-                        ActiveIndex = j
-                        Exit For
-                    End If
-                    j += 1
-                Next
+        MenuBarr.SuspendLayout()
+        MenuBarr.Items.Clear()
+
+        For Each child As Form In Me.MdiChildren
+            Dim item As New ToolStripMenuItem(child.Text)
+            item.Tag = child
+            item.DisplayStyle = ToolStripItemDisplayStyle.Text
+            item.ForeColor = Color.Gainsboro
+            item.Margin = New Padding(2, 0, 2, 0)
+            item.BackColor = MenuBarr.BackColor
+            item.Font = MenuBarr.Font
+            AddHandler item.Click, AddressOf MenuBarrChild_Click
+
+            If child Is Me.ActiveMdiChild Then
+                item.BackColor = Color.FromArgb(56, 139, 19)
+                item.ForeColor = Color.White
+                item.Font = New Font(MenuBarr.Font, FontStyle.Bold)
             End If
 
-            For Each SubMenu In e.DropDownItems
-                If i > 6 Then
-                    If Not (MenuBarr.Items(i).Name.Contains("ToolStripSeparator")) Then
-                        MenuBarr.Items(i).ForeColor = Color.Black
-                        MenuBarr.Items(i).Name = "i" & SubMenu.Name
-                        MenuBarr.Items(i).Text = SubMenu.Text
-                        MenuBarr.Items(i).ToolTipText = SubMenu.Text
-                        MenuBarr.Items(i).ImageScaling = SubMenu.ImageScaling
-                        MenuBarr.Items(i).Image = SubMenu.Image
-                        MenuBarr.Items(i).Visible = True
-                        MenuBarr.Items(i).Enabled = SubMenu.Enabled
-                        MenuBarr.Items(i).Tag = index
-                        If ActiveIndex = index Then
-                            MenuBarr.Items(i).ForeColor = Color.White
-                            MenuBarr.Items(i).BackColor = System.Drawing.Color.FromArgb(CType(CType(76, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(139, Byte), Integer))
-                        End If
-                        index += 1
-                    End If
-                End If
-                i += 1
-            Next
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
-        End Try
-    End Sub
-    Private Sub Hide_PagesOpenView()
-        Try
-            For m = 0 To MenuBarr.Items.Count - 1
-                MenuBarr.Items(m).Visible = False
-                MenuBarr.Items(m).BackColor = MenuBarr.BackColor
-            Next
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
-        End Try
-    End Sub
-    Private Sub Oculta_SubMenu()
-        Try
-            For m = 0 To MenuBarr.Items.Count - 1
-                MenuBarr.Items(m).Visible = False
-            Next
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
-        End Try
+            MenuBarr.Items.Add(item)
+        Next
+
+        MenuBarr.ResumeLayout()
     End Sub
 
-    Private Sub MenuBarr_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles MenuBarr.ItemClicked
-        Try
-            If Not (e.ClickedItem.Tag Is Nothing) Then
-                Dim index As Integer = e.ClickedItem.Tag
-                Me.MdiChildren(index).Select()
-                Me.MdiChildren(index).WindowState = FormWindowState.Maximized
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
-        End Try
+    Private Sub MenuBarrChild_Click(sender As Object, e As EventArgs)
+        Dim item = TryCast(sender, ToolStripMenuItem)
+        Dim child = TryCast(item?.Tag, Form)
 
+        If child IsNot Nothing AndAlso Not child.IsDisposed Then
+            child.Select()
+            child.WindowState = FormWindowState.Maximized
+            Dim menu = TryCast(sender, ToolStripMenuItem)
+            menu.BackColor = Color.FromArgb(20, 20, 20)
+        End If
     End Sub
     Private Sub ReporteDeVentasPorCajaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReporteDeVentasPorCajaToolStripMenuItem.Click
         Try
@@ -964,9 +972,7 @@ Salida:
     End Sub
 
     Private Sub WindowsMenu_Paint(sender As Object, e As PaintEventArgs) Handles WindowsMenu.Paint
-        If WindowsMenu.HasDropDownItems Then
-            SelectToolStripMenuItem_Click(sender)
-        End If
+        ActualizarMenuBarr()
     End Sub
 
     Private Sub ContadorBillteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ContadorBillteToolStripMenuItem.Click
@@ -1224,4 +1230,22 @@ Salida:
         End Try
 
     End Sub
+
+    Private Sub InventarioEnOtosLocalesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InventarioEnOtosLocalesToolStripMenuItem.Click
+        Try
+            Me.Cursor = Cursors.WaitCursor
+
+            Dim frmViewList As New frmOtrosLocales()
+            frmViewList.MdiParent = Me
+            frmViewList.WindowState = FormWindowState.Maximized
+            frmViewList.Show()
+
+        Catch ex As Exception
+            MsgBox(ex.Message & vbLf & ex.StackTrace, MsgBoxStyle.Critical, "Error")
+        Finally
+            Me.Cursor = Cursors.Default
+        End Try
+    End Sub
+
+
 End Class

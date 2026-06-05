@@ -47,7 +47,7 @@ namespace DomainSQLite.Helpers
             if(!string.IsNullOrEmpty ( folder ))
                 phat = String.Format("{0}\\{1}", directoryDB, folder);
             else 
-                phat = String.Format("{0}\\Danasha Gold", directoryDB);
+                phat = String.Format("{0}\\Danasha Basic Signature", directoryDB);
 
             if (!Microsoft.VisualBasic.FileIO.FileSystem.DirectoryExists(phat))
             {
@@ -55,6 +55,16 @@ namespace DomainSQLite.Helpers
             }
 
             return phat;
+        }
+
+        public static string GetDefaultFolderLogs()
+        {
+            string logsPath = System.IO.Path.Combine(GetFolderDbDirectory(), "logs");
+
+            if (!System.IO.Directory.Exists(logsPath))
+                System.IO.Directory.CreateDirectory(logsPath);
+
+            return logsPath;
         }
 
         public static string StrigFileDB

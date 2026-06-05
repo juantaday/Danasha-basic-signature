@@ -902,7 +902,7 @@ Public Function ImprimirGuiaRemision(ByVal idTransf As Integer,
 
         ' Leer detalle desde SQL local
         Dim sql As String =
-            "SELECT p.Nombre_Producto, d.CantidadEnviada, d.Unidad " &
+            "SELECT p.Nom_Comercial, d.CantidadEnviada, d.Unidad " &
             "FROM TransferenciaDetalle d " &
             "INNER JOIN Productos p ON d.idProducto = p.idProducto " &
             "WHERE d.idTransferencia = " & idTransf
@@ -910,7 +910,7 @@ Public Function ImprimirGuiaRemision(ByVal idTransf As Integer,
         Using cmd As New CADsisVenta.Funtions.SqlComandExec
             Using dt = cmd.RetornaTabla(sql)
                 For Each row As DataRow In dt.Rows
-                    Dim nombre As String = row("Nombre_Producto").ToString()
+                    Dim nombre As String = row("Nom_Comercial").ToString()
                     If nombre.Length > 22 Then nombre = nombre.Substring(0, 22)
                     Dim cant As String = CDec(row("CantidadEnviada")).ToString("N2")
                     Dim unidad As String = row("Unidad")?.ToString() ?? ""

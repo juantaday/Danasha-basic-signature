@@ -181,6 +181,7 @@ cargaNuevo:
             Dim Ticket1 As New CreaTicket(myOptnsPrint.NamePrint,
                                           PaperSizeWidth.GetCharLenght(Printer.myOptnsPrint.PaperSizeWidth))
 
+            Ticket1.SetSendPrint(False)
             Ticket1.isAvanzaLinea = True
             Ticket1.FontZiseText(FontZise.l8cpp)
             Ticket1.TextoIzquierda(SettingObject.EcommerceActive.RazonSocial, False)
@@ -202,7 +203,7 @@ cargaNuevo:
             Ticket1.LineasGuion()
 
             Dim sql As String =
-                "SELECT p.Nombre_Producto, d.CantidadEnviada, d.Unidad " &
+                "SELECT p.Nom_Comercial, d.CantidadEnviada, d.Unidad " &
                 "FROM TransferenciaDetalle d " &
                 "INNER JOIN Productos p ON d.idProducto = p.idProducto " &
                 "WHERE d.idTransferencia = " & idTransf
@@ -210,7 +211,7 @@ cargaNuevo:
             Using cmd As New CADsisVenta.Funtions.SqlComandExec
                 Using dt = cmd.RetornaTabla(sql)
                     For Each row As DataRow In dt.Rows
-                        Dim nombre As String = row("Nombre_Producto").ToString()
+                        Dim nombre As String = row("Nom_Comercial").ToString()
                         If nombre.Length > 22 Then nombre = nombre.Substring(0, 22)
                         Dim cant As String = CDec(row("CantidadEnviada")).ToString("N2")
                         Dim unidad As String = If(IsDBNull(row("Unidad")), String.Empty, row("Unidad").ToString())
@@ -1470,6 +1471,7 @@ cargaNuevo:
             Dim Ticket1 As New CreaTicket(myOptnsPrint.NamePrint,
                                           PaperSizeWidth.GetCharLenght(Printer.myOptnsPrint.PaperSizeWidth))
 
+            Ticket1.SetSendPrint(False)
             Ticket1.isAvanzaLinea = True
             Ticket1.FontZiseText(FontZise.l8cpp)
             Ticket1.TextoIzquierda(SettingObject.EcommerceActive.RazonSocial, False)
@@ -1491,7 +1493,7 @@ cargaNuevo:
             Ticket1.Separador("-")
 
             Dim sql As String =
-                "SELECT p.Nombre_Producto, d.CantidadEnviada, d.Unidad " &
+                "SELECT p.Nom_Comercial, d.CantidadEnviada, d.Unidad " &
                 "FROM TransferenciaDetalle d " &
                 "INNER JOIN Productos p ON d.idProducto = p.idProducto " &
                 "WHERE d.idTransferencia = " & idTransf
@@ -1499,7 +1501,7 @@ cargaNuevo:
             Using cmd As New CADsisVenta.Funtions.SqlComandExec
                 Using dt = cmd.RetornaTabla(sql)
                     For Each row As DataRow In dt.Rows
-                        Dim nombre As String = row("Nombre_Producto").ToString()
+                        Dim nombre As String = row("Nom_Comercial").ToString()
                         If nombre.Length > 22 Then nombre = nombre.Substring(0, 22)
                         Dim cant As String = CDec(row("CantidadEnviada")).ToString("N2")
                         Dim unidad As String = If(row("Unidad") IsNot Nothing, row("Unidad").ToString(), String.Empty)

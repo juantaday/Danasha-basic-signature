@@ -71,6 +71,7 @@ Partial Class MDIPareInicio
         Me.InventarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RecibirTransferenciasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListadoDeGuíasDeRemisiónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.InventarioEnOtosLocalesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FacturacionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OrdenCompraNew = New System.Windows.Forms.ToolStripMenuItem()
         Me.OrdenCompraToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -454,7 +455,7 @@ Partial Class MDIPareInicio
         '
         'ProductoToolStripMenuItem
         '
-        Me.ProductoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListadoToolStripMenuItem, Me.InventarioToolStripMenuItem, Me.RecibirTransferenciasToolStripMenuItem, Me.ListadoDeGuíasDeRemisiónToolStripMenuItem})
+        Me.ProductoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListadoToolStripMenuItem, Me.InventarioToolStripMenuItem, Me.RecibirTransferenciasToolStripMenuItem, Me.ListadoDeGuíasDeRemisiónToolStripMenuItem, Me.InventarioEnOtosLocalesToolStripMenuItem})
         Me.ProductoToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(240, Byte), Integer))
         Me.ProductoToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.barcode_48
         Me.ProductoToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -496,6 +497,14 @@ Partial Class MDIPareInicio
         Me.ListadoDeGuíasDeRemisiónToolStripMenuItem.Name = "ListadoDeGuíasDeRemisiónToolStripMenuItem"
         Me.ListadoDeGuíasDeRemisiónToolStripMenuItem.Size = New System.Drawing.Size(275, 38)
         Me.ListadoDeGuíasDeRemisiónToolStripMenuItem.Text = "Listado de guías de remisión"
+        '
+        'InventarioEnOtosLocalesToolStripMenuItem
+        '
+        Me.InventarioEnOtosLocalesToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.InvetarioRemot_32
+        Me.InventarioEnOtosLocalesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.InventarioEnOtosLocalesToolStripMenuItem.Name = "InventarioEnOtosLocalesToolStripMenuItem"
+        Me.InventarioEnOtosLocalesToolStripMenuItem.Size = New System.Drawing.Size(275, 38)
+        Me.InventarioEnOtosLocalesToolStripMenuItem.Text = "Inventario en otos locales"
         '
         'FacturacionToolStripMenuItem
         '
@@ -1083,4 +1092,5 @@ Partial Class MDIPareInicio
     Friend WithEvents AjecutarScripToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RecibirTransferenciasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ListadoDeGuíasDeRemisiónToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents InventarioEnOtosLocalesToolStripMenuItem As ToolStripMenuItem
 End Class

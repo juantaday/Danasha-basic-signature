@@ -1,13 +1,17 @@
 ﻿Imports System.Data.SqlClient
-Imports System.Linq.Expressions
+Imports System.Text
 Imports CADsisVenta.Data.Emuns.EnumSatateModule
 Imports CADsisVenta.DataSetZonasTableAdapters
+Imports Domain.Data.Entities
+Imports Domain.Data.Repositories
 Public Class frmAdd_Almacen
+    Private Const TailscaleKey As String = "fdg36125☺}♫825╩5-5645644○87m4:█J"
     Private estaCargado As Boolean
     Protected Friend idBodega As Integer
     Private idResponsable1, idResponsable2, idResponsable3 As Integer
     Private esSucursalRemota As Boolean
     Private ciudadSucursal As String
+
     Sub New()
 
         ' Esta llamada es exigida por el diseñador.
@@ -16,6 +20,7 @@ Public Class frmAdd_Almacen
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
 
     End Sub
+
     Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
         Me.Close()
     End Sub
@@ -27,6 +32,7 @@ Public Class frmAdd_Almacen
         sql = sql & "(select top(1) per2.Ruc_Ci + ' ' +per2.Apellidos + ' ' + per2.Nombre from Empleados as em2  "
         sql = sql & "inner join Personas as per2 on em2.idPersona = per2.idPersona  "
         sql = sql & "where em2.idEmpleado = b.Resp2_idEmpleado) as [AutorCheque], tb.Nom_typoBodega as [Tipo], b.TypoBodega, b.CodEstablec "
+        sql = sql & ", b.EsSucursalRemota, b.CiudadSucursal, b.TailscaleIp, b.TailscaleUsuario, b.TailscalePassword, b.TailscaleDatabase "
         sql = sql & "FROM  dbo.Bodegas AS b  "
         sql = sql & "INNER JOIN dbo.Empleados AS e ON b.Resp1_idEmpleado = e.idEmpleado  "
         sql = sql & "INNER JOIN  dbo.Personas AS p ON e.idPersona = p.idPersona "
@@ -41,9 +47,20 @@ Public Class frmAdd_Almacen
                     Dim dat As New SqlDataAdapter(cmd)
                     Dim dt As New DataTable
                     dat.Fill(dt)
+                    Me.datalistado.Columns.Clear()
                     Me.datalistado.DataSource = Nothing
                     If dt.Rows.Count > 0 Then
                         Me.datalistado.DataSource = dt
+                        If Not Me.datalistado.Columns.Contains("ConfigurarRemoto") Then
+                            Dim configColumn As New DataGridViewButtonColumn()
+                            configColumn.Name = "ConfigurarRemoto"
+                            configColumn.HeaderText = "Remoto"
+                            configColumn.Text = "Configurar"
+                            configColumn.UseColumnTextForButtonValue = True
+                            configColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+                            configColumn.DisplayIndex = 0
+                            Me.datalistado.Columns.Add(configColumn)
+                        End If
                         Me.datalistado.Columns(0).Visible = False  'idBodega
                         Me.datalistado.Columns(4).Visible = False  'apellidos + nombre de responsable
                         Me.datalistado.Columns(5).Visible = False  'direccion de bodega
@@ -53,6 +70,12 @@ Public Class frmAdd_Almacen
                         Me.datalistado.Columns(10).Visible = False  'responsable del cheque
                         Me.datalistado.Columns(12).Visible = False  'tipo de bodegaS
                         Me.datalistado.Columns(13).Visible = False  'codigo establec
+                        Me.datalistado.Columns(14).Visible = False  'EsSucursalRemota
+                        Me.datalistado.Columns(15).Visible = False  'CiudadSucursal
+                        Me.datalistado.Columns(16).Visible = False  'TailscaleIp
+                        Me.datalistado.Columns(17).Visible = False  'TailscaleUsuario
+                        Me.datalistado.Columns(18).Visible = False  'TailscalePassword
+                        Me.datalistado.Columns(19).Visible = False  'TailscaleDatabase
                         Me.datalistado.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
                     End If
                 End Using
@@ -124,32 +147,32 @@ Public Class frmAdd_Almacen
     End Sub
     Private Function Agregar_Bodega() As Boolean
         Try
-            Dim datp As New BodegasTableAdapter()
             Dim resp1 As Nullable(Of Integer) = Nothing
             Dim resp2 As Nullable(Of Integer) = Nothing
             Dim resp3 As Nullable(Of Integer) = Nothing
             If idResponsable1 > 0 Then resp1 = idResponsable1
             If idResponsable2 > 0 Then resp2 = idResponsable2
             If idResponsable3 > 0 Then resp3 = idResponsable3
-            ' --- NUEVO: Agregar campos EsSucursalRemota y CiudadSucursal ---
-            If datp.InsertBodegas(NomBodegaText.Text,
-                               DescripcionBodegaText.Text,
-                               DireccionText.Text,
-                               telefono1Text.Text,
-                               telefono2Text.Text,
-                               telefono3TextBox.Text,
-                               resp1,
-                               resp2,
-                               resp3,
-                               txtFecha_Apert.Value,
-                               TypoBodegaComboBox.SelectedValue,
-                               txtCodigoEstab.Text,
-                               esSucursalRemota,
-                               ciudadSucursal) > 0 Then
-                Return True
-            Else
-                Return False
-            End If
+            Dim entidad As New Bodega With {
+                .NomBodega = NomBodegaText.Text,
+                .DescripcionBodega = DescripcionBodegaText.Text,
+                .DireccionBodega = DireccionText.Text,
+                .Telefono1Bodega = telefono1Text.Text,
+                .Telefono2Bodega = telefono2Text.Text,
+                .Telefono3Bodega = telefono3TextBox.Text,
+                .Resp1IdEmpleado = resp1,
+                .Resp2IdEmpleado = resp2,
+                .Resp3IdEmpleado = resp3,
+                .FechaApertura = txtFecha_Apert.Value,
+                .FechaRegistro = DateTime.Now,
+                .TypoBodega = TypoBodegaComboBox.SelectedValue,
+                .CodEstablec = txtCodigoEstab.Text,
+                .EsSucursalRemota = esSucursalRemota,
+                .CiudadSucursal = ciudadSucursal
+            }
+
+            idBodega = BodegaRepository.Insert(entidad, DomainSQLite.Setting.Configuration.ConectionString)
+            Return idBodega > 0
         Catch ex As Exception
             MsgBox(ex.Message + " en el Agregar_Bodega del " + Me.Name, MsgBoxStyle.Critical, "Error")
             Return False
@@ -180,33 +203,30 @@ Public Class frmAdd_Almacen
 
     Private Function Modificar_Bodega() As Boolean
         Try
-            Dim datp As New BodegasTableAdapter()
             Dim resp1 As Nullable(Of Integer) = Nothing
             Dim resp2 As Nullable(Of Integer) = Nothing
             Dim resp3 As Nullable(Of Integer) = Nothing
             If idResponsable1 > 0 Then resp1 = idResponsable1
             If idResponsable2 > 0 Then resp2 = idResponsable2
             If idResponsable3 > 0 Then resp3 = idResponsable3
-            ' --- NUEVO: Agregar campos EsSucursalRemota y CiudadSucursal ---
-            If datp.UpdateBodega(NomBodegaText.Text,
-                               DescripcionBodegaText.Text,
-                               DireccionText.Text,
-                               telefono1Text.Text,
-                               telefono2Text.Text,
-                               telefono3TextBox.Text,
-                               resp1,
-                               resp2,
-                               resp3,
-                               txtFecha_Apert.Value,
-                               TypoBodegaComboBox.SelectedValue,
-                               txtCodigoEstab.Text,
-                               esSucursalRemota,
-                               ciudadSucursal,
-                               idBodega) > 0 Then
-                Return True
-            Else
-                Return False
-            End If
+            Dim entidad As New Bodega With {
+                .IdBodega = idBodega,
+                .NomBodega = NomBodegaText.Text,
+                .DescripcionBodega = DescripcionBodegaText.Text,
+                .DireccionBodega = DireccionText.Text,
+                .Telefono1Bodega = telefono1Text.Text,
+                .Telefono2Bodega = telefono2Text.Text,
+                .Telefono3Bodega = telefono3TextBox.Text,
+                .Resp1IdEmpleado = resp1,
+                .Resp2IdEmpleado = resp2,
+                .Resp3IdEmpleado = resp3,
+                .FechaApertura = txtFecha_Apert.Value,
+                .TypoBodega = TypoBodegaComboBox.SelectedValue,
+                .CodEstablec = txtCodigoEstab.Text,
+                .EsSucursalRemota = esSucursalRemota
+            }
+
+            Return BodegaRepository.Update(entidad, DomainSQLite.Setting.Configuration.ConectionString)
         Catch ex As Exception
             MsgBox(ex.Message & vbLf & ex.StackTrace, MsgBoxStyle.Critical, "Error")
             Return False
@@ -283,6 +303,7 @@ Public Class frmAdd_Almacen
         txtCheque.Text = ""
         chkEsSucursalRemota.Checked = False
         txtCiudadSucursal.Text = ""
+
     End Sub
 
     Private Sub btnElimina_Click(sender As Object, e As EventArgs) Handles btnElimina.Click
@@ -297,20 +318,8 @@ Public Class frmAdd_Almacen
         End If
     End Sub
     Private Function EliminaBodega(ByVal idBodega As Integer) As Boolean
-        sql = "Delete Bodegas from Bodegas where idBodega = " & idBodega & ""
-
         Try
-            Using cnn = New SqlConnection(DomainSQLite.Setting.Configuration.ConectionString)
-                cnn.Open()
-                Using cmd As New SqlCommand(sql, cnn)
-                    cmd.CommandType = CommandType.Text
-                    If cmd.ExecuteNonQuery Then
-                        Return True
-                    Else
-                        Return False
-                    End If
-                End Using
-            End Using
+            Return BodegaRepository.Delete(idBodega, DomainSQLite.Setting.Configuration.ConectionString)
 
         Catch ex As Exception
             MsgBox(ex.Message + "en el EliminaBodega del " + Me.Name, MsgBoxStyle.Critical, "Error")
@@ -344,17 +353,12 @@ Public Class frmAdd_Almacen
                 idResponsable2 = 0
                 Me.txtCheque.Text = ""
             End If
-            ' --- NUEVO: Cargar campos EsSucursalRemota y CiudadSucursal ---
-            If datalistado.Columns.Contains("EsSucursalRemota") Then
-                chkEsSucursalRemota.Checked = CBool(Me.datalistado.SelectedCells.Item("EsSucursalRemota").Value)
-            End If
-            If datalistado.Columns.Contains("CiudadSucursal") Then
-                txtCiudadSucursal.Text = Me.datalistado.SelectedCells.Item("CiudadSucursal").Value.ToString()
-            End If
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
     End Sub
+
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         LimpiaContenido()
@@ -394,9 +398,78 @@ Public Class frmAdd_Almacen
             EstaSeleccionado()
         End If
     End Sub
+
+
+    Private Sub AbrirConfiguracionAvanzada()
+
+        If Not datalistado.SelectedRows.Count = 1 Then
+            MsgBox("Seleccione una bodega para configurar la conexión remota.", MsgBoxStyle.Exclamation, "Aviso")
+            Return
+        End If
+
+        If idBodega <= 0 Then
+            MsgBox("Guarde la bodega antes de configurar la conexión remota.", MsgBoxStyle.Exclamation, "Aviso")
+            Return
+        End If
+
+        Dim tailscaleIp As String = ""
+        Dim tailscaleUsuario As String = ""
+        Dim tailscalePassword As String = ""
+        Dim tailscaleDatabase As String = ""
+
+        ' --- NUEVO: Cargar campos EsSucursalRemota y CiudadSucursal ---
+        If datalistado.Columns.Contains("EsSucursalRemota") Then
+            chkEsSucursalRemota.Checked = CBool(Me.datalistado.SelectedRows(0).Cells("EsSucursalRemota").Value)
+        End If
+        If datalistado.Columns.Contains("CiudadSucursal") Then
+            txtCiudadSucursal.Text = Me.datalistado.SelectedRows(0).Cells("CiudadSucursal").Value.ToString()
+        End If
+        If datalistado.Columns.Contains("TailscaleIp") Then
+            tailscaleIp = Convert.ToString(Me.datalistado.SelectedRows(0).Cells("TailscaleIp").Value)
+        End If
+        If datalistado.Columns.Contains("TailscaleUsuario") Then
+            tailscaleUsuario = Convert.ToString(Me.datalistado.SelectedRows(0).Cells("TailscaleUsuario").Value)
+        End If
+        If datalistado.Columns.Contains("TailscalePassword") Then
+            tailscalePassword = Convert.ToString(Me.datalistado.SelectedRows(0).Cells("TailscalePassword").Value)
+        End If
+        If datalistado.Columns.Contains("TailscaleDatabase") Then
+            tailscaleDatabase = Convert.ToString(Me.datalistado.SelectedRows(0).Cells("TailscaleDatabase").Value)
+        End If
+
+        Using frm As New frmConfigBodegaAvanzada(idBodega,
+            tailscaleIp, tailscaleUsuario, tailscalePassword, tailscaleDatabase)
+            If frm.ShowDialog(Me) = DialogResult.OK Then
+
+                Carga_Bodegas()
+            End If
+        End Using
+    End Sub
+
     Private Sub datalistado_CellsClick(sender As Object, e As DataGridViewCellEventArgs) Handles datalistado.CellClick
         If estaCargado Then
             EstaSeleccionado()
         End If
     End Sub
+
+
+
+    Private Sub datalistado_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datalistado.CellContentClick
+        If e.RowIndex < 0 Then
+            Return
+        End If
+
+        If datalistado.Columns(e.ColumnIndex).Name = "ConfigurarRemoto" Then
+            datalistado.ClearSelection()
+            datalistado.Rows(e.RowIndex).Selected = True
+            EstaSeleccionado()
+            AbrirConfiguracionAvanzada()
+        End If
+    End Sub
+
+    Private Sub chkEsSucursalRemota_CheckedChanged(sender As Object, e As EventArgs) Handles chkEsSucursalRemota.CheckedChanged
+        txtCiudadSucursal.Enabled = chkEsSucursalRemota.Checked
+    End Sub
+
+
 End Class

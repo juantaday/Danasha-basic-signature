@@ -2,11 +2,10 @@
 using Domain.Data.Enums;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Data;
 
 namespace Domain.Data
 {
-    public  class DataContext : IdentityDbContext<User, Role, string>
+    public class DataContext : IdentityDbContext<User, Role, string>
     {
         #region Overrids
         public DataContext(DbContextOptions<DataContext> options) : base(options)
@@ -15,13 +14,13 @@ namespace Domain.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-             new ReviewMap(modelBuilder);
+            new ReviewMap(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }
 
         #endregion
 
-        public DbSet <Product> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         public DbSet<Cliente> Clientes { get; set; }
 
@@ -38,13 +37,15 @@ namespace Domain.Data
 
         public DbSet<SignatureOption> SignatureOptions { get; set; }
 
-        public DbSet <AutoridadesCertificante> AutoridadesCertificantes { get; set; }
+        public DbSet<AutoridadesCertificante> AutoridadesCertificantes { get; set; }
 
-        public DbSet <TypeDocument> TypeDocuments { get; set; }
+        public DbSet<TypeDocument> TypeDocuments { get; set; }
 
         public DbSet<FORMAS_PAGO> FORMAS_PAGOS { get; set; }
 
         public DbSet<MySetting> MySettings { get; set; }
+
+        public DbSet<Bodega> Bodegas { get; set; }
 
 
     }

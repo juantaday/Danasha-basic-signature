@@ -4,6 +4,7 @@ using System.Data;
 using Newtonsoft.Json;
 using Npgsql;
 using SupabaseDataAccess.Models;
+using SupabaseDataAccess.Settings;
 
 namespace SupabaseDataAccess.Repositories
 {

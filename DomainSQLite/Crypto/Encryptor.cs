@@ -1,87 +1,169 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DomainSQLite.Crypto
 {
-    public class Encryptor
+    public static class Encriptador
     {
-        private readonly string Hash;
-        public Encryptor(string hash = "MICLAVE123")
+        private static readonly string TailscaleKey = "dfasfsaaeds♀5_UÄN©}¢$ÜW?^fn5☺5A";
+
+        public static string EncriptarValor(string valor)
         {
-            this.Hash = hash;
+            if (string.IsNullOrWhiteSpace(valor))
+                return string.Empty;
+
+            byte[] salt = new byte[16];
+            byte[] iv = new byte[16];
+
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+                rng.GetBytes(iv);
+            }
+
+            byte[] key;
+            byte[] hmacKey;
+            using (var keyDeriv = new Rfc2898DeriveBytes(TailscaleKey, salt, 10000))
+            {
+                key = keyDeriv.GetBytes(32);
+                hmacKey = keyDeriv.GetBytes(32);
+            }
+
+            byte[] cipherText;
+            using (var aes = Aes.Create())
+            {
+                aes.Key = key;
+                aes.IV = iv;
+                aes.Mode = CipherMode.CBC;
+                aes.Padding = PaddingMode.PKCS7;
+
+                using (var ms = new MemoryStream())
+                {
+                    using (var cs = new CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        byte[] data = Encoding.UTF8.GetBytes(valor);
+                        cs.Write(data, 0, data.Length);
+                        cs.FlushFinalBlock();
+                    }
+                    cipherText = ms.ToArray();
+                }
+            }
+
+            // Header: [version(1)] + [salt(16)] + [iv(16)] + [cipherText]
+            byte[] header;
+            using (var ms = new MemoryStream())
+            {
+                ms.WriteByte(1);
+                ms.Write(salt, 0, salt.Length);
+                ms.Write(iv, 0, iv.Length);
+                ms.Write(cipherText, 0, cipherText.Length);
+                header = ms.ToArray();
+            }
+
+            byte[] hmac;
+            using (var hmacSha = new HMACSHA256(hmacKey))
+            {
+                hmac = hmacSha.ComputeHash(header);
+            }
+
+            using (var ms = new MemoryStream())
+            {
+                ms.Write(header, 0, header.Length);
+                ms.Write(hmac, 0, hmac.Length);
+                return Convert.ToBase64String(ms.ToArray());
+            }
         }
-        public string Encriptar(string clearText)
+
+        public static string DesencriptarValor(string valor)
         {
+            if (string.IsNullOrWhiteSpace(valor))
+                return string.Empty;
+
             try
             {
-                string EncryptionKey = this.Hash;
-                byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
-                using (Aes encryptor = Aes.Create())
+                byte[] raw = Convert.FromBase64String(valor);
+
+                if (raw.Length < 65 || raw[0] != 1)
+                    return DesencriptarLegacy(valor);
+
+                byte[] salt = new byte[16];
+                byte[] iv = new byte[16];
+                Buffer.BlockCopy(raw, 1, salt, 0, 16);
+                Buffer.BlockCopy(raw, 17, iv, 0, 16);
+
+                const int hmacLength = 32;
+                const int cipherStart = 33;
+                int cipherLength = raw.Length - cipherStart - hmacLength;
+
+                if (cipherLength <= 0)
+                    return DesencriptarLegacy(valor);
+
+                byte[] cipherText = new byte[cipherLength];
+                Buffer.BlockCopy(raw, cipherStart, cipherText, 0, cipherLength);
+
+                int headerLength = cipherStart + cipherLength;
+                byte[] header = new byte[headerLength];
+                Buffer.BlockCopy(raw, 0, header, 0, headerLength);
+
+                byte[] hmac = new byte[hmacLength];
+                Buffer.BlockCopy(raw, headerLength, hmac, 0, hmacLength);
+
+                byte[] key;
+                byte[] hmacKey;
+                using (var keyDeriv = new Rfc2898DeriveBytes(TailscaleKey, salt, 10000))
                 {
-                    Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6E, 0x20, 0x4D, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
-                    encryptor.Key = pdb.GetBytes(32);
-                    encryptor.IV = pdb.GetBytes(16);
-                    using (MemoryStream ms = new MemoryStream())
+                    key = keyDeriv.GetBytes(32);
+                    hmacKey = keyDeriv.GetBytes(32);
+                }
+
+                using (var hmacSha = new HMACSHA256(hmacKey))
+                {
+                    byte[] computed = hmacSha.ComputeHash(header);
+                    if (!BytesIguales(computed, hmac))
+                        return string.Empty;
+                }
+
+                using (var aes = Aes.Create())
+                {
+                    aes.Key = key;
+                    aes.IV = iv;
+                    aes.Mode = CipherMode.CBC;
+                    aes.Padding = PaddingMode.PKCS7;
+
+                    using (var ms = new MemoryStream())
                     {
-                        using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                        using (var cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Write))
                         {
-                            cs.Write(clearBytes, 0, clearBytes.Length);
-                            cs.Close();
+                            cs.Write(cipherText, 0, cipherText.Length);
+                            cs.FlushFinalBlock();
                         }
-                        clearText = Convert.ToBase64String(ms.ToArray());
+                        return Encoding.UTF8.GetString(ms.ToArray());
                     }
                 }
-                return clearText;
             }
-
-            catch (Exception ex)
+            catch
             {
-                return clearText;
+                return DesencriptarLegacy(valor);
             }
         }
 
-        public string Desencriptar(string cipherText, string securityStamp = "")
+        private static bool BytesIguales(byte[] a, byte[] b)
         {
-            try
-            {
-                string EncryptionKey = securityStamp;
-                if (string.IsNullOrEmpty(securityStamp))
-                {
-                    EncryptionKey = this.Hash;
-                }
-
-                byte[] cipherBytes = Convert.FromBase64String(cipherText);
-                using (Aes encryptor = Aes.Create())
-                {
-                    Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6E, 0x20, 0x4D, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
-                    encryptor.Key = pdb.GetBytes(32);
-                    encryptor.IV = pdb.GetBytes(16);
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
-                        {
-                            cs.Write(cipherBytes, 0, cipherBytes.Length);
-                            cs.Close();
-                        }
-                        cipherText = Encoding.Unicode.GetString(ms.ToArray());
-                    }
-                }
-                return cipherText;
-            }
-            catch (Exception ex)
-            {
-                return cipherText;
-            }
+            // Comparación en tiempo constante para evitar timing attacks
+            if (a.Length != b.Length) return false;
+            int diff = 0;
+            for (int i = 0; i < a.Length; i++)
+                diff |= a[i] ^ b[i];
+            return diff == 0;
         }
 
-        public string GetStamp()
+        private static string DesencriptarLegacy(string valor)
         {
-            return this.Hash;
+            // Tu lógica legacy aquí
+            return string.Empty;
         }
     }
+
 }

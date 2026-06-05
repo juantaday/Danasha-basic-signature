@@ -99,9 +99,7 @@ namespace InterfaceSignatureAndSRI.Processes
 
             catch (Exception ex)
             {
-                Log log = new Log(files[(int)EnumStateInvoice.Path]);
-                log.Add(ex.Message);
-                log.Add(ex.StackTrace);
+                Log.Error("InterfaceSignatureAndSRI.SignSendInvoice", "Fallo ExecuteWidhtIdProcess", ex);   
                 progress.Report(ex.Message + "\n"+  ex.StackTrace);
    
             }
@@ -173,9 +171,8 @@ namespace InterfaceSignatureAndSRI.Processes
             }
             catch (Exception ex)
             {
-                Log log = new Log(files[(int)EnumStateInvoice.Path]);
-                log.Add(ex.Message);
-                log.Add(ex.StackTrace);
+               Log.Error("InterfaceSignatureAndSRI.SignSendInvoice", "Fallo ExecuteWidhtListTicket", ex);
+                progress.Report(ex.Message + "\n" + ex.StackTrace); 
             }
 
         }
@@ -258,9 +255,8 @@ namespace InterfaceSignatureAndSRI.Processes
 
             catch (Exception ex)
             {
-                Log log = new Log(files[(int)EnumStateInvoice.Path]);
-                log.Add(ex.Message);
-                log.Add(ex.StackTrace);
+                Log.Error("InterfaceSignatureAndSRI.SignSendInvoice", "Fallo ExecuteWidhtListTicket", ex);
+                progress.Report(ex.Message + "\n" + ex.StackTrace);
             }
 
         }

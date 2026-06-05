@@ -1,61 +1,59 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DomainSQLite.Helpers;
 
 namespace InterfaceSignatureAndSRI.Utils
 {
-    public class Log
+    public enum LogLevel
     {
-        private string Path = "";
+        WARNING,
+        ERROR
+    }
 
+    public static class Log
+    {
+        // ── Escritura pública ────────────────────────────────────────────────
 
-        public Log(string Path)
-        {
-            this.Path = Path;
-            this.Add("\n" + "\n" + "************************************************");
-        }
-        public void Add(string sLog)
-        {
-            CreateDirectory();
-            string nombre = GetNameFile();
-            string cadena = "";
+        public static void Warning(string context, string message)
+            => Write(LogLevel.WARNING, context, message, null);
 
-            cadena += DateTime.Now + " - " + sLog + Environment.NewLine;
+        public static void Error(string context, string message, Exception ex = null)
+            => Write(LogLevel.ERROR, context, message, ex);
 
-            StreamWriter sw = new StreamWriter(Path + "/" + nombre, true);
-            sw.Write(cadena);
-            sw.Close();
-
-        }
-
-        #region HELPER
-        private string GetNameFile()
-        {
-            string nombre = "";
-
-            nombre = "log_" + DateTime.Now.Year + "_" + DateTime.Now.Month + "_" + DateTime.Now.Day + ".txt";
-
-            return nombre;
-        }
-
-        private void CreateDirectory()
+        // ── Núcleo ───────────────────────────────────────────────────────────
+        private static void Write(LogLevel level, string context, string message, Exception ex)
         {
             try
             {
-                if (!Directory.Exists(Path))
-                    Directory.CreateDirectory(Path);
+                string folder = AppSetting.GetDefaultFolderLogs();
+                string fileName = $"log_{DateTime.Now:yyyy_MM_dd}.txt";
+                string filePath = Path.Combine(folder, fileName);
 
+                var sb = new System.Text.StringBuilder();
+                sb.AppendLine($"[{DateTime.Now:HH:mm:ss}] [{level}] [{context}]");
+                sb.AppendLine($"  {message}");
 
+                if (ex != null)
+                {
+                    sb.AppendLine($"  Exception : {ex.GetType().Name}: {ex.Message}");
+                    if (ex.InnerException != null)
+                        sb.AppendLine($"  Inner     : {ex.InnerException.Message}");
+                    sb.AppendLine($"  StackTrace: {ex.StackTrace}");
+                }
+
+                sb.AppendLine(new string('-', 72));
+
+                // ── Leer contenido existente y prepend ──────────────────────────
+                string contenidoExistente = File.Exists(filePath)
+                    ? File.ReadAllText(filePath)
+                    : string.Empty;
+
+                File.WriteAllText(filePath, sb.ToString() + contenidoExistente);
             }
-            catch (DirectoryNotFoundException ex)
+            catch
             {
-                throw new Exception(ex.Message);
-
+                // El log nunca debe romper el flujo
             }
         }
-        #endregion
     }
 }

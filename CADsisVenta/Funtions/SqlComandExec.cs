@@ -338,6 +338,38 @@ namespace CADsisVenta.Funtions
             }
         }
 
+        /// <summary>
+        /// Ejecuta una consulta SQL con parámetros y devuelve un DataTable.
+        /// Los arrays paramNames y values deben tener el mismo largo.
+        /// </summary>
+        public DataTable RetornaTablaConParams(string sqlStri, string[] paramNames, object[] values)
+        {
+            if (paramNames.Length != values.Length)
+                throw new ArgumentException("paramNames y values deben tener el mismo número de elementos.");
+
+            try
+            {
+                if (cnn.State != ConnectionState.Open)
+                    cnn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(sqlStri, cnn, transaction))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    for (int i = 0; i < paramNames.Length; i++)
+                        cmd.Parameters.AddWithValue(paramNames[i], values[i] ?? DBNull.Value);
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message + "\n" + ex.StackTrace, ex.InnerException);
+            }
+        }
+
         public async Task<T> ReturTableTypeAsync<T>(string sqlStri) where T : DataTable, new()
         {
             try

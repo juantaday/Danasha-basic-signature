@@ -35,6 +35,7 @@ Partial Class frmRecibirTransferencia
         Me.splitter = New System.Windows.Forms.Panel()
         Me.pnlDetalle = New System.Windows.Forms.Panel()
         Me.OlvDetalle = New BrightIdeasSoftware.ObjectListView()
+        Me.colCodProducto = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.colProducto = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.colEnviado = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
         Me.colRecibido = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
@@ -270,7 +271,7 @@ Partial Class frmRecibirTransferencia
         Me.OlvDetalle.CellEditUseWholeCell = False
         Me.OlvDetalle.CheckBoxes = True
         Me.OlvDetalle.CheckedAspectName = "Seleccionado"
-        Me.OlvDetalle.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colProducto, Me.colEnviado, Me.colRecibido, Me.colUnidad, Me.colEstado})
+        Me.OlvDetalle.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colCodProducto, Me.colProducto, Me.colEnviado, Me.colRecibido, Me.colUnidad, Me.colEstado})
         Me.OlvDetalle.Cursor = System.Windows.Forms.Cursors.Default
         Me.OlvDetalle.Dock = System.Windows.Forms.DockStyle.Fill
         Me.OlvDetalle.Font = New System.Drawing.Font("Segoe UI", 12.0!)
@@ -288,10 +289,17 @@ Partial Class frmRecibirTransferencia
         Me.OlvDetalle.UseCompatibleStateImageBehavior = False
         Me.OlvDetalle.View = System.Windows.Forms.View.Details
         '
+        'colCodProducto
+        '
+        Me.colCodProducto.AspectName = "CodProducto"
+        Me.colCodProducto.HeaderCheckBox = True
+        Me.colCodProducto.MinimumWidth = 100
+        Me.colCodProducto.Text = "COD_PRODUCTO"
+        Me.colCodProducto.Width = 100
+        '
         'colProducto
         '
         Me.colProducto.AspectName = "Producto"
-        Me.colProducto.HeaderCheckBox = True
         Me.colProducto.MinimumWidth = 250
         Me.colProducto.Text = "PRODUCTO"
         Me.colProducto.Width = 300
@@ -529,6 +537,7 @@ Partial Class frmRecibirTransferencia
 
     Friend WithEvents OlvDetalle As BrightIdeasSoftware.ObjectListView
     Friend WithEvents colProducto As BrightIdeasSoftware.OLVColumn
+    Friend WithEvents colCodProducto As BrightIdeasSoftware.OLVColumn
     Friend WithEvents colEnviado As BrightIdeasSoftware.OLVColumn
     Friend WithEvents colRecibido As BrightIdeasSoftware.OLVColumn
     Friend WithEvents colUnidad As BrightIdeasSoftware.OLVColumn

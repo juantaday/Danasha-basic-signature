@@ -2,7 +2,6 @@
 using CrystalDecisions.Shared;
 using Domain.Data.Enums;
 using Domain.Models;
-using ec.gob.sri.comprobantes.Enum;
 using InterfaceSignatureAndSRI.Data;
 using InterfaceSignatureAndSRI.Models;
 using InterfaceSignatureAndSRI.Reports;
@@ -63,10 +62,7 @@ namespace InterfaceSignatureAndSRI.SendMail
                 send.Estado = "ERROR";
                 send.Message = ex.Message;
 
-                string[] _files = Funciones.GetPersonalfolder();
-                Log log = new Log(_files[(int)EnumStateInvoice.Path]);
-                log.Add(ex.Message);
-                log.Add(ex.StackTrace);
+                Log.Error("ToolsMail.SendMailDefault", ex.Message, ex);
             }
 
             return send;

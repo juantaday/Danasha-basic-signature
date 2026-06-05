@@ -50,6 +50,7 @@ Partial Class frmMyCommerce
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.OptionButto = New JMControls.Controls.RJButton()
         Me.SendEmailButton = New JMControls.Controls.RJButton()
+        Me.btnConnectionRemote = New JMControls.Controls.RJButton()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.TableLayoutPanel2.SuspendLayout()
         Me.SuspendLayout()
@@ -62,7 +63,7 @@ Partial Class frmMyCommerce
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(494, 414)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(595, 414)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
@@ -129,39 +130,39 @@ Partial Class frmMyCommerce
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5!))
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(696, 347)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(785, 347)
         Me.TableLayoutPanel2.TabIndex = 1
         '
         'txtNomComercial
         '
         Me.txtNomComercial.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtNomComercial.Location = New System.Drawing.Point(173, 39)
+        Me.txtNomComercial.Location = New System.Drawing.Point(194, 39)
         Me.txtNomComercial.MaxLength = 20
         Me.txtNomComercial.Multiline = True
         Me.txtNomComercial.Name = "txtNomComercial"
-        Me.txtNomComercial.Size = New System.Drawing.Size(519, 26)
+        Me.txtNomComercial.Size = New System.Drawing.Size(587, 26)
         Me.txtNomComercial.TabIndex = 19
         Me.ToolTip1.SetToolTip(Me.txtNomComercial, "Nombre de la empresa que saldra impreso en los ticket...")
         '
         'NoteTextBox
         '
         Me.NoteTextBox.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.NoteTextBox.Location = New System.Drawing.Point(173, 282)
+        Me.NoteTextBox.Location = New System.Drawing.Point(194, 282)
         Me.NoteTextBox.Multiline = True
         Me.NoteTextBox.Name = "NoteTextBox"
-        Me.NoteTextBox.Size = New System.Drawing.Size(519, 28)
+        Me.NoteTextBox.Size = New System.Drawing.Size(587, 28)
         Me.NoteTextBox.TabIndex = 15
         '
         'representanteTextBox
         '
-        Me.representanteTextBox.Location = New System.Drawing.Point(173, 247)
+        Me.representanteTextBox.Location = New System.Drawing.Point(194, 247)
         Me.representanteTextBox.Name = "representanteTextBox"
         Me.representanteTextBox.Size = New System.Drawing.Size(336, 26)
         Me.representanteTextBox.TabIndex = 13
         '
         'DomicilioTextBox
         '
-        Me.DomicilioTextBox.Location = New System.Drawing.Point(173, 212)
+        Me.DomicilioTextBox.Location = New System.Drawing.Point(194, 212)
         Me.DomicilioTextBox.Name = "DomicilioTextBox"
         Me.DomicilioTextBox.Size = New System.Drawing.Size(514, 26)
         Me.DomicilioTextBox.TabIndex = 12
@@ -169,7 +170,7 @@ Partial Class frmMyCommerce
         'DateStar
         '
         Me.DateStar.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateStar.Location = New System.Drawing.Point(173, 177)
+        Me.DateStar.Location = New System.Drawing.Point(194, 177)
         Me.DateStar.Name = "DateStar"
         Me.DateStar.ShowCheckBox = True
         Me.DateStar.Size = New System.Drawing.Size(146, 26)
@@ -186,7 +187,7 @@ Partial Class frmMyCommerce
         '
         'razonSoacialTextBox
         '
-        Me.razonSoacialTextBox.Location = New System.Drawing.Point(173, 4)
+        Me.razonSoacialTextBox.Location = New System.Drawing.Point(194, 4)
         Me.razonSoacialTextBox.Name = "razonSoacialTextBox"
         Me.razonSoacialTextBox.Size = New System.Drawing.Size(514, 26)
         Me.razonSoacialTextBox.TabIndex = 5
@@ -194,15 +195,15 @@ Partial Class frmMyCommerce
         'rucTextBox
         '
         Me.rucTextBox.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.rucTextBox.Location = New System.Drawing.Point(173, 72)
+        Me.rucTextBox.Location = New System.Drawing.Point(194, 72)
         Me.rucTextBox.Multiline = True
         Me.rucTextBox.Name = "rucTextBox"
-        Me.rucTextBox.Size = New System.Drawing.Size(519, 28)
+        Me.rucTextBox.Size = New System.Drawing.Size(587, 28)
         Me.rucTextBox.TabIndex = 6
         '
         'lemaTextBox
         '
-        Me.lemaTextBox.Location = New System.Drawing.Point(173, 107)
+        Me.lemaTextBox.Location = New System.Drawing.Point(194, 107)
         Me.lemaTextBox.Name = "lemaTextBox"
         Me.lemaTextBox.Size = New System.Drawing.Size(514, 26)
         Me.lemaTextBox.TabIndex = 10
@@ -221,7 +222,7 @@ Partial Class frmMyCommerce
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(4, 244)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(120, 34)
+        Me.Label4.Size = New System.Drawing.Size(163, 20)
         Me.Label4.TabIndex = 3
         Me.Label4.Text = "Representante Legal:"
         '
@@ -254,7 +255,7 @@ Partial Class frmMyCommerce
         '
         'phoneTextBox
         '
-        Me.phoneTextBox.Location = New System.Drawing.Point(173, 142)
+        Me.phoneTextBox.Location = New System.Drawing.Point(194, 142)
         Me.phoneTextBox.Name = "phoneTextBox"
         Me.phoneTextBox.Size = New System.Drawing.Size(378, 26)
         Me.phoneTextBox.TabIndex = 11
@@ -280,7 +281,7 @@ Partial Class frmMyCommerce
         'CancelSalesCheckBox
         '
         Me.CancelSalesCheckBox.AutoSize = True
-        Me.CancelSalesCheckBox.Location = New System.Drawing.Point(173, 317)
+        Me.CancelSalesCheckBox.Location = New System.Drawing.Point(194, 317)
         Me.CancelSalesCheckBox.Name = "CancelSalesCheckBox"
         Me.CancelSalesCheckBox.Size = New System.Drawing.Size(300, 24)
         Me.CancelSalesCheckBox.TabIndex = 17
@@ -299,7 +300,7 @@ Partial Class frmMyCommerce
         'registerInSystemLabel
         '
         Me.registerInSystemLabel.AutoSize = True
-        Me.registerInSystemLabel.Location = New System.Drawing.Point(8, 399)
+        Me.registerInSystemLabel.Location = New System.Drawing.Point(8, 414)
         Me.registerInSystemLabel.Name = "registerInSystemLabel"
         Me.registerInSystemLabel.Size = New System.Drawing.Size(168, 20)
         Me.registerInSystemLabel.TabIndex = 2
@@ -317,7 +318,7 @@ Partial Class frmMyCommerce
         Me.OptionButto.ForeColor = System.Drawing.Color.White
         Me.OptionButto.Location = New System.Drawing.Point(185, 360)
         Me.OptionButto.Name = "OptionButto"
-        Me.OptionButto.Size = New System.Drawing.Size(205, 34)
+        Me.OptionButto.Size = New System.Drawing.Size(172, 34)
         Me.OptionButto.TabIndex = 3
         Me.OptionButto.Text = "Opciones avanzadas"
         Me.OptionButto.TextColor = System.Drawing.Color.White
@@ -333,13 +334,31 @@ Partial Class frmMyCommerce
         Me.SendEmailButton.FlatAppearance.BorderSize = 0
         Me.SendEmailButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.SendEmailButton.ForeColor = System.Drawing.Color.White
-        Me.SendEmailButton.Location = New System.Drawing.Point(407, 360)
+        Me.SendEmailButton.Location = New System.Drawing.Point(370, 360)
         Me.SendEmailButton.Name = "SendEmailButton"
-        Me.SendEmailButton.Size = New System.Drawing.Size(205, 34)
+        Me.SendEmailButton.Size = New System.Drawing.Size(172, 34)
         Me.SendEmailButton.TabIndex = 3
         Me.SendEmailButton.Text = "Envios de  correos"
         Me.SendEmailButton.TextColor = System.Drawing.Color.White
         Me.SendEmailButton.UseVisualStyleBackColor = False
+        '
+        'btnConnectionRemote
+        '
+        Me.btnConnectionRemote.BackColor = System.Drawing.Color.Orange
+        Me.btnConnectionRemote.BackgroundColor = System.Drawing.Color.Orange
+        Me.btnConnectionRemote.BorderColor = System.Drawing.Color.PaleVioletRed
+        Me.btnConnectionRemote.BorderRadius = 6
+        Me.btnConnectionRemote.BorderSize = 1
+        Me.btnConnectionRemote.FlatAppearance.BorderSize = 0
+        Me.btnConnectionRemote.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnConnectionRemote.ForeColor = System.Drawing.Color.Black
+        Me.btnConnectionRemote.Location = New System.Drawing.Point(565, 360)
+        Me.btnConnectionRemote.Name = "btnConnectionRemote"
+        Me.btnConnectionRemote.Size = New System.Drawing.Size(191, 34)
+        Me.btnConnectionRemote.TabIndex = 4
+        Me.btnConnectionRemote.Text = "Credenciales remotas"
+        Me.btnConnectionRemote.TextColor = System.Drawing.Color.Black
+        Me.btnConnectionRemote.UseVisualStyleBackColor = False
         '
         'frmMyCommerce
         '
@@ -347,7 +366,8 @@ Partial Class frmMyCommerce
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
-        Me.ClientSize = New System.Drawing.Size(726, 465)
+        Me.ClientSize = New System.Drawing.Size(827, 465)
+        Me.Controls.Add(Me.btnConnectionRemote)
         Me.Controls.Add(Me.SendEmailButton)
         Me.Controls.Add(Me.OptionButto)
         Me.Controls.Add(Me.registerInSystemLabel)
@@ -396,4 +416,5 @@ Partial Class frmMyCommerce
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents OptionButto As JMControls.Controls.RJButton
     Friend WithEvents SendEmailButton As JMControls.Controls.RJButton
+    Friend WithEvents btnConnectionRemote As JMControls.Controls.RJButton
 End Class

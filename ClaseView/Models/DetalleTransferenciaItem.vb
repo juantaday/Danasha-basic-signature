@@ -11,6 +11,9 @@ Public Class DetalleTransferenciaItem
     Public Property idSubCategoria As Integer
     Public Property nomSubCategoria As String
 
+    Public Property Deft_idPresenCompra As Integer
+    Public Property Deft_idPresenVenta As Integer
+
     ' — Fiscal —
     Public Property ivaPorcentaje As Decimal
     Public Property Facturable As Boolean
