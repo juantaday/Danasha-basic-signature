@@ -152,5 +152,54 @@ namespace SupabaseDataAccess.Repositories
             }
             return dt;
         }
+
+        // ── 6. Detalles específicos ─────────────────────────────────────────
+        public static List<DetalleTransferencia> ObtenerDetallePorId(string supabaseId)
+        {
+            const string sql = @"
+                SELECT detalle::text
+                FROM   transferencias
+                WHERE  id = @id::uuid;";
+            using (var conn = SupabasePgConnection.OpenPoolConnection())
+            using (var cmd = new NpgsqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@id", supabaseId);
+                var detalleJson = cmd.ExecuteScalar()?.ToString();
+                return detalleJson != null
+                    ? JsonConvert.DeserializeObject<List<DetalleTransferencia>>(detalleJson)
+                    : new List<DetalleTransferencia>();
+            }
+        }
+
+        // ── 7. Consultar estado ─────────────────────
+        public static EstadoGuiaInfo ConsultarEstadoGuia(string supabaseId)
+        {
+            const string sql = @"
+        SELECT estado, novedad, fecha_recepcion
+        FROM transferencias
+        WHERE id = @id::uuid;";
+
+            using (var conn = SupabasePgConnection.OpenPoolConnection())
+            using (var cmd = new NpgsqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@id", supabaseId);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    if (!reader.Read())
+                        return null;
+
+                    return new EstadoGuiaInfo
+                    {
+                        Estado = reader.IsDBNull(0) ? null : reader.GetString(0),
+                        Novedad = reader.IsDBNull(1) ? null : reader.GetString(1),
+                        FechaRecepcion = reader.IsDBNull(2)
+                            ? (DateTime?)null
+                            : reader.GetDateTime(2)
+                    };
+                }
+            }
+        }
+
     }
 }

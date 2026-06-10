@@ -61,6 +61,20 @@ Public Class SupabasePendientesRepository
         End Using
     End Sub
 
+    ' Consultar Enviado
+    Public Shared Function ConsultarEnviado(id As Integer) As Boolean
+        Using cmd As New CADsisVenta.Funtions.SqlComandExec
+            Dim result = cmd.RetornaEscalarConParams(
+                "SELECT COUNT(1) FROM SupabasePendientes WHERE Id=@id AND EstadoEnvio='ENVIADO'",
+                {"@id"}, {id})
+            Return CInt(result) > 0
+        End Using
+
+
+        Return 0
+
+    End Function
+
     ' Actualiza intento fallido
     Public Shared Sub RegistrarFallo(id As Integer)
         Using cmd As New CADsisVenta.Funtions.SqlComandExec

@@ -24,6 +24,8 @@ Partial Class frmInventario
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.PanelMenu = New System.Windows.Forms.Panel()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cmbLocalbodega = New System.Windows.Forms.ComboBox()
         Me.EditCountStockButton = New System.Windows.Forms.Button()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.txtProduc_Select = New System.Windows.Forms.TextBox()
@@ -56,6 +58,7 @@ Partial Class frmInventario
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ActualizarStockDeProductosDesdeUnListadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActualizarCategoriasDesdeUnListadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PanelMenu.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -63,12 +66,15 @@ Partial Class frmInventario
         CType(Me.ObjectListView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ContextMenuStrip2.SuspendLayout()
+        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelMenu
         '
         Me.PanelMenu.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(153, Byte), Integer), CType(CType(153, Byte), Integer))
         Me.PanelMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PanelMenu.Controls.Add(Me.Label3)
+        Me.PanelMenu.Controls.Add(Me.cmbLocalbodega)
         Me.PanelMenu.Controls.Add(Me.EditCountStockButton)
         Me.PanelMenu.Controls.Add(Me.Panel3)
         Me.PanelMenu.Controls.Add(Me.PrintButton)
@@ -82,17 +88,37 @@ Partial Class frmInventario
         Me.PanelMenu.Location = New System.Drawing.Point(1, 1)
         Me.PanelMenu.Name = "PanelMenu"
         Me.PanelMenu.Padding = New System.Windows.Forms.Padding(2)
-        Me.PanelMenu.Size = New System.Drawing.Size(902, 40)
+        Me.PanelMenu.Size = New System.Drawing.Size(1359, 40)
         Me.PanelMenu.TabIndex = 41
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(673, 8)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(51, 20)
+        Me.Label3.TabIndex = 44
+        Me.Label3.Text = "Local:"
+        '
+        'cmbLocalbodega
+        '
+        Me.cmbLocalbodega.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbLocalbodega.FormattingEnabled = True
+        Me.cmbLocalbodega.Location = New System.Drawing.Point(741, 4)
+        Me.cmbLocalbodega.Name = "cmbLocalbodega"
+        Me.cmbLocalbodega.Size = New System.Drawing.Size(263, 28)
+        Me.cmbLocalbodega.TabIndex = 43
         '
         'EditCountStockButton
         '
         Me.EditCountStockButton.Dock = System.Windows.Forms.DockStyle.Right
         Me.EditCountStockButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.EditCountStockButton.ForeColor = System.Drawing.Color.Black
-        Me.EditCountStockButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
+        Me.EditCountStockButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Action_Inline_Edit
         Me.EditCountStockButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.EditCountStockButton.Location = New System.Drawing.Point(607, 2)
+        Me.EditCountStockButton.Location = New System.Drawing.Point(1064, 2)
         Me.EditCountStockButton.Margin = New System.Windows.Forms.Padding(0)
         Me.EditCountStockButton.Name = "EditCountStockButton"
         Me.EditCountStockButton.Size = New System.Drawing.Size(115, 34)
@@ -134,7 +160,7 @@ Partial Class frmInventario
         Me.findButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.findButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.findButton.ForeColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(99, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.findButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.zoom_Grin_24
+        Me.findButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.zoom_Grin_24
         Me.findButton.Location = New System.Drawing.Point(286, 2)
         Me.findButton.Name = "findButton"
         Me.findButton.Size = New System.Drawing.Size(31, 27)
@@ -146,7 +172,7 @@ Partial Class frmInventario
         Me.PrintButton.Dock = System.Windows.Forms.DockStyle.Left
         Me.PrintButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PrintButton.ForeColor = System.Drawing.Color.Black
-        Me.PrintButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Excel_24
+        Me.PrintButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Excel_24
         Me.PrintButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.PrintButton.Location = New System.Drawing.Point(171, 2)
         Me.PrintButton.Margin = New System.Windows.Forms.Padding(0)
@@ -161,7 +187,7 @@ Partial Class frmInventario
         '
         Me.CategoryButton.Dock = System.Windows.Forms.DockStyle.Left
         Me.CategoryButton.ForeColor = System.Drawing.Color.Black
-        Me.CategoryButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Category_TreeView24
+        Me.CategoryButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Category_TreeView24
         Me.CategoryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.CategoryButton.Location = New System.Drawing.Point(82, 2)
         Me.CategoryButton.Margin = New System.Windows.Forms.Padding(0)
@@ -176,7 +202,7 @@ Partial Class frmInventario
         '
         Me.SelectAllButton.Dock = System.Windows.Forms.DockStyle.Left
         Me.SelectAllButton.ForeColor = System.Drawing.Color.Black
-        Me.SelectAllButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Resum_28
+        Me.SelectAllButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Resum_28
         Me.SelectAllButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.SelectAllButton.Location = New System.Drawing.Point(2, 2)
         Me.SelectAllButton.Margin = New System.Windows.Forms.Padding(0)
@@ -192,9 +218,9 @@ Partial Class frmInventario
         Me.EditPvPStockButton.Dock = System.Windows.Forms.DockStyle.Right
         Me.EditPvPStockButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.EditPvPStockButton.ForeColor = System.Drawing.Color.Black
-        Me.EditPvPStockButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.confirCost_32
+        Me.EditPvPStockButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.confirCost_32
         Me.EditPvPStockButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.EditPvPStockButton.Location = New System.Drawing.Point(722, 2)
+        Me.EditPvPStockButton.Location = New System.Drawing.Point(1179, 2)
         Me.EditPvPStockButton.Margin = New System.Windows.Forms.Padding(0)
         Me.EditPvPStockButton.Name = "EditPvPStockButton"
         Me.EditPvPStockButton.Size = New System.Drawing.Size(135, 34)
@@ -209,8 +235,8 @@ Partial Class frmInventario
         Me.UpdateFromExelButton.Dock = System.Windows.Forms.DockStyle.Right
         Me.UpdateFromExelButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.UpdateFromExelButton.ForeColor = System.Drawing.Color.Black
-        Me.UpdateFromExelButton.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Option_20
-        Me.UpdateFromExelButton.Location = New System.Drawing.Point(857, 2)
+        Me.UpdateFromExelButton.Image = Global.DanashaBasicSignature.My.Resources.Resources.Option_20
+        Me.UpdateFromExelButton.Location = New System.Drawing.Point(1314, 2)
         Me.UpdateFromExelButton.Margin = New System.Windows.Forms.Padding(0)
         Me.UpdateFromExelButton.Name = "UpdateFromExelButton"
         Me.UpdateFromExelButton.Size = New System.Drawing.Size(41, 34)
@@ -226,7 +252,7 @@ Partial Class frmInventario
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel1.Location = New System.Drawing.Point(1, 414)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(902, 32)
+        Me.Panel1.Size = New System.Drawing.Size(1359, 32)
         Me.Panel1.TabIndex = 42
         '
         'Label1
@@ -236,7 +262,7 @@ Partial Class frmInventario
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Label1.Location = New System.Drawing.Point(4, 5)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(54, 16)
+        Me.Label1.Size = New System.Drawing.Size(53, 16)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Label1"
         '
@@ -248,7 +274,7 @@ Partial Class frmInventario
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(1, 41)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(902, 26)
+        Me.Panel2.Size = New System.Drawing.Size(1359, 26)
         Me.Panel2.TabIndex = 43
         '
         'Label2
@@ -258,7 +284,7 @@ Partial Class frmInventario
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Label2.Location = New System.Drawing.Point(4, 4)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(51, 16)
+        Me.Label2.Size = New System.Drawing.Size(50, 16)
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Label2"
         '
@@ -279,13 +305,14 @@ Partial Class frmInventario
         Me.ObjectListView1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.Nom_CategoriaClm, Me.Nom_SubCategoriaClm, Me.Nom_BodegaClm, Me.idProductoClm, Me.Nom_ComercialClm, Me.Articulosclm, Me.StockCm, Me.CostoClm, Me.CostoTotalClm, Me.idProdcutStockClm})
         Me.ObjectListView1.Cursor = System.Windows.Forms.Cursors.Default
         Me.ObjectListView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ObjectListView1.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ObjectListView1.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ObjectListView1.FullRowSelect = True
+        Me.ObjectListView1.RowHeight = 30
         Me.ObjectListView1.GridLines = True
         Me.ObjectListView1.HideSelection = False
         Me.ObjectListView1.Location = New System.Drawing.Point(1, 67)
         Me.ObjectListView1.Name = "ObjectListView1"
-        Me.ObjectListView1.Size = New System.Drawing.Size(902, 347)
+        Me.ObjectListView1.Size = New System.Drawing.Size(1359, 347)
         Me.ObjectListView1.TabIndex = 44
         Me.ObjectListView1.UseAlternatingBackColors = True
         Me.ObjectListView1.UseCompatibleStateImageBehavior = False
@@ -362,27 +389,27 @@ Partial Class frmInventario
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExportarCategoriasToolStripMenuItem, Me.ProductoConCategoriaToolStripMenuItem, Me.ExportarTodaLaListaDeProductosToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(255, 70)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(254, 70)
         '
         'ExportarCategoriasToolStripMenuItem
         '
-        Me.ExportarCategoriasToolStripMenuItem.Image =  Global.DanashaBasicSignature.My.Resources.Resources.Category_TreeView24
+        Me.ExportarCategoriasToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.Category_TreeView24
         Me.ExportarCategoriasToolStripMenuItem.Name = "ExportarCategoriasToolStripMenuItem"
-        Me.ExportarCategoriasToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
+        Me.ExportarCategoriasToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
         Me.ExportarCategoriasToolStripMenuItem.Text = "Exportar categorias"
         '
         'ProductoConCategoriaToolStripMenuItem
         '
-        Me.ProductoConCategoriaToolStripMenuItem.Image =  Global.DanashaBasicSignature.My.Resources.Resources.List_32x32
+        Me.ProductoConCategoriaToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.List_32x32
         Me.ProductoConCategoriaToolStripMenuItem.Name = "ProductoConCategoriaToolStripMenuItem"
-        Me.ProductoConCategoriaToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
+        Me.ProductoConCategoriaToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
         Me.ProductoConCategoriaToolStripMenuItem.Text = "Producto con categoria"
         '
         'ExportarTodaLaListaDeProductosToolStripMenuItem
         '
-        Me.ExportarTodaLaListaDeProductosToolStripMenuItem.Image =  Global.DanashaBasicSignature.My.Resources.Resources.producto_241
+        Me.ExportarTodaLaListaDeProductosToolStripMenuItem.Image = Global.DanashaBasicSignature.My.Resources.Resources.producto_241
         Me.ExportarTodaLaListaDeProductosToolStripMenuItem.Name = "ExportarTodaLaListaDeProductosToolStripMenuItem"
-        Me.ExportarTodaLaListaDeProductosToolStripMenuItem.Size = New System.Drawing.Size(254, 22)
+        Me.ExportarTodaLaListaDeProductosToolStripMenuItem.Size = New System.Drawing.Size(253, 22)
         Me.ExportarTodaLaListaDeProductosToolStripMenuItem.Text = "Exportar toda la lista de productos"
         '
         'ContextMenuStrip2
@@ -403,11 +430,15 @@ Partial Class frmInventario
         Me.ActualizarCategoriasDesdeUnListadoToolStripMenuItem.Size = New System.Drawing.Size(319, 22)
         Me.ActualizarCategoriasDesdeUnListadoToolStripMenuItem.Text = "Actualizar categorias desde un listado"
         '
+        'ErrorProvider1
+        '
+        Me.ErrorProvider1.ContainerControl = Me
+        '
         'frmInventario
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(904, 450)
+        Me.ClientSize = New System.Drawing.Size(1361, 450)
         Me.Controls.Add(Me.ObjectListView1)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
@@ -416,6 +447,7 @@ Partial Class frmInventario
         Me.Padding = New System.Windows.Forms.Padding(1, 1, 1, 4)
         Me.Text = "Inventario"
         Me.PanelMenu.ResumeLayout(False)
+        Me.PanelMenu.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         Me.Panel1.ResumeLayout(False)
@@ -425,6 +457,7 @@ Partial Class frmInventario
         CType(Me.ObjectListView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ContextMenuStrip2.ResumeLayout(False)
+        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -462,4 +495,7 @@ Partial Class frmInventario
     Friend WithEvents ActualizarStockDeProductosDesdeUnListadoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ActualizarCategoriasDesdeUnListadoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportarTodaLaListaDeProductosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents cmbLocalbodega As ComboBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents ErrorProvider1 As ErrorProvider
 End Class

@@ -3,6 +3,7 @@ Imports CADsisVenta.Helpers.FInicio
 Imports Domain.Data.Entities
 Imports Domain.Data.Repositories
 Imports DomainSQLite.Crypto
+Imports InterfaceSignatureAndSRI.Utils
 
 Public Class frmOtrosLocales
 
@@ -103,7 +104,7 @@ Public Class frmOtrosLocales
 
                 Dim result = Await Task.Run(Function() BuildCombinedInventory(filterText))
 
-                If (result.ErrorMsg IsNot Nothing) Then
+                If (Not result.ErrorMsg Is Nothing AndAlso Not String.IsNullOrEmpty(result.ErrorMsg)) Then
                     Interaction.MsgBox(result.ErrorMsg, MsgBoxStyle.Critical, "Error")
                 End If
 
@@ -295,9 +296,9 @@ Public Class frmOtrosLocales
             Return (Nothing, Nothing)   ' sin config → sin error que mostrar
         End If
 
-        Dim tailscaleIp = Encriptador.DesencriptarValor(bodega.TailscaleIp)
+        Dim tailscaleIp = DomainSQLite.Crypto.Encriptador.DesencriptarValor(bodega.TailscaleIp)
         Dim userName = bodega.TailscaleUsuario
-        Dim password = Encriptador.DesencriptarValor(bodega.TailscalePassword)
+        Dim password = DomainSQLite.Crypto.Encriptador.DesencriptarValor(bodega.TailscalePassword)
         Dim databaseName = bodega.TailscaleDatabase
 
         Dim connectionString = $"Data Source={tailscaleIp};Initial Catalog={databaseName};User ID={userName};Password={password};TrustServerCertificate=True;Timeout=7"
@@ -333,6 +334,7 @@ Public Class frmOtrosLocales
                 End Using
             End Using
         Catch ex As Exception
+            Log.Error($"QueryRemoteInventory", $"Al consultar en la bodega {bodega.NomBodega}", ex)
             ' ← devuelve el mensaje en lugar de mostrarlo aquí
             Return (Nothing, $"Error al consultar {bodega.NomBodega}:{vbCrLf}{ex.Message}")
         End Try

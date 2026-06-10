@@ -1,24 +1,28 @@
-﻿Imports CADsisVenta.Helpers.FInicio
-Imports CADsisVenta.Data.Entyties
-Imports CADsisVenta.Funtions
-Imports BrightIdeasSoftware.Implementation
-Imports BrightIdeasSoftware
-Imports SpreadsheetLight
+﻿Imports System.Data.SqlClient
 Imports System.IO
-Imports CADsisVenta.DataSetVentasTableAdapters
+Imports BrightIdeasSoftware
+Imports CADsisVenta.Data.Entyties
 Imports CADsisVenta.DataSetVentas
-Imports DocumentFormat.OpenXml.Spreadsheet
-Imports System.Data.SqlClient
-Imports DocumentFormat.OpenXml
+Imports CADsisVenta.DataSetVentasTableAdapters
+Imports CADsisVenta.Funtions
+Imports CADsisVenta.Helpers.FInicio
+Imports Domain.Data.Entities
+Imports Domain.Data.Repositories
+Imports ec.gob.sri.Models
 Imports JMControls.Implementation
+Imports SpreadsheetLight
 
 Public Class frmInventario
     Private typoData As Byte
     Private typoArchivo As String
     Private DowloadFile As String
     Private dt As DataTable
-    Private ReadOnly IdBodega As Integer
+    Private IdBodega As Integer
+    Private ListBodega As List(Of Bodega)
     Private ListData As ObservableCollectionEx(Of ItemStockViewModel)
+
+    Private _error As String
+
 
     Sub New()
 
@@ -32,6 +36,7 @@ Public Class frmInventario
         ListData = New ObservableCollectionEx(Of ItemStockViewModel)
         Label1.Text = String.Empty
         GetFileDowload()
+        GetLisWareHouseAsync()
     End Sub
     Private Sub frmInventario_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -40,8 +45,40 @@ Public Class frmInventario
             Me.Close()
         End If
 
-        SelectAllButton.PerformClick()
     End Sub
+
+    Private Async Sub GetLisWareHouseAsync()
+        Await Task.Factory.StartNew(Sub()
+
+                                        Try
+                                            Me.ListBodega = BodegaRepository.TraeListaExepRemoto(DomainSQLite.Setting.Configuration.ConectionString)
+
+                                        Catch ex As Exception
+                                            _error = ex.Message
+                                        End Try
+
+                                    End Sub)
+
+
+        Try
+            Me.cmbLocalbodega.Invoke(New MethodInvoker(Sub()
+                                                           Me.cmbLocalbodega.DataSource = ListBodega
+                                                           Me.cmbLocalbodega.DisplayMember = "NomBodega"
+                                                           Me.cmbLocalbodega.ValueMember = "IdBodega"
+                                                           Me.cmbLocalbodega.SelectedValue = Me.IdBodega
+                                                       End Sub))
+
+            Me.SelectAllButton.Invoke(New MethodInvoker(Sub()
+                                                            SelectAllButton.PerformClick()
+                                                        End Sub))
+
+        Catch ex As Exception
+            System.Diagnostics.Debug.WriteLine(ex.Message & vbLf & ex.StackTrace)
+        End Try
+
+    End Sub
+
+
 
     Private Async Sub GetFileDowload()
         Await Task.Factory.StartNew(Sub()
@@ -50,13 +87,28 @@ Public Class frmInventario
     End Sub
 
 
+    Private Function SelectWareHouse() As Boolean
+        If (cmbLocalbodega.SelectedIndex = -1) Then
+            Interaction.MsgBox("Seleccione un local o bodega", MsgBoxStyle.Exclamation, "Alerta")
+            ErrorProvider1.SetError(cmbLocalbodega, "Seleccione un local o bodega")
+            Return False
+        End If
+
+        ErrorProvider1.SetError(cmbLocalbodega, String.Empty)
+        Me.IdBodega = CInt(cmbLocalbodega.SelectedValue)
+        Return True
+    End Function
+
     Private Async Sub GetResum()
-        Me.Cursor = Cursors.WaitCursor
+
+        If (Not SelectWareHouse()) Then
+            Return
+        End If
 
         typoData = 1
 
         dt = Nothing
-
+        Me.Cursor = Cursors.WaitCursor
 
         Me.Label2.Text = "Stock de productos: resumen por categoría"
 
@@ -188,6 +240,10 @@ Public Class frmInventario
 
     Private Async Sub GetDataWithIdSubCate(idSubCatego As Integer, nameSubCategory As String)
 
+        If (Not SelectWareHouse()) Then
+            Return
+        End If
+
         Me.Label2.Text = $"Stock de productos: detalle de {nameSubCategory}"
 
         typoData = 3
@@ -259,6 +315,10 @@ Public Class frmInventario
     End Sub
 
     Private Async Sub GetDataWithIdCateg(idSubCatego As Integer, nameSubCategory As String)
+
+        If (Not SelectWareHouse()) Then
+            Return
+        End If
 
         typoData = 2
 
@@ -574,6 +634,10 @@ Public Class frmInventario
 
     Private Async Sub GetDataSelect()
 
+        If (Not SelectWareHouse()) Then
+            Return
+        End If
+
         dt = Nothing
         sql = $"select top(1000)  b.Nom_Bodega, p.idProducto,p.Nom_Comercial, s.Stock ,s.pvpUND as Costo ,  
                 (s.Stock * s.pvpUND) as  CostoTotal, s.idProdcutStock
@@ -600,17 +664,16 @@ Public Class frmInventario
             ObjectListView1.Sort(Nom_ComercialClm, SortOrder.Descending)
             ObjectListView1.ShowGroups = False
 
+
             idProductoClm.IsVisible = True
             idProductoClm.Sortable = True
             idProductoClm.AspectName = "idProducto"
             idProductoClm.Width = 100
 
 
-
-
             Nom_BodegaClm.IsVisible = True
             Nom_BodegaClm.AspectName = "Nom_Bodega"
-            Nom_BodegaClm.Width = 200
+            Nom_BodegaClm.Width = 300
 
 
             Nom_ComercialClm.IsVisible = False
@@ -627,12 +690,14 @@ Public Class frmInventario
             CostoClm.AspectName = "Costo"
             CostoClm.Sortable = False
             CostoClm.Width = 150
+            CostoClm.AspectToStringFormat = "{0:N2}"
 
 
             CostoTotalClm.IsVisible = True
             CostoTotalClm.Width = 200
             CostoTotalClm.AspectName = "CostoTotal"
             CostoTotalClm.Sortable = False
+            CostoTotalClm.AspectToStringFormat = "{0:N2}"
 
             Me.ObjectListView1.SetObjects(dt.AsEnumerable())
             Dim total = dt.AsEnumerable().Sum(Function(x) x.Field(Of Decimal)("CostoTotal"))

@@ -163,7 +163,7 @@ Partial Class frmRecibirTransferencia
         '
         Me.OlvTransferencias.AlternateRowBackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(253, Byte), Integer))
         Me.OlvTransferencias.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(253, Byte), Integer))
-        Me.OlvTransferencias.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.OlvTransferencias.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.OlvTransferencias.CellEditUseWholeCell = False
         Me.OlvTransferencias.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colAccion, Me.colNumero, Me.colOrigen, Me.colFecha})
         Me.OlvTransferencias.Cursor = System.Windows.Forms.Cursors.Default

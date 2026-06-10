@@ -8,6 +8,7 @@ Imports CADsisVenta.DataSetSystemTableAdapters
 Imports CADsisVenta.Helpers
 Imports CADsisVenta.Helpers.FInicio
 Imports DanashaBasicSignature.ClassView.Conexion
+Imports Microsoft.EntityFrameworkCore
 
 Public Class FunInicio
     Implements IDisposable
@@ -203,23 +204,8 @@ Public Class FunInicio
                 End Using
             End If
 
-            If Not IsNothing(Dominio._HotName) Then
-
-                Dim tapt As New TerminalTableAdapter()
-                Dim dt As New DataTable
-                dt = tapt.GetDataByDominio(Dominio._HotName)
-                If dt.Rows.Count > 0 Then
-                    With TerminalActivo
-                        .Dominio = Dominio._HotName
-                        .codTerminal = dt(0)("codTerminal")
-                        .idTerminal = dt(0)("idTerminal")
-                        .idBodega = dt(0)("idBodega")
-                        .CodPntoEmision = dt(0)("CodPntoEmision")
-                        .nombreBodega = dt(0)("Nom_Bodega")
-                    End With
-                    Return True
-                End If
-            End If
+            ' Carga el terminal activo  
+            SetCurrentTerminal(Dominio._HotName, True)
 
             If IsNothing(TerminalActivo.codTerminal) Then
                 sql = "Este Equipo navega como anónimo" + vbNewLine
@@ -233,6 +219,34 @@ Public Class FunInicio
             Return False
         End Try
 
+    End Function
+
+    Public Function SetCurrentTerminal(ByVal HostName As String, Optional ByVal showMessage As Boolean = True) As Boolean
+        Try
+            If Not IsNothing(HostName) Then
+
+                Dim tapt As New TerminalTableAdapter()
+                Dim dt As New DataTable
+                dt = tapt.GetDataByDominio(HostName)
+                If dt.Rows.Count > 0 Then
+                    With TerminalActivo
+                        .Dominio = HostName
+                        .codTerminal = dt(0)("codTerminal")
+                        .idTerminal = dt(0)("idTerminal")
+                        .idBodega = dt(0)("idBodega")
+                        .CodPntoEmision = dt(0)("CodPntoEmision")
+                        .nombreBodega = dt(0)("Nom_Bodega")
+                    End With
+                    Return True
+                End If
+            End If
+            Return False
+        Catch ex As Exception
+            If (showMessage) Then
+                MsgBox(ex.Message & vbLf & ex.StackTrace, MsgBoxStyle.Critical, "Error")
+            End If
+            Return False
+        End Try
     End Function
 
 
@@ -258,9 +272,10 @@ Public Class FunInicio
     Public Async Function GetBodegas(Optional ViewExeption As Boolean = False) As Task(Of Bodegas)
         Return Await Task.Factory.StartNew(Function()
 
+                                               Dim idBodega As Integer = CInt(TerminalActivo.idBodega)
                                                Try
                                                    Using db As New DataContext
-                                                       Return db.Bodegas.FirstOrDefault()
+                                                       Return db.Bodegas.Where(Function(x) x.idBodega = idBodega).FirstOrDefault()
                                                    End Using
                                                Catch ex As Exception
                                                    If ViewExeption Then

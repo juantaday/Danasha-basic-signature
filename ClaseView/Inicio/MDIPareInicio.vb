@@ -1038,6 +1038,7 @@ Salida:
             With NewListProdcut
                 .flag = 2
                 .MdiParent = Me
+                .WindowState = FormWindowState.Maximized
                 .Show()
                 .BringToFront()
             End With
@@ -1054,6 +1055,7 @@ Salida:
             Dim inventario = New frmInventario()
             With inventario
                 .MdiParent = Me
+                .WindowState = FormWindowState.Maximized
                 .Show()
                 .BringToFront()
             End With

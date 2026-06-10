@@ -504,7 +504,7 @@ Partial Class MDIPareInicio
         Me.InventarioEnOtosLocalesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.InventarioEnOtosLocalesToolStripMenuItem.Name = "InventarioEnOtosLocalesToolStripMenuItem"
         Me.InventarioEnOtosLocalesToolStripMenuItem.Size = New System.Drawing.Size(275, 38)
-        Me.InventarioEnOtosLocalesToolStripMenuItem.Text = "Inventario en otos locales"
+        Me.InventarioEnOtosLocalesToolStripMenuItem.Text = "Inventario en otros locales"
         '
         'FacturacionToolStripMenuItem
         '
@@ -969,6 +969,7 @@ Partial Class MDIPareInicio
         Me.Controls.Add(Me.paneMuestra)
         Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.IsMdiContainer = True
         Me.MainMenuStrip = Me.MenuStrip
         Me.Name = "MDIPareInicio"

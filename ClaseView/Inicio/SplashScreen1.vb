@@ -3,6 +3,7 @@ Imports System.Runtime.InteropServices
 Imports System.Text
 Imports System.Threading
 Imports CADsisVenta.Data.Models
+Imports CADsisVenta.Helpers.FInicio
 Imports CADsisVenta.Statics
 Imports DomainSQLite
 Imports DomainSQLite.Funtions
@@ -202,25 +203,53 @@ Public NotInheritable Class SplashScreen1
             Throw New Exception(ex.Message, ex.InnerException)
         End Try
 
-        progress.Report(New StepsModels With {.LongState = 40, .DescripState = "Connecting to the database"})
-        worker.ReportProgress(50)
 
-        Thread.Sleep(5)
 
         Try
 
             Using fini As New FunInicio
 
-                progress.Report(New StepsModels With {.LongState = 45, .DescripState = "Get My commerce info.."})
+                progress.Report(New StepsModels With {.LongState = 25, .DescripState = "Domain Loading... "})
+                worker.ReportProgress(25)
+
+                Thread.Sleep(5)
+
+                Dim domainState = Task.Run(Function()
+                                               Return Carga_DominioMaquina()
+                                           End Function).GetAwaiter().GetResult()
+
+
+
+                progress.Report(New StepsModels With {.LongState = 35, .DescripState = "Ecommerce info Loading... "})
+                worker.ReportProgress(35)
 
                 SettingObject.EcommerceActive = Task.Run(Async Function()
                                                              Return Await fini.GetInfoEcommerce(False)
                                                          End Function).GetAwaiter().GetResult()
 
+
+                progress.Report(New StepsModels With {.LongState = 45, .DescripState = "Set Terminal info... "})
+                worker.ReportProgress(45)
+
+
+
+                Dim terminal = Task.Run(Function()
+                                            Return fini.SetCurrentTerminal(Dominio._HotName, False)
+                                        End Function).GetAwaiter().GetResult()
+
+
                 progress.Report(New StepsModels With {.LongState = 55, .DescripState = "Get WareHouse.."})
 
                 SettingObject.WareHouseActive = Task.Run(Async Function()
-                                                             Return Await fini.GetBodegas(False)
+                                                             If terminal Then
+
+                                                                 Dim modelBodega = Await fini.GetBodegas(False)
+                                                                 If (modelBodega IsNot Nothing) Then
+                                                                     modelBodega.SaveToDataBase = True
+                                                                 End If
+                                                                 Return modelBodega
+                                                             End If
+                                                             Return Nothing
                                                          End Function).GetAwaiter().GetResult()
 
                 progress.Report(New StepsModels With {.LongState = 65, .DescripState = "Get Option Signature.."})
@@ -264,8 +293,8 @@ Public NotInheritable Class SplashScreen1
             Try
                 _LoginForm.ShowDialog(Me)
 
-                If _LoginForm.DialogResult = DialogResult.OK Then
-                    If Carga_DominioMaquina() Then
+                If _LoginForm.DialogResult() = DialogResult.OK Then
+                    If Not String.IsNullOrEmpty(Dominio._HotName) OrElse Carga_DominioMaquina() Then
                         Application.DoEvents()
                         'Application.Run(aplication)
                         aplication.ShowDialog()

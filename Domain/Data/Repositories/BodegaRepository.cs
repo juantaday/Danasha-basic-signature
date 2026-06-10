@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Domain.Data.Repositories
 {
@@ -90,7 +89,7 @@ namespace Domain.Data.Repositories
             }
         }
 
-        public static  List<Bodega> TraeListaExeptEsta(int idBodega, string connectionString)
+        public static List<Bodega> TraeListaExeptEsta(int idBodega, string connectionString)
         {
             using (var context = CrearContexto(connectionString))
             {
@@ -99,6 +98,17 @@ namespace Domain.Data.Repositories
                     .ToList();
             }
         }
+
+        public static List<Bodega> TraeListaExepRemoto(string connectionString)
+        {
+            using (var context = CrearContexto(connectionString))
+            {
+                return context.Bodegas
+                    .Where(b => b.EsSucursalRemota != true)
+                    .ToList();
+            }
+        }
+
 
         private static DataContext CrearContexto(string connectionString)
         {

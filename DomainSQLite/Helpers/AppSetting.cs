@@ -1,17 +1,13 @@
-﻿using DomainSQLite.Setting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DomainSQLite.Helpers
 {
     public class AppSetting
     {
-         System.Configuration.Configuration config;
+        System.Configuration.Configuration config;
 
         private static System.Configuration.Configuration configStatic = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
@@ -44,9 +40,9 @@ namespace DomainSQLite.Helpers
 
             string folder = Properties.Settings.Default.FolderPath;
 
-            if(!string.IsNullOrEmpty ( folder ))
+            if (!string.IsNullOrEmpty(folder))
                 phat = String.Format("{0}\\{1}", directoryDB, folder);
-            else 
+            else
                 phat = String.Format("{0}\\Danasha Basic Signature", directoryDB);
 
             if (!Microsoft.VisualBasic.FileIO.FileSystem.DirectoryExists(phat))

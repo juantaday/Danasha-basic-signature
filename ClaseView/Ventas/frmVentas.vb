@@ -705,7 +705,7 @@ Aplicando:
                     axion.ActionToExecute = Sub(t) axion.ExecuteWidhtIdProcess(token,
                                     SettingObject.SignatureOptios.TIPO_AMBIENTE.ToString(),
                                     progress, idFactur, SettingObject.EcommerceActive.CommerceId,
-                                    SaveFile:=True, 'SettingObject.WareHouseActive.SaveToFile,
+                                    SaveFile:=False, 'SettingObject.WareHouseActive.SaveToFile,
                                     SaveInDataBase:=SettingObject.WareHouseActive.SaveToDataBase, files:=Nothing)
 
                     axion.star()

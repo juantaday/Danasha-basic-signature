@@ -1,6 +1,7 @@
 ﻿'Imports LibPrintTicketMatriz.PrintTicket
 Imports System.Data.SqlClient
 Imports CADsisVenta.Helpers.FInicio
+Imports Domain.Logica
 
 Module FfacturacionVenta
     Public idOrderVenta As Integer
@@ -202,32 +203,19 @@ Public Module PROFORMA
     Public Sub cn_InfoMessage(ByVal sender As Object, ByVal e As System.Data.SqlClient.SqlInfoMessageEventArgs)
         MsgBox("Ocurrio algo inesparado: " & e.Message, MsgBoxStyle.Critical, "Alerta")
     End Sub
-    Public Function itemsXFactur(Optional ByVal idDocument As Integer = 0, Optional ByVal nameDocument As String = "") As Boolean
+    Public Function itemsXFactur(ByVal tipoDocumento As TipoDocumento) As Boolean
         Dim dt As New DataTable
         Try
-            If idDocument = 0 And String.IsNullOrWhiteSpace(nameDocument) Then
-                Return False
-            End If
 
-            If idDocument = 0 Then
-                If LoadOptionsPrint(0, nameDocument) Then
-                    sql = "Select f.NumFact01 +'-'+f.NumFact02+'-'+f.NumFact03++f.NumFact04 as [num], itemsPrintTicket  "
-                    sql = sql & "from [stm].[terminalConfi] as f "
-                    sql = sql & "inner join [stm].[terminal] as t on f.idTerminal = t.idTerminal "
-                    sql = sql & "inner join [stm].[TypoDocumento] as d on d.idTypoDocu = f.idTypoDocumento "
-                    sql = sql & "where ((t.codterminal = '" & TerminalActivo.codTerminal & "') and (d.Nom_Docu ='" & nameDocument & "')) "
-                    Dim cmd As New ClassCargadorProducto()
-                    dt = cmd.RetornaTabla(sql)
-                End If
-            ElseIf nameDocument.Length = 0 Then
-                If LoadOptionsPrint(idDocument, nameDocument) Then
-                    sql = "Select f.NumFact01 +'-'+f.NumFact02+'-'+f.NumFact03++f.NumFact04 as [num], itemsPrintTicket  "
-                    sql = sql & "from [stm].[terminalConfi] as f "
-                    sql = sql & "inner join [stm].[terminal] as t on f.idTerminal = t.idTerminal "
-                    sql = sql & "where ((t.codterminal = '" & TerminalActivo.codTerminal & "') and (f.idTypoDocumento = " & idDocument & ")) "
-                    Dim cmd As New ClassCargadorProducto()
-                    dt = cmd.RetornaTabla(sql)
-                End If
+            Dim idTypeDocument As Integer = CInt(tipoDocumento)
+
+            If LoadOptionsPrint(tipoDocumento) Then
+                sql = "Select f.NumFact01 +'-'+f.NumFact02+'-'+f.NumFact03++f.NumFact04 as [num], itemsPrintTicket  "
+                sql = sql & "from [stm].[terminalConfi] as f "
+                sql = sql & "inner join [stm].[terminal] as t on f.idTerminal = t.idTerminal "
+                sql = sql & "where ((t.codterminal = '" & TerminalActivo.codTerminal & "') and (f.idTypoDocumento = " & idTypeDocument & ")) "
+                Dim cmd As New ClassCargadorProducto()
+                dt = cmd.RetornaTabla(sql)
             End If
 
             sql = String.Empty

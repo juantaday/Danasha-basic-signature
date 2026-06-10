@@ -4,6 +4,7 @@ Imports CADsisVenta.Data.Emuns.EnumSatateModule
 Imports CADsisVenta.DataSetZonasTableAdapters
 Imports Domain.Data.Entities
 Imports Domain.Data.Repositories
+Imports ec.gob.sri.Models
 Public Class frmAdd_Almacen
     Private Const TailscaleKey As String = "fdg36125☺}♫825╩5-5645644○87m4:█J"
     Private estaCargado As Boolean
@@ -346,6 +347,10 @@ Public Class frmAdd_Almacen
             Me.txtFecha_Apert.Text = Me.datalistado.SelectedCells.Item(7).Value
             Me.TypoBodegaComboBox.SelectedValue = datalistado.SelectedCells.Item(12).Value
             Me.txtCodigoEstab.Text = datalistado.SelectedCells.Item(13).Value
+
+            Me.esSucursalRemota = If(IsDBNull(datalistado.SelectedCells.Item(14).Value), False, CBool(datalistado.SelectedCells.Item(14).Value))
+            Me.chkEsSucursalRemota.Checked = esSucursalRemota
+
             If IsNumeric(datalistado.SelectedCells.Item(9).Value) Then
                 idResponsable2 = datalistado.SelectedCells.Item(9).Value
                 Me.txtCheque.Text = Convert.ToString(datalistado.SelectedCells.Item(10).Value)

@@ -1,7 +1,8 @@
-﻿Imports CADsisVenta.DataSetSystemTableAdapters
-Imports CADsisVenta.ClsSystem
+﻿Imports CADsisVenta.ClsSystem
 Imports CADsisVenta.DataSetSystem
+Imports CADsisVenta.DataSetSystemTableAdapters
 Imports CADsisVenta.Helpers.FInicio
+Imports Domain.Data.Repositories
 
 Public Class frm_registerInTerminal
     Protected Friend Operation As _operation
@@ -80,12 +81,14 @@ inicia:
                                              codTerminalTextBox.Text, txtPuntoEmision.Text) = 0) Then
                             Me.DialogResult = Windows.Forms.DialogResult.OK
                             Me.Close()
+                            Application.Restart()
                         End If
                     Case _operation.Update
                         If Not (tadp.UpdateTerminal(idEquipo, BodegaComboBo.SelectedValue, LocattionComboBox.SelectedValue,
                                              codTerminalTextBox.Text, txtPuntoEmision.Text, TerminalActivo.idTerminal) = 0) Then
                             Me.DialogResult = Windows.Forms.DialogResult.OK
                             Me.Close()
+                            Application.Restart()
                         End If
                 End Select
             End If
@@ -147,7 +150,21 @@ inicia:
 
             ErrorProvider1.SetError(txtPuntoEmision, String.Empty)
 
-            Return True
+            Dim result = MessageBox.Show(
+                "Se realizarán cambios estructurales en el sistema." & Environment.NewLine &
+                "La aplicación deberá reiniciarse para que los cambios surtan efecto." & Environment.NewLine & Environment.NewLine &
+                "¿Desea continuar?",
+                "Confirmación requerida",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning)
+
+
+            If result = DialogResult.Yes Then
+                Return True
+            Else
+                Return False
+            End If
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
             Return False
@@ -162,14 +179,24 @@ inicia:
     Private Sub Carga_bodega()
         estaCargado = False
         Try
-            Dim tadp As New BodegaSystemTableAdapter
-            BodegaComboBo.DataSource = tadp.GetData()
+
+            Dim currentBodega As Integer = CInt(TerminalActivo.idBodega)
+
+            Dim listBodega = BodegaRepository.TraeListaExepRemoto(DomainSQLite.Setting.Configuration.ConectionString)
+
+            BodegaComboBo.DataSource = listBodega
             If BodegaComboBo.Items.Count > 0 Then
-                BodegaComboBo.DisplayMember = "Nom_Bodega"
-                BodegaComboBo.ValueMember = "idBodega"
+                BodegaComboBo.DisplayMember = "NomBodega"
+                BodegaComboBo.ValueMember = "IdBodega"
+
+                If (currentBodega > 0) Then
+                    BodegaComboBo.SelectedValue = currentBodega
+                End If
+
                 If Not Me.IsMain Then
                     BodegaComboBo.SelectedValue = Me.IdSucursal
                 End If
+
             End If
         Catch ex As Exception
             MsgBox(ex.Message & vbLf & ex.StackTrace, MsgBoxStyle.Critical, "Error")
@@ -203,8 +230,8 @@ inicia:
             End If
 
             If dt.Rows.Count = 1 Then
-                BodegaComboBo.SelectedValue = dt.Rows(0)("idBodega").ToString
-                LocattionComboBox.SelectedValue = dt.Rows(0)("idLocation").ToString
+                BodegaComboBo.SelectedValue = CInt(dt.Rows(0)("idBodega"))
+                LocattionComboBox.SelectedValue = CInt(dt.Rows(0)("idLocation"))
                 codTerminalTextBox.Text = dt.Rows(0)("codTerminal").ToString
                 txtPuntoEmision.Text = dt.Rows(0)("CodPntoEmision").ToString
             End If

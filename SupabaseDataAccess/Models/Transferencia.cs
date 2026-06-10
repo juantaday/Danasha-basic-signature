@@ -47,4 +47,11 @@ namespace SupabaseDataAccess.Models
         public string Estado { get; set; }          // RECIBIDO | PARCIAL | RECHAZADO
    
     }
+
+    public class EstadoGuiaInfo
+    {
+        public string Estado { get; set; }
+        public string Novedad { get; set; }
+        public DateTime? FechaRecepcion { get; set; }
+    }
 }

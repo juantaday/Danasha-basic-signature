@@ -2319,4 +2319,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PreBuildEvent>xcopy /Y /I "$(SolutionDir)SupabaseWorker\bin\$(ConfigurationName)\SupabaseWorker.exe" "$(TargetDir)"
+xcopy /Y /I "$(SolutionDir)SupabaseWorker\instalar-servicio.bat" "$(TargetDir)"</PreBuildEvent>
+  </PropertyGroup>
 </Project>
