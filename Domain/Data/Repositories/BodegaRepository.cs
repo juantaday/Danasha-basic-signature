@@ -109,6 +109,16 @@ namespace Domain.Data.Repositories
             }
         }
 
+        public static List<Bodega> TraeListaRemoto(string connectionString)
+        {
+            using (var context = CrearContexto(connectionString))
+            {
+                return context.Bodegas
+                    .Where(b => b.EsSucursalRemota == true)
+                    .ToList();
+            }
+        }
+
 
         private static DataContext CrearContexto(string connectionString)
         {

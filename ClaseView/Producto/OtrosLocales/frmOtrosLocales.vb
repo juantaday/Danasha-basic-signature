@@ -67,9 +67,9 @@ Public Class frmOtrosLocales
     ' ── Carga bodegas ─────────────────────────────────────────────────────────
     Private Sub GetDataWareHouse()
         Try
-            Me.listBodega = BodegaRepository.TraeListaExeptEsta(TerminalActivo.idBodega,
-                                                                       DomainSQLite.Setting.Configuration.ConectionString)
-            ComboBox1.DataSource = listBodega
+            Me.listBodega = BodegaRepository.TraeListaRemoto(DomainSQLite.Setting.Configuration.ConectionString)
+
+            ComboBox1.DataSource = Me.listBodega
             ComboBox1.DisplayMember = "NomBodega"
             ComboBox1.ValueMember = "IdBodega"
         Catch ex As Exception
