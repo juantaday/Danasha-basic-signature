@@ -1051,7 +1051,8 @@ viewMesagge:
             btnPacketProdcut.PerformClick()
         ElseIf e.KeyCode = Keys.F10 Then
             ProformaButton.PerformClick()
-        ElseIf e.KeyCode = Keys.F11 Then
+        ElseIf e.KeyCode = Keys.F11 AndAlso e.Control AndAlso e.Shift Then
+            NotaVentaButton.Visible = True
             NotaVentaButton.PerformClick()
         ElseIf e.KeyCode = Keys.F12 Then
             FacturaButton.PerformClick()
@@ -1477,6 +1478,7 @@ viewMesagge:
             Me.UltimoIngresoLabel.Text = String.Empty
             PanefinalizFactur.Enabled = False
             txtExploret.Focus()
+            NotaVentaButton.Visible = False
         End If
 
     End Sub

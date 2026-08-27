@@ -47,6 +47,12 @@ namespace Domain.Data
 
         public DbSet<Bodega> Bodegas { get; set; }
 
+        public DbSet<FacturaVentaImpuesto> FacturaVentaImpuestos { get; set; }
+
+        public DbSet<FacturaVentaDetail> FacturaVentaDetails { get; set; }
+
+        public DbSet<FacturaVenta> FacturaVentas { get; set; }  
+
 
     }
 }

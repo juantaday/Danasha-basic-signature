@@ -8,7 +8,6 @@ Imports CADsisVenta.DataSetSystemTableAdapters
 Imports CADsisVenta.Helpers
 Imports CADsisVenta.Helpers.FInicio
 Imports DanashaBasicSignature.ClassView.Conexion
-Imports Microsoft.EntityFrameworkCore
 
 Public Class FunInicio
     Implements IDisposable
@@ -250,7 +249,7 @@ Public Class FunInicio
     End Function
 
 
-    Public Async Function GetInfoEcommerce(Optional ViewExeption As Boolean = False) As Task(Of myCommerce)
+    Public Async Function GetInfoEcommerce(Optional ViewExeption As Boolean = False) As Task(Of CADsisVenta.myCommerce)
         Return Await Task.Factory.StartNew(Function()
 
                                                Try

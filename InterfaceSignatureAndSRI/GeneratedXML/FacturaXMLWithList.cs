@@ -1,21 +1,18 @@
 ﻿using Domain.Data;
 using Domain.Data.Entities;
 using Domain.Data.Enums;
+using Domain.Helpers;
 using Domain.Models;
 using ec.gob.sri.comprobantes.Enum;
-using ec.gob.sri.Xml.modelo_v1_1_0.Factura;
 using ec.gob.sri.Xml;
+using ec.gob.sri.Xml.modelo_v1_1_0.Factura;
 using InterfaceSignatureAndSRI.Utils;
 using java.math;
 using Microsoft.EntityFrameworkCore;
-using Remotion.Linq.Parsing.Structure.NodeTypeProviders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace InterfaceSignatureAndSRI.GeneratedXML
@@ -31,16 +28,25 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
         private static DateTime _fechaEmision;
         private static List<string> _emailSend;
         private static DomainDataContext db;
-        private static ItemsVats _ItemsVats;
+        private static InvoiceHeaderInput _ItemsVats;
         private static string claveAcceso;
         private static string Num_factura;
         private static string codDdoc;
         private static int _secuancia;
-        private static MyCommerce _myCommerce;
+        private static ItemCommerce _myCommerce;
         private static Cliente _customer;
         private static FORMAS_PAGO _formas_pago;
         private static List<ItemVats> _listVats;
 
+        /// <summary>
+        /// Generador de xml 
+        /// </summary>
+        /// <param name="ambiente"></param>
+        /// <param name="fechaEmision"></param>
+        /// <param name="customer"></param>
+        /// <param name="forma_pago"></param>
+        /// <param name="listSales"></param>
+        [Obsolete("Use el nuevo constructor de FacturaXMLWithId.")]
         public FacturaXMLWithList(string ambiente, DateTime fechaEmision, Cliente customer,
             FORMAS_PAGO forma_pago, List<ItemSalesViewModel> listSales)
         {
@@ -59,7 +65,7 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
         public async Task<string> GetXmlFactura()
         {
-            _ItemsVats = new ItemsVats();
+            _ItemsVats = new InvoiceHeaderInput();
             _fact.version = "1.1.0";
             _fact.id = facturaID.comprobante;
             _fact.idSpecified = true;
@@ -70,7 +76,8 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
                 {
                     TypeDocument numerator = null;
 
-                    if (_ambiente.Equals("-1")) {
+                    if (_ambiente.Equals("-1"))
+                    {
                         numerator = db.TypeDocuments.Where(x => x.NameDocument.Equals("Nota de Venta")).FirstOrDefault();
                         _ambiente = "1";//cambio al ambiente de prueba....
                     }
@@ -82,15 +89,12 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
                     _secuancia = numerator.Numeration;
 
-                    _myCommerce = db.MyCommerce.Include(x => x.SignatureOptions).FirstOrDefault();
-                    if (_myCommerce == null || _myCommerce.SignatureOptions == null || _myCommerce.SignatureOptions.Count == 0)
-                        throw new Exception("No esta configurado el emisor..");
-
+                    _myCommerce = await FacturaXmlBuilder.GetCommerceAsync(db, _ItemsVats.WareHouseId);
 
                     _fact.infoTributaria = await getInfoTributaria();
                     _fact.infoFactura = await getInfoFactura();
-                    _fact.detalles = await getFacturaDetalles();
-                    _fact.infoAdicional = await getInfoAdicional();
+                    _fact.detalles = await getFacturaDetalles();    
+                    _fact.infoAdicional = await FacturaXmlBuilder.GetInfoAdicional(_customer, _fechaEmision, _secuancia);
 
                     var xml = XMLSerializers.Serialize(_fact, "");
 
@@ -106,7 +110,7 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
                     return xml;
                 }
-                catch (Exception ex )
+                catch (Exception ex)
                 {
                     throw new Exception(ex.Message, ex.InnerException);
                 }
@@ -134,7 +138,7 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
 
                 trib.ambiente = _ambiente;
-                trib.tipoEmision = _myCommerce.SignatureOptions.FirstOrDefault().TIPO_EMISION;
+                trib.tipoEmision = _myCommerce.TIPO_EMISION;
                 trib.razonSocial = _myCommerce.RazonSocial;
                 trib.nombreComercial = _myCommerce.NameComercial;
                 trib.ruc = _myCommerce.Ruc;
@@ -142,27 +146,28 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
                 trib.estab = _myCommerce.CodEstablec;
                 trib.ptoEmi = _myCommerce.CodPntoEmision;
                 trib.secuencial = new string('0', 9 - (_secuancia).ToString().Length) + (_secuancia).ToString();
-                trib.dirMatriz = _myCommerce.BusinessAddress;
+                trib.dirMatriz = _myCommerce.EstablishmentAddress;
 
                 if (!string.IsNullOrEmpty(_myCommerce.AgenteRetencion))
                     trib.agenteRetencion = _myCommerce.AgenteRetencion;
 
-                if (_myCommerce.IdTypeRegimen == TypeECommerceEnum.Microenterprise) 
+                if (_myCommerce.IdTypeRegimen == TypeECommerceEnum.Microenterprise)
                     trib.regimenMicroempresas = _myCommerce.RegimenMicroempresas;
                 else if (_myCommerce.IdTypeRegimen == TypeECommerceEnum.RIMPE_Taxpayer)
                     trib.contribuyenteRimpe = _myCommerce.ContribuyenteRimpe;
 
 
 
-                if (!_ambiente.Contains("-1")) {
+                if (!_ambiente.Contains("-1"))
+                {
                     trib.claveAcceso = ClaveAcceso.generarClaveAcceso(
                                _fechaEmision,
                                trib.codDoc,
                                trib.ruc, _ambiente,
                                trib.estab + trib.ptoEmi,
-                               trib.secuencial, "12345678","1");
+                               trib.secuencial, "12345678", "1");
                 }
-            
+
                 claveAcceso = trib.claveAcceso;
                 codDdoc = trib.codDoc;
                 Num_factura = trib.estab + "-" + trib.ptoEmi + "-" + trib.secuencial;
@@ -179,26 +184,26 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
                 inf.fechaEmision = _fechaEmision.ToString("dd/MM/yyyy");
                 inf.dirEstablecimiento = _myCommerce.EstablishmentAddress;
-                if ( !string.IsNullOrEmpty ( _myCommerce.SpecialTaxNumber))
+                if (!string.IsNullOrEmpty(_myCommerce.SpecialTaxNumber))
                 {
                     inf.contribuyenteEspecial = _myCommerce.SpecialTaxNumber.ToString();
                 }
 
                 inf.obligadoContabilidadSpecified = true;
                 inf.obligadoContabilidad = _myCommerce.KeepAccounting ? obligadoContabilidad.SI : obligadoContabilidad.NO;
-                inf.tipoIdentificacionComprador = _customer.TypeIdentification.Codigo_SRI;
+                inf.tipoIdentificacionComprador = IdentificationTypeResolver.ResolveCode( _customer.Personas.Ruc_Ci);
 
-                inf.razonSocialComprador = _customer.Nombre;
-                inf.identificacionComprador = _customer.Num_Identity;
+                inf.razonSocialComprador = _customer.Personas.FullName;
+                inf.identificacionComprador = _customer.Personas.Ruc_Ci ;
                 inf.totalSinImpuestos = _listSales.Sum(x => x.SubTotal);
                 inf.totalDescuento = 0;
-                inf.importeTotal =  Math.Round ( _listSales.Sum(x => x.TotalItem),2);
+                inf.importeTotal = Math.Round(_listSales.Sum(x => x.TotalItem), 2);
                 inf.moneda = "DOLAR";
                 //get list emails
-                if (_customer.SendMails)
+                if (_customer.Personas.SendMail)
                 {
                     _emailSend = new List<string>();
-                    string emailText = _customer.MainEmail + ";" + _customer.AlternativeEmail;
+                    string emailText = _customer.Personas.Mail;
 
                     string[] mails = emailText.Split(';');
 
@@ -214,13 +219,13 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
                 var lisImp = new List<facturaInfoFacturaTotalImpuesto>();
 
-               foreach (var item in _listSales)
+                foreach (var item in _listSales)
                 {
                     var model = new ItemVats();
 
                     model.ProductId = item.Product.Id;
                     model.baseImponible = item.SubTotal;
-                    model.valor =  Math.Round ( item.Iva + item.ICE + item.IRBPNR,2);
+                    model.valor = Math.Round(item.Iva + item.ICE + item.IRBPNR, 2);
 
 
                     foreach (var item2 in item.Product.PRODUCTO_IMPUESTO)
@@ -235,13 +240,14 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
 
                 lisImp = _listVats.GroupBy(x => x.codigoPorcentaje)
-                                .Select(op => new facturaInfoFacturaTotalImpuesto {
+                                .Select(op => new facturaInfoFacturaTotalImpuesto
+                                {
                                     codigo = op.FirstOrDefault().codigo,
                                     codigoPorcentaje = op.Key,
                                     baseImponible = op.Sum(x => x.baseImponible),
                                     valor = Math.Round(op.Sum(x => x.valor), 2)
                                 }).ToList();
-                
+
 
 
                 inf.totalConImpuestos = lisImp.ToArray();
@@ -251,8 +257,8 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
                 pagos.Add(new pagosPago
                 {
-                    formaPago =  _formas_pago.CODIGO_FORMA_PAGO,
-                    total = Math.Round ( _listSales.Sum(x => x.TotalItem),2),
+                    formaPago = _formas_pago.CODIGO_FORMA_PAGO,
+                    total = Math.Round(_listSales.Sum(x => x.TotalItem), 2),
                     plazo = 0,
                     plazoSpecified = true,
                     unidadTiempo = "Días",
@@ -293,7 +299,6 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
                     foreach (var vat in _listVats.Where(x => x.ProductId == item.Product.Id))
                     {
-
                         lisImp.Add(new impuesto
                         {
                             codigo = vat.codigo,
@@ -305,8 +310,8 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
                     }
 
                     facDetail.impuestos = lisImp.ToArray();
-            
-                    if (item.Product.INFO_ADICIONALS != null && item.Product.INFO_ADICIONALS.Count > 0) 
+
+                    if (item.Product.INFO_ADICIONALS != null && item.Product.INFO_ADICIONALS.Count > 0)
                     {
                         List<facturaDetalleDetAdicional> ifoAddid = new List<facturaDetalleDetAdicional>();
                         foreach (var infoAdditional in item.Product.INFO_ADICIONALS)
@@ -320,7 +325,7 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
 
                         facDetail.detallesAdicionales = ifoAddid.ToArray();
                     }
-            
+
                     lisDetall.Add(facDetail);
 
                 }
@@ -328,55 +333,9 @@ namespace InterfaceSignatureAndSRI.GeneratedXML
                 return lisDetall;
             });
         }
-        private async static Task<facturaCampoAdicional[]> getInfoAdicional()
-        {
+        
 
-            return await Task<facturaCampoAdicional[]>.Factory.StartNew(() =>
-            {
-                List<facturaCampoAdicional> infAdi = new List<facturaCampoAdicional>();
-
-
-                infAdi.Add(new facturaCampoAdicional
-                {
-                    nombre = "Hora",
-                    Value = _fechaEmision.ToString("H:mm:ss")
-                });
-
-
-
-
-                infAdi.Add(new facturaCampoAdicional
-                {
-                    nombre = "Cod.Cliente",
-                    Value = _customer.Id.ToString()
-                });
-
-                infAdi.Add(new facturaCampoAdicional
-                {
-                    nombre = "Dirección",
-                    Value = string.IsNullOrEmpty(_customer.Address) ?
-                          "Naranjito" : _customer.Address
-                });
-
-
-                infAdi.Add(new facturaCampoAdicional
-                {
-                    nombre = "Teléfono",
-                    Value = string.IsNullOrEmpty(_customer.Phone) ?
-                            "-" : _customer.Phone
-                });
-
-                infAdi.Add(new facturaCampoAdicional
-                {
-                    nombre = "Nro Interno",
-                    Value = _secuancia.ToString()
-                });
-                return infAdi.ToArray();
-            });
-
-        }
-
-        internal ItemsVats GetVats()
+        internal InvoiceHeaderInput GetVats()
         {
             return _ItemsVats;
         }

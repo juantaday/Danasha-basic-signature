@@ -1,11 +1,8 @@
 ﻿using Domain.Data.Entities;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using System.Windows.Media.TextFormatting;
 
 namespace Domain.Models
 {
@@ -18,23 +15,25 @@ namespace Domain.Models
         public int Id { get; set; }
 
         [Required]
-        [Column(TypeName ="decimal(18,3)")]
+        [Column(TypeName = "decimal(18,3)")]
         public decimal Quatity { get; set; }
 
-        public decimal SubTotal { get 
+        public decimal SubTotal
+        {
+            get
             {
                 if (Product == null)
                     return 0;
 
-                return  Math.Round( Product.UnitPrice * Quatity,2);
-            } 
+                return Math.Round(Product.UnitPrice * Quatity, 2);
+            }
         }
 
         public decimal BaseIva00
         {
             get
             {
-                if (Product == null || Product.PRODUCTO_IMPUESTO.Count  == 0)
+                if (Product == null || Product.PRODUCTO_IMPUESTO.Count == 0)
                     return 0;
 
                 if (Product.PRODUCTO_IMPUESTO.Where(x => x.CODIGO_IMPUESTO == "0").Any())
@@ -58,14 +57,15 @@ namespace Domain.Models
             }
         }
 
-        public decimal Iva { 
+        public decimal Iva
+        {
             get
             {
                 if (this.Product == null)
                     return 0;
 
-                return ( Product.IvaPercent  * this.SubTotal) /100;
-            } 
+                return (Product.IvaPercent * this.SubTotal) / 100;
+            }
         }
 
         public decimal ICE
@@ -89,8 +89,11 @@ namespace Domain.Models
                 return (Product.IRBPNR_Percent * this.SubTotal) / 100;
             }
         }
-        public decimal TotalItem { get {
-                return this.SubTotal + this.Iva + this.ICE + this.IRBPNR;    
+        public decimal TotalItem
+        {
+            get
+            {
+                return this.SubTotal + this.Iva + this.ICE + this.IRBPNR;
             }
         }
         public Product Product { get; set; }

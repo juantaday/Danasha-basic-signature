@@ -1,9 +1,6 @@
 ﻿using Domain.Data.Enums;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Domain.Data.Entities
 {
@@ -22,13 +19,11 @@ namespace Domain.Data.Entities
 
         [StringLength(2)]
         [Required]
-        public string  Codigo_SRI { get; set; }
+        public string Codigo_SRI { get; set; }
 
         public int Dimension { get; set; }
 
         public TypeFiedEnum TypeFied { get; set; }
-
-        public virtual ICollection <Cliente > Clientes { get; set; }
 
     }
 }

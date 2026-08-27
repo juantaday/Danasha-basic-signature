@@ -332,6 +332,7 @@ Partial Class frmVentas
         Me.NotaVentaButton.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.ToolTip1.SetToolTip(Me.NotaVentaButton, "Documento por emitir")
         Me.NotaVentaButton.UseVisualStyleBackColor = True
+        Me.NotaVentaButton.Visible = False
         '
         'DetailPersonButton
         '

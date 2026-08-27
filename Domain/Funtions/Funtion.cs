@@ -29,7 +29,7 @@ namespace Domain.Funtions
         {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
-                return db.Clientes.Include(x => x.TypeIdentification).Take(500).ToList();
+                return db.Clientes.Include(x => x.Personas).Take(500).ToList();
             }
         }
 
@@ -185,7 +185,7 @@ namespace Domain.Funtions
                     try
                     {
 
-                        db.Entry(currentCommerce).State = currentCommerce.Id == 0 ?
+                        db.Entry(currentCommerce).State = currentCommerce.CommerceId == 0 ?
                                EntityState.Added :
                                EntityState.Modified;
 
@@ -305,40 +305,7 @@ namespace Domain.Funtions
         }
 
 
-        public static List<Cliente> GetListCustomerByParameter(string search)
-        {
-            var response = PFunciones.GenerateSpliter(search);
-            if (!response.IsSucces)
-                throw new Exception("");
-
-
-            using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
-            {
-                if (response.IsNumeric)
-                    return db.Clientes.Where(x => x.Num_Identity.Trim() == response.Spliter[0]).ToList();
-                else
-                {
-                    if (response.Spliter[2].Length > 0)
-                    {
-                        var qry = db.Clientes.Include(x => x.TypeIdentification).Where(x => x.Nombre.Contains(response.Spliter[0]));
-                        var qry1 = qry.Where(x => x.Nombre.Contains(response.Spliter[1]));
-                        return qry.Where(x => x.Nombre.Contains(response.Spliter[2])).ToList(); ;
-                    }
-                    else if (response.Spliter[1].Length > 0)
-                    {
-                        var qry = db.Clientes.Include(x => x.TypeIdentification).Where(x => x.Nombre.Contains(response.Spliter[0]));
-                        return qry.Where(x => x.Nombre.Contains(response.Spliter[1])).ToList();
-                    }
-                    else
-                    {
-                        return db.Clientes.Include(x => x.TypeIdentification).Where(x => x.Nombre.Contains(response.Spliter[0])).ToList();
-                    }
-
-                }
-
-            }
-        }
-
+     
         public static FORMAS_PAGO GetDefaultFormasPago()
         {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
@@ -351,45 +318,9 @@ namespace Domain.Funtions
         {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
             {
-                return db.Clientes.Include(x => x.TypeIdentification).Where(x => x.Num_Identity == "9999999999999").FirstOrDefault();
+                return db.Clientes.Include(x => x.Personas).Where(x => x.Personas.Ruc_Ci == "9999999999999").FirstOrDefault();
             }
         }
-
-        /// <summary>
-        /// retune informaciones basicas 
-        /// </summary>
-        /// <returns>int:Secuencia </returns>
-        /// <returns>string: numero de factura </returns>
-        /// <returns>string: ambiente </returns>
-        /// <exception cref="KeyNotFoundException"></exception>
-        public static Tuple<int, string, string> GetNumberInvoice()
-        {
-            using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
-            {
-                //1 = Factura
-                var doc = db.TypeDocuments.Where(x => x.Id == 1).FirstOrDefault();
-                if (doc == null)
-                    throw new KeyNotFoundException(nameof(TypeDocument) + "ID = 1");
-
-                var emisor = db.MyCommerce.Include(x => x.SignatureOptions).FirstOrDefault();
-                if (emisor == null)
-                    throw new KeyNotFoundException("Debe configurar primero el emisor para determinar el numero de factura..");
-
-                if (emisor.SignatureOptions == null || emisor.SignatureOptions.Count == 0)
-                    throw new KeyNotFoundException("Debe configurar las opciones de fima, token");
-
-
-                string numFac = emisor.CodEstablec + "-" + emisor.CodPntoEmision + "-"
-                    + new string('0', 7 - (doc.Numeration).ToString().Length)
-                    + (doc.Numeration).ToString();
-
-                var ambiente = (ushort)emisor.SignatureOptions.FirstOrDefault().TIPO_AMBIENTE;
-
-                return Tuple.Create(doc.Numeration + 1, numFac, ambiente.ToString());
-            }
-        }
-
-
 
         public static byte[] GetLogoPDFByte()
         {
@@ -441,29 +372,7 @@ namespace Domain.Funtions
             }
         }
 
-        public static List<string> GetEmailArrayByRuc(string ruc)
-        {
-
-            using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))
-            {
-
-                var client = db.Clientes.Where(x => x.Num_Identity.Trim() == ruc).FirstOrDefault();
-                if (client == null || string.IsNullOrEmpty(client.MainEmail))
-                    return null;
-
-
-                List<string> lis = new List<string>();
-                lis.Add(client.MainEmail);
-
-                if (!string.IsNullOrEmpty(client.AlternativeEmail))
-                    lis.Add(client.AlternativeEmail);
-
-                return lis;
-
-            }
-
-        }
-
+       
         public async static Task<bool> UpdatePriceProduc(int productId, decimal newPrice)
         {
             using (var db = new DomainDataContext(new DbContextOptions<DataContext>()))

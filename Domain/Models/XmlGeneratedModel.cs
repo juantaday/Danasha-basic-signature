@@ -13,6 +13,6 @@ namespace Domain.Models
         public string  CodDocumento { get; set; }
         public List<string > EmailsSend { get; set; }
         public string  Xml_Plano { get; set; }
-        public ItemsVats ItemsVats { get; set; }
+        public InvoiceHeaderInput ItemsVats { get; set; }
     }
 }

@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibPrintTicket", "..\Danash
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainSQLite", "DomainSQLite\DomainSQLite.csproj", "{C671486A-AFA7-4F79-BC50-BB9F05E149A1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{B2D9C20D-213B-4537-A2C5-42CCC87AAB32}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ec.gob.sri", "..\Danasha Gold Price\ec.gob.sri\ec.gob.sri.csproj", "{C8243CEF-FFBC-460E-B2D8-C61CCE6CD8FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JMTControls", "..\..\Proyect generic\JMTControls\JMTControls\JMTControls.csproj", "{F2127F73-480E-4841-944C-D1E9DB1EBC25}"
@@ -30,6 +28,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{10001C08-94DF-423D-A734-F2741415A421}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupabaseWorker", "SupabaseWorker\SupabaseWorker.csproj", "{F45881D0-8396-4CF8-812B-598B5932B6A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{E528BBC3-1C26-8C35-F682-23718816ADCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,14 +71,6 @@ Global
 		{C671486A-AFA7-4F79-BC50-BB9F05E149A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C671486A-AFA7-4F79-BC50-BB9F05E149A1}.Release|x64.ActiveCfg = Release|Any CPU
 		{C671486A-AFA7-4F79-BC50-BB9F05E149A1}.Release|x64.Build.0 = Release|Any CPU
-		{B2D9C20D-213B-4537-A2C5-42CCC87AAB32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2D9C20D-213B-4537-A2C5-42CCC87AAB32}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2D9C20D-213B-4537-A2C5-42CCC87AAB32}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{B2D9C20D-213B-4537-A2C5-42CCC87AAB32}.Debug|x64.Build.0 = Debug|Any CPU
-		{B2D9C20D-213B-4537-A2C5-42CCC87AAB32}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2D9C20D-213B-4537-A2C5-42CCC87AAB32}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2D9C20D-213B-4537-A2C5-42CCC87AAB32}.Release|x64.ActiveCfg = Release|Any CPU
-		{B2D9C20D-213B-4537-A2C5-42CCC87AAB32}.Release|x64.Build.0 = Release|Any CPU
 		{C8243CEF-FFBC-460E-B2D8-C61CCE6CD8FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C8243CEF-FFBC-460E-B2D8-C61CCE6CD8FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8243CEF-FFBC-460E-B2D8-C61CCE6CD8FF}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -151,6 +143,14 @@ Global
 		{F45881D0-8396-4CF8-812B-598B5932B6A0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F45881D0-8396-4CF8-812B-598B5932B6A0}.Release|x64.ActiveCfg = Release|Any CPU
 		{F45881D0-8396-4CF8-812B-598B5932B6A0}.Release|x64.Build.0 = Release|Any CPU
+		{E528BBC3-1C26-8C35-F682-23718816ADCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E528BBC3-1C26-8C35-F682-23718816ADCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E528BBC3-1C26-8C35-F682-23718816ADCD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E528BBC3-1C26-8C35-F682-23718816ADCD}.Debug|x64.Build.0 = Debug|Any CPU
+		{E528BBC3-1C26-8C35-F682-23718816ADCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E528BBC3-1C26-8C35-F682-23718816ADCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E528BBC3-1C26-8C35-F682-23718816ADCD}.Release|x64.ActiveCfg = Release|Any CPU
+		{E528BBC3-1C26-8C35-F682-23718816ADCD}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

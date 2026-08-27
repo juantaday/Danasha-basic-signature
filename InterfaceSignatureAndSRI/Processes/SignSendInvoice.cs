@@ -58,7 +58,7 @@ namespace InterfaceSignatureAndSRI.Processes
                 string xmlPlaneText = string.Empty;
                 string claveAcceso;
                 string codDoc;
-                ItemsVats itemVat;
+                InvoiceHeaderInput itemVat;
 
                 List<string> emailsSend;
 
@@ -77,7 +77,7 @@ namespace InterfaceSignatureAndSRI.Processes
                 }
 
                 if (itemVat == null)
-                    itemVat = new ItemsVats();
+                    itemVat = new InvoiceHeaderInput();
 
                 progress.Report("Documento generado =>Clave de acceso: " + claveAcceso);
 
@@ -133,7 +133,7 @@ namespace InterfaceSignatureAndSRI.Processes
                 string codDoc;
                 string claveAcceso;
                 string nameDoc;
-                ItemsVats itemVat;
+                InvoiceHeaderInput itemVat;
 
                 List<string> emailsSend;
 
@@ -156,7 +156,7 @@ namespace InterfaceSignatureAndSRI.Processes
                     nameDoc = claveAcceso;
 
                 if (itemVat == null)
-                    itemVat = new ItemsVats();
+                    itemVat = new InvoiceHeaderInput();
 
                 progress.Report("Documento generado =>Clave de acceso: " + numDocument);
 
@@ -201,7 +201,7 @@ namespace InterfaceSignatureAndSRI.Processes
                 string xmlPlaneText = string.Empty;
                 string claveAcceso;
                 string codDoc;
-                ItemsVats itemVat;
+                InvoiceHeaderInput   itemVat;
 
                 List<string> emailsSend;
 
@@ -218,7 +218,7 @@ namespace InterfaceSignatureAndSRI.Processes
                 }
 
                 if (itemVat == null)
-                    itemVat = new ItemsVats();
+                    itemVat = new InvoiceHeaderInput();
 
                 progress.Report("Documento generado =>Clave de acceso: " + claveAcceso);
 

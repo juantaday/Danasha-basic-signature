@@ -1,46 +1,26 @@
-﻿using Domain.Data.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace Domain.Data.Entities
+﻿namespace Domain.Data.Entities
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    [Table("Clientes", Schema = "dbo")]
     public class Cliente
     {
-        public int Id { get; set; }
-
-        [StringLength(70)]
-        [Required]
-        public string Nombre { get; set; }
+        [Key]
+        public int IdCliente { get; set; }
 
         [Required]
-        public int TypyIdentificationId { get; set; }
+        public int IdPersona { get; set; }
 
-        [StringLength(30)]
-        [Required ]
-        public string Num_Identity { get; set; }
+        public bool Credito { get; set; }
 
-        [StringLength(255)]
-        public string Address { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal Monto_Max { get; set; }
 
-        [StringLength (15)]
-        public string PhoneConvencional { get; set; }
+        public virtual Personas Personas { get; set; }
 
-        [StringLength(15)]
-        public string  Phone { get; set; }
-
-        [EmailAddress]
-        public string MainEmail { get; set; }
-
-        [EmailAddress]
-        public string AlternativeEmail { get; set; }
-
-        public bool  SendMails { get; set; } = false;
-
-        public TypeClienteEnum TypeCliente { get; set; }
-
-        public virtual TypeIdentification TypeIdentification { get; set; }
-
+        public virtual ICollection<FacturaVenta> FacturaVentas { get; set; }   
     }
 }

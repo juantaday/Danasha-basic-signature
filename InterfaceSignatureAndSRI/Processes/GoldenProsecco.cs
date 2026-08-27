@@ -23,7 +23,7 @@ namespace InterfaceSignatureAndSRI.Processes
 
         public async static void ExecuteFullProcess(OwnerEnum ownerEnum, string xmlPlaneText, string claveAcceso,
             DateTime fechaEmision, TokensValidos tokensValidos, int idDataRelation, string ambiente, int voucherID,
-            List<string> emailsSend, ItemsVats itemVats, IProgress<string> progress, bool SaveFile = false,
+            List<string> emailsSend, InvoiceHeaderInput itemVats, IProgress<string> progress, bool SaveFile = false,
             bool SaveInDataBase = false, string[] files = null)
         {
 

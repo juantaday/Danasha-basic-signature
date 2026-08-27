@@ -59,14 +59,9 @@ namespace Domain.Data
                 pr.HasIndex(x => x.Codigo_SRI).IsUnique().HasName("UQ_Codigo_Codigo_SRI");
             });
 
-            modelBuilder.Entity<Cliente>(pr =>
+            modelBuilder.Entity<Personas>(pr =>
             {
-                pr.HasIndex(x => x.Num_Identity).IsUnique().HasName ("UQ_Num_Identity_Client");
-
-                pr.HasOne(x => x.TypeIdentification)
-                .WithMany(x => x.Clientes)
-                .HasForeignKey(x => x.TypyIdentificationId)
-                .OnDelete(DeleteBehavior.Restrict);
+                pr.HasIndex(x => x.Ruc_Ci).IsUnique().HasName ("UQ_Num_Identity_Client");
 
             });
 
@@ -108,6 +103,65 @@ namespace Domain.Data
                 pr.HasIndex(x => x.NameDocument).IsUnique().HasName("UQ_TypeDocument_NameDocument");
 
             });
+
+            #endregion
+
+            #region Invoice
+
+
+            modelBuilder.Entity<FacturaVenta>(pr =>
+            {
+                pr.HasOne(x => x.Clientes).WithMany(x => x.FacturaVentas)
+                .HasForeignKey(x => x.IdCliente)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            });
+
+
+
+            modelBuilder.Entity<FacturaVentaImpuesto>(pr =>
+            {
+                pr.HasOne(x=>x.FacturaVenta).WithMany(x=>x.FacturaVentaImpuestos)
+                .HasForeignKey(x=>x.IdFactVenta)
+                .OnDelete(DeleteBehavior.Cascade);  
+
+            });
+
+            modelBuilder.Entity<FacturaVentaDetail>(pr =>
+            {
+                pr.HasOne(x => x.FacturaVenta).WithMany(x => x.FacturaVentaDetails)
+                .HasForeignKey(x => x.IdFacturaVenta    )
+                .OnDelete(DeleteBehavior.Cascade);
+
+                pr.HasOne(d => d.ProductoPresentacion)
+                 .WithMany(c => c.FacturaVentaDetails)
+                 .HasForeignKey(c => c.IdPresent)
+                 .OnDelete( DeleteBehavior.Restrict);
+
+                pr.HasOne(d => d.FacturaVentaDiscount)
+                .WithOne(c => c.FacturaVentaDetail)
+                .HasForeignKey<FacturaVentaDiscount>(c => c.IdFacturVentaDetail);
+
+            });
+
+            modelBuilder.Entity<ProductoPresentacion>(pr =>
+            {
+                pr.HasOne(x => x.Producto).WithMany(x => x.ProductoPresentaciones)
+                .HasForeignKey(x => x.IdProducto)
+                .OnDelete(DeleteBehavior.Cascade);
+  
+
+            });
+
+            #endregion
+
+            #region Customers
+            modelBuilder.Entity<Cliente>(pr =>
+            {
+                pr.HasOne(x => x.Personas).WithMany(x => x.Clientes)
+                .HasForeignKey(x => x.IdPersona)
+                .OnDelete(DeleteBehavior.Cascade);
+           });
 
             #endregion
         }
